@@ -5,7 +5,7 @@
 
 ## 2、入门指南
   * [2-1、图表库内容](book/Package-Content.md)
-  * [2-2、运行图表库](Running-Your-Charting-Library.md)
+  * [2-2、运行图表库](book/Running-Your-Charting-Library.md)
 
 ## 3、数据绑定
   * [3-1、如何连接我的数据](book/How-To-Connect-My-Data.md)
