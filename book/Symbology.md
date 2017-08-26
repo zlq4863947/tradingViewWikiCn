@@ -16,15 +16,15 @@
 
 SymbolInfo是一个包含商品metadata的对象。 该对象是解析商品的结果。 SymbolInfo有以下字段：
 
-##### name
+##### [name](#name)
 
 商品名称。您的用户将看到它\(作为一个字符串\)。 此外，如果您不使用`tickers`，它将用于数据请求。
 
-##### ticker
+##### [ticker](#ticker)
 
 它是您的商品代码体系中此商品的唯一标识符。如果您指定此属性，则其值将用于所有数据请求，`ticker`如果未明确指定，则被视为等于`symbol`。
 
-##### description
+##### [description](#description)
 
 商品说明。这个符号说明将被打印在图表的标题栏中。
 
