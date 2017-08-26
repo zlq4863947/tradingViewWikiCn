@@ -60,10 +60,10 @@ widget.onChartReady(function() {
   * [addCustomCSSFile\(url\)](https://github.com/tradingview/charting_library/wiki/Widget-Methods#addcustomcssfileurl)
   * [applyOverrides\(overrides\)](https://github.com/tradingview/charting_library/wiki/Widget-Methods#applyoverridesoverrides)
   * [applyStudiesOverrides\(overrides\)](https://github.com/tradingview/charting_library/wiki/Widget-Methods#applystudiesoverridesoverrides)
-* ![](/assets/17_4_19_6_57_26.png)[Trading Terminal](https://github.com/tradingview/charting_library/wiki/Trading-Terminal) specific
+* ![](../images/trading.png)[Trading Terminal](https://github.com/tradingview/charting_library/wiki/Trading-Terminal) specific
   * [showSampleOrderDialog\(order\)](https://github.com/tradingview/charting_library/wiki/Widget-Methods#chart-showsampleorderdialogorder)
   * [watchList\(\)](https://github.com/tradingview/charting_library/wiki/Widget-Methods#chart-watchlist)
-* ![](/assets/17_4_19_6_57_26.png)Multiple Charts Layout
+* ![](../images/trading.png)Multiple Charts Layout
   * [chart\(index\)](https://github.com/tradingview/charting_library/wiki/Widget-Methods#chart-chartindex)
   * [activeChart\(\)](https://github.com/tradingview/charting_library/wiki/Widget-Methods#chart-activechart)
   * [chartsCount\(\)](https://github.com/tradingview/charting_library/wiki/Widget-Methods#chart-chartscount)
@@ -218,9 +218,9 @@ subscribe\(event, callback\)
 | onMarkClick |  | 每次当用户点击K线上的标记时。[mark on bar](https://github.com/tradingview/charting_library/wiki/Marks-On-Bars). 标记ID将作为参数传递。 |
 | onTimescaleMarkClick |  | 每当用户单击时间刻度标记时，将调用回调。 标记ID将作为参数传递 |
 | onSelectedLineToolChanged |  | 每次当选择的线工具更改时，将调用回调。 |
-| ![](/assets/17_4_19_6_57_26.png)layout\_about\_to\_be\_changed |  | 要更改图表的数量或位置时 |
-| ![](/assets/17_4_19_6_57_26.png)layout\_changed |  | 已经更改图表的数量或位置时 |
-| ![](/assets/17_4_19_6_57_26.png)activeChartChanged |  | 活动图表被更改 |
+| ![](../images/trading.png)layout\_about\_to\_be\_changed |  | 要更改图表的数量或位置时 |
+| ![](../images/trading.png)layout\_changed |  | 已经更改图表的数量或位置时 |
+| ![](../images/trading.png)activeChartChanged |  | 活动图表被更改 |
 
 2.`callback`: function\(arguments\)
 
@@ -468,17 +468,17 @@ _Introduced in Charting Library 1.9_
 
 This method applies studies overrides to indicators' style or inputs without reloading the chart.
 
-# ![](/assets/17_4_19_6_57_26.png)Trading Terminal
+# ![](../images/trading.png)Trading Terminal
 
 The following methods are available in[Trading Terminal](https://github.com/tradingview/charting_library/wiki/Trading-Terminal)only.
 
-#### ![](/assets/17_4_19_6_57_26.png)showSampleOrderDialog\(order\)
+#### ![](../images/trading.png)showSampleOrderDialog\(order\)
 
 1. `order`: object
 
 显示样品订单对话框。 这个对话框看起来像Trading View Paper一样。 通常您不需要使用样品对话框。 这种方法用于交易样本。
 
-#### ![](/assets/17_4_19_6_57_26.png)watchList\(\)
+#### ![](../images/trading.png)watchList\(\)
 
 _Introduced in Charting Library 1.9_
 
@@ -490,27 +490,27 @@ _Introduced in Charting Library 1.9_
 
 3. `onListChanged()`- 您可以使用订阅此方法返回的[Subscription](https://github.com/tradingview/charting_library/wiki/Subscription)对象，以便在更改观察列表并取消订阅事件时收到通知。 如果没有WatchList将返回null。
 
-# ![](/assets/17_4_19_6_57_26.png)Multiple Charts Layout
+# ![](../images/trading.png)Multiple Charts Layout
 
-#### ![](/assets/17_4_19_6_57_26.png)chart\(index\)
+#### ![](../images/trading.png)chart\(index\)
 
 1. `index`: index of a chart starting from 0.`index`is 0 by default.
 
 Returns a chart object that you can use to call[Chart-Methods](https://github.com/tradingview/charting_library/wiki/Chart-Methods)
 
-#### ![](/assets/17_4_19_6_57_26.png)activeChart\(\)
+#### ![](../images/trading.png)activeChart\(\)
 
 Returns current active chart object that you can use to call[Chart-Methods](https://github.com/tradingview/charting_library/wiki/Chart-Methods)
 
-#### ![](/assets/17_4_19_6_57_26.png)chartsCount\(\)
+#### ![](../images/trading.png)chartsCount\(\)
 
 Returns amount of charts in the current layout
 
-#### ![](/assets/17_4_19_6_57_26.png)layout\(\)
+#### ![](../images/trading.png)layout\(\)
 
 Returns current layout mode. Possible values:`4`,`6`,`8`,`s`,`2h`,`2-1`,`2v`,`3h`,`3v`,`3s`.
 
-#### ![](/assets/17_4_19_6_57_26.png)setLayout\(layout\)
+#### ![](../images/trading.png)setLayout\(layout\)
 
 1. `layout`: Possible values:`4`,`6`,`8`,`s`,`2h`,`2-1`,`2v`,`3h`,`3v`,`3s`.
 

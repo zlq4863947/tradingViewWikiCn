@@ -10,15 +10,15 @@
 
 ### JavaScript API 或者 UDF?
 
-![](https://github.com/tradingview/charting_library/wiki/images/udf_or_jsapi.png)
+![](https://github.com/tradingview/charting_library/wiki./images/udf_or_jsapi.png)
 
 ## UDF scheme
 
-![](https://github.com/tradingview/charting_library/wiki/images/udf.png)
+![](https://github.com/tradingview/charting_library/wiki./images/udf.png)
 
 ## JSAPI scheme
 
-![](https://github.com/tradingview/charting_library/wiki/images/jsapi.png)
+![](https://github.com/tradingview/charting_library/wiki./images/jsapi.png)
 
 上图显示了UDF和JSAPI之间的区别。 必要的图表库部分是蓝色的。 红色部分（默认数据传输）包含在默认包中（具有非最小化的源代码），并可以被替换。 您可能会看到默认数据传输实现JS API与图表交互。 也可以使用默认传输实现UDF协议与服务器通信。
 

@@ -20,13 +20,13 @@
 9. [getTimescaleMarks](#gettimescalemarkssymbolinfo-startdate-enddate-ondatacallback-resolution)
 10. [getServerTime](#getservertimecallback)
 
-![](/assets/17_4_19_6_57_26.png)[交易终端专属](https://github.com/tradingview/charting_library/wiki/Trading-Terminal):
+![](../images/trading.png)[交易终端专属](https://github.com/tradingview/charting_library/wiki/Trading-Terminal):
 
 1. [getQuotes](https://github.com/tradingview/charting_library/wiki/JS-Api#chart-getquotessymbols-ondatacallback-onerrorcallback)
 2. [subscribeQuotes](https://github.com/tradingview/charting_library/wiki/JS-Api#chart-subscribequotessymbols-fastsymbols-onrealtimecallback-listenerguid)
 3. [unsubscribeQuotes](https://github.com/tradingview/charting_library/wiki/JS-Api#chart-unsubscribequoteslistenerguid)
-4. ![](/assets/17_4_19_6_57_26.png)[subscribeDepth](https://github.com/tradingview/charting_library/wiki/JS-Api#subscribedepthsymbolinfo-callback)
-5. ![](/assets/17_4_19_6_57_26.png)[unsubscribeDepth](https://github.com/tradingview/charting_library/wiki/JS-Api#unsubscribedepthsubscriberuid)
+4. ![](../images/trading.png)[subscribeDepth](https://github.com/tradingview/charting_library/wiki/JS-Api#subscribedepthsymbolinfo-callback)
+5. ![](../images/trading.png)[unsubscribeDepth](https://github.com/tradingview/charting_library/wiki/JS-Api#unsubscribedepthsubscriberuid)
 
 ### [onReady\(callback\)](#onreadycallback)
 
@@ -255,9 +255,9 @@ mark为具有以下属性的对象:
 
 当图表需要知道服务器时间时，如果配置标志`supports_time`设置为`true`，则调用此函数。图表库预期只调用一次回调。所提供的时间没有毫秒。例子：1445324591。它是用来显示倒计时的价格规模。
 
-## ![](/assets/17_4_19_6_57_26.png)[交易终端专属](#交易终端专属)
+## ![](../images/trading.png)[交易终端专属](#交易终端专属)
 
-### ![](/assets/17_4_19_6_57_26.png)[getQuotes\(symbols, onDataCallback, onErrorCallback\)](#getquotessymbols-ondatacallback-onerrorcallback)
+### ![](../images/trading.png)[getQuotes\(symbols, onDataCallback, onErrorCallback\)](#getquotessymbols-ondatacallback-onerrorcallback)
 
 1. `symbols`: 商品名称数组
 2. `onDataCallback`: function\(array of`data`\)
@@ -266,7 +266,7 @@ mark为具有以下属性的对象:
 
 当图表需要价格数据时，将调用此函数。图表库预期在收到所有请求数据时调用onDataCallback。No further calls are expected.
 
-### ![](/assets/17_4_19_6_57_26.png)[subscribeQuotes\(symbols, fastSymbols, onRealtimeCallback, listenerGUID\)](#subscribequotessymbols-fastsymbols-onrealtimecallback-listenerguid)
+### ![](../images/trading.png)[subscribeQuotes\(symbols, fastSymbols, onRealtimeCallback, listenerGUID\)](#subscribequotessymbols-fastsymbols-onrealtimecallback-listenerguid)
 
 1. `symbols`: 要很少更新的产品数组（建议频率为每分钟一次）。这些产品在观察列表中，但它们目前不可见。
 2. `fastSymbols`: 要频繁更新的产品数组（一次在10秒或更多次）
@@ -276,13 +276,13 @@ mark为具有以下属性的对象:
 
 交易终端当需要接收产品的实时报价时调用此功能。图表预期您每次要更新报价时都会调用`onRealtimeCallback`。
 
-### ![](/assets/17_4_19_6_57_26.png)[unsubscribeQuotes\(listenerGUID\)](#unsubscribequoteslistenerguid)
+### ![](../images/trading.png)[unsubscribeQuotes\(listenerGUID\)](#unsubscribequoteslistenerguid)
 
 1. `listenerGUID`: 侦听器的唯一标识符
 
 交易终端当不需要再接收产品的实时报价时调用此函数。`listenerGUID`will be the same object which Library passed to`subscribeQuotes`before.
 
-### ![](/assets/17_4_19_6_57_26.png)[subscribeDepth\(symbolInfo, callback\): String](#subscribedepthsymbolinfo-callback-string)
+### ![](../images/trading.png)[subscribeDepth\(symbolInfo, callback\): String](#subscribedepthsymbolinfo-callback-string)
 
 1. `symbolInfo`:[SymbolInfo](https://github.com/tradingview/charting_library/wiki/Symbology#symbolinfo-structure) object
 2. `callback`: function\(depth\)
@@ -295,7 +295,7 @@ mark为具有以下属性的对象:
 
 此方法应返回唯一标识（subscriberUID），用于取消订阅数据。
 
-### ![](/assets/17_4_19_6_57_26.png)[unsubscribeDepth\(subscriberUID\)](#unsubscribedepthsubscriberuid)
+### ![](../images/trading.png)[unsubscribeDepth\(subscriberUID\)](#unsubscribedepthsubscriberuid)
 
 1. `subscriberUID`: String
 

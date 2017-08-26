@@ -15,7 +15,7 @@ new TradingView.widget({
 
 查看下列完整支持的参数列表。请记住，在图表初始化后在更改这些参数是不起作用的。如果要在初始化图表之后更改图表的状态，请使用控件方法。
 
-属性标记为![](/assets/17_4_19_6_57_26.png)的只在交易终端可用。
+属性标记为![](../images/trading.png)的只在交易终端可用。
 
 #### symbol, interval \[mandatory\]
 
@@ -229,9 +229,9 @@ time_frames: [
 * **chartTypes\(图表类型\)**: 收藏的图表类型数组 。图表类型名称与图表的UI中的英文版本相同。 例:`["Area", "Candles"]`
   .
 
-## ![](/assets/17_4_19_6_57_26.png)交易终端专属
+## ![](../images/trading.png)交易终端专属
 
-#### ![](/assets/17_4_19_6_57_26.png)组件工具栏
+#### ![](../images/trading.png)组件工具栏
 
 该对象包含图表右侧窗口小部件栏的设置。 右侧窗口小部件栏中的数据窗口，观察列表和详细信息选项卡可以使用Widget构造函数中的widgetbar 开启此功能：
 
@@ -251,7 +251,7 @@ widgetbar: {
 * **watchlist\_settings.default\_symbols &lt;\[\]&gt;**: 给观察列表设置商品数组。
 * \*\*watchlist\_settings.readonly: 给观察列表开启只读模式。
 
-#### ![](/assets/17_4_19_6_57_26.png)rss\_news\_feed
+#### ![](../images/trading.png)rss\_news\_feed
 
 使用此属性更改RSS新闻。 您可以为每个商品类型设置不同的rss，或为每个商品使用一个rss。 对象将拥有`default`属性，其他属性是可选的; 它们的名字为商品的类型. 每个属性都拥有一个对象\(或对象数组\) 并且具有以下属性:
 
@@ -298,7 +298,7 @@ widgetbar: {
 }
 ```
 
-#### ![](/assets/17_4_19_6_57_26.png)news\_provider
+#### ![](../images/trading.png)news\_provider
 
 代表新闻提供者的对象。 它可能包含以下属性：
 
@@ -346,7 +346,7 @@ news_provider: {
 }
 ```
 
-#### ![](/assets/17_4_19_6_57_26.png)trading\_controller
+#### ![](../images/trading.png)trading\_controller
 
 交易控制器是一个能使您的交易活跃起来的东西。[Read more](https://github.com/tradingview/charting_library/wiki/Trading-Controller).
 
