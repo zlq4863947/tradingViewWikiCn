@@ -214,7 +214,7 @@ Response: 响应的预期是一个对象，下面列出了一些属性。每个�
 
 所有省略的价格将被视为等于收盘价。
 
-### 标识
+### [标识](#标识)
 
 Request:`GET /marks?symbol=<ticker_name>&from=<unix_timestamp>&to=<unix_timestamp>&resolution=<resolution>`
 
@@ -239,7 +239,7 @@ Response: 响应预期是一个对象，下面列出了一些属性。此对象�
 
 **Remark**: 备注：如果您的datafeed在传输的配置数据中发送了supports\_marks：true，则会调用此方法。
 
-### 时间刻度标记
+### [时间刻度标记](#时间刻度标记)
 
 Request:`GET /timescale_marks?symbol=<ticker_name>&from=<unix_timestamp>&to=<unix_timestamp>&resolution=<resolution>`
 
@@ -258,13 +258,13 @@ Response: 响应预期为一个具有下列属性的数组对象。
 
 **Remark**: This call will be requested if your datafeed sent`supports_timescale_marks: true`in configuration data.
 
-### 服务器时间
+### [服务器时间](#服务器时间)
 
 Request:`GET /time`
 
 Response: Numeric unix time without milliseconds. Example: 1445324591
 
-### 报价
+### [报价](#报价)
 
 Request:`GET /quotes?symbols=<ticker_name_1>,<ticker_name_2>,...,<ticker_name_n>`
 
@@ -321,19 +321,19 @@ Example:
 }
 ```
 
-## 构造函数
+## [构造函数](#构造函数)
 
 `Datafeeds.UDFCompatibleDatafeed = function(datafeedURL, updateFrequency, protocolVersion)`
 
-### datafeedURL
+### [datafeedURL](#datafeedurl)
 
 这是一个数据服务器的URL，它将得到请求和返回数据。
 
-### updateFrequency（更新频率）
+### [updateFrequency](#updatefrequency（更新频率）)（更新频率）
 
 这是一个有间隔的实时数据请求，datafeed将以毫秒为单位发送到服务器。 默认值为10000（10秒）。
 
-### protocolVersion（协议版本）
+### [protocolVersion](#protocolversion（协议版本）)（协议版本）
 
 `1`- 过时的协议，每当图表滚动时，都会重新从服务器请求所有数据。
 

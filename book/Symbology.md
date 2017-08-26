@@ -16,15 +16,15 @@
 
 SymbolInfo是一个包含商品metadata的对象。 该对象是解析商品的结果。 SymbolInfo有以下字段：
 
-##### name
+##### [name](#name)
 
 商品名称。您的用户将看到它\(作为一个字符串\)。 此外，如果您不使用`tickers`，它将用于数据请求。
 
-##### ticker
+##### [ticker](#ticker)
 
 它是您的商品代码体系中此商品的唯一标识符。如果您指定此属性，则其值将用于所有数据请求，`ticker`如果未明确指定，则被视为等于`symbol`。
 
-##### description
+##### [description](#description)
 
 商品说明。这个符号说明将被打印在图表的标题栏中。
 
@@ -40,7 +40,7 @@ SymbolInfo是一个包含商品metadata的对象。 该对象是解析商品的�
 
 这个符号的交易所时区。我们希望以olsondb格式获取时区的名称。支持的时区为:
 
-```
+```js
 UTC
 America/New_York
 America/Los_Angeles
@@ -85,7 +85,7 @@ Asia/Kathmandu
 US/Mountain
 ```
 
-##### minmov\(最小波动\), pricescale\(价格范围\), minmove2, fractional\(分数\)
+##### minmov\(最小波动\), pricescale\(价格精度\), minmove2, fractional\(分数\)
 
 1. 最小的价格变化是由这些值决定的。
 2. PriceScale 参数确定了图表价格量表上的价格线之间的间隔。
@@ -125,7 +125,7 @@ ZFM2014（5年期国债），1/32的1/4：minmov = 1，pricecale = 128，minmove
 
 被datafeed支持（见datafeed配置数据）但不受当前商品支持的分辨率,将在分辨率选择器部件中禁用。 如果更改符号，新商品不支持选定的分辨率，则分辨率将切换到支持的分辨率列表中的第一项。 分辨率可用性逻辑（伪代码）:
 
-```
+```js
 resolutionAvailable  =
     resolution.isIntraday ?
        symbol.has_intraday && symbol.supports_resoluiton(resolution) :

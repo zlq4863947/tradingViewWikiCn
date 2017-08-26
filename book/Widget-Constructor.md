@@ -23,7 +23,7 @@ new TradingView.widget({
 
 #### timeframe
 
-设置图表的初始时间表。 时间框架是将被加载并显示在屏幕上的条形周期。有效的时间表是一个数字加一个字母，D为数天，M为数月。
+设置图表的初始时间表。 时间周期是将被加载并显示在屏幕上的条形周期。有效的时间周期是一个数字加一个字母，D为数天，M为数月。
 
 #### container\_id \[mandatory\]
 
@@ -73,7 +73,7 @@ JavaScript对象实现的接口 \([JS API](https://github.com/tradingview/charti
 
 #### study\_count\_limit
 
-**自1.5版本起。                  
+**自1.5版本起。                    
 **
 
 图表或多功能图布局的最大数量。最小值为2。
@@ -82,7 +82,7 @@ JavaScript对象实现的接口 \([JS API](https://github.com/tradingview/charti
 
 版本：1.1具有以下结构的对象：
 
-```
+```js
 {
     type: "black" | "white",
     tools: [
@@ -97,7 +97,7 @@ JavaScript对象实现的接口 \([JS API](https://github.com/tradingview/charti
 
 * `type`是一种类型的列表。 支持的值:`black`\(所有列出的项目会被禁用\),`white`\(只有列出的项目会被启用\)。
 * `tools`一个数组对象。每个对象可以具有以下属性：
-  * `name`\(mandatory\) is the name of a study. Use the same names as you can see them in Indicators widget
+  * `name`\(强制的\) 研究的名称。使用相同的名称，你可以看到他们在指标部件。
   * `grayed`一个布尔值，表明这项研究是否应该是可见的，但看起来像是被禁用的。 如果研究是灰色的并且用户点击它，则`onGrayedObjectClicked`回调会被调用。
 
 #### drawings\_access
@@ -151,7 +151,7 @@ customFormatters: {
 
 对Widget对象的默认属性进行覆盖。 覆盖属性意味着为其分配默认值。 您可以覆盖大部分Charting Library属性（也可以由用户通过UI编辑）使用`overrides`参数构造控件 。`overrides`应该是一个具有范围的对象。每个字段名是重写属性的名称，字段值是这些属性的期望值。例子:
 
-```
+```js
 overrides: {
     "symbolWatermarkProperties.color": "rgba(0, 0, 0, 0)"
 }
@@ -183,7 +183,7 @@ TradingView.onready(function()
 
 #### preset
 
-`preset是一组预定义窗口小部件设置的名称。预设中使用的所有设置也可以直接在窗口小部件的构造函数中使用。现在只支持mobile`预设。此预设的示例可在线获取。
+`preset`是一组预定义窗口小部件设置的名称。预设中使用的所有设置也可以直接在窗口小部件的构造函数中使用。现在只支持`mobile`预设。此预设的示例可在线获取。
 
 #### studies\_overrides
 
@@ -191,9 +191,9 @@ TradingView.onready(function()
 
 #### time\_frames
 
-在图表底部的时间框架选择器中可以看见这个时间框架列表。 例：
+在图表底部的时间周期选择器中可以看见这个时间周期列表。 例：
 
-```
+```js
 time_frames: [
     { text: "50y", resolution: "6M", description: "50 Years" },
     { text: "3y", resolution: "W", description: "3 Years", title: "3yr" },
@@ -203,7 +203,7 @@ time_frames: [
 ]
 ```
 
-时间框架是一个包含`text`和`resolution属性的对象。文本必须具有以下格式：<integer><y|m|d>`\( \d+\(y\|m\|d\) 为正则表达式 \). 分辨率是具有通用分辨率格式的字符串. 请参阅本主题[this topic](https://github.com/tradingview/charting_library/wiki/Time-Frames)了解有关时间框架的更多信息。在1.7中添加了描述属性，并显示在弹出菜单中。此参数是可选的（如果时间框架描述符不包含此属性：title（如果指定）或使用）。title属性在1.9中添加，此值将覆盖从text属性生成的默认标题。 此参数是可选的。
+时间周期是一个包含`text`和`resolution属性的对象。文本必须具有以下格式：<integer><y|m|d>`\( \d+\(y\|m\|d\) 为正则表达式 \). 分辨率是具有通用分辨率格式的字符串. 请参阅本主题[this topic](https://github.com/tradingview/charting_library/wiki/Time-Frames)了解有关时间框架的更多信息。在1.7中添加了描述属性，并显示在弹出菜单中。此参数是可选的（如果时间框架描述符不包含此属性：title（如果指定）或使用）。title属性在1.9中添加，此值将覆盖从text属性生成的默认标题。 此参数是可选的。
 
 #### charts\_storage\_url, client\_id, user\_id
 
@@ -260,7 +260,7 @@ widgetbar: {
 
 例:
 
-```
+```js
 {
     "default": [ {
         url: "https://articlefeeds.nasdaq.com/nasdaq/symbols?symbol={SYMBOL}",
@@ -274,7 +274,7 @@ widgetbar: {
 
 另一个例子:
 
-```
+```js
 {
     "default": {
         url: "https://articlefeeds.nasdaq.com/nasdaq/symbols?symbol={SYMBOL}",
@@ -285,7 +285,7 @@ widgetbar: {
 
 更多例子:
 
-```
+```js
 {
     "default": {
         url: "https://articlefeeds.nasdaq.com/nasdaq/symbols?symbol={SYMBOL}",
@@ -348,7 +348,7 @@ news_provider: {
 
 #### ![](../images/trading.png)trading\_controller
 
-交易控制器是一个能使您的交易活跃起来的东西。[Read more](https://github.com/tradingview/charting_library/wiki/Trading-Controller).
+交易控制器可以让您在线交易。[Read more](https://github.com/tradingview/charting_library/wiki/Trading-Controller).
 
 ```js
 new TradingView.widget({
