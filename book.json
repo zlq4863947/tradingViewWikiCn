@@ -19,8 +19,8 @@
       "url": "https://github.com/zlq4863947"
     },
     "donate": {
-      "wechat": "/images/weixin.png",
-      "alipay": "/images/alipay.png",
+      "wechat": "./images/weixin.png",
+      "alipay": "./images/alipay.png",
       "button": "赏",
       "alipayText": "支付宝打赏",
       "wechatText": "微信打赏"
