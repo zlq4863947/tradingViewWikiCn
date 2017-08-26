@@ -1,0 +1,36 @@
+{
+  "title": "TradingView中文开发文档",
+  "description": "TradingView为优秀的交易技术分析图表库",
+  "language": "zh",
+  "plugins": [
+    "disqus",
+    "github",
+    "prism",
+    "splitter",
+    "sitemap",
+    "toc2",
+    "donate"
+  ],
+  "pluginsConfig": {
+    "disqus": {
+      "shortName": "aistock-ga"
+    },
+    "github": {
+      "url": "https://github.com/zlq4863947"
+    },
+    "donate": {
+      "wechat": "/images/weixin.png",
+      "alipay": "/images/alipay.png",
+      "button": "赏",
+      "alipayText": "支付宝打赏",
+      "wechatText": "微信打赏"
+    },
+    "toc2": {
+      "addClass": true,
+      "className": "toc"
+    },
+    "sitemap": {
+      "hostname": "http://aistock.ga"
+    }
+  }
+}
