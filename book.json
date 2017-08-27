@@ -8,7 +8,6 @@
     "prism",
     "splitter",
     "sitemap",
-    "toc2",
     "donate"
   ],
   "pluginsConfig": {
@@ -24,10 +23,6 @@
       "button": "赏",
       "alipayText": "支付宝打赏",
       "wechatText": "微信打赏"
-    },
-    "toc2": {
-      "addClass": true,
-      "className": "toc"
     },
     "sitemap": {
       "hostname": "http://aistock.ga"

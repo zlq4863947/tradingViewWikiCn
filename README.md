@@ -11,6 +11,6 @@ TradingView为优秀的交易技术分析金融图表，拥有丰富的技术指
 - 仓库：https://github.com/zlq4863947/tradingViewWikiCn
 - 在线阅读：https://zlq4863947.gitbooks.io/tradingview/
 
-## 开发交流群
+## 开发交流QQ群
 
 - tradingview开发：313839516
