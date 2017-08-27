@@ -4,11 +4,11 @@
 
 报价是一组简短说明交易的数据。Charting Library支持观察列表（在**交易终端**配置中），并使用报价来显示有关商品的相关信息。
 
-Charting Library 中不管是[JS API](https://github.com/tradingview/charting_library/wiki/JS-Api)还是[UDF](https://github.com/tradingview/charting_library/wiki/UDF)都使用相同的数据结构来进行报价。
+Charting Library 中不管是[JS API](/book/JS-Api.md)还是[UDF](/book/UDF.md)都使用相同的数据结构来进行报价。
 
 以下是响应对象的描述：
 
-# 商品报价数据
+# [商品报价数据](#商品报价数据)
 
 * `s`: 商品的状态码。预期的值为:`ok`\|`error`
 * `n`: 商品名称。 此值必须与请求中完全相同

@@ -2,7 +2,7 @@
 
 定制是一个相当模糊的概念，所以写几篇文章对它进行说明。
 
-# 通过数据流定制
+# [通过数据流定制](#通过数据流定制)
 
 他们最关心的是数据相关的东西。定制的配置可以通过datafeed响应来实现。响应配置实例：
 
@@ -25,9 +25,9 @@
 };
 ```
 
-在[JS API page](https://github.com/tradingview/charting_library/wiki/JS-Api#onreadycallback)可以找到更详细的说明。
+在[JS API](/book/JS-Api.md#onreadycallback)可以找到更详细的说明。
 
-# 在客户端进行定制
+# [在客户端进行定制](#在客户端进行定制)
 
 允许您最大化的定制UI/UX。这些定制通过定义图表控件中的构造函数的参数完成。
 
@@ -71,12 +71,11 @@ var widget = new TradingView.widget({
 });
 ```
 
-详情参考：[Widget Constructor Arguments article](https://github.com/tradingview/charting_library/wiki/Widget-Constructor).
+详情参考：[Widget构造器](/book/Widget-Constructor.md)
 
 # 也可以看看
 
 * [Widget's Constructor Arguments](https://github.com/tradingview/charting_library/wiki/Widget-Constructor)
-* [Widget's Methods](https://github.com/tradingview/charting_library/wiki/Widget-Methods)
 * [Customization Use Cases](https://github.com/tradingview/charting_library/wiki/Customization-Use-Cases)
 
 

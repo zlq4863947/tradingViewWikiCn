@@ -10,7 +10,7 @@
 2. 已有其他商品代码体系或只一个？这里有ticker特殊术语提供给您。
    Ticker为商品唯一标识符，只用于图表的内部，您的用户将不会看到它。
 
-## 商品信息结构
+## [商品信息结构](#商品信息结构)
 
 这一节非常重要。 Charting Library用户遇到的72.2％的问题，都是由于错误的/格式错误的SymbolInfo数据引起的。
 
@@ -26,19 +26,19 @@ SymbolInfo是一个包含商品metadata的对象。 该对象是解析商品的�
 
 ##### [description](#description)
 
-商品说明。这个符号说明将被打印在图表的标题栏中。
+商品说明。这个商品说明将被打印在图表的标题栏中。
 
 ##### [session](#session)
 
-商品交易时间。请参阅交易日细节了解更多详情。[Trading Sessions](https://github.com/tradingview/charting_library/wiki/Trading-Sessions)
+商品交易时间。请参阅交易日细节了解更多详情。[交易时段](/book/Trading-Sessions.md)
 
 ##### [exchange, listed\_exchange](#exchange-listedexchange)
 
-现在，这两个字段都为某个交易所的略称。此符号将被打印在图表标题栏中。目前此字段不用于其他目的。
+现在，这两个字段都为某个交易所的略称。将被显示在图表标题栏中。目前此字段不用于其他目的。
 
 ##### [timezone](#timezone)
 
-这个符号的交易所时区。我们希望以olsondb格式获取时区的名称。支持的时区为:
+这个商品的交易所时区。我们希望以olsondb格式获取时区的名称。支持的时区为:
 
 ```js
 UTC
@@ -85,7 +85,7 @@ Asia/Kathmandu
 US/Mountain
 ```
 
-##### [minmov\(最小波动\), pricescale\(价格精度\), minmove2, fractional\(分数\)](#minmov,pricescale,minmove2,fractional)
+##### [minmov\(最小波动\), pricescale\(价格精度\), minmove2, fractional\(分数\)](#minmov最小波动-pricescale价格精度-minmove2-fractional分数)
 
 1. 最小的价格变化是由这些值决定的。
 2. PriceScale 参数确定了图表价格量表上的价格线之间的间隔。
@@ -104,7 +104,7 @@ MinimalPossiblePriceChange（最小可能价格变动） = minmov / pricescale
 
 分数显示价格,1 - xx'yy（例如，133'21\)或 2 - xx'yy'zz （例如，133'21'5）。
 
-##### [minmove2&lt;0&gt;](#minmove2&lt;0&gt;)
+##### [minmove2&lt;0&gt;](#minmove20)
 
 这是一个神奇的数字来格式化复杂情况下的价格。这里有一些例子:
 
@@ -115,15 +115,15 @@ ZCM2014（玉米），2/8：minmov = 2，pricecale = 8，minmove2 = 0
 ZFM2014（5年期国债），1/32的1/4：minmov = 1，pricecale = 128，minmove2 = 4
 ```
 
-##### has\_intraday
+##### [has\_intraday](#hasintraday)
 
 布尔值显示商品是否具有日内（分钟）历史数据。 如果它为`false`，则当图表中的该商品处于活动状态时，日内分辨率的所有按钮将被禁用。 如果设置为`true`，则由datafeed直接提供的所有分辨率必须在intraday\_multipliers数组中设定。
 
-##### supported\_resolutions
+##### [supported\_resolutions](#supportedresolutions)
 
 在这个商品的分辨率选择器中启用一个分辨率数组。 数组的每个项目都是字符串。
 
-被datafeed支持（见datafeed配置数据）但不受当前商品支持的分辨率,将在分辨率选择器部件中禁用。 如果更改符号，新商品不支持选定的分辨率，则分辨率将切换到支持的分辨率列表中的第一项。 分辨率可用性逻辑（伪代码）:
+被datafeed支持（见datafeed配置数据）但不受当前商品支持的分辨率,将在分辨率选择器部件中禁用。 如果更改商品，新商品不支持选定的分辨率，则分辨率将切换到支持的分辨率列表中的第一项。 分辨率可用性逻辑（伪代码）:
 
 ```js
 resolutionAvailable  =
@@ -136,77 +136,77 @@ resolutionAvailable  =
 
 支持的分辨率也会影响可用的时间范围。 如果使用不支持的分辨率，则时间范围将不可用。
 
-##### intraday\_multipliers &lt;\[\]&gt;
+##### [intraday\_multipliers &lt;\[\]&gt;](#intradaymultipliers-)
 
 这是一个包含日内分辨率\(分钟单位\)的数组，datafeed将会自行构建它。
 
 举例来说：如果datafeed报告说它支持 \["1", "5", "15"\]，但事实上股票X只有1分钟的数据，股票X将设定 intraday\_multipliers = \[1\]，那么Charting Library将自行构建5分钟和15分钟的分辨率。
 
-##### has\_seconds
+##### [has\_seconds](#hasseconds)
 
-布尔值显示符号是否具有以秒为单位的历史数据。如果它为`false`，那么在图表中此符号处于活动状态时，所有秒的分辨率的按钮将被禁用。如果它为`true`，则由datafeed直接提供的所有分辨率必须在`seconds_multipliers`数组中设定。
+布尔值显示商品是否具有以秒为单位的历史数据。如果它为`false`，那么在图表中此商品处于活动状态时，所有秒的分辨率的按钮将被禁用。如果它为`true`，则由datafeed直接提供的所有分辨率必须在`seconds_multipliers`数组中设定。
 
-##### seconds\_multipliers &lt;\[\]&gt;
+##### [seconds\_multipliers &lt;\[\]&gt;](#secondsmultipliers-)
 
 这是一个包含秒分辨率\(以秒为单位，无小数\) ，datafeed将会自行构建它。  
 举例来说：如果datafeed报告说它支持 \["1S", "5S", "15S"\]，但事实上股票X只有1秒钟的数据，股票X将设定 seconds\_multipliers = \[1\]，那么Charting Library将自行构建5S和15S的分辨率。
 
-##### has\_daily
+##### [has\_daily](#hasdaily)
 
-布尔值显示符号是否具有以日为单位的历史数据。如果它为false，则Charting Library将自行构建日单位的分辨率。如果没有，则会向datafeed请求这些数据。
+布尔值显示商品是否具有以日为单位的历史数据。如果它为false，则Charting Library将自行构建日单位的分辨率。如果没有，则会向datafeed请求这些数据。
 
-##### has\_weekly\_and\_monthly
+##### [has\_weekly\_and\_monthly](#hasweeklyandmonthly)
 
-布尔值显示符号是否具有以W和M为单位的历史数据。如果它为false，则Charting Library将通过日单位的分辨率自行构建。如果没有，则会向datafeed请求这些数据。
+布尔值显示商品是否具有以W和M为单位的历史数据。如果它为false，则Charting Library将通过日单位的分辨率自行构建。如果没有，则会向datafeed请求这些数据。
 
-##### has\_empty\_bars
+##### [has\_empty\_bars](#hasemptybars)
 
 布尔值显示在交易过程中，当datafeed没有数据返回时,library是否会生成空的K柱。
 
 即，如果您的交易时间为0900-1600，而您的实际数据在11:00和12:00之间没有交易，而您的has\_empty\_bars为true，那么Library会在此段时间贴上退化的K柱。
 
-##### force\_session\_rebuild
+##### [force\_session\_rebuild](#forcesessionrebuild)
 
 布尔值显示library是否会随着当前交易而过滤K柱。如果为false，则当library从其他分辨率构建数据或将has\_empty\_bars设置为true时，K柱将被过滤。 如果为true，Library将会删除那些不是交易K柱的数据。
 
-##### has\_no\_volume
+##### [has\_no\_volume](#hasnovolume)
 
-布尔表示符号是否拥有成交量数据。
+布尔表示商品是否拥有成交量数据。
 
-##### has\_fractional\_volume \| obsolete \(1.1 - 1.5\), 用法与volume\_precision相反
+##### [has\_fractional\_volume](#hasfractionalvolume--已过时11---15-用法与volumeprecision相反) \| 已过时\(1.1 - 1.5\), 用法与volume\_precision相反
 
 如果has\_fractional\_volume = true，成交量指标值将不会舍入为整数值。
 
-##### volume\_precision &lt;0&gt;
+##### [volume\_precision &lt;0&gt;](#volumeprecision-0)
 
-整数显示此符号的成交量数字的小数位。0表示只显示整数。1表示保留小数位的1个数字字符，等等。
+整数显示此商品的成交量数字的小数位。0表示只显示整数。1表示保留小数位的1个数字字符，等等。
 
-##### data\_status
+##### [data\_status](#datastatus)
 
-为该该的一系列状态码。状态显示在图表的右上角。 支持的值:
+数据状态码。状态显示在图表的右上角。 支持的值:
 
 * streaming\(流动中\)
 * endofday\(已收盘\)
 * pulsed\(脉冲\)
 * delayed\_streaming\(延迟流动中\)
 
-##### expired\(期满\)
+##### [expired](#expired)
 
-布尔值显示此符号是否为到期的期货合约。
+期满，布尔值显示此商品是否为到期的期货合约。
 
-##### expiration\_date\(到期日\)
+##### [expiration\_date](#expirationdate)
 
-过期日期的Unix时间戳。 如果expired = true，则必须设置此值。 图表库将从该时间点而不是实际时刻请求该符号的数据。
+到期日\(Unix时间戳\)。 如果expired = true，则必须设置此值。 图表库将从该时间点而不是实际时刻请求该商品的数据。
 
-##### sector\(板块\)
+##### [sector](#sector)
 
-将在股票信息中显示。
+板块，将在股票信息中显示。
 
-##### industry\(行业\)
+##### [industry](#industry)
 
-将在股票信息中显示。
+行业，将在股票信息中显示。
 
-##### currency\_code\(货币代码\)
+##### [currency\_code](#currencycode)
 
-将在商品信息中显示。
+货币代码，将在商品信息中显示。
 
