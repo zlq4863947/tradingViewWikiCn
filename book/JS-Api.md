@@ -299,5 +299,5 @@ mark为具有以下属性的对象:
 
 1. `subscriberUID`: String
 
-交易终端当不希望接收此监听器的更新时调用此函数，`subscriberUID`将是您从`subscribeDepth`返回的同一个对象。.
+交易终端当不希望接收此监听器的更新时调用此函数。
 

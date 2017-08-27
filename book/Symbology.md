@@ -32,7 +32,7 @@ SymbolInfo是一个包含商品metadata的对象。 该对象是解析商品的�
 
 商品交易时间。请参阅交易日细节了解更多详情。[Trading Sessions](https://github.com/tradingview/charting_library/wiki/Trading-Sessions)
 
-##### exchange, listed\_exchange
+##### [exchange, listed\_exchange](#exchange-listedexchange)
 
 现在，这两个字段都为某个交易所的略称。此符号将被打印在图表标题栏中。目前此字段不用于其他目的。
 
