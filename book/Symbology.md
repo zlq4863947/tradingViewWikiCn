@@ -28,7 +28,7 @@ SymbolInfo是一个包含商品metadata的对象。 该对象是解析商品的�
 
 商品说明。这个符号说明将被打印在图表的标题栏中。
 
-##### session
+##### [session](#session)
 
 商品交易时间。请参阅交易日细节了解更多详情。[Trading Sessions](https://github.com/tradingview/charting_library/wiki/Trading-Sessions)
 
@@ -36,7 +36,7 @@ SymbolInfo是一个包含商品metadata的对象。 该对象是解析商品的�
 
 现在，这两个字段都为某个交易所的略称。此符号将被打印在图表标题栏中。目前此字段不用于其他目的。
 
-##### timezone
+##### [timezone](#timezone)
 
 这个符号的交易所时区。我们希望以olsondb格式获取时区的名称。支持的时区为:
 
@@ -85,14 +85,14 @@ Asia/Kathmandu
 US/Mountain
 ```
 
-##### minmov\(最小波动\), pricescale\(价格精度\), minmove2, fractional\(分数\)
+##### [minmov\(最小波动\), pricescale\(价格精度\), minmove2, fractional\(分数\)](#minmov,pricescale,minmove2,fractional)
 
 1. 最小的价格变化是由这些值决定的。
 2. PriceScale 参数确定了图表价格量表上的价格线之间的间隔。
 
 这三个键有不同意义时，使用通常价格和分数价格。
 
-通常价格
+##### [通常价格](#通常价格)
 
 ```
 MinimalPossiblePriceChange（最小可能价格变动） = minmov / pricescale
@@ -100,11 +100,11 @@ MinimalPossiblePriceChange（最小可能价格变动） = minmov / pricescale
 
 `minmov`数字型单位组成一个tick。例如，美国股票价格和tick有小数，并可以上下浮动+/- 0.01。
 
-##### 分数价格
+##### [分数价格](#分数价格)
 
 分数显示价格,1 - xx'yy（例如，133'21\)或 2 - xx'yy'zz （例如，133'21'5）。
 
-##### minmove2 &lt;0&gt;
+##### [minmove2&lt;0&gt;](#minmove2&lt;0&gt;)
 
 这是一个神奇的数字来格式化复杂情况下的价格。这里有一些例子:
 
