@@ -1,18 +1,18 @@
-Here is a list of supported chart's methods.
+以下为图表的方法列表。
 
-**Before 1.4 version.** You can call these methods using widget object returned to you by widget's constructor.
+**在1.4版本之前** 您可以使用Widget的构造函数返回给您的widget对象来调用这些方法。
 
-**Since 1.5 version.** You can call these methods using chart object returned to you by widget's methods \[\[chart\(index\)\|Widget-Methods\#chart-chartindex\]\] or \[\[activeChart\(\)\|Widget-Methods\#chart-activechart\]\].
+**从1.5版本之后** 您可以使用Widget的方法返回给您的图表对象来调用这些方法 \[\[chart\(index\)\|Widget-Methods\#chart-chartindex\]\] 或 \[\[activeChart\(\)\|Widget-Methods\#chart-activechart\]\].
 
-# Methods
+# 方法
 
-* Subscribing To Chart Events
+* 订阅图表事件
   * \[\[onDataLoaded\(\)\|Chart-Methods\#ondataloaded\]\]
   * \[\[onSymbolChanged\(\)\|Chart-Methods\#onsymbolchanged\]\]
   * \[\[onIntervalChanged\(\)\|Chart-Methods\#onintervalchanged\]\]
   * \[\[dataReady\(callback\)\|Chart-Methods\#datareadycallback\]\]
   * \[\[crossHairMoved\(callback\)\|Chart-Methods\#crosshairmovedcallback\]\]
-* Chart Actions
+* 图表动作
   * \[\[setVisibleRange\(range, callback\)\|Chart-Methods\#setvisiblerangerange-callback\]\]
   * \[\[setSymbol\(symbol, callback\)\|Chart-Methods\#setsymbolsymbol-callback\]\]
   * \[\[setResolution\(resolution, callback\)\|Chart-Methods\#setresolutionresolution-callback\]\]
@@ -23,7 +23,7 @@ Here is a list of supported chart's methods.
   * \[\[refreshMarks\(\)\|Chart-Methods\#refreshmarks\]\]
   * \[\[clearMarks\(\)\|Chart-Methods\#clearmarks\]\]
   * \[\[setChartType\(type\)\|Chart-Methods\#setcharttypetype\]\]
-* Studies And Shapes
+* 研究与形态
   * \[\[getAllShapes\(\)\|Chart-Methods\#getallshapes\]\]
   * \[\[getAllStudies\(\)\|Chart-Methods\#getallstudies\]\]
   * \[\[setEntityVisibility\(id, isVisible\)\|Chart-Methods\#setentityvisibilityid-isvisible\]\]
@@ -34,7 +34,7 @@ Here is a list of supported chart's methods.
   * \[\[createVerticalLine\(point, options\)\|Chart-Methods\#createverticallinepoint-options\]\]
   * \[\[removeAllShapes\(\)\|Chart-Methods\#removeallshapes\]\]
   * \[\[removeAllStudies\(\)\|Chart-Methods\#removeallstudies\]\]
-* Study Templates
+* 研究模板
   * \[\[createStudyTemplate\(options, callback\)\|Chart-Methods\#createstudytemplateoptions-callback\]\]
   * \[\[applyStudyTemplate\(template\)\|Chart-Methods\#applystudytemplatetemplate\]\]
 * Trading Primitives
@@ -50,25 +50,25 @@ Here is a list of supported chart's methods.
   * \[\[priceFormatter\(\)\|Chart-Methods\#priceformatter\]\]
   * \[\[chartType\(\)\|Chart-Methods\#charttype\]\]
 
-# Subscribing To Chart Events
+# 订阅图表事件
 
 #### onDataLoaded\(\)
 
-You can subscribe using \[\[Subscription\]\] object returned by this function to be notified when new history bars are loaded and unsubscribe from the event.
+您可以通过订阅\[\[Subscription\]\]对象返回的此回调函数，通知当历史K线数组被加载并退订事件。
 
 #### onSymbolChanged\(\)
 
-You can subscribe using \[\[Subscription\]\] object returned by this function to be notified when the symbol is changed and unsubscribe from the event.
+您可以通过订阅\[\[Subscription\]\]对象返回的此回调函数，通知当商品发生变化并退订事件。
 
 #### onIntervalChanged\(\)
 
-You can subscribe using \[\[Subscription\]\] object returned by this function to be notified when the interval is changed and unsubscribe from the event.  
-When the event is fired it will provide the following arguments:  
-1. `interval`: new interval  
-2. `timeframeParameters`: object with the only field `timeframe`. It contains a timeframe if the interval is changed as a result of a user click on a timeframe panel.  
-Otherwise `timeframe` is `undefined` and you can change it to display a certain range of bars. Valid timeframe is a number with letter `D` for days and `M` for months.
+您可以通过订阅\[\[Subscription\]\]对象返回的此回调函数，通知当间隔发生变化并退订事件。
+当事件被触发时，它将提供以下参数：
+1. `interval`: 新间隔  
+2. `timeframeParameters`: 此对象只有一个字段 `timeframe`. 用户改变时间周期时，它包含一个时间周期。
+否则 `timeframe` 为 `undefined` 然后你可以修改它以显示某一时段的K线。有效的时间周期是一个数字，字母'D'为天，'M'为月。
 
-Example:
+例如:
 
 ```
 widget.chart().onIntervalChanged().subscribe(null, function(interval, obj) {
@@ -80,54 +80,54 @@ widget.chart().onIntervalChanged().subscribe(null, function(interval, obj) {
 
 1. `callback`: function\(interval\)
 
-The Charting Library will call the callback provided immediately if bars are already loaded or when the bars are received.  
-The function returns `true` if bars are already loaded and `false` otherwise.
+如果K线数据已被加载或被接收时，图表库将立即调用此回调。  
+返回 `true` 为已经加载，否则为`false`。
 
 #### crossHairMoved\(callback\)
 
-**Since 1.5 version.**
+**在1.5版本之前**
 
 1. `callback`: function\({time, price}\)
 
-The Charting Library will call the callback every time the crosshair position is changed.
+图表库会调用回调在每次准星位置改变时。
 
-# Chart Actions
+# 图表动作
 
 #### setVisibleRange\(range, callback\)
 
 1. `range`: object, `{from to}`
    1. `from`, `to`: unix timestamps, UTC
-2. `callback`: `function()`. The Library will call it after it's done with the viewport setup.
+2. `callback`: `function()`. 图表库会调用回调在viewport(视口)设置完成时。
 
-Forces the chart to adjust its parameters \(scroll, scale\) to make the selected time period fit the view port.  
-Neither `from`, nor `to` must not be in future. This method was introduced in version `1.2`.
+强制图表调整其参数 \(scroll, scale\) 使选定的时间段适合视口。
+今后将必须设置`from`或`to`。此方法也引入在`1.2`版本。
 
 #### setSymbol\(symbol, callback\)
 
 1. `symbol`: string
 2. `callback`: function\(\)
 
-Makes the chart to change its symbol. Callback is called after new symbol's data arrived.
+使图表更改其商品。 新商品的数据到达后调用回调。
 
 #### setResolution\(resolution, callback\)
 
 1. `resolution`: string. Format is described in another \[\[article\|Resolution\]\].
 2. `callback`: function\(\)
 
-Makes the chart to change its resolution. Callback is called after new data arrived.
+使图表更改其分辨率。 新分辨率的数据到达后调用回调。
 
 #### resetData\(\)
 
-Makes the chart to rerequest data from the data feed. Usually you need to call it when chart's data has changed.  
-Before calling this you should call \[\[onResetCacheNeededCallback\|JS-Api\#subscribebarssymbolinfo-resolution-onrealtimecallback-subscriberuid-onresetcacheneededcallback\]\].
+使图表从数据饲料中请求数据。 通常当图表的数据发生更改时，您需要调用它。  
+调用此方法前您应该调用：\[\[onResetCacheNeededCallback\|JS-Api\#subscribebarssymbolinfo-resolution-onrealtimecallback-subscriberuid-onresetcacheneededcallback\]\].
 
 #### executeAction\(action\)
 
-_**deprecated, use executeActionById instead**_
+_**已弃用，使用executeActionById代替**_
 
 1. `action`: string
 
-Executes any action from chart's context menu \(the menu which is popped up when one right-clicks the empty space on a main pane\) by its name. Use names as you see them in English localization. Examples:
+执行图表的菜单中的任意动作\(当右击主窗格上的空白空间时弹出的菜单\) 通过他们的名字。 使用英文本地化的名称。 例:
 
 ```javascript
 // < ... >
@@ -145,7 +145,7 @@ _**since version 1.3**_
 
 Executes an action by its id.
 
-**Showing a dialog**
+**显示对话框**
 
 ```
 chartProperties 
@@ -158,7 +158,7 @@ symbolSearch
 changeInterval
 ```
 
-**Other actions**
+**其他动作**
 
 ```
 timeScaleReset
@@ -187,7 +187,7 @@ takeScreenshot
 paneRemoveAllStudiesDrawingTools
 ```
 
-Examples:
+例如:
 
 ```javascript
 // < ... >
@@ -199,25 +199,25 @@ widget.chart().executeActionById("drawingToolbarAction"); // hides or shows the 
 
 #### getCheckableActionState\(actionId\)
 
-_**since version 1.7**_
+_**从1.7版本之后**_
 
 1. `actionId`: string
 
-Get checkable action \(e.g. `lockDrawingsAction`, `stayInDrawingModeAction`, `magnetAction`\) state by its id \(see ids of actions above\)
+获取可检查的操作 \(例. `lockDrawingsAction`, `stayInDrawingModeAction`, `magnetAction`\) 状态通过它们的id \(请参阅上述动作的ID\)
 
 #### refreshMarks\(\)
 
-Calling this method makes the Library to request visible marks once again.
+再次请求可见标记。
 
 #### clearMarks\(\)
 
-Calling this method makes the Library to remove all visible marks.
+删除所有可见标记。
 
 #### setChartType\(type\)
 
 1. `type`: number
 
-Sets the main series style.
+设置主数据列的状态。
 
 ```
 STYLE_BARS = 0;
@@ -237,45 +237,45 @@ STYLE_PB* = 7;
 
 #### closePopupsAndDialogs\(\)
 
-Calling this method closes a context menu or a dialog if it is shown.
+调用此方法关闭一个上下文菜单或对话框,假设其已经显示。
 
-# Studies And Shapes
+# 研究与形态
 
 #### getAllShapes\(\)
 
-Returns an array of all created shapes objects. Each object has following fields:
+返回所有已创建的形态对象的数组。 每个对象都有以下字段：
 
 * `id`: id of a shape
 * `name`: name of a shape
 
 #### getAllStudies\(\)
 
-Returns an array of all created shapes objects. Each object has following fields:
+返回所有已创建的形态对象的数组。 每个对象都有以下字段：
 
 * `id`: id of a study
 * `name`: name of a study
 
 #### setEntityVisibility\(id, isVisible\)
 
-Sets visibility of an entity with passed id.
+通过id设置实体能见度
 
 #### createStudy\(name, forceOverlay, lock, inputs, callback, overrides, options\)
 
-1. `name`: string, a name of an indicator as you can see it in `Indicators` widget
-2. `forceOverlay`: forces the Charting Library to place the created study on main pane
-3. `lock`: boolean, shows whether a user will be able to remove/change/hide your study or not
-4. `inputs`: \(since version `1.2`\) an array of study inputs. This array is expected to contain just inputs values in the same order they are printed in study's properties page.
+1. `name`: string, 技术指标指示器，你可以在`技术指标`工具栏中看到。
+2. `forceOverlay`: 强制图表库将创建的研究放在主窗格中
+3. `lock`: boolean, 显示用户是否能够删除/更改/隐藏您的研究
+4. `inputs`: \(从版本`1.2`之后\) 输入参数数组。 预计这个数组只包含与学习属性页面打印相同顺序的输入值。
 5. `callback`: function\(`entityId`\)
-6. `overrides`: \(since version `1.2`\) an object [containing properties](https://github.com/tradingview/charting_library/wiki/Studies-Overrides) you'd like to set for your new study. Note: you should not specify study name: start a property path with a plot name.
-7. `options`: object with the only possible key `checkLimit`. If it is `true` study limit dialog will be shown if the limit if exceeded.
+6. `overrides`: \(从版本`1.2`之后\) an object [containing properties](https://github.com/tradingview/charting_library/wiki/Studies-Overrides) y您想为您的新研究做好准备。 注意：您不应指定学习名称：启动具有绘图名称的属性路径。
+7. `options`: 这个对象只支持关键字`checkLimit`. 如果为 `true` 时，超出限制，将显示学习限制对话框。
 
-Creates the study on a main symbol. Examples:
+创建一个主要商品的研究。 例子：
 
 * `createStudy('MACD', false, false, [14, 30, "close", 9])`
 * `createStudy('Moving Average Exponential', false, false, [26])`
 * `createStudy('Stochastic', false, false, [26], null, {"%d.color" : "#FF0000"})`
 
-**Remark**: `Compare` study has 2 inputs: `[dataSource, symbol]`. Supported `dataSource` values: `["close", "high", "low", "open"]`.
+**Remark**: `Compare` 研究有两个输入参数: `[dataSource, symbol]`.  `dataSource` 的值: `["close", "high", "low", "open"]`.
 
 **Remark 2**: You actually use `Overlay` study when choose to `Add` a series on the chart. This study has the single input -- `symbol`. Here is an example how to add a symbol:
 

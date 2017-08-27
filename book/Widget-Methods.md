@@ -16,7 +16,7 @@ widget.onChartReady(function() {
 
 **在1.5之前**[**Chart Methods**](https://github.com/tradingview/charting_library/wiki/Chart-Methods)** 归属于 Widget. 请参阅完整的操作列表**[**here**](https://github.com/tradingview/charting_library/wiki/Chart-Methods)
 
-* Subscribing To Chart Events
+* 订阅图表事件
   * [onChartReady\(callback\)](#onchartreadycallback)
   * [onSymbolChange\(callback\)](#onsymbolchangecallback)\[已过时\]
   * [onIntervalChange\(callback\)](#onintervalchangecallback)\[已过时\]
@@ -28,7 +28,7 @@ widget.onChartReady(function() {
   * [onTick\(callback\)](#ontickcallback)\[已过时\]
   * [onShortcut\(shortcut, callback\)](#onshortcutshortcut-callback)
   * [subscribe\(event, callback\)](#subscribeevent-callback)
-* Chart Actions
+* 图表动作
   * [chart\(\)](https://github.com/tradingview/charting_library/wiki/Widget-Methods#chart)
   * [setLanguage\(locale\)](https://github.com/tradingview/charting_library/wiki/Widget-Methods#setlanguagelocale)
   * [setSymbol\(symbol, interval, callback\)](https://github.com/tradingview/charting_library/wiki/Widget-Methods#setsymbolsymbol-interval-callback)
@@ -36,17 +36,17 @@ widget.onChartReady(function() {
   * [closePopupsAndDialogs\(\)](https://github.com/tradingview/charting_library/wiki/Widget-Methods#closepopupsanddialogs)
   * [selectLineTool\(drawingId\)](https://github.com/tradingview/charting_library/wiki/Widget-Methods#selectlinetooldrawingid)
   * [selectedLineTool\(\)](https://github.com/tradingview/charting_library/wiki/Widget-Methods#selectedlinetool)
-* Saving/Loading Charts
+* 保存/加载图表
   * [save\(callback\)](https://github.com/tradingview/charting_library/wiki/Widget-Methods#savecallback)
   * [load\(state\)](https://github.com/tradingview/charting_library/wiki/Widget-Methods#loadstate)
   * [getSavedCharts\(callback\)](https://github.com/tradingview/charting_library/wiki/Widget-Methods#getsavedchartscallback)
   * [loadChartFromServer\(chartRecord\)](https://github.com/tradingview/charting_library/wiki/Widget-Methods#loadchartfromserverchartrecord)
   * [saveChartToServer\(onCompleteCallback, onFailCallback, saveAsSnapshot, options\)](https://github.com/tradingview/charting_library/wiki/Widget-Methods#savecharttoserveroncompletecallback-onfailcallback-saveassnapshot-options)
   * [removeChartFromServer\(chartId, onCompleteCallback\)](https://github.com/tradingview/charting_library/wiki/Widget-Methods#removechartfromserverchartid-oncompletecallback)
-* Custom UI Controls
+* 自定义UI控件
   * [onContextMenu\(callback\)](https://github.com/tradingview/charting_library/wiki/Widget-Methods#oncontextmenucallback)
   * [createButton\(options\)](https://github.com/tradingview/charting_library/wiki/Widget-Methods#createbuttonoptions)
-* Dialogs
+* 对话框 
   * [showNoticeDialog\(params\)](https://github.com/tradingview/charting_library/wiki/Widget-Methods#shownoticedialogparams)
   * [showConfirmDialog\(params\)](https://github.com/tradingview/charting_library/wiki/Widget-Methods#showconfirmdialogparams)
   * [showLoadChartDialog\(\)](https://github.com/tradingview/charting_library/wiki/Widget-Methods#showloadchartdialog)
@@ -56,14 +56,14 @@ widget.onChartReady(function() {
   * [mainSeriesPriceFormatter\(\)](https://github.com/tradingview/charting_library/wiki/Widget-Methods#mainseriespriceformatter)
   * [getIntervals\(\)](https://github.com/tradingview/charting_library/wiki/Widget-Methods#getintervals)
   * [getStudiesList\(\)](https://github.com/tradingview/charting_library/wiki/Widget-Methods#getstudieslist)
-* Customization
+* 定制
   * [addCustomCSSFile\(url\)](https://github.com/tradingview/charting_library/wiki/Widget-Methods#addcustomcssfileurl)
   * [applyOverrides\(overrides\)](https://github.com/tradingview/charting_library/wiki/Widget-Methods#applyoverridesoverrides)
   * [applyStudiesOverrides\(overrides\)](https://github.com/tradingview/charting_library/wiki/Widget-Methods#applystudiesoverridesoverrides)
-* ![](../images/trading.png)[Trading Terminal](https://github.com/tradingview/charting_library/wiki/Trading-Terminal) specific
+* ![](../images/trading.png)[交易终端](https://github.com/tradingview/charting_library/wiki/Trading-Terminal) 特制
   * [showSampleOrderDialog\(order\)](https://github.com/tradingview/charting_library/wiki/Widget-Methods#chart-showsampleorderdialogorder)
   * [watchList\(\)](https://github.com/tradingview/charting_library/wiki/Widget-Methods#chart-watchlist)
-* ![](../images/trading.png)Multiple Charts Layout
+* ![](../images/trading.png)多图表布局
   * [chart\(index\)](https://github.com/tradingview/charting_library/wiki/Widget-Methods#chart-chartindex)
   * [activeChart\(\)](https://github.com/tradingview/charting_library/wiki/Widget-Methods#chart-activechart)
   * [chartsCount\(\)](https://github.com/tradingview/charting_library/wiki/Widget-Methods#chart-chartscount)
@@ -226,7 +226,7 @@ widget.onShortcut("alt+s", function() {
 
 当GUI事件发生时，库将调用回调。 每个事件都可以有不同的参数。
 
-# Chart Actions
+# 图表功能
 
 #### chart\(\)
 
@@ -258,7 +258,7 @@ widget.onShortcut("alt+s", function() {
 
 #### selectLineTool\(drawingId\)
 
-1. `drawingId`: 可能是其中一个标识符[identifiers](https://github.com/tradingview/charting_library/wiki/Shapes-and-Overrides) 或
+1. `drawingId`: 可以为一个标识符[identifiers](https://github.com/tradingview/charting_library/wiki/Shapes-and-Overrides) 或
    1. `cursor`
    2. `dot`
    3. `arrow_cursor`
@@ -332,7 +332,7 @@ widget.onShortcut("alt+s", function() {
 
 1. `callback`: function\(unixtime, price\). 此回调将返回一个值（见下文）。
 
-当用户打开图表上的上下文菜单时，库将调用回调函数。UNIX时间和上下文菜单点的价格将作为参数提供。要自定义上下文菜单项，您必须返回项目描述符的数组。项目描述符具有以下结构：
+当用户打开图表上的菜单时，库将调用回调函数。UNIX时间和菜单点的价格将作为参数提供。要自定义菜单项，您必须返回项目描述数组。项目描述对象具有以下结构：
 
 ```
 {
@@ -342,7 +342,7 @@ widget.onShortcut("alt+s", function() {
 }
 ```
 
-* `position`: 项目在上下文菜单中的位置
+* `position`: 项目在菜单中的位置
 * `text`: 菜单项文本
 * `click`: 当用户选择您的菜单项时将被调用
 
@@ -390,7 +390,7 @@ widget.onChartReady(function() {
 });
 ```
 
-# Dialogs
+# 对话框
 
 **Since 1.6 version**
 
@@ -434,17 +434,17 @@ Charting Library will call your callback with an object containing chart's symbo
 
 #### mainSeriesPriceFormatter\(\)
 
-Returns object with method`format`that you can use to format prices. Introduced in 1.5.
+返回一个带有`format`方法的对象，用来批量格式化价格。 被引入在1.5.
 
 #### getIntervals\(\)
 
-Returns an array of supported resolutions. Introduced in 1.7.
+返回支持的分辨率数组。被引入在1.7.
 
 #### getStudiesList\(\)
 
-Returns an array of all studies ids. They can be used to create a study.
+返回全部技术指标数组，您可以通过它们创建技术指标指示器。
 
-# Customization
+# 定制
 
 #### addCustomCSSFile\(url\)
 
@@ -454,7 +454,7 @@ Returns an array of all studies ids. They can be used to create a study.
 
 #### applyOverrides\(overrides\)
 
-_Introduced in Charting Library 1.5_
+_该方法在版本`1.5`中引入_
 
 1. `overrides`is an object. It is the same as [overrides](https://github.com/tradingview/charting_library/wiki/Widget-Constructor#overrides) in Widget Constructor.
 
@@ -462,7 +462,7 @@ _Introduced in Charting Library 1.5_
 
 #### applyStudiesOverrides\(overrides\)
 
-_Introduced in Charting Library 1.9_
+_该方法在版本`1.9`中引入_
 
 1. `overrides`is an object. It is the same as[studies\_overrides](https://github.com/tradingview/charting_library/wiki/Widget-Constructor#studies_overrides)in Widget Constructor.
 
@@ -470,7 +470,7 @@ This method applies studies overrides to indicators' style or inputs without rel
 
 # ![](../images/trading.png)Trading Terminal
 
-The following methods are available in[Trading Terminal](https://github.com/tradingview/charting_library/wiki/Trading-Terminal)only.
+以下方法只在[交易终端](https://github.com/tradingview/charting_library/wiki/Trading-Terminal)可用.
 
 #### ![](../images/trading.png)showSampleOrderDialog\(order\)
 
@@ -480,41 +480,41 @@ The following methods are available in[Trading Terminal](https://github.com/trad
 
 #### ![](../images/trading.png)watchList\(\)
 
-_Introduced in Charting Library 1.9_
+_该方法在版本`1.9`中引入_
 
-返回一个对象来操作监视列表。 该对象具有以下方法：
+返回一个对象来操作观察列表。 该对象具有以下方法：
 
-1. `getList()`- allows you to get current list of the symbols.
+1. `getList()`- 允许您获取当前的商品列表。
 
-2. `setList(symbols)`- allows you to set a list of symbols into the watchlist. It will replace the whole list.
+2. `setList(symbols)`- 允许您将商品列表设置到观察列表中。 它将替换整个列表。
 
-3. `onListChanged()`- 您可以使用订阅此方法返回的[Subscription](https://github.com/tradingview/charting_library/wiki/Subscription)对象，以便在更改观察列表并取消订阅事件时收到通知。 如果没有WatchList将返回null。
+3. `onListChanged()`- 您可以通过订阅[Subscription](https://github.com/tradingview/charting_library/wiki/Subscription)对象返回此回调函数，通知当观察列表发生变化并退订事件，如果没有观察列表将返回null。
 
-# ![](../images/trading.png)Multiple Charts Layout
+# ![](../images/trading.png)多图表布局
 
 #### ![](../images/trading.png)chart\(index\)
 
 1. `index`: index of a chart starting from 0.`index`is 0 by default.
 
-Returns a chart object that you can use to call[Chart-Methods](https://github.com/tradingview/charting_library/wiki/Chart-Methods)
+返回chart对象，用于调用[Chart-Methods](https://github.com/tradingview/charting_library/wiki/Chart-Methods)
 
 #### ![](../images/trading.png)activeChart\(\)
 
-Returns current active chart object that you can use to call[Chart-Methods](https://github.com/tradingview/charting_library/wiki/Chart-Methods)
+返回当前chart对象，用于调用[Chart-Methods](https://github.com/tradingview/charting_library/wiki/Chart-Methods)
 
 #### ![](../images/trading.png)chartsCount\(\)
 
-Returns amount of charts in the current layout
+返回当前布局的图表数目。
 
 #### ![](../images/trading.png)layout\(\)
 
-Returns current layout mode. Possible values:`4`,`6`,`8`,`s`,`2h`,`2-1`,`2v`,`3h`,`3v`,`3s`.
+返回当前布局模式。 可能的值：`4`,`6`,`8`,`s`,`2h`,`2-1`,`2v`,`3h`,`3v`,`3s`.
 
 #### ![](../images/trading.png)setLayout\(layout\)
 
 1. `layout`: Possible values:`4`,`6`,`8`,`s`,`2h`,`2-1`,`2v`,`3h`,`3v`,`3s`.
 
-Changes current chart layout.
+变更当前图表布局。
 
 # See Also
 
