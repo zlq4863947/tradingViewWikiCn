@@ -17,19 +17,19 @@
 
 ## 4、图表定制
   * [4-1、定制概述](book/Customization-Overview.md)
-    * [4-1-1、Widget构造器](book/Widget-Constructor.md)
-    * [4-1-2、Widget方法](book/Widget-Methods.md)
-    * [4-1-3、图表方法](book/Chart-Methods.md)
-    * [4-1-3、Featuresets](book/Featuresets.md)
-    * [4-2、Server-Side Customization](book/Customization-Overview.md#Customization Overview#customization-done-through-data-stream)
-    * [4-3、Customization Use Cases](book/Customization-Use-Cases.md)
+  * [4-2、Widget构造器](book/Widget-Constructor.md)
+  * [4-3、Widget方法](book/Widget-Methods.md)
+  * [4-4、图表方法](book/Chart-Methods.md)
+  * [4-5、Featuresets](book/Featuresets.md)
+  * [4-6、Server-Side Customization](book/Customization-Overview.md#Customization Overview#customization-done-through-data-stream)
+  * [4-7、Customization Use Cases](book/Customization-Use-Cases.md)
 
 ## 5、Trading Terminal
-    * [5-1、Brief Intro|Trading-Terminal](book/Trading-Terminal.md)
-    * [5-2、Trading Controller](book/Trading-Controller.md)
-    * [5-3、Trading Host](book/Trading-Host.md)
-    * [5-4、Account Manager](book/Account-Manager.md)
-    * [5-5、Trading Objects and Constants](book/Trading-Objects-and-Constants.md)
+  * [5-1、Brief Intro|Trading-Terminal](book/Trading-Terminal.md)
+  * [5-2、Trading Controller](book/Trading-Controller.md)
+  * [5-3、Trading Host](book/Trading-Host.md)
+  * [5-4、Account Manager](book/Account-Manager.md)
+  * [5-5、Trading Objects and Constants](book/Trading-Objects-and-Constants.md)
     
 * [6、Saving/Loading Charts](book/Saving-and-Loading-Charts.md)
 * [7、Creating Custom Studies](book/Creating-Custom-Studies.md)

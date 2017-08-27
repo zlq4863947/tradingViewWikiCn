@@ -6,9 +6,9 @@ Charting Library 图表库包可在GitHub上获得（必须获得授权才能访
 
 您可以通过在浏览器控制台中执行 TradingView.version\(\) 来查看图表库版本。.
 
-### 图表库内容
+### [图表库内容](#图表库内容)
 
-```
+```js
 +/charting_library
     - charting_library.min.js
 + /datafeed

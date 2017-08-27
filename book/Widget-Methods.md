@@ -17,17 +17,17 @@ widget.onChartReady(function() {
 **在1.5之前**[**Chart Methods**](https://github.com/tradingview/charting_library/wiki/Chart-Methods)** 归属于 Widget. 请参阅完整的操作列表**[**here**](https://github.com/tradingview/charting_library/wiki/Chart-Methods)
 
 * Subscribing To Chart Events
-  * [onChartReady\(callback\)](https://github.com/tradingview/charting_library/wiki/Widget-Methods#onchartreadycallback)
-  * [onSymbolChange\(callback\)](https://github.com/tradingview/charting_library/wiki/Widget-Methods#onsymbolchangecallback)\[已过时\]
-  * [onIntervalChange\(callback\)](https://github.com/tradingview/charting_library/wiki/Widget-Methods#onintervalchangecallback)\[已过时\]
-  * [onAutoSaveNeeded\(callback\)](https://github.com/tradingview/charting_library/wiki/Widget-Methods#onautosaveneededcallback)\[已过时\]
-  * [onBarMarkClicked\(callback\)](https://github.com/tradingview/charting_library/wiki/Widget-Methods#onbarmarkclickedcallback)\[已过时\]
-  * [onTimescaleMarkClicked\(callback\)](https://github.com/tradingview/charting_library/wiki/Widget-Methods#ontimescalemarkclickedcallback)\[已过时\]
-  * [onGrayedObjectClicked\(callback\)](https://github.com/tradingview/charting_library/wiki/Widget-Methods#ongrayedobjectclickedcallback)
-  * [onScreenshotReady\(callback\)](https://github.com/tradingview/charting_library/wiki/Widget-Methods#onscreenshotreadycallback)\[已过时\]
-  * [onTick\(callback\)](https://github.com/tradingview/charting_library/wiki/Widget-Methods#ontickcallback)\[已过时\]
-  * [onShortcut\(shortcut, callback\)](https://github.com/tradingview/charting_library/wiki/Widget-Methods#onshortcutshortcut-callback)
-  * [subscribe\(event, callback\)](https://github.com/tradingview/charting_library/wiki/Widget-Methods#subscribeevent-callback)
+  * [onChartReady\(callback\)](#onchartreadycallback)
+  * [onSymbolChange\(callback\)](#onsymbolchangecallback)\[已过时\]
+  * [onIntervalChange\(callback\)](#onintervalchangecallback)\[已过时\]
+  * [onAutoSaveNeeded\(callback\)](#onautosaveneededcallback)\[已过时\]
+  * [onBarMarkClicked\(callback\)](#onbarmarkclickedcallback)\[已过时\]
+  * [onTimescaleMarkClicked\(callback\)](#ontimescalemarkclickedcallback)\[已过时\]
+  * [onGrayedObjectClicked\(callback\)](#ongrayedobjectclickedcallback)
+  * [onScreenshotReady\(callback\)](#onscreenshotreadycallback)\[已过时\]
+  * [onTick\(callback\)](#ontickcallback)\[已过时\]
+  * [onShortcut\(shortcut, callback\)](#onshortcutshortcut-callback)
+  * [subscribe\(event, callback\)](#subscribeevent-callback)
 * Chart Actions
   * [chart\(\)](https://github.com/tradingview/charting_library/wiki/Widget-Methods#chart)
   * [setLanguage\(locale\)](https://github.com/tradingview/charting_library/wiki/Widget-Methods#setlanguagelocale)
@@ -72,7 +72,7 @@ widget.onChartReady(function() {
 
 # Subscribing To Chart Events
 
-#### onChartReady\(callback\)
+#### [onChartReady\(callback\)](#onchartreadycallback)
 
 1. `callback`: function\(\)
 
@@ -190,7 +190,7 @@ widget.onShortcut("alt+s", function() {
 });
 ```
 
-subscribe\(event, callback\)
+#### subscribe\(event, callback\)
 
 1. `event`: can be
 
