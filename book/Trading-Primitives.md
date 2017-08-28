@@ -1,24 +1,24 @@
-Trading Primitives is a low-level mechanic designed to give you the most detailed control over trading primitives behavior.
+交易原语是一种低级机制，旨在为您提供对交易原语行为的最详细控制。
 
-# Generic data
-### Properties
-You can use special value `inherit` for some properties of Trading Lines objects. Thiw will make the Library to use its factory defaults for this property. You can enable `trading_options` feature to show Trading GUI controls in chart properties window.
+# 通用数据
+### 属性
+您可以对Trading Lines对象的某些属性使用特殊值 `inherit` 他们将使图书馆使用其属性的出厂默认值。您可以开启 `trading_options` 功能来显示交易界面。
 
-You can’t control visibility of specific object - generic properties for positions, orders and executions are available for user in Trading tab of Chart Properties window.
+您不能控制特定对象的可见性 - 位置，, orders and executions are available for user in Trading tab of Chart Properties window.
 
-### Colors and Fonts
-You can use following string formats for setting colors:
+### 颜色和字体
+您可以使用以下字符串格式设置颜色：
 
 1. "#RGB"
 2. "#RRGGBB"
 3. "rgb(red, green, blue)"
 4. "rgba(red, green, blue, alpha)"
 
-You can use following string format for setting fonts: `<bold> <italic> <size>pt <family>`. Colors and fonts strings will be automatically parsed to determine GUI controls values.
+您可以使用以下字符串格式设置字体： `<bold> <italic> <size>pt <family>`. 颜色和字体字符串将懂自动分析，以确定GUI控件的值。
 
-### Line Styles
+### 线条样式
 
-Following line styles are supported:
+支持以下线条样式：
 
 Style|Value
 ---|---
@@ -26,7 +26,7 @@ Solid|0
 Dotted|1
 Dashed|2
 
-### Callbacks
-1. You can use `this` keyword to access API-object from within callback function
-2. You can pass two arguments to callback registration function - in this case first argument is an object which will be passed as first argument to callback function (see examples).
-3. If callback isn’t set, then respective button will be hidden (affects `onReverse`, `onClose` and `onCancel` callbacks).
+### 回调
+1. 您用过 `this` 关键字从回调函数内访问API对象
+2. 您可以将两个参数传递给回调注册函数 - 在这种情况下，第一个参数是将作为第一个参数传递给回调函数的对象（请参阅示例）。
+3. 如果未设置回调，则相应的按钮将被隐藏（影响`onReverse`, `onClose` 和 `onCancel` c的回调).

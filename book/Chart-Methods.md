@@ -34,7 +34,7 @@
   * \[\[createVerticalLine\(point, options\)\|Chart-Methods\#createverticallinepoint-options\]\]
   * \[\[removeAllShapes\(\)\|Chart-Methods\#removeallshapes\]\]
   * \[\[removeAllStudies\(\)\|Chart-Methods\#removeallstudies\]\]
-* 研究模板
+* 指标模板
   * \[\[createStudyTemplate\(options, callback\)\|Chart-Methods\#createstudytemplateoptions-callback\]\]
   * \[\[applyStudyTemplate\(template\)\|Chart-Methods\#applystudytemplatetemplate\]\]
 * Trading Primitives
@@ -262,28 +262,28 @@ STYLE_PB* = 7;
 #### createStudy\(name, forceOverlay, lock, inputs, callback, overrides, options\)
 
 1. `name`: string, 技术指标指示器，你可以在`技术指标`工具栏中看到。
-2. `forceOverlay`: 强制图表库将创建的研究放在主窗格中
-3. `lock`: boolean, 显示用户是否能够删除/更改/隐藏您的研究
-4. `inputs`: \(从版本`1.2`之后\) 输入参数数组。 预计这个数组只包含与学习属性页面打印相同顺序的输入值。
+2. `forceOverlay`: 强制图表库将创建的指标放在主窗格中
+3. `lock`: boolean, 是否锁定指标
+4. `inputs`: \(从版本`1.2`之后\) 指标数组参数, 这个数组只包含与指标属性页面打印相同顺序的输入值。
 5. `callback`: function\(`entityId`\)
-6. `overrides`: \(从版本`1.2`之后\) an object [containing properties](https://github.com/tradingview/charting_library/wiki/Studies-Overrides) y您想为您的新研究做好准备。 注意：您不应指定学习名称：启动具有绘图名称的属性路径。
+6. `overrides`: \(从版本`1.2`之后\) 一个对象 [containing properties](https://github.com/tradingview/charting_library/wiki/Studies-Overrides) 。注意：您不应指定指标名称：应以具有绘图名称的属性路径为起始。
 7. `options`: 这个对象只支持关键字`checkLimit`. 如果为 `true` 时，超出限制，将显示学习限制对话框。
 
-创建一个主要商品的研究。 例子：
+创建一个主要商品的指标。 例子：
 
 * `createStudy('MACD', false, false, [14, 30, "close", 9])`
 * `createStudy('Moving Average Exponential', false, false, [26])`
 * `createStudy('Stochastic', false, false, [26], null, {"%d.color" : "#FF0000"})`
 
-**Remark**: `Compare` 研究有两个输入参数: `[dataSource, symbol]`.  `dataSource` 的值: `["close", "high", "low", "open"]`.
+**Remark**: `Compare` 指标有两个输入参数: `[dataSource, symbol]`.  `dataSource` 的值: `["close", "high", "low", "open"]`.
 
-**Remark 2**: You actually use `Overlay` study when choose to `Add` a series on the chart. This study has the single input -- `symbol`. Here is an example how to add a symbol:
+**Remark 2**: 当您选择在图表上添加数据列时，您实际使用了`Overlay`指标，这个指标只有一个参数 -- `symbol`. 以下是添加商品的示例：
 
 ```javascript
     widget.chart().createStudy('Overlay', false, false, ['AAPL']);
 ```
 
-**Remark 3**: You actually also use `Compare` study when choose to compare a series. This study has two inputs -- `source` and `symbol`. Here is an example how to add a compare series:
+**Remark 3**: 当您选择比较系列时，您实际上使用了`Compare`指标。 它有2个参数 -- `source` 和 `symbol`. 下面是一个添加比较数据列的例子:
 
 ```javascript
     widget.chart().createStudy('Compare', false, false, ["open", 'AAPL']);
@@ -292,30 +292,30 @@ STYLE_PB* = 7;
 #### createShape\(point, options, callback\)
 
 1. `point`: object `{time, [price], [channel]}`
-   1. `time`: unix time. The only mandatory argument.
-   2. `price`: If you specify `price`, then your icon will be placed on its level. If you do not, then the icon sticks to bar at respective time.
-   3. `channel`: The price level to stick to is specified by `channel` argument \(`open`, `high`, `low`, `close`\). If no channel is specified, 'open' is a default.
+   1. `time`: unix time. 唯一的强制性参数。
+   2. `price`: 如果您指定`price`, 如果您指定“price”，则您的图标将被放置在其水平之上。 如果没有指定，则图标会在相应的时间粘贴到K线上。
+   3. `channel`: 要保持价格水平线，要使用`channel` 参数 \(`open`, `high`, `low`, `close`\)。如果未指定则以'open'为默认值。
 2. `options`: object `{shape, [text], [lock], [overrides]}`
-   1. `shape` may be one of the \['arrow\_up', 'arrow\_down', 'flag', 'vertical\_line', 'horizontal\_line'\]. 'flag' is the default value.
-   2. `text` is an optional argument. It's the text that will be assigned to shape if it can contain a text.
-   3. `lock` shows whether a user will be able to remove/change/hide your shape or not.
-   4. `disableSelection` \(since `1.3`\) prevents selecting of the shape
-   5. `disableSave` \(since `1.3`\) prevents saving the shape with a chart
-   6. `disableUndo` \(since `1.4`\) prevents adding of the action to the undo stack
-   7. `overrides` \(since `1.2`\). It is an object containing properties you'd like to set for your new shape.
-   8. `zOrder` \(since `1.3`\) may be one of the \[`top`, `bottom`\]. `top` puts the line tool on top of all other sources, `bottom` puts the line tool below all other sources. If it is not specified the line tool is placed above all existing line tools.
-   9. `showInObjectsTree`: `true` by default. Displays the shape in the Objects Tree dialog.
+   1. `shape` 可能的值为\['arrow\_up', 'arrow\_down', 'flag', 'vertical\_line', 'horizontal\_line'\]，'flag'为默认值。
+   2. `text` 形态的内容
+   3. `lock` 是否锁定形态
+   4. `disableSelection` \(since `1.3`\) 禁用选择
+   5. `disableSave` \(since `1.3`\) 禁用保存
+   6. `disableUndo` \(since `1.4`\) 禁用撤销
+   7. `overrides` \(since `1.2`\). 它是一个对象，包含为新形态设置的属性。
+   8. `zOrder` \(since `1.3`\) 可能的值为\[`top`, `bottom`\]. `top` 将线工具放在所有其他资源之上, `bottom` 将线工具放在所有其他资源之下, 'top'为默认值。
+   9. `showInObjectsTree`: `true`为默认值。在“对象树”对话框中显示形态。
 3. `callback`: function\(`entityId`\)
 
-**Since 1.4 the function returns the result immediately. Callback is kept for compatability.**
+**从1.4开始，函数立即返回结果。回调保函数为持兼容性。**
 
-This call creates a shape at specified point on main series.
+此调用会在主数据列上指定点位创建一个形状。
 
 #### createMultipointShape\(points, options, callback\)
 
-1. `points`: an array of objects `[{time, [price], [channel]},...]`
-   1. `time`: unix time. The only mandatory argument.
-   2. `price`: If you specify `price`, then your icon will be placed on its level. If you do not, then the icon sticks to bar at respective time.
+1. `points`: 一个对象数组 `[{time, [price], [channel]},...]`
+   1. `time`: unix time. 唯一强制性参数。
+   2. `price`: 如果您指定`price`, 如果您指定“price”，则您的图标将被放置在其水平之上。 如果没有指定，则图标会在相应的时间粘贴到K线上。
    3. `channel`: The price level to stick to is specified by `channel` argument \(`open`, `high`, `low`, `close`\). If no channel is specified, 'open' is a default.
 2. `options`: object `{shape, [text], [lock], [overrides]}`
    1. `shape` may be one of the \[\[identifiers\|Shapes and Overrides\]\]
@@ -329,34 +329,34 @@ This call creates a shape at specified point on main series.
    9. `showInObjectsTree`: `true` by default. Displays the shape in the Objects Tree dialog.
 3. `callback`: function\(`entityId`\)
 
-**Since 1.4 the function returns the result immediately. Callback is kept for compatability.**
+**从1.4开始，函数立即返回结果。回调保函数为持兼容性。**
 
 Look \[\[Shapes and Overrides\|Shapes and Overrides\]\] for more information.
 
-This call creates a shape with specified points on main series.
+此调用会在主数据列上指定几个点位创建一个形态。
 
 #### removeEntity\(entityId\)
 
-1. `entityId`: object. Value which was passed to your callback after the entity \(shape of study\) was created.
+1. `entityId`: object. 值为创建实体 \(形态的研究\) 后通过回调传递的值.
 
-Removes the specified entity.
+删除指定实体。
 
 #### createVerticalLine\(point, options\)
 
 1. `point`: object `{time}`
 2. `options`: obejct `{lock}`
 
-This function is a synonym for `createShape` with shape = 'vertical\_line'. It is treated as **obsolete**.
+此方法为`createShape`的同义词，并且 shape = 'vertical\_line'. 它被视为 **已过时**.
 
 #### removeAllShapes\(\)
 
-Removes all shapes \(drawings\) from the chart.
+删除全部形态\(绘图\)。
 
 #### removeAllStudies\(\)
 
-Removed all studies from the chart.
+删除全部指标。
 
-# Study Templates
+# 指标模板
 
 #### createStudyTemplate\(options, callback\)
 
@@ -364,34 +364,34 @@ Removed all studies from the chart.
    1. `saveInterval`: boolean
 2. `callback`: function\(data\)
 
-**Since 1.4 the function returns the result immediately. Callback is kept for compatability.**
+**从1.4开始，函数立即返回结果。回调保函数为持兼容性。**
 
-Saves the study template to JS object. Charting Library will call your callback and pass the state object as argument. This call is a part of low-level \[\[save/load API\|Saving-and-Loading-Charts\]\].
+将指标模板保存到JS对象。 图表库将调用您的回调函数并将状态对象作为参数传递。 该调用为低级的一部分 \[\[save/load API\|Saving-and-Loading-Charts\]\].
 
 #### applyStudyTemplate\(template\)
 
 1. `template`: object 
 
-Loads the study template from state object. This call is a part of low-level \[\[save/load API\|Saving-and-Loading-Charts\]\].
+从状态对象加载指标模板。这个调用是低级的一部分。\[\[save/load API\|Saving-and-Loading-Charts\]\].
 
 # Trading Primitives
 
 #### createOrderLine\(options\)
 
-Creates a new order on the chart and returns an API-object which you can use to control the order properties and behavior. It's strongly recommended to read \[\[this article\|Trading-Primitives\]\] before using this call.
+在图表上创建一个新订单，并返回一个API对象，您可以使用它来控制订单属性和行为。 强烈推荐阅读[交易元语](/book/Trading-Primitives.md)在调用此方法之前。
 
-Arguments \(since 1.4\):  
-`options` is an object with one possible key: `disableUndo` which can be `true` or `false`. For compatability reasons the default value is `false`.
+参数 \(自1.4\):  
+`options` 是一个具有：`disableUndo`的对象, 这可以是 `true` 或 `false`. 出于兼容性原因，默认值为 `false`。
 
-API object methods:
+API对象方法：
 
-* `remove()`: Removes the position from the chart. You can’t use API-object after this call.
+* `remove()`: 从图表中移除位置。 调用此方法后不能再使用API对象。
 * `onModify(callback)` / `onModify(data, callback)`
 * `onMove(callback)` / `onMove(data, callback)`
 
-API object has a set of properties listed below. Each property should be used through respective accessors. I.e., if you want to work with `Extend Left` property, use `getExtendLeft()` of `setExtendLeft()` methods.
+API对象具有以下列出的一组属性。 每个属性都可以通过各自的访问器调用。 即，如果要使用`Extend Left`属性，请使用`getExtendLeft()` 或 `setExtendLeft()` 方法。
 
-**General properties**:
+**一般属性**:
 
 | Property | Type | Supported Values | Default Value |
 | --- | --- | --- | --- |
@@ -401,7 +401,7 @@ API object has a set of properties listed below. Each property should be used th
 | Quantity | String | String | "" |
 | Editable | Boolean | Boolean | true |
 
-**Connection line properties**:
+**连接线属性**:
 
 | Property | Type | Supported Values | Default Value |
 | --- | --- | --- | --- |
@@ -410,14 +410,14 @@ API object has a set of properties listed below. Each property should be used th
 | Line Style | Integer | "inherit" or 0 .. 2 | 2 |
 | Line Width | Integer | "inherit" or 1 .. 4 | 1 |
 
-**Fonts**:
+**字体**:
 
 | Property | Type | Default Value |
 | --- | --- | --- |
 | Body Font | String | "bold 7pt Verdana" |
 | Quantity Font | String | "bold 7pt Verdana" |
 
-**Colors**:
+**颜色**:
 
 | Property | Type | Default Value |
 | --- | --- | --- |
@@ -432,7 +432,7 @@ API object has a set of properties listed below. Each property should be used th
 | Cancel Button Background Color | String | "rgba\(255, 255, 255, 0.75\)" |
 | Cancel Button Icon Color | String | "rgb\(255, 0, 0\)" |
 
-Example:
+例子:
 
 ```javascript
 widget.chart().createOrderLine()
@@ -451,10 +451,10 @@ widget.chart().createOrderLine()
 
 #### createPositionLine\(options\)
 
-Creates a new position on the chart and returns an API-object which you can use to control the position properties and behavior.  It's strongly recommended to read \[\[this article\|Trading-Primitives\]\] before using this call.
+在图表上创建一个新的位置并返回一个API对象，您可以使用它来控制位置属性和行为。 强烈推荐阅读\[\[this article\|Trading-Primitives\]\] 在调用此方法之前。
 
-Arguments \(since 1.4\):  
-`options` is an object with one possible key: `disableUndo` which can be `true` or `false`. For compatability reasons the default value is `false`.
+参数 \(since 1.4\):  
+`options` 是一个具有：`disableUndo`的对象, 这可以是 `true` 或 `false`. 出于兼容性原因，默认值为 `false`。
 
 API object methods:
 
@@ -588,7 +588,7 @@ Returns chart's symbol.
 
 #### symbolExt\(\)
 
-Returns chart's symbol information object. The object has the following fields:
+返回图表的商品信息对象。 该对象具有以下字段：
 
 * `symbol`: the same as \[\[symbol\(\)\|Chart-Methods\#symbol\]\] method result
 * `full_name`: full symbol name
@@ -598,7 +598,7 @@ Returns chart's symbol information object. The object has the following fields:
 
 #### resolution\(\)
 
-Returns chart's resolution. Format is described in another \[\[article\|Resolution\]\].
+Returns chart's resolution。格式在这个文章中描述 \[\[article\|Resolution\]\].
 
 #### getVisibleRange\(\)
 
@@ -608,15 +608,15 @@ Returns object `{from, to}`. `from` and `to` are Unit timestamps **in the timezo
 
 **Since 1.7**
 
-Returns object `{from, to}`. `from` and `to` are boundaries of main series price scale visible range.
+返回对象 `{from, to}`. `from` 和 `to` 主数据列的可见数据内容。
 
 #### priceFormatter\(\)
 
-Returns object with `format` function that you can use to format prices. Introduced in 1.5.
+返回`format` 方法，用以格式化价格。Introduced in 1.5.
 
 #### chartType\(\)
 
-Returns the main series style.
+返回主数据列风格。
 
 # See Also
 
