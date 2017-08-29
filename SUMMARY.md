@@ -24,8 +24,8 @@
 * [4-3、Widget方法](book/Widget-Methods.md)
 * [4-4、图表方法](book/Chart-Methods.md)
 * [4-5、功能集](book/Featuresets.md)
-* [4-6、Server-Side Customization](/book/Customization-Overview.md#通过数据流定制)
-* [4-7、Customization Use Cases](book/Customization-Use-Cases.md)
+* [4-6、服务端定制](/book/Customization-Overview.md#通过数据流定制)
+* [4-7、定制的使用案例](book/Customization-Use-Cases.md)
 
 ## 5、Trading Terminal
 
