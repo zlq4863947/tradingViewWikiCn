@@ -20,7 +20,7 @@
   * [4-2、Widget构造器](book/Widget-Constructor.md)
   * [4-3、Widget方法](book/Widget-Methods.md)
   * [4-4、图表方法](book/Chart-Methods.md)
-  * [4-5、Featuresets](book/Featuresets.md)
+  * [4-5、功能集](book/Featuresets.md)
   * [4-6、Server-Side Customization](book/Customization-Overview.md#Customization Overview#customization-done-through-data-stream)
   * [4-7、Customization Use Cases](book/Customization-Use-Cases.md)
 

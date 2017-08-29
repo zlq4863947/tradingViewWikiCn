@@ -1,10 +1,12 @@
+# 图表方法
+
 以下为图表的方法列表。
 
 **在1.4版本之前** 您可以使用Widget的构造函数返回给您的widget对象来调用这些方法。
 
 **从1.5版本之后** 您可以使用Widget的方法返回给您的图表对象来调用这些方法 \[\[chart\(index\)\|Widget-Methods\#chart-chartindex\]\] 或 \[\[activeChart\(\)\|Widget-Methods\#chart-activechart\]\].
 
-# 方法
+## 方法
 
 * 订阅图表事件
   * \[\[onDataLoaded\(\)\|Chart-Methods\#ondataloaded\]\]
@@ -313,20 +315,20 @@ STYLE_PB* = 7;
 
 #### createMultipointShape\(points, options, callback\)
 
-1. `points`: 一个对象数组 `[{time, [price], [channel]},...]`
-   1. `time`: unix time. 唯一强制性参数。
+1. `point`: object `{time, [price], [channel]}`
+   1. `time`: unix time. 唯一的强制性参数。
    2. `price`: 如果您指定`price`, 如果您指定“price”，则您的图标将被放置在其水平之上。 如果没有指定，则图标会在相应的时间粘贴到K线上。
-   3. `channel`: The price level to stick to is specified by `channel` argument \(`open`, `high`, `low`, `close`\). If no channel is specified, 'open' is a default.
+   3. `channel`: 要保持价格水平线，要使用`channel` 参数 \(`open`, `high`, `low`, `close`\)。如果未指定则以'open'为默认值。
 2. `options`: object `{shape, [text], [lock], [overrides]}`
-   1. `shape` may be one of the \[\[identifiers\|Shapes and Overrides\]\]
-   2. `text` is an optional argument. It's the text that will be assigned to shape if it can contain a text.
-   3. `lock` shows whether a user will be able to remove/change/hide your shape or not.
-   4. `disableSelection` \(since `1.3`\) prevents selecting of the shape
-   5. `disableSave` \(since `1.3`\) prevents saving the shape with a chart
-   6. `disableUndo` \(since `1.4`\) prevents adding of the action to the undo stack
-   7. `overrides`. It is an object containing properties you'd like to set for your new shape.
-   8. `zOrder` \(since `1.3`\) may be one of the \[`top`, `bottom`\]. `top` puts the line tool on top of all other sources, `bottom` puts the line tool below all other sources. If it is not specified the line tool is placed above all existing line tools.
-   9. `showInObjectsTree`: `true` by default. Displays the shape in the Objects Tree dialog.
+   1. `shape` 可能的值为\['arrow\_up', 'arrow\_down', 'flag', 'vertical\_line', 'horizontal\_line'\]，'flag'为默认值。
+   2. `text` 形态的内容
+   3. `lock` 是否锁定形态
+   4. `disableSelection` \(since `1.3`\) 禁用选择
+   5. `disableSave` \(since `1.3`\) 禁用保存
+   6. `disableUndo` \(since `1.4`\) 禁用撤销
+   7. `overrides` \(since `1.2`\). 它是一个对象，包含为新形态设置的属性。
+   8. `zOrder` \(since `1.3`\) 可能的值为\[`top`, `bottom`\]. `top` 将线工具放在所有其他资源之上, `bottom` 将线工具放在所有其他资源之下, 'top'为默认值。
+   9. `showInObjectsTree`: `true`为默认值。在“对象树”对话框中显示形态。
 3. `callback`: function\(`entityId`\)
 
 **从1.4开始，函数立即返回结果。回调保函数为持兼容性。**
@@ -401,7 +403,7 @@ API对象具有以下列出的一组属性。 每个属性都可以通过各自�
 | Quantity | String | String | "" |
 | Editable | Boolean | Boolean | true |
 
-**连接线属性**:
+**趋势线属性**:
 
 | Property | Type | Supported Values | Default Value |
 | --- | --- | --- | --- |
@@ -453,19 +455,18 @@ widget.chart().createOrderLine()
 
 在图表上创建一个新的位置并返回一个API对象，您可以使用它来控制位置属性和行为。 强烈推荐阅读\[\[this article\|Trading-Primitives\]\] 在调用此方法之前。
 
-参数 \(since 1.4\):  
+参数 \(自 1.4\):  
 `options` 是一个具有：`disableUndo`的对象, 这可以是 `true` 或 `false`. 出于兼容性原因，默认值为 `false`。
 
-API object methods:
+API对象方法：
 
-* `remove()`: Removes the position from the chart. You can’t use API-object after this call.
-* `onClose(callback)` / `onClose(data, callback)`
+* `remove()`: 从图表中移除位置。 调用此方法后不能再使用API对象。
 * `onModify(callback)` / `onModify(data, callback)`
-* `onReverse(callback)` / `onReverse(data, callback)`
+* `onMove(callback)` / `onMove(data, callback)`
 
-API object has a set of properties listed below. Each property should be used through respective accessors. I.e., if you want to work with `Extend Left` property, use `getExtendLeft()` of `setExtendLeft()` methods.
+API对象具有以下列出的一组属性。 每个属性都可以通过各自的访问器调用。 即，如果要使用`Extend Left`属性，请使用`getExtendLeft()` 或 `setExtendLeft()` 方法。
 
-**General properties**:
+**一般属性**:
 
 | Property | Type | Supported Values | Default Value |
 | --- | --- | --- | --- |
@@ -474,7 +475,7 @@ API object has a set of properties listed below. Each property should be used th
 | Tooltip | String | String | "" |
 | Quantity | String | String | "" |
 
-**Connection line properties**:
+**趋势线属性**:
 
 | Property | Type | Supported Values | Default Value |
 | --- | --- | --- | --- |
@@ -483,14 +484,14 @@ API object has a set of properties listed below. Each property should be used th
 | Line Style | Integer | "inherit" or 0 .. 2 | 2 |
 | Line Width | Integer | "inherit" or 1 .. 4 | 1 |
 
-**Fonts**:
+**字体**:
 
 | Property | Type | Default Value |
 | --- | --- | --- |
 | Body Font | String | "bold 7pt Verdana" |
 | Quantity Font | String | "bold 7pt Verdana" |
 
-**Colors**:
+**颜色**:
 
 | Property | Type | Default Value |
 | --- | --- | --- |
@@ -508,7 +509,7 @@ API object has a set of properties listed below. Each property should be used th
 | Close Button Background Color | String | "rgba\(255, 255, 255, 0.75\)" |
 | Close Button Icon Color | String | "rgb\(0, 113, 224\)" |
 
-Example:
+例子:
 
 ```javascript
 widget.chart().createPositionLine()
@@ -531,18 +532,18 @@ widget.chart().createPositionLine()
 
 #### createExecutionShape\(options\)
 
-Creates a new execution on the chart and returns an API-object which you can use to control the execution properties. It's strongly recommended to read \[\[this article\|Trading-Primitives\]\] before using this call.
+在图表上创建一个新的执行，并返回一个可以用来控制执行属性的API对象。 在使用此呼叫之前，强烈建议您阅读\[\[this article\|Trading-Primitives\]\]。
 
-Arguments \(since 1.4\):  
-`options` is an object with one possible key: `disableUndo` which can be `true` or `false`. For compatability reasons the default value is `false`.
+参数 \(自 1.4\):  
+`options` 是一个具有：`disableUndo`的对象, 这可以是 `true` 或 `false`. 出于兼容性原因，默认值为 `false`。
 
-API object has a set of properties listed below. Each property should be used through respective accessors. I.e., if you want to work with `Extend Left` property, use `getExtendLeft()` of `setExtendLeft()` methods.
+API对象具有以下列出的一组属性。 每个属性都可以通过各自的访问器调用。 即，如果要使用`Extend Left`属性，请使用`getExtendLeft()` 或 `setExtendLeft()` 方法。
 
-API object methods:
+API对象方法：
 
-* `remove()`: Removes the execution shape from the chart. You can’t use API-object after this call.
+* `remove()`: 从图表中删除执行信号形态。 此调用后不能使用API对象。
 
-**General properties**:
+**一般属性**:
 
 | Property | Type | Supported Values | Default Value |
 | --- | --- | --- | --- |
@@ -554,20 +555,20 @@ API object methods:
 | Arrow Height | Integer | Integer | 8 |
 | Arrow Spacing | Integer | Integer | 1 |
 
-**Fonts**:
+**字体**:
 
 | Property | Type | Default Value |
 | --- | --- | --- |
 | Font | String | "8pt Verdana" |
 
-**Colors**:
+**颜色**:
 
 | Property | Type | Default Value |
 | --- | --- | --- |
 | Text Color | String | "rgb\(0, 0, 0\)"" |
 | Arrow Color | String | "rgba\(0, 0, 255\)" |
 
-Example:
+例子:
 
 ```javascript
 widget.chart().createExecutionShape()
@@ -584,25 +585,25 @@ widget.chart().createExecutionShape()
 
 #### symbol\(\)
 
-Returns chart's symbol.
+返回图表商品。
 
 #### symbolExt\(\)
 
 返回图表的商品信息对象。 该对象具有以下字段：
 
 * `symbol`: the same as \[\[symbol\(\)\|Chart-Methods\#symbol\]\] method result
-* `full_name`: full symbol name
-* `exchange`: symbol's exchange
-* `description`: symbol's description
-* `type`: symbol's type
+* `full_name`: 商品全称
+* `exchange`: 商品交易所
+* `description`: 商品描述
+* `type`: 商品类型
 
 #### resolution\(\)
 
-Returns chart's resolution。格式在这个文章中描述 \[\[article\|Resolution\]\].
+返回图表的分辨率。格式在这个文章中描述 \[\[article\|Resolution\]\].
 
 #### getVisibleRange\(\)
 
-Returns object `{from, to}`. `from` and `to` are Unit timestamps **in the timezone of chart**.
+返回对象 `{from, to}`. `from` 和 `to` 是 **图表时区**的单位时间戳
 
 #### getVisiblePriceRange\(\)
 
