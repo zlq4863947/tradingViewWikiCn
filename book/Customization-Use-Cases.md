@@ -46,101 +46,100 @@
 
 自定义图表的颜色，使其完美适合您的网站。
 
-1. 工具栏颜色](/book/Widget-Constructor.md#width-height)\[\[documentation\|Widget-Constructor\#toolbar\_bg\]\]
-2. 图表颜色 - \[\[documentation\|Widget-Constructor\#overrides\]\]
+1. 工具栏颜色 - [文档说明](/book/Widget-Constructor.md#toolbar)
+2. 图表颜色 - [文档说明](/book/Widget-Constructor.md#overrides)
 
-#### Indicators
+#### 指标
 
-1. Limit amount of indicators for 1 chart layout - \[\[documentation\|Widget-Constructor\#study\_count\_limit\]\]
-2. Limit what indicators are displayed and can be added - \[\[documentation\|Widget-Constructor\#studies\_access\]\]
-3. Add your own indicators calculated on a server - \[\[documentation\|Creating-Custom-Studies\]\]
-4. Change default properties of indicators - \[\[documentation\|Widget-Constructor\#studies\_overrides\]\]
-5. Change default properties on the fly - \[\[documentation\|Widget-Methods\#applystudiesoverridesoverrides\]\]
+1. 限制1个图表布局的指标量 -  [文档说明](/book/Widget-Constructor.md##study_count_limit\)
+2. 限制显示和可以添加的指标 - 文档说明\[\[documentation\|Widget-Constructor\#studies\_access\]\]
+3. 在服务器上添加您自己的指标 - 文档说明\[\[documentation\|Creating-Custom-Studies\]\]
+4. 更改指标的默认属性 - 文档说明\[\[documentation\|Widget-Constructor\#studies\_overrides\]\]
+5. 更改默认属性（在云协作） - 文档说明\[\[documentation\|Widget-Methods\#applystudiesoverridesoverrides\]\]
 
-#### Drawings
+#### 绘图
 
-1. Limit what drawings are displayed and can be added - \[\[documentation\|Widget-Constructor\#drawings\_access\]\]
-2. Change default properties of drawings - \[\[documentation\|Widget-Constructor\#overrides\]\]
-3. Change default properties on the fly - \[\[documentation\|Widget-Methods\#applyoverridesoverrides\]\]
+1. 限制显示和可以添加的绘图 - 文档说明\[\[documentation\|Widget-Constructor\#drawings\_access\]\]
+2. 更改绘图的默认属性） - \文档说明[\[documentation\|Widget-Constructor\#overrides\]\]
+3. 更改绘图默认属性（在运行中 - 文档说明\[\[documentation\|Widget-Methods\#applyoverridesoverrides\]\]
 
-#### Language
+#### 语言
 
-Choose one of more than 20 translations of the library
+选择图表图书馆20多个翻译中的一个
 
 \[\[documentation\|Widget-Constructor\#locale\]\]
 
-Note: Language is set when the chart is created. It cannot be changed without recreating of a chart.
+注意：创建图表时设置语言。 如果没有重新创建图表，则无法更改。
 
-#### Formatting of numbers and dates
+#### 数字和日期的格式化
 
-1. Change decimal sign of numbers - \[\[documentation\|Widget-Constructor\#numeric\_formatting\]\]
-2. Set custom formatters for data and time - \[\[documentation\|Widget-Constructor\#customformatters\]\]
-3. Prices are formatted according to the symbol information - \[\[documentation\|Symbology\#pricescale-minmov\]\]
+1. 更改十进制数字 - \[\[documentation\|Widget-Constructor\#numeric\_formatting\]\]
+2. 为数据和时间设置自定义格式化方法 - \[\[documentation\|Widget-Constructor\#customformatters\]\]
+3. 价格根据商品信息进行格式化 - \[\[documentation\|Symbology\#pricescale-minmov\]\]
 
-#### Default properties of a chart
+#### 图表的默认属性
 
-You can change any properties that present in the properties dialog.
+您可以更改属性对话框中显示的任何属性。
 
 1. Initially - \[\[documentation\|Widget-Constructor\#overrides\]\]
 2. On the fly - \[\[documentation\|Widget-Methods\#applyoverridesoverrides\]\]
 
-#### Server for snapshots
+#### 服务器的快照
 
-TradingView allows you to save snapshot on its servers, but if you wish you can change it.
+TradingView允许您在其服务器上保存快照，但如果您希望更改它。
 
 \[\[documentation\|Widget-Constructor\#snapshot\_url\]\]
 
-#### Show/hide elements of the chart
+#### 显示/隐藏图表的元素
 
-If you don't need some elements of the chart \(toolbars, buttons, other controls\), you can hide them:
+如果您不需要图表的某些元素 \(toolbars, buttons, other controls\), 您可以隐藏它们。
 
-1. Most of the chart elements can be shown/hidden by using \[\[Featuresets\]\]
-2. You can add your own CSS - \[\[documentation\|Widget-Constructor\#custom\_css\_url-since-14\]\]
+1. 大多数图表元素可以通过使用shown/hidden \[\[Featuresets\]\]
+2. 您可以添加自己的CSS - \[\[documentation\|Widget-Constructor\#custom\_css\_url-since-14\]\]
 
-#### Time frames at the bottom of the chart
+#### 图表底部的时间框架
 
-Time frame is a time period of bars and a resolution preferred for displaying of the period. You can customize the list.
-
+时间框架是K线的时间段和优先显示时段的分辨率。 您可以自定义列表。
 \[\[documentation\|Widget-Constructor\#time\_frames\]\]
 
-#### Initial list of favorite intervals / chart styles
+#### 最喜欢的间隔/图表样式的初始列表
 
-You can select what intervals and chart styles should be shown on the top toolbar by default. A user can change it if `items_favoriting` is enabled in the \[\[Featuresets\]\].
+默认情况下，您可以选择在顶部工具栏上显示什么间隔和图表样式。用户可以改吗它们 如果 `items_favoriting` 为 enabled ,\[\[Featuresets\]\].
 
 \[\[documentation\|Widget-Constructor\#favorites\]\]
 
-#### Resolutions displayed in the menu
+#### 分辨率显示在菜单中
 
-1. Full list of resolution is provided in the configuration of the datafeed - \[\[documentation\|JS-Api\#supported\_resolutions\]\]
-2. Resolutions are enabled or disabled in the list basing on the symbol information - \[\[documentation\|Symbology\#supported\_resolutions\]\]
-3. Initial list of favorite resolutions can be set - \[\[documentation\|Widget-Constructor\#favorites\]\]
+1. 在数据输入的配置中提供了完整的分辨率列表 -\[\[documentation\|JS-Api\#supported\_resolutions\]\]
+2. 基于商品信息在列表中启用或禁用分辨率 - \[\[documentation\|Symbology\#supported\_resolutions\]\]
+3. 可以设置喜欢的分辨率的初始列表 - \[\[documentation\|Widget-Constructor\#favorites\]\]
 
-#### Volume indicator
+#### 成交量指示器
 
-In spite of other indicators Volume is added by default if the instrument supports it \(\[\[documentation\|Symbology\#has\_no\_volume-\]\]\).  
-You can disable this behaviour using \[\[documentation\|Featuresets\]\].
+尽管有其他指示器，如果仪器支持，默认情况下会添加成交量 \(\[\[documentation\|Symbology\#has\_no\_volume-\]\]\).  
+您可以禁用此行为 \[\[documentation\|Featuresets\]\].
 
-#### Context menu
+#### 上下文菜单
 
-You can add new elements to the context menu or hide existing items.
+您可以向上下文菜单添加新元素或隐藏现有项目。
 
 \[\[documentation\|Widget-Methods\#oncontextmenucallback\]\]
 
-#### Custom buttons on the toolbar
+#### 制订工具栏上的自定义按钮
 
-You can add your own buttons to the top toolbar of the chart.
+您可以将自己的按钮添加到图表的顶部工具栏。
 
 \[\[documentation\|Widget-Methods\#createbuttonoptions\]\]
 
-#### :chart: Watch list
+#### :图表：观察列表
 
 It is possible to choose default symbols for the watch list and set read-only state if needed.
 
 \[\[documentation\|Widget-Constructor\#chart-widgetbar\]\]
 
-#### :chart: News feed
+#### 图表：新闻资讯
 
-You can attach to any RSS feed and even select the feed depending on the instrument type.
+您可以附加到任何RSS Feed，甚至根据仪器类型选择Feed。
 
 \[\[documentation\|Widget-Constructor\#chart-rss\_news\_feed\]\]
 
