@@ -14,40 +14,40 @@
 
 [文档说明](/book/Widget-Constructor.md#symbol-interval-mandatory)
 
-#### Default visible range \(time frame\)
+#### 默认可见范围 \(时间框架\)
 
-Change time range of bars for the default resolution
+更改默认分辨率K线的时间范围
 
-\[\[documentation\|Widget-Constructor\#timeframe\]\]
+[文档说明](/book/Widget-Constructor.md#timeframe)
 
-#### Default visible range for resolutions
+#### 分辨率的默认可见范围
 
-Change time range of bars when the resolution is changed by a user. Look at the sample here:
+当用户更改分辨率时，更改K线的时间范围。 看这里的样本：
 
-\[\[documentation\|Chart-Methods\#onintervalchanged\]\]
+[文档说明](/book/Chart-Methods.md#onintervalchanged)
 
-#### Initial timezone
+#### 初始时区
 
-You can set what time zone is used by default. It can be changed by the user in the menu.
+您可以设置默认使用的时区。 用户也可以在菜单中更改。
 
-\[\[documentation\|Widget-Constructor\#timezone-\]\]
+[文档说明](/book/Widget-Constructor.md#timezone-)
 
-#### Size of the chart
+#### 图表大小
 
-You can place the chart as en element on your web page or use fullscreen mode.
+您可以将图表作为元素放置在网页上或使用全屏模式。
 
-\[\[Width and Height\|Widget-Constructor\#width-height\]\]
+[宽度和高度](/book/Widget-Constructor.md#width-height)
 
-\[\[Fullscreen\|Widget-Constructor\#fullscreen-\]\]
+[全屏模式](/book/Widget-Constructor#fullscreen-)
 
-\[\[Autosize\|Widget-Constructor\#autosize-\]\]
+[自动尺寸](/book/Widget-Constructor#autosize-)
 
-#### Chart colors
+#### 图表颜色
 
-Customize colors of the chart so it perfectly fits in your site.
+自定义图表的颜色，使其完美适合您的网站。
 
-1. Color of toolbars - \[\[documentation\|Widget-Constructor\#toolbar\_bg\]\]
-2. Color of the chart - \[\[documentation\|Widget-Constructor\#overrides\]\]
+1. 工具栏颜色](/book/Widget-Constructor.md#width-height)\[\[documentation\|Widget-Constructor\#toolbar\_bg\]\]
+2. 图表颜色 - \[\[documentation\|Widget-Constructor\#overrides\]\]
 
 #### Indicators
 

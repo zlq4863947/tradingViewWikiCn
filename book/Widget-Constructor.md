@@ -23,7 +23,7 @@ new TradingView.widget({
 
 #### timeframe
 
-设置图表的初始时间表。 时间周期是将被加载并显示在屏幕上的条形周期。有效的时间周期是一个数字加一个字母，D为数天，M为数月。
+设置图表的初始时间间隔。 时间间隔是将被加载并显示在屏幕上的条形周期。有效的时间间隔是一个数字加一个字母，D为数天，M为数月。
 
 #### container\_id \[mandatory\]
 
@@ -191,7 +191,7 @@ TradingView.onready(function()
 
 #### time\_frames
 
-在图表底部的时间周期选择器中可以看见这个时间周期列表。 例：
+在图表底部的时间间隔选择器中可以看见这个时间间隔列表。 例：
 
 ```js
 time_frames: [
@@ -203,7 +203,7 @@ time_frames: [
 ]
 ```
 
-时间周期是一个包含`text`和`resolution属性的对象。文本必须具有以下格式：<integer><y|m|d>`\( \d+\(y\|m\|d\) 为正则表达式 \). 分辨率是具有通用分辨率格式的字符串. 请参阅本主题[this topic](https://github.com/tradingview/charting_library/wiki/Time-Frames)了解有关时间框架的更多信息。在1.7中添加了描述属性，并显示在弹出菜单中。此参数是可选的（如果时间框架描述符不包含此属性：title（如果指定）或使用）。title属性在1.9中添加，此值将覆盖从text属性生成的默认标题。 此参数是可选的。
+时间间隔是一个包含`text`和`resolution属性的对象。文本必须具有以下格式：<integer><y|m|d>`\( \d+\(y\|m\|d\) 为正则表达式 \). 分辨率是具有通用分辨率格式的字符串. 请参阅本主题[this topic](https://github.com/tradingview/charting_library/wiki/Time-Frames)了解有关时间框架的更多信息。在1.7中添加了描述属性，并显示在弹出菜单中。此参数是可选的（如果时间框架描述符不包含此属性：title（如果指定）或使用）。title属性在1.9中添加，此值将覆盖从text属性生成的默认标题。 此参数是可选的。
 
 #### charts\_storage\_url, client\_id, user\_id
 

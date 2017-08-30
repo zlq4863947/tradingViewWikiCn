@@ -67,8 +67,8 @@
 您可以通过订阅\[\[Subscription\]\]对象返回的此回调函数，通知当间隔发生变化并退订事件。
 当事件被触发时，它将提供以下参数：
 1. `interval`: 新间隔  
-2. `timeframeParameters`: 此对象只有一个字段 `timeframe`. 用户改变时间周期时，它包含一个时间周期。
-否则 `timeframe` 为 `undefined` 然后你可以修改它以显示某一时段的K线。有效的时间周期是一个数字，字母'D'为天，'M'为月。
+2. `timeframeParameters`: 此对象只有一个字段 `timeframe`. 用户改变时间间隔时，它包含一个时间间隔。
+否则 `timeframe` 为 `undefined` 然后你可以修改它以显示某一时段的K线。有效的时间间隔是一个数字，字母'D'为天，'M'为月。
 
 例如:
 
