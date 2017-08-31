@@ -13,7 +13,7 @@
 | **header\_widget** | on |  |  |
 | - header\_widget\_dom\_node | on |  | 禁用此功能会隐藏头部小部件DOM元素 |
 | - header\_symbol\_search | on |  |  |
-| - symbol\_search\_hot\_key | on | 1.9 | 商品搜索按键 |
+| - symbol\_search\_hot\_key | on | 1.9 | 商品搜索热键 |
 | - header\_resolutions | on |  |  |
 | - - header\_interval\_dialog\_button | on |  |  |
 | - - - show\_interval\_dialog\_on\_key\_press | on |  |  |
@@ -73,10 +73,10 @@
 | **use\_localstorage\_for\_settings** | on |  | 允许将用户设置保存到localstorage |
 | - items\_favoriting | on |  | 禁用此功能会隐藏所有“收藏此项目”按钮 |
 | - save\_chart\_properties\_to\_local\_storage | on |  | 禁用此功能可防止将图表属性（颜色，样式，字体）保存到本地存储，但仍保存最喜欢的项目 |
-|  | create\_volume\_indicator\_by\_default | on |  |
-|  | create\_volume\_indicator\_by\_default\_once | on |  |
+| create\_volume\_indicator\_by\_default | on |  |
+| create\_volume\_indicator\_by\_default\_once | on |  |
 | volume\_force\_overlay | on |  | 在与主数据列相同的窗格中放置成交量指示器 |
-| right\_bar\_stays\_on\_scroll | on |  | determines zoom behavior: bar under cursor is kept if disabled |
+| right\_bar\_stays\_on\_scroll | on |  | 确定缩放行为：禁用光标下的K现 |
 | constraint\_dialogs\_movement | on |  | 阻止从图表中移动对话框 |
 | charting\_library\_debug\_mode | off |  | 启用日志 |
 | show\_dialog\_on\_snapshot\_ready | on |  | 禁用此功能允许您以静默方式进行快照 |
@@ -100,13 +100,13 @@
 
 ## ![](/images/trading.png)交易终端
 
-| ID | Default State | 终端版本 | 描述 |
+| ID | 默认状态 | 终端版本 | 描述 |
 | --- | --- | --- | --- |
 | support\_multicharts | on |  | 启用与多图表布局相关的上下文菜单操作（克隆，同步） |
 | header\_layouttoggle | on |  | 显示标题中的“选择布局”按钮 |
 | show\_logo\_on\_all\_charts | off |  | 在多功能布局的每个图表上显示徽标 |
 | chart\_crosshair\_menu | on | 1.7 | 在价格范围内启用"加号"按钮进行快速交易 |
-| add\_to\_watchlist | on | 1.9 | 在菜单中启用“添加商品到监视列表”项 |
+| add\_to\_watchlist | on | 1.9 | 在菜单中启用“添加商品到观察列表”项 |
 | footer\_screenshot | on | 1.11 | 显示页脚中的截图按钮（客户经理） |
 | open\_account\_manager | on | 1.11 | 默认情况下保留客户经理的打开 |
 

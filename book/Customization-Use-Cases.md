@@ -133,13 +133,13 @@ TradingView允许您在其服务器上保存快照，但如果您希望更改它
 
 #### :图表：观察列表
 
-It is possible to choose default symbols for the watch list and set read-only state if needed.
+可以为观察列表选择默认符号，并根据需要设置只读状态。
 
 \[\[documentation\|Widget-Constructor\#chart-widgetbar\]\]
 
 #### 图表：新闻资讯
 
-您可以附加到任何RSS Feed，甚至根据仪器类型选择Feed。
+您可以附加到任何RSS订阅，甚至可以根据金融工具类型选择feed。
 
 \[\[documentation\|Widget-Constructor\#chart-rss\_news\_feed\]\]
 
