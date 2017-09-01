@@ -1,6 +1,5 @@
 # Widget构造器
 
-
 ---
 
 当调用构造函数时，您可以定义Charting library控件的参数。例：
