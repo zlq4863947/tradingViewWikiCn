@@ -9,7 +9,7 @@
 ## 方法
 
 * 订阅图表事件
-  * \[\[onDataLoaded\(\)\|Chart-Methods\#ondataloaded\]\]
+  * [onDataLoaded\(\)](#ondataloaded)
   * \[\[onSymbolChanged\(\)\|Chart-Methods\#onsymbolchanged\]\]
   * \[\[onIntervalChanged\(\)\|Chart-Methods\#onintervalchanged\]\]
   * \[\[dataReady\(callback\)\|Chart-Methods\#datareadycallback\]\]
@@ -64,10 +64,10 @@
 
 #### onIntervalChanged\(\)
 
-您可以通过订阅\[\[Subscription\]\]对象返回的此回调函数，通知当间隔发生变化并退订事件。
-当事件被触发时，它将提供以下参数：
+您可以通过订阅\[\[Subscription\]\]对象返回的此回调函数，通知当间隔发生变化并退订事件。  
+当事件被触发时，它将提供以下参数：  
 1. `interval`: 新间隔  
-2. `timeframeParameters`: 此对象只有一个字段 `timeframe`. 用户改变时间间隔时，它包含一个时间间隔。
+2. `timeframeParameters`: 此对象只有一个字段 `timeframe`. 用户改变时间间隔时，它包含一个时间间隔。  
 否则 `timeframe` 为 `undefined` 然后你可以修改它以显示某一时段的K线。有效的时间间隔是一个数字，字母'D'为天，'M'为月。
 
 例如:
@@ -99,9 +99,9 @@ widget.chart().onIntervalChanged().subscribe(null, function(interval, obj) {
 
 1. `range`: object, `{from to}`
    1. `from`, `to`: unix timestamps, UTC
-2. `callback`: `function()`. 图表库会调用回调在viewport(视口)设置完成时。
+2. `callback`: `function()`. 图表库会调用回调在viewport\(视口\)设置完成时。
 
-强制图表调整其参数 \(scroll, scale\) 使选定的时间段适合视口。
+强制图表调整其参数 \(scroll, scale\) 使选定的时间段适合视口。  
 今后将必须设置`from`或`to`。此方法也引入在`1.2`版本。
 
 #### setSymbol\(symbol, callback\)
