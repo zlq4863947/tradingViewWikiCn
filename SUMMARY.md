@@ -35,10 +35,10 @@
 
 ---
 
-## 5、Trading Terminal
+## 5、交易终端
 
-* [5-1、Brief Intro\|Trading-Terminal](book/Trading-Terminal.md)
-* [5-2、Trading Controller](book/Trading-Controller.md)
+* [5-1、交易终端简介](book/Trading-Terminal.md)
+* [5-2、交易控制器](book/Trading-Controller.md)
 * [5-3、Trading Host](book/Trading-Host.md)
 * [5-4、Account Manager](book/Account-Manager.md)
 * [5-5、Trading Objects and Constants](book/Trading-Objects-and-Constants.md)

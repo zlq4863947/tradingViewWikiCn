@@ -1,67 +1,72 @@
-:chart: All content on this page is relevant for Trading Terminal only.
+# 交易终端
 
-Trading Terminal is a ready-to-use product for those who want to have a great charting solution along with the ability to trade right from the chart. This product is based on Charting Library and includes all its functionality, but also contains a bunch of new features. Trading Terminal repo is [[here|https://github.com/tradingview/trading_platform]].
+---
 
-The product is under development so some features are not there yet. They are marked with :clock4:.
+:chart: 此页面上的所有内容仅与交易终端相关。
 
-## Trading Terminal Features
+交易终端是一个即用型产品，为那些想要有一个全功能图表解决方案，以及从图表交易的能力。This 产品基于图表库，并包含其所有功能，而且还包含一大堆新功能。 交易终端资源[链接](https://github.com/tradingview/trading_platform)。
 
-#### Trading Capabilities
-You can trade right from the chart, and all you have to do to make this work is to implement your [[Trading Controller]] and plug it into the chart widget.
+该产品正在开发中，因此一些功能还没有。 它们被标记为：clock4 :.
+
+## 交易终端功能
+
+#### 交易能力
+你可以在图表上进行交易，而你所要做的就是实现你的目标， [[Trading Controller]] 并将其插入图表窗口小部件。
 
 [[images/tt_trading.png]]
 
-#### Advanced Order Dialog
-Fully customizable order dialog allows to place Market/Limit/Stop/Stop Limit orders, enter Stop Loss and Take Profit prices,
-choose expiration and calculate risks.
+#### 高级订单对话框
+完全可定制的订单对话框允许设置市场/限价/止损/止损限价，输入止损和收益价格，
+选择到期并计算风险。
 
 [[images/tt_orderdialog.png]]
 
-#### Account Manager
-You can display orders/positions and account information in an interactive table at the bottom or embed any other widget there.
+#### 账户管理器
+您可以在底部的交互式表格中显示订单/头寸和帐户信息，也可以在其中嵌入任何其他小部件。
 
-###### Read more about this feature:
-  * [[How to enable Account Manager|Account-Manager]]
+###### 详细了解此功能：
+  * [[如何启用账户管理器|Account-Manager]]
 
-#### DOM Widget
+#### DOM小部件
 You can display orders/positions and Level 2 data in an interactive DOM.
+您可以在交互式DOM中显示订单/位置以及Level-2数据。
 
 [[images/tt_dom.png]]
 
-#### Sidebar Quotes (Symbols Details & Watchlist)
-In Trading Terminal, you can have the Watchilsts and Details widget (see the snapshot below) functionality.
+#### 边栏报价（商品详情和观察列表）
+在交易终端中，您可以拥有观察列表和商品详情窗口小部件（请参阅下面的快照）功能。
 
 [[images/tt_top.png]]
 
-###### Read more about this feature:
-  * [[How to enable sidebar quotes|Widget-Constructor#chart-widgetbar]]
-  * How to provide the data for quotes: depends on what kind of data integration do you use --[[JS API|JS-Api#chart-trading-terminal-specific]] or [[UDF|UDF#quotes]]
+###### 详细了解此功能：
+  * [[如何启用侧边栏报价|Widget-Constructor#chart-widgetbar]]
+  * 如何提供报价数据：取决于您使用什么样的数据集成 --[[JS API|JS-Api#chart-trading-terminal-specific]] 或 [[UDF|UDF#quotes]]
 
-#### Sidebar Market News Feed
-You can have the news feed right in the side bar of the chart. Our support for the news feeds is flexible: so, in example, you can have different feeds for different kinds of symbols and so on.
+#### 边栏市场新闻Feed
+您可以在图表的侧栏中直接显示新闻提要。 我们对新闻Feed的支持是灵活的：例如，您可以为不同类型的商品提供不同的Feed，等等。
 
 [[images/tt_bottom.png]]
 
-###### Read more about this feature:
-  * [[How to enable sidebar news|Widget-Constructor#chart-widgetbar]]
-  * [[How to set up which feeds to use|Widget-Constructor#chart-rss_news_feed]]
+###### 详细了解此功能：
+  * [[如何启用侧边栏新闻|Widget-Constructor#chart-widgetbar]]
+  * [[如何设置要使用的Feed|Widget-Constructor#chart-rss_news_feed]]
 
-#### Miltiple charts layout
-You can have multiple charts inside if the same widget. This gives your user the ability to use wide range of the strategies, as well as the ability to have a broad view of the market. You don't have to do anythng to enable or tweak it: it works out-of-the-box.
+#### 多重图表布局
+在同一个小部件中，您可以有多个图表。 这使您的用户能够使用更广泛的策略，以及更广泛的市场观点的能力。 您不必做任何事情来启用或调整它：它可以开箱即用。
 
 [[images/tt_charts.png]]
 
-#### Japanese charts types: Kagi, Renko, Point & Figure, Line Break
-These types of charts will be available out-of-the-box, just like Heikin Ashi is available in Charting Library.
+#### 日本图表类型：卡吉图、砖形图、OX（点数）图、新价线
+这些类型的图表将可以开箱即用，就像Heikin Ashi（平均K线图）在图表库中可用一样。
 
-#### Volume Profile :clock4:
-This study will require some server-side support. We'll provide more detals when it's ready.
+#### 量能分布图 :clock4:
+这项研究将需要一些服务器端的支持。 准备好后，我们会提供更多的细节。
 
-#### Drawing Tools Templates :clock4:
-This functionality will require the support from your backend. We'll update our open-source data backend to support this feature also, so consider using it to minimize the efforts from your side.
+#### 绘图工具模板 :clock4:
+此功能将需要您的后端支持。 我们将更新我们的开源数据后端以支持此功能，因此请考虑使用它来最大限度地减少您的工作。
 
-## How To Work With The Docs
-Since Trading Terminal is based on Charting Library, we decided to merge the documentation into the single Wiki. So all the docs are in one place. The only thing you should remember is that features which are specific to Trading Terminal are marked with this cute green mark :chart:.
+## 如何使用文档
+由于交易终端基于图表库，我们决定将文档合并到单个维基中。 所以所有的文档都在一个地方。 您唯一应该记住的是，特定于交易终端的功能标有这个可爱的绿色标记：图表：。
 
 
 # See Also

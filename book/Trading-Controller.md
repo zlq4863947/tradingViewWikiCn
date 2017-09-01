@@ -1,82 +1,86 @@
-:chart: All content on this page is relevant for [[Trading Terminal]] only.
+交易控制器
 
-Trading Controller is a thing which will make your trading live. Its main purpose is to connect our charts with your trading logic. In terms of `JS`, it is an `object` which is expected to expose the specific interface. Here is a list of Controller's **methods** which Terminal will expect to have.
+---
 
-## Required Methods
+:chart: 此页面上的所有内容仅适用于[[交易终端]]。
+
+交易控制器是一种能使您在线交易的东西。其主要目的是将我们的图表与您的交易逻辑连接起来。就`JS`而言,它是一个 `object` 以便公开特定的接口。 下面是一个终端控制器的 **方法** 。
+
+## 必需的方法
 
 #### setHost(host)
-This methods is called on initialization to pass a [[Trading Host]] to the controller.
+这种方法在初始化时通过[[交易主机]]传递给控制器。
 
 #### configFlags()
-Implement this method to provide configuration flags object. The result is an object with the following keys, that can be `true`/`false`:
+实现这个方法来提供配置标志对象。 结果是具有以下键的对象，即可以`true`/`false`:
 
 * supportReversePosition
 
-    Broker supports reverse of a position.
-    If it is not supported by broker, Chart will have the reverse button, but it will place a reverse order.
+    经纪商支持反向交易。
+    如果经纪商不支持，则图表将具有相反的按钮，但会按相反的顺序排列。
 
 * supportClosePosition
 
-    Broker supports close of a position.
-    If it is not supported by broker, Chart will have the close button, but it will place a close order.
+    经纪商支持平仓。
+    如果经纪人不支持，图表将会有关闭按钮，但会按顺序排列。
 
 * supportReducePosition
 
-    Broker supports changing of a position without orders.
+    经纪商支持在没有订单的情况下更换仓位。
 
 * supportPLUpdate
 
-    Broker provides PL for a position. If the broker calculates profit/loss by itself it should call [[plUpdate|Trading-Host#plupdatepositionid-pl]] as soon as PL is changed. Otherwise Chart will calculate PL as a difference between current trade and an average price of the position.
+    经纪人提供PL的头寸。 如果经纪商自己计算利润/损失，它应该调用 [[plUpdate|Trading-Host#plupdatepositionid-pl]] 一旦PL改变了。 否则图表将计算PL作为当前交易与头寸平均价格之间的差额。
 
 * supportBrackets
 
-    Broker supports brackets (take profit and stop loss orders). If this flag is `true` the Chart will display an Edit button for positions and add `Edit position...` to the context menu of a position.
+    经纪支持括号单（获利和止损单）。如果此标志为 `true` ，则图表将显示仓位的编辑按钮，并将 `Edit position...` 添加到仓位的上下文菜单。
 
 * supportMultiposition
 
-    Supporting multiposition prevents creating default implementation for reverse position.
+    支持多重仓位可防止为反向交易创建默认实现。
 
 * supportCustomBottomWidget
 
-    This flag can be used to change default account manager widget with a custom one.
+    此标志可用于使用自定义更改默认的帐户管理器小部件。
 
 * showQuantityInsteadOfAmount
 
-	This flag can be used to change "Amount" to "Quantity" in the order dialog
+    该标志可用于在订单对话框中将“金额”更改为“数量”
 
 * supportDOM
 
-    This flag enables DOM widget. If `supportLevel2Data` is `false` only `last price` and orders will be shown.
+    此标志用来启用DOM小部件。 如果 `supportLevel2Data` 为 `false` 只有 `last price` 并且订单将被显示。
 
 * supportLevel2Data
 
-    Level2 data is used for DOM widget. `subscribeDepth` and `unsubscribeDepth` should be implemented.
+    Level2数据用于DOM小部件。`subscribeDepth` 和 `unsubscribeDepth` 应该被实现。
 
 * supportStopLimitOrders
 
-    This flag adds stop-limit orders type to the order dialog.
+    此标志向订单对话框添加止损订单类型。
     
 * supportMarketBrackets
-	Using this flag you can disable brackets for market orders. By default it is enabled.
+	使用此标志可以为市场订单禁用括号单。 默认情况下启用。
 	
 * supportEditAmount
-    This flag can help you to disable amount control when editing existing orders.
+    此标志可帮助您在编辑现有订单时禁用金额控制。
     
 #### durations(): array of objects
-List of expiration options of orders. It is optional. Do not implement it if you don't want the durations to be displayed in the order ticket.
-The objects have two kes: `{ name, value }`.
+订单过期期权清单。 这是可选的。 如果您不希望在订单中显示持续时间，请勿实现。
+对象有两个key： `{ name, value }`.
 
-Example:
+例:
 
 ```
 return [{ name: 'DAY', value: 'DAY' }, { name: 'GTC', value: 'GTC' }];
 ```
 
-#### positions : [Deferred](https://api.jquery.com/category/deferred-object/)
-#### orders : [Deferred](https://api.jquery.com/category/deferred-object/)
-#### executions(symbol) : [Deferred](https://api.jquery.com/category/deferred-object/)
-These methods are called by the Chart to request positions/orders/executions and display them on a chart.
-You should return the appropriate lists of [[positions|Trading-Objects-and-Constants#position]], [[orders|Trading-Objects-and-Constants#order]] or [[executions|Trading-Objects-and-Constants#execution]]
+#### 头寸 : [Deferred](https://api.jquery.com/category/deferred-object/)
+#### 订单 : [Deferred](https://api.jquery.com/category/deferred-object/)
+#### 执行信号(symbol) : [Deferred](https://api.jquery.com/category/deferred-object/)
+图表调用这些方法来请求位置/订单/执行并在图表上显示它们。
+您应该返回相应的列表[[positions|Trading-Objects-and-Constants#position]], [[orders|Trading-Objects-and-Constants#order]] or [[executions|Trading-Objects-and-Constants#execution]]
 
 #### supportFloatingPanel()
 Function should return `true` for Floating Trading Panel to be displayed.
