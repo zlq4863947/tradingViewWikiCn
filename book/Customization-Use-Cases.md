@@ -60,7 +60,7 @@
 #### 绘图
 
 1. 限制显示和可以添加的绘图 - 文档说明\[\[documentation\|Widget-Constructor\#drawings\_access\]\]
-2. 更改绘图的默认属性） - \文档说明[\[documentation\|Widget-Constructor\#overrides\]\]
+2. 更改绘图的默认属性） - \文档说明\[\[documentation\|Widget-Constructor\#overrides\]\]
 3. 更改绘图默认属性（在运行中 - 文档说明\[\[documentation\|Widget-Methods\#applyoverridesoverrides\]\]
 
 #### 语言
@@ -99,7 +99,7 @@ TradingView允许您在其服务器上保存快照，但如果您希望更改它
 
 #### 图表底部的时间框架
 
-时间框架是K线的时间段和优先显示时段的分辨率。 您可以自定义列表。
+时间框架是K线的时间段和优先显示时段的分辨率。 您可以自定义列表。  
 \[\[documentation\|Widget-Constructor\#time\_frames\]\]
 
 #### 最喜欢的间隔/图表样式的初始列表
@@ -131,13 +131,13 @@ TradingView允许您在其服务器上保存快照，但如果您希望更改它
 
 \[\[documentation\|Widget-Methods\#createbuttonoptions\]\]
 
-#### :图表：观察列表
+#### ![](/images/trading.png)观察列表
 
 可以为观察列表选择默认符号，并根据需要设置只读状态。
 
 \[\[documentation\|Widget-Constructor\#chart-widgetbar\]\]
 
-#### 图表：新闻资讯
+#### ![](/images/trading.png)新闻资讯
 
 您可以附加到任何RSS订阅，甚至可以根据金融工具类型选择feed。
 
