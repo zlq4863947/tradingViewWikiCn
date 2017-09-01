@@ -75,8 +75,8 @@
 | **use\_localstorage\_for\_settings** | on |  | 允许将用户设置保存到localstorage |
 | - items\_favoriting | on |  | 禁用此功能会隐藏所有“收藏此项目”按钮 |
 | - save\_chart\_properties\_to\_local\_storage | on |  | 禁用此功能可防止将图表属性（颜色，样式，字体）保存到本地存储，但仍保存最喜欢的项目 |
-|  | create\_volume\_indicator\_by\_default | on |  |
-|  | create\_volume\_indicator\_by\_default\_once | on |  |
+| create\_volume\_indicator\_by\_default | on |  |
+| create\_volume\_indicator\_by\_default\_once | on |  |
 | volume\_force\_overlay | on |  | 在与主数据列相同的窗格中放置成交量指示器 |
 | right\_bar\_stays\_on\_scroll | on |  | 确定缩放行为：禁用光标下的K现 |
 | constraint\_dialogs\_movement | on |  | 阻止从图表中移动对话框 |
