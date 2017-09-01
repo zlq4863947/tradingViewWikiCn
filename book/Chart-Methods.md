@@ -1,70 +1,72 @@
 # 图表方法
 
+---
+
 以下为图表的方法列表。
 
 **在1.4版本之前** 您可以使用Widget的构造函数返回给您的widget对象来调用这些方法。
 
-**从1.5版本之后** 您可以使用Widget的方法返回给您的图表对象来调用这些方法 \[\[chart\(index\)\|Widget-Methods\#chart-chartindex\]\] 或 \[\[activeChart\(\)\|Widget-Methods\#chart-activechart\]\].
+**从1.5版本之后** 您可以使用Widget的方法返回给您的图表对象来调用这些方法 [chart\(index\)\|Widget-Methods\#chart-chartindex) 或 [activeChart\(\)\|Widget-Methods\#chart-activechart).
 
 ## 方法
 
 * 订阅图表事件
   * [onDataLoaded\(\)](#ondataloaded)
-  * \[\[onSymbolChanged\(\)\|Chart-Methods\#onsymbolchanged\]\]
-  * \[\[onIntervalChanged\(\)\|Chart-Methods\#onintervalchanged\]\]
-  * \[\[dataReady\(callback\)\|Chart-Methods\#datareadycallback\]\]
-  * \[\[crossHairMoved\(callback\)\|Chart-Methods\#crosshairmovedcallback\]\]
+  * [onSymbolChanged\(\)](#onsymbolchanged)
+  * [onIntervalChanged\(\)](#onintervalchanged)
+  * [dataReady\(callback\)](#datareadycallback)
+  * [crossHairMoved\(callback\)](#crosshairmovedcallback)
 * 图表动作
-  * \[\[setVisibleRange\(range, callback\)\|Chart-Methods\#setvisiblerangerange-callback\]\]
-  * \[\[setSymbol\(symbol, callback\)\|Chart-Methods\#setsymbolsymbol-callback\]\]
-  * \[\[setResolution\(resolution, callback\)\|Chart-Methods\#setresolutionresolution-callback\]\]
-  * \[\[resetData\(\)\|Chart-Methods\#resetData\]\]
-  * \[\[executeAction\(action\)\|Chart-Methods\#executeactionaction\]\]
-  * \[\[executeActionById\(action\)\|Chart-Methods\#executeactionbyidactionid\]\]
-  * \[\[getCheckableActionState\(action\)\|Chart-Methods\#getcheckableactionstateactionid\]\]
-  * \[\[refreshMarks\(\)\|Chart-Methods\#refreshmarks\]\]
-  * \[\[clearMarks\(\)\|Chart-Methods\#clearmarks\]\]
-  * \[\[setChartType\(type\)\|Chart-Methods\#setcharttypetype\]\]
+  * [setVisibleRange\(range, callback\)](#setvisiblerangerange-callback)
+  * [setSymbol\(symbol, callback\)](#setsymbolsymbol-callback)
+  * [setResolution\(resolution, callback\)](#setresolutionresolution-callback)
+  * [resetData\(\)](#resetData)
+  * [executeAction\(action\)](#executeactionaction)
+  * [executeActionById\(action\)](#executeactionbyidactionid)
+  * [getCheckableActionState\(action\)](#getcheckableactionstateactionid)
+  * [refreshMarks\(\)](#refreshmarks)
+  * [clearMarks\(\)](#clearmarks)
+  * [setChartType\(type\)](#setcharttypetype)
 * 研究与形态
-  * \[\[getAllShapes\(\)\|Chart-Methods\#getallshapes\]\]
-  * \[\[getAllStudies\(\)\|Chart-Methods\#getallstudies\]\]
-  * \[\[setEntityVisibility\(id, isVisible\)\|Chart-Methods\#setentityvisibilityid-isvisible\]\]
-  * \[\[createStudy\(name, forceOverlay, lock, inputs, callback, overrides, options\)\|Chart-Methods\#createstudyname-forceoverlay-lock-inputs-callback-overrides-options\]\]
-  * \[\[createShape\(point, options, callback\)\|Chart-Methods\#createshapepoint-options-callback\]\]
-  * \[\[createMultipointShape\(points, options, callback\)\|Chart-Methods\#createmultipointshapepoints-options-callback\]\]
-  * \[\[removeEntity\(entityId\)\|Chart-Methods\#removeentityentityid\]\]
-  * \[\[createVerticalLine\(point, options\)\|Chart-Methods\#createverticallinepoint-options\]\]
-  * \[\[removeAllShapes\(\)\|Chart-Methods\#removeallshapes\]\]
-  * \[\[removeAllStudies\(\)\|Chart-Methods\#removeallstudies\]\]
+  * [getAllShapes\(\)](#getallshapes)
+  * [getAllStudies\(\)](#getallstudies)
+  * [setEntityVisibility\(id, isVisible\)](#setentityvisibilityid-isvisible)
+  * [createStudy\(name, forceOverlay, lock, inputs, callback, overrides, options\)](#createstudyname-forceoverlay-lock-inputs-callback-overrides-options)
+  * [createShape\(point, options, callback\)](#createshapepoint-options-callback)
+  * [createMultipointShape\(points, options, callback\)](#createmultipointshapepoints-options-callback)
+  * [removeEntity\(entityId\)](#removeentityentityid)
+  * [createVerticalLine\(point, options\)](#createverticallinepoint-options)
+  * [removeAllShapes\(\)](#removeallshapes)
+  * [removeAllStudies\(\)](#removeallstudies)
 * 指标模板
-  * \[\[createStudyTemplate\(options, callback\)\|Chart-Methods\#createstudytemplateoptions-callback\]\]
-  * \[\[applyStudyTemplate\(template\)\|Chart-Methods\#applystudytemplatetemplate\]\]
+  * [createStudyTemplate\(options, callback\)](#createstudytemplateoptions-callback)
+  * [applyStudyTemplate\(template\)](#applystudytemplatetemplate)
 * Trading Primitives
-  * \[\[createOrderLine\(\)\|Chart-Methods\#createorderlineoptions\]\]
-  * \[\[createPositionLine\(\)\|Chart-Methods\#createpositionlineoptions\]\]
-  * \[\[createExecutionShape\(\)\|Chart-Methods\#createexecutionshapeoptions\]\]
+  * [createOrderLine\(\)](#createorderlineoptions)
+  * [createPositionLine\(\)](#createpositionlineoptions)
+  * [createExecutionShape\(\)](#createexecutionshapeoptions)
 * Getters
-  * \[\[symbol\(\)\|Chart-Methods\#symbol\]\]
-  * \[\[symbolExt\(\)\|Chart-Methods\#symbolExt\]\]
-  * \[\[resolution\(\)\|Chart-Methods\#resolution\]\]
-  * \[\[getVisibleRange\(\)\|Chart-Methods\#getvisiblerange\]\]
-  * \[\[getVisiblePriceRange\(\)\|Chart-Methods\#getvisiblepricerange\]\]
-  * \[\[priceFormatter\(\)\|Chart-Methods\#priceformatter\]\]
-  * \[\[chartType\(\)\|Chart-Methods\#charttype\]\]
+  * [symbol\(\)](#symbol)
+  * [symbolExt\(\)](#symbolExt)
+  * [resolution\(\)](#resolution)
+  * [getVisibleRange\(\)](#getvisiblerange)
+  * [getVisiblePriceRange\(\)](#getvisiblepricerange)
+  * [priceFormatter\(\)](#priceformatter)
+  * [chartType\(\)](#charttype)
 
 # 订阅图表事件
 
 #### onDataLoaded\(\)
 
-您可以通过订阅\[\[Subscription\]\]对象返回的此回调函数，通知当历史K线数组被加载并退订事件。
+您可以通过订阅[Subscription)对象返回的此回调函数，通知当历史K线数组被加载并退订事件。
 
 #### onSymbolChanged\(\)
 
-您可以通过订阅\[\[Subscription\]\]对象返回的此回调函数，通知当商品发生变化并退订事件。
+您可以通过订阅[Subscription)对象返回的此回调函数，通知当商品发生变化并退订事件。
 
 #### onIntervalChanged\(\)
 
-您可以通过订阅\[\[Subscription\]\]对象返回的此回调函数，通知当间隔发生变化并退订事件。  
+您可以通过订阅[Subscription)对象返回的此回调函数，通知当间隔发生变化并退订事件。  
 当事件被触发时，它将提供以下参数：  
 1. `interval`: 新间隔  
 2. `timeframeParameters`: 此对象只有一个字段 `timeframe`. 用户改变时间间隔时，它包含一个时间间隔。  
@@ -113,7 +115,7 @@ widget.chart().onIntervalChanged().subscribe(null, function(interval, obj) {
 
 #### setResolution\(resolution, callback\)
 
-1. `resolution`: string. Format is described in another \[\[article\|Resolution\]\].
+1. `resolution`: string. Format is described in another [article\|Resolution).
 2. `callback`: function\(\)
 
 使图表更改其分辨率。 新分辨率的数据到达后调用回调。
@@ -121,7 +123,7 @@ widget.chart().onIntervalChanged().subscribe(null, function(interval, obj) {
 #### resetData\(\)
 
 使图表从数据饲料中请求数据。 通常当图表的数据发生更改时，您需要调用它。  
-调用此方法前您应该调用：\[\[onResetCacheNeededCallback\|JS-Api\#subscribebarssymbolinfo-resolution-onrealtimecallback-subscriberuid-onresetcacheneededcallback\]\].
+调用此方法前您应该调用：[onResetCacheNeededCallback\|JS-Api\#subscribebarssymbolinfo-resolution-onrealtimecallback-subscriberuid-onresetcacheneededcallback).
 
 #### executeAction\(action\)
 
@@ -333,7 +335,7 @@ STYLE_PB* = 7;
 
 **从1.4开始，函数立即返回结果。回调保函数为持兼容性。**
 
-Look \[\[Shapes and Overrides\|Shapes and Overrides\]\] for more information.
+Look [Shapes and Overrides\|Shapes and Overrides) for more information.
 
 此调用会在主数据列上指定几个点位创建一个形态。
 
@@ -368,13 +370,13 @@ Look \[\[Shapes and Overrides\|Shapes and Overrides\]\] for more information.
 
 **从1.4开始，函数立即返回结果。回调保函数为持兼容性。**
 
-将指标模板保存到JS对象。 图表库将调用您的回调函数并将状态对象作为参数传递。 该调用为低级的一部分 \[\[save/load API\|Saving-and-Loading-Charts\]\].
+将指标模板保存到JS对象。 图表库将调用您的回调函数并将状态对象作为参数传递。 该调用为低级的一部分 [save/load API\|Saving-and-Loading-Charts).
 
 #### applyStudyTemplate\(template\)
 
 1. `template`: object 
 
-从状态对象加载指标模板。这个调用是低级的一部分。\[\[save/load API\|Saving-and-Loading-Charts\]\].
+从状态对象加载指标模板。这个调用是低级的一部分。[save/load API\|Saving-and-Loading-Charts).
 
 # Trading Primitives
 
@@ -453,7 +455,7 @@ widget.chart().createOrderLine()
 
 #### createPositionLine\(options\)
 
-在图表上创建一个新的位置并返回一个API对象，您可以使用它来控制位置属性和行为。 强烈推荐阅读\[\[this article\|Trading-Primitives\]\] 在调用此方法之前。
+在图表上创建一个新的位置并返回一个API对象，您可以使用它来控制位置属性和行为。 强烈推荐阅读[this article\|Trading-Primitives) 在调用此方法之前。
 
 参数 \(自 1.4\):  
 `options` 是一个具有：`disableUndo`的对象, 这可以是 `true` 或 `false`. 出于兼容性原因，默认值为 `false`。
@@ -532,7 +534,7 @@ widget.chart().createPositionLine()
 
 #### createExecutionShape\(options\)
 
-在图表上创建一个新的执行，并返回一个可以用来控制执行属性的API对象。 在使用此呼叫之前，强烈建议您阅读\[\[this article\|Trading-Primitives\]\]。
+在图表上创建一个新的执行，并返回一个可以用来控制执行属性的API对象。 在使用此呼叫之前，强烈建议您阅读[this article\|Trading-Primitives)。
 
 参数 \(自 1.4\):  
 `options` 是一个具有：`disableUndo`的对象, 这可以是 `true` 或 `false`. 出于兼容性原因，默认值为 `false`。
@@ -591,7 +593,7 @@ widget.chart().createExecutionShape()
 
 返回图表的商品信息对象。 该对象具有以下字段：
 
-* `symbol`: the same as \[\[symbol\(\)\|Chart-Methods\#symbol\]\] method result
+* `symbol`: the same as [symbol\(\)](#symbol) method result
 * `full_name`: 商品全称
 * `exchange`: 商品交易所
 * `description`: 商品描述
@@ -599,7 +601,7 @@ widget.chart().createExecutionShape()
 
 #### resolution\(\)
 
-返回图表的分辨率。格式在这个文章中描述 \[\[article\|Resolution\]\].
+返回图表的分辨率。格式在这个文章中描述 [article\|Resolution).
 
 #### getVisibleRange\(\)
 
@@ -621,12 +623,12 @@ widget.chart().createExecutionShape()
 
 # See Also
 
-* \[\[Widget Methods\]\]
-* \[\[Customization Overview\]\]
-* \[\[Widget Constructor\]\]
-* \[\[Saving and Loading Charts\|Saving-and-Loading-Charts\]\]
-* \[\[Overriding Studies' Defaults\|Studies-Overrides\]\]
-* \[\[Overriding Chart's Defaults\|Overrides\]\]
+* [Widget Methods)
+* [Customization Overview)
+* [Widget Constructor)
+* [Saving and Loading Charts\|Saving-and-Loading-Charts)
+* [Overriding Studies' Defaults\|Studies-Overrides)
+* [Overriding Chart's Defaults\|Overrides)
 
 
 
