@@ -1,4 +1,4 @@
-交易控制器
+#交易控制器
 
 ---
 
@@ -90,125 +90,130 @@ return [{ name: 'DAY', value: 'DAY' }, { name: 'GTC', value: 'GTC' }];
 
 #### supportFloatingPanel\(\)
 
-Function should return `true` for Floating Trading Panel to be displayed.
+此方法将返回`true`,以显示浮动交易面板。
 
 #### supportBottomWidget\(\)
 
-Function should return `true` for Bottom Trading Panel to be displayed.
+此方法将返回`true`,以显示底层交易面板。
 
 #### chartContextMenuItems\(e\)
 
-Chart can have a sub-menu `Trading` in the context menu. Return the list of items for a sub-menu. Format is the same as for `buttonDropdownItems`.
-
-`e` is a context object passed by a broswer
+图表可以在上下文菜单中有子菜单 `交易` 。返回子菜单项的列表。格式是一样的` buttondropdownitems `。
+`e` 是浏览器传递的上下文对象
 
 #### bottomContextMenuItems\(\)
 
-Bottom Trading Panel can have a context menu. Return a list of items for this menu. Format is the same as for `buttonDropdownItems`.
+底部交易面板可以有一个上下文菜单。 返回此菜单的项目列表。 格式与 `buttonDropdownItems` 相同。
 
 #### isTradable\(symbol\)
 
-This function is required for the Floating Trading Panel. Ability to trade via the panel depends on the result of this function: `true` or `false`. You don't need to imlement this method if all the symbols can be traded.
+此方法是浮动交易面板所必需的。 是否可以访问交易面板取决于这个函数的结果：`true`或`false`。如果所有符号都可以交易，则不需要使用此方法。
 
 #### createBottomWidget\(container\)
 
-This function is called when it is needed to create a Bottom Trading Panel. You should create DOM object and append it to the `container`. The container shows a vertical scroll bar when it is needed.
+当创建底部交易面板时需要调用这个函数。您应该创建DOM对象并将其附加到 `container`中。容器在需要时显示一个垂直滚动条。
 
 #### accountManagerInfo\(\)
 
-This function is called when supportCustomBottomWidget is false. It should return information that will be used to build an account manager.  
-See \[\[Account Manager\]\] for more information.
+当supportCustomBottomWidget为`false`时，调用此方法。 返回用于构建帐户管理器的信息。
+有关详细信息，请参阅\ [\ [帐户管理器\] \]。
 
 #### showOrderDialog\(\[\[order\|Trading-Objects-and-Constants\#order\]\]\)
 
-This function is invoked by the chart when user requests to create or modify an order.
+当用户请求创建或修改订单时，图表会调用此函数。
 
-So we give you the ability to use your own dialog and it's 100% up to you how to manage it.
+所以我们给您一个自己的对话框，它100％由您管理。
 
 #### placeOrder\(\[\[order\|Trading-Objects-and-Constants\#order\]\], silently\)
 
-Method is invoked when a user want to place an order. Order is pre-filled with partial or full information.  
-If `silently` is `true` no order dialog show be shown.
+当用户想要下订单时调用方法。订单预先填写了部分或全部信息。
+如果 `silently` 为`true`，则不显示任何对话框。
 
 #### modifyOrder\(\[\[order\|Trading-Objects-and-Constants\#order\]\], silently, focus\)
 
-1. `order` is an order object to modify
-2. `silently` - if it is `true` no order dialog show be shown
-3. `focus` - \[\[Focus constant\|Trading-Objects-and-Constants\#focusoptions\]\]. It can be already initialized by the chart.
+`order`是要修改的订单对象
+2.`silently` - 如果是`true`，则不显示任何对话框
+3.`focus` - \ [\ [Focus constant \ | Trading-Objects-and-Constants \ #focusoptions \] \]。 它可以由图表初始化。
 
-Method is invoked when a user want to modify an existing order.
+1. `order` 是要修改的订单对象
+2. `silently` - 为 `true` 时，不显示任何对话框
+3. `focus` - \[\[Focus constant\|Trading-Objects-and-Constants\#focusoptions\]\]. 它可以由图表初始化。
+
+当用户要修改现有的订单时调用方法。
 
 #### cancelOrder\(orderId, silently\)
 
-This method is invoked to cancel single order with given `id`.  
-If `silently` is `true` no dialogs show be shown.
+这个方法被调用来取消指定`id`的订单。
+如果 `silently` 为`true`，则不显示任何对话框。
 
 #### cancelOrders\(symbol, side, ordersIds, silently\)
 
-1. `symbol` - symbol string
-2. `side`: `"sell"` or `"buy"`
-3. `ordersIds` - ids already collected by `symbol` and `side`
-   If `silently` is `true` no dialogs show be shown.
+1. `symbol` - 商品字符串
+2. `side`: `"sell"` 或 `"buy"`
+3. `ordersIds` - 已经被`symbol` 和 `side` 收集的订单id列表
+   如果 `silently` 为`true`，则不显示任何对话框。
 
-This method is invoked to cancel multiple orders for a `symbol` and `side`.
+此方法被调用以取消`symbol`和`side`的多个订单。
 
 #### editPositionBrackets\(positionId, focus\)
 
-This method is invoked if `supportBrackets` configuration flag is on to display a dialog for editing of take profit and stop loss.  
-1. `positionId` is ID of existing position to be modified  
+如果`supportBrackets`配置标志开启显示用于编辑利润和止损的对话框，则调用此方法。
+1. `positionId` 是要修改的现有位置的ID
 2. `focus` - \[\[Focus constant\|Trading-Objects-and-Constants\#focusoptions\]\].
 
 #### closePosition\(positionId, silently\)
 
-This method is invoked if `supportClosePosition` configuration flag is on to close the position by id.  
-If `silently` is `true` no dialogs show be shown.
+如果`supportBrackets`配置标志开启显示用于平仓的对话框，则调用此方法。
+如果 `silently` 为`true`，则不显示任何对话框。
 
 #### reversePosition\(positionId, silently\)
 
-This method is invoked if `supportReversePosition` configuration flag is on to reverse the position by id.  
-If `silently` is `true` no dialogs show be shown.
+如果“supportReversePosition”配置标志打开，则通过id来反转头寸，将调用此方法。
+如果 `silently` 为`true`，则不显示任何对话框。
 
 #### symbolInfo\(symbol\) : Deferred \(or Promise\)
 
-1. `symbol` - symbol string
+1. `symbol` - 商品字符串
 
-This method is invoked by the internal Order Dialog, DOM panel and floating trading panel to get symbol information.  
-Result is an object with the following data:
+该方法由内部Order Dialog，DOM面板和浮动交易面板调用以获取商品信息。
+结果是具有以下数据的对象：
+对象具有 `min`, `max` and `step` 指定数量字段步骤和边界的字段“min”，“max”和“step”。
 
-* `qty` - object with fields `min`, `max` and `step` that specifies Quantity field step and boundaries.
-* `pipSize` - size of 1 pip \(e.g., 0.0001 for EURUSD\)
-* `pipValue` - values of 1 pip in account currency \(e.g., 1 for EURUSD for an account in USD\)
-* `minTick` - minimal price change \(e.g., 0.00001 for EURUSD\). It is used for price fields.
-* `description` - a description to be displayed in the dialog
-* `type` - instrument type, only `forex` matters - it enables negative pips check in the order dialog
+* `qty` - object with fields `min`, `max` and `step` 它指定数量字段的步骤和边界。
+* `pipSize` - 大小为1个点数（例如，欧元兑美元0.0001）
+* `pipValue` - 帐户货币为1点的价值\（例如，美元兑换EURUSD的1美元）
+* `minTick` - 最低价格变动\（例如，EURUSD \ 0.00001）。 它用于价格领域。
+* `description` - 要在对话框中显示的说明
+* `type` - 仪器类型，只有“forex”事项 - 它可以在订单对话框中进行负点检查
 
 #### accountInfo\(\) : Deferred \(or Promise\)
 
-This method is invoked by the internal Order Dialog to get account information.  
-It should return only one field for now:  
-1. currencySign: string - which is a sign of acccount currency
+内部订单对话框调用此方法获取帐户信息。
+
+现在应该只返回一个字段：
+1。currencysign：字符串 - 这是一个帐户币值的符号
 
 #### subscribePL\(positionId\)
 
-Method should be implemented if `supportPLUpdate` config flag is `true`.  
-Since this method is called the broker should provide profit/loss via \[\[plUpdate\|Trading-Host\#plupdatepositionid-pl\]\] method.
+如果`supportPLUpdate` 配置标志为`true`，则应该执行方法。
+由于该方法被经纪人调用，通过\ [\ [plUpdate \ | Trading-Host \＃plupdatepositionid-pl \]]方法提供损益。
 
 #### unsubscribePL\(positionId\)
 
-Method should be implemented if `supportPLUpdate` config flag is `true`.  
-Since this method is called the broker should stop providing profit/loss.
+如果`supportPLUpdate` 配置标志为`true`，则应该执行方法。
+由于这种方法被经纪人调用，来停止提供损益。
 
 #### subscribeEquity\(\)
 
-Method should be implemented if you use standard order dialog and support stop loss.  
-Since this method is called the broker should provide equity updates via \[\[equityUpdate\|Trading-Host\#equityupdateequity\]\] method.
+如果您使用标准订单对话框并支持止损，则应执行方法。
+这种方法被经纪人调用，\[\[equityUpdate\|Trading-Host\#equityupdateequity\]\] 
 
 #### unsubscribeEquity\(\)
 
-Method should be implemented if you use standard order dialog and support stop loss.  
-Since this method is called the broker should stop providing equity updates.
+如果您使用标准订单对话框并支持止损，则应执行方法。
+由于这种方法被经纪人导游，停止提供股权更新。
 
-And this is it !
+这就是它！
 
 # See Also
 
