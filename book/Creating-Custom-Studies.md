@@ -1,27 +1,31 @@
-## How to show your data as an indicator
+#创建自定义研究
 
-Here is an instruction for the case if you have some data which you want to show on the chart like an indicator.
+---
 
-Please follow these few steps:
+## 如何显示数据作为指示器
 
-  1. Contrive a new ticker for your data and set up your server to return valid SymbolInfo for this ticker.
-  2. Also set up the server to return valid history data for this ticker.
-  3. Use the following indicator template and fill in all placeholder values: name, descriptions, and the ticker. Also modify the default style of plot, if required.
+如果您有一些要在图表上显示的数据，作为一个指标。
+
+请按照这几个步骤:
+
+  1. 为您的数据创建一个新的代码，并设置您的服务器返回有效的SymbolInfo为此代码。
+  2. 设置服务器以返回此代码的有效历史数据。
+  3. 使用以下指标模板并填写所有占位符(placeholder)的值：名称，说明和代码。 如果需要，还可以修改绘图的默认样式。
 
 ```javascript
 {
-	// Replace the <study name> with your study name
-	// It will be used internally by the Charting Library
+	// 将<study name>替换为您的研究名称
+	// 它将由图表库内部使用
 	name: "<study name>",
 	metainfo: {
 		"_metainfoVersion": 40,
 		"id": "<study name>@tv-basicstudies-1",
 		"scriptIdPart": "",
 		"name": "<study name>",
-		// This description will be displayed in the Indicators window
-		// It is also used as a "name" argument when calling createStudy method
+		// 此说明将显示在指标窗口中
+		// 当调用createStudy方法时，它也被用作“name”参数
 		"description": "<study description>",
-		// This description will be displayed on the chart
+		// 该描述将显示在图表上
 		"shortDescription": "<short study description>",
 
 		"is_hidden_study": true,
@@ -35,40 +39,40 @@ Please follow these few steps:
 					"linestyle": 0,
 					"visible": true,
 
-					// Plot line width.
+					// 绘图线宽度
 					"linewidth": 2,
 
-					// Plot type:
-					//	1 - Histogramm
-					//	2 - Line
-					//	3 - Cross
-					//	4 - Area
-					//	5 - Columns
-					//	6 - Circles
-					//	7 - Line With Breaks
-					//	8 - Area With Breaks
+					// 绘制类型:
+					//	1 - 直方图
+					//	2 - 线形图
+					//	3 - 十字指针
+					//	4 - 山形图
+					//	5 - 柱状图
+					//	6 - 圆圈图
+					//	7 - 中断线
+					//	8 - 中断区块
 					"plottype": 2,
 
-					// Show price line?
+					// 显示价格线?
 					"trackPrice": false,
 
-					// Plot transparency, in percent.
+					// 绘制透明度，百分比。
 					"transparency": 40,
 
-					// Plot color in #RRGGBB format
+					// 以#RRGGBB格式绘制颜色
 					"color": "#0000FF"
 				}
 			},
 
-			// Precision of the study's output values
-			// (quantity of digits after the decimal separator).
+			// 研究输出值的精度
+			// (小数点后的位数)。
 			"precision": 2,
 
 			"inputs": {}
 		},
 		"styles": {
 			"plot_0": {
-				// Output name will be displayed in the Style window
+				// 输出的名字将在样式窗口显示
 				"title": "-- output name --",
 				"histogramBase": 0,
 			}
@@ -81,10 +85,10 @@ Please follow these few steps:
 			this._context = context;
 			this._input = inputCallback;
 
-			// Define the symbol to be plotted.
-			// Symbol should be a string.
-			// You can use PineJS.Std.ticker(this._context) to get the selected symbol's ticker.
-			// For example,
+			// 定义要绘制的商品。
+			// 商品应该是一个字符串。
+			// 您可以使用PineJS.Std.ticker（this._context）获取所选商品的代码。
+			// 例,
 			//	var symbol = "AAPL";
 			//	var symbol = "#EQUITY";
 			//	var symbol = PineJS.Std.ticker(this._context) + "#TEST";
@@ -98,7 +102,7 @@ Please follow these few steps:
 
 			this._context.select_sym(1);
 
-			// You can use following built-in functions in PineJS.Std object:
+			// 您可以在PineJS.Std对象中使用以下内置函数：
 			// 	open, high, low, close
 			//	hl2, hlc3, ohlc4
 			var v = PineJS.Std.close(this._context);
@@ -108,27 +112,27 @@ Please follow these few steps:
 }
 ```
 
-  4. Save the indicator into the custom indicators file with the following structure:
+  4. 将指标保存到具有以下结构的自定义指标文件中:
 
 ```javascript
 __customIndicators = [
-	*** your indicator object, created from template ***
+	*** 您的指标对象，由模板创建 ***
 ];
 ```
 
-Note, that indicators file is a JavaScript source file that just defines an array of indicator objects. So, you can place several indicators in it, or combine them with the ones we compiled for you.
+请注意，该指标文件是一个JavaScript源文件，它定义了一个指标对象数组。因此，您可以在其中放置多个指标，或者将它们与我们为您编译的指标组合起来。
 
-  5. Use [indicators_file_name](https://github.com/tradingview/charting_library/wiki/Widget-Constructor#indicators_file_name) option of Widget's constructor to load custom indicators from the indicators file.
-  6. Update your widget's initialization code to [create](https://github.com/tradingview/charting_library/wiki/Chart-Methods#createstudyname-forceoverlay-lock-inputs-callback-overrides) this indicator when chart is ready.
+  5. 使用 [indicators_file_name](https://github.com/tradingview/charting_library/wiki/Widget-Constructor#indicators_file_name) 小部件构造函数的选项来从指标文件加载自定义指标。
+  6. 将小部件的初始化代码更新为[create](https://github.com/tradingview/charting_library/wiki/Chart-Methods#createstudyname-forceoverlay-lock-inputs-callback-overrides) this indicator when chart is ready.
 
-**Example**
+**例子**
 
-Assume you want to show user's equity curve on his charts. You will have to do the following:
+假设您希望在图表上显示用户的权益曲线。你必须做以下事情：
 
-* Create a name for the new ticker. Assume it will be `#EQUITY` ticker. You can use any name you can imagine.
-* Change your server's code to resolve this ticker as a valid symbol. Return the minimal valuable SymbolInfo for this case.
-* Make the server to return valid history for this ticker. I.e., the server could ask your database for equity history and return this data just as you return the history for generic symbols (like, say, `AAPL`).
-* Adopt the indicator template mentioned above and create the indicators file (or add a new indicator to the existing indicators file). This could be something like the following:
+* 为新的代码创建一个名称。 假设它为 `#EQUITY` 代码。 您可以使用您想像到的任何名字。
+* 更改服务器的代码以将此代码作为有效商品。 为此返回最小的有效SymbolInfo。
+* 使服务器返回有效的历史记录。 即，服务器可以询问您的数据库的股权历史记录，并返回此数据，就像返回普通商品的历史记录一样（例如 `AAPL`)。
+* 采用上述指标模板，创建指标文件（或向现有指标文件添加新指标）。 例如：
 
 ```javascript
 __customIndicators = [
@@ -153,30 +157,30 @@ __customIndicators = [
 					"linestyle": 0,
 					"visible": true,
 
-					// Make the line thinner
+					// 使线条变细
 					"linewidth": 1,
 
-					// Plot type is Line
+					// 绘制类型为线性图
 					"plottype": 2,
 
-					// Show price line
+					// 显示价格线
 					"trackPrice": true,
 
 					"transparency": 40,
 
-					// Set the dark red color for the plot line
+					// 为图线设置深红色。
 					"color": "#880000"
 				}
 			},
 
-			// Precision is one digit, like 777.7
+			// 精度是一位数，如777.7
 			"precision": 1,
 
 			"inputs": {}
 		},
 		"styles": {
 			"plot_0": {
-				// Output name will be displayed in the Style window
+				// 输出名字在样式窗口显示
 				"title": "Equity value",
 				"histogramBase": 0,
 			}
@@ -207,8 +211,8 @@ __customIndicators = [
 ];
 ```
 
-* Plug the indicator into Charting Library using [indicators_file_name](https://github.com/tradingview/charting_library/wiki/Widget-Constructor#indicators_file_name) option.
-* Change your widget's initialization code. Add something like the following:
+* 使用[indicators_file_name](https://github.com/tradingview/charting_library/wiki/Widget-Constructor#indicators_file_name) 选项将指标器插入图表库。
+* 更改小部件的初始化代码。 添加如下内容：
 
 ```javascript
 	widget = new TradingView.Widget(/* ... */);

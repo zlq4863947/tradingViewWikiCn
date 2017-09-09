@@ -1,9 +1,8 @@
-#交易主机
+#储存和载入图表
 
 ---
 
-Charting Library supports saving/loading charts and study templates (study templates are available in `unstable`) on 2 levels of abstraction:
-图表库支持保存/加载图表和学习模板（研究模板在 `unstable`中提供）在两个抽象层次上：
+图表库支持保存/加载图表和学习模板（研究模板在 `unstable`中提供）在2级抽象上：
 
 1. **低级别**：小部件的`save()`/`load()`[[methods|Widget-Methods＃savecallback]]和`createStudyTemplate()`/`applyStudyTemplate()` [[methods|Widget-Methods#createstudytemplateoptions-callback]]。 使用它们的人需要维护自己物理存储。 但是您可以将这些JSON保存在您想要的位置 - 例如，您可以将其嵌入到您保存的页面或用户的工作区域等中。
 
@@ -95,13 +94,12 @@ RESPONSE: JSON Object
 我们正在运行演示图存储服务，让您尽可能快地保存/加载新的库的构建。 此存储网址为<http://saveload.tradingview.com>。 这只是一个演示，所以它是按原样提供的。 我们不保证其稳定性。 此外，我们一次又一次地从这个存储中删除所有的数据。
 
 # 管理保存的图表访问
-You should take care of which charts your users will be able to see and load. Basically, user can see/load charts having the same `client_id` and `user_id` the user has. `client_id` is an identifier of user's group. It is intended to cover the case when you have few groups of users (i.e, when you have few sites) using the same charts storage. So the common practice is to set `client_id = your-site's-URL`. It's up to you however.
-您应该关心用户将能够查看和加载哪些图表。 基本上，用户可以看到/加载与用户具有相同的 `client_id` 和 `user_id` 的图表。 `client_id`是用户组的标识符。 当您使用相同的图表存储时，您的用户群体（即，当您有少量站点）时，可以覆盖这种情况。 所以常见的做法是设置'client_id = your-site'-URL'。 然而，这取决于你。
+您应该关心用户将能够查看和加载哪些图表。 基本上，用户可以看到/加载与用户具有相同的 `client_id` 和 `user_id` 的图表。 `client_id`是用户组的标识符。 当您使用相同的图表存储时，您的用户群体（即，当您有少量站点）时，可以覆盖这种情况。 所以常见的做法是设置`client_id = your-site's-URL`。 然而，这取决于你。
 
 `user_id` 在您的 `client_id` 组的上下文中将是用户的id。 您可以单独设置每个用户（使每个用户拥有自己的私人图表存储），也可以将所有用户或任何用户组设置为相同，以创建一种公共存储。 以下是几个例子：
 
-client_id|user_id|Effect
+client_id|user_id|作用
 ---|---|---
-your site url or anything else|unique user id|Each user has his private charts storage other users can't see.
-your site url or anything else|the same value for all users|Each user can see and load each of saved charts.
-your site url or anything else|unique user id for registered users and some constant for all who's anonymous|Each registered user has his private charts storage other users can't see. All anonymous users have one shared storage.
+您的网站网址或其他任何内容|唯一用户ID|每个用户都有他的私人图表存储其他用户看不到。
+您的网站网址或其他任何内容|所有用户的相同值|每个用户都可以看到并加载每个保存的图表。
+您的网站网址或其他任何信息|注册用户的唯一用户ID和所有匿名用户的常量|每个注册用户都有他的私有图表存储其他用户看不到。 所有匿名用户都有一个共享存储。    w
