@@ -50,7 +50,6 @@
 
 ##### pages: array of [[Page|Account-Manager#page]]
  
-Using `pages` you can add new tabs to the Account Manager. Each tab is a set of tables.
 使用`pages`您可以向账户管理器添加新的tab页。每个选项卡都是一组列表。
 
 #### Page
@@ -94,8 +93,6 @@ Using `pages` you can add new tabs to the Account Manager. Each tab is a set of 
 
 用于观察数据更改并更新表。 通过`fire`方法将新的账户管理器数据传递给delegate。
 
-**NOTE**: if you have more than 1 row in a table and want to update a row using `changeDelegate` make sure that you have `id` field in each row to identify it.
-It is not necessary if you have only 1 row in a table.
 **注意**：如果表中有多行，并且想使用 `changeDelegate` 更新一行，请确保每行中都有 `id` 字段来标识它。
 如果表中只有一行，则不是必须的。
 
@@ -160,7 +157,6 @@ It is not necessary if you have only 1 row in a table.
 
 ##### sortProp
 
-Optional `sortProp` is a key of the data object that is used for sorting of data.
 可选的 `sortProp` 是用于数据排序的数据对象的键。
 
 ##### modificationProperty
@@ -190,7 +186,5 @@ Optional `sortProp` is a key of the data object that is used for sorting of data
 
 `activePageItems`: 当前页面的`ActionMetainfo`项目数组
 
-Optional function to create a custom context menu.
-It should return `Promise` that is resolved with an array of `ActionMetainfo`.
 可选方法以创建一个自定义上下文菜单。
 它返回用`ActionMetainfo`数组解析的 `Promise`。

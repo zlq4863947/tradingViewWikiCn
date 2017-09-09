@@ -1,12 +1,16 @@
-:chart: All content on this page is relevant for [[Trading Terminal]] only.
+#交易主机
+
+---
+
+![](/images/trading.png)此页面上的所有内容仅适用于\[\[交易终端\]\]。
 
 ## Order
 
-Describes a single order.
+描述一个订单。
 
 * id : String
 * symbol : String
-* brokerSymbol : String. Can be empty if broker symbol is the same as TV symbol.
+* brokerSymbol : String. 如果经纪商商品代码与TV商品代码相同，则可以为空。
 * type : [[OrderType|Trading-Objects-and-Constants#ordertype]]
 * side : [[Side|Trading-Objects-and-Constants#side]]
 * qty : Double
@@ -20,11 +24,11 @@ Describes a single order.
 
 ## Position
 
-Describes a single position.
+描述一个头寸。
 
-* id: String. Usually id should be equal to brokerSymbol
+* id: String. 通常id应等于brokerSymbol
 * symbol : String
-* brokerSymbol : String. Can be empty if broker symbol is the same as TV symbol.
+* brokerSymbol : String. 如果经纪商商品代码与TV商品代码相同，则可以为空。
 * qty : Double positive
 * side: [[Side|Trading-Objects-and-Constants#side]]
 * avg_price : Double
@@ -34,7 +38,7 @@ Describes a single position.
 Describes a single execution.
 
 * symbol : String
-* brokerSymbol : String. Can be empty if broker symbol is the same as TV symbol.
+* brokerSymbol : String. 如果经纪商商品代码与TV商品代码相同，则可以为空。
 * price : double
 * time: time_t
 * side : [[Side|Trading-Objects-and-Constants#side]]
@@ -43,18 +47,18 @@ Describes a single execution.
 
 ## ActionMetainfo
 
-Describes a single action to put it into a dropdown or a context menu. It is a structure.
+描述将其放入下拉菜单或上下文菜单中的单个操作。它是一个结构。
 
 * text : String
-* checkable : Boolean. Set it to true if you need a checkbox.
+* checkable : Boolean. 如果需要复选框，将其设置为true。
 * checked : Boolean
-* Value of the checkbox.
+* 复选框的值。
 * enabled: Boolean
-* action: function. Action is executed when user clicks the item. It has 1 argument - value of the checkbox if exists.
+* action: function. 当用户单击该项目时执行操作。 它有一个参数 - 复选框的值（如果存在）。
 
 ## OrderType
 
-String constants to describe an order status.
+用于描述订单状态的字符串常量。
 
 * market
 * limit
@@ -63,7 +67,7 @@ String constants to describe an order status.
 
 ## Side
 
-String constants to describe an order/execution side.
+用于描述订单/交易执行的字符串常量。
 
 * buy
 * Sell
@@ -79,30 +83,30 @@ String constants to describe a bracket owner.
 
 ## OrderStatus
 
-String constants to describe an order status.
+用于描述订单状态的字符串常量。
 
-| Status    | Description |
+| 状态    | 描述 |
 |-----------|-------------|
-| pending 	| order is not created on a broker side yet |
+| pending 	| 订单还未在经纪商一方创建 |
 | inactive 	| bracket order is created but waiting for a base order to be filled |
-| working	| order is created but not executed yet |
-| rejected	| order is rejected for some reason |
-| filled	| order is fully executed |
-| canceled	| order is canceled |
+| working	| 订单被创建还未执行成功 |
+| rejected	| 订单因某些原因被拒绝 |
+| filled	| 订单已成交 |
+| canceled	| 订单被取消 |
 
 ## DOMEObject
 
-An object that describes a single DOME response.
+描述单个DOME响应的对象。
 
 * `snapshot`: Boolean
-Positive value means that previous data should be cleaned
+正值意味着以前的数据应该被清理
 
-* `asks`: array of DOMELevel sorted by price ascendingly
-* `bids`: array of DOMELevel sorted by price ascendingly
+* `asks`: 根据价格升序排列的DOM价格水平数组
+* `bids`: 根据价格升序排列的DOM等级数组
 
 ## DOMELevel
 
-Single DOME price level object.
+单个DOME价格水平对象。
 
 * `price`: double
 * `volume`: double
@@ -110,7 +114,7 @@ Single DOME price level object.
 
 ## FocusOptions
 
-String constants to set focus when you open standard Order dialog or Position dialog.
+打开标准订单对话框或头寸对话框时设置焦点的字符串常量。
 
 * STOP_PRICE_FIELD     focus stop price for StopLimit orders
 * TAKE_PROFIT_FIELD    focus take profit control
@@ -123,4 +127,4 @@ String constants to set focus when you open standard Order dialog or Position di
 
 ## Formatter
 
-An object with `format` method that can be used to format number to string.
+具有`format`方法的对象可用于将数字格式化为字符串。

@@ -1,31 +1,37 @@
+#交易主机
+
+---
+
 Charting Library supports saving/loading charts and study templates (study templates are available in `unstable`) on 2 levels of abstraction:
+图表库支持保存/加载图表和学习模板（研究模板在 `unstable`中提供）在两个抽象层次上：
 
-1. **Low-Level**: save/load functionality is present by widget's `save()` / `load()` [[methods|Widget-Methods#savecallback]] and `createStudyTemplate()` / `applyStudyTemplate()` [[methods|Widget-Methods#createstudytemplateoptions-callback]]. One who uses them should take care of physical storage on his own. But you can save those JSONs where you want to -- in example, you may embed them to your saved pages or user's working area and so on.
+1. **低级别**：小部件的`save()`/`load()`[[methods|Widget-Methods＃savecallback]]和`createStudyTemplate()`/`applyStudyTemplate()` [[methods|Widget-Methods#createstudytemplateoptions-callback]]。 使用它们的人需要维护自己物理存储。 但是您可以将这些JSON保存在您想要的位置 - 例如，您可以将其嵌入到您保存的页面或用户的工作区域等中。
 
-2. **High-Level**: Charting Library is able to save / load charts and study templates from storage you'll point to. We created a tiny storage sample with Python and PostgreSQL and put it on [our GitHub](https://github.com/tradingview/saveload_backend). You may grab it and run on your own server so you'll have control over all your users' saved data.
+2. **高级别**：图表库可以从您指向的存储中保存/加载图表和学习模板。 我们使用Python和PostgreSQL创建了一个小型存储示例，并将其放在[我们的GitHub](https://github.com/tradingview/saveload_backend)上。 您可以获取它并运行在您自己的服务器上，以便您可以控制所有用户的保存数据。
 
-# Using High-Level Save/Load
+# 使用高级别保存/加载
 
-Here are a few steps for those who want to have their own charts storage:
+下面是想拥有自己图表存储功能所需的步骤：
 
-1. Clone our repo to your host
-2. Run the data service or use our demo service.Here are a short todo list for those who's not familiar with Django.
+1. 克隆我们的资源到您的主机上
+2. 运行数据服务或使用我们的演示服务。对于不熟悉Django的人来说，这是一个简短的待办事项列表。
     1. Install Python 3.x and Pip.
     2. Install PostgreSQL or some other Django-friendly database engine.
-    3. go to you charts storage folder and run `pip install -r requirements.txt`
-    4. go to charting_library_charts folder and set up your database connection in settings.py (see `DATABASES` @ line #12). Please remember to create appropriate database in your PostgreSQL.
-    5. run `python manage.py migrate` . This will create database schema without any data.
-    6. run `python manage.py runserver` to run TEST instance of your database. don't use the command above on production environment. Use some other stuff (i.e., Gunicorn)
-3. Set up your Charting Library page: set `charts_storage_url = url-of-your-charts-storage`, also set `client_id` and `user_id` (see details below) in widget's .ctor.
-4. Enjoy !
+    3. 转到图表存储文件夹并运行 `pip install -r requirements.txt`
+    4. 转到charting_library_charts文件夹，并在settings.py中设置数据库连接（参见 `DATABASES` @ line #12) 。请记住在PostgreSQL中创建适当的数据库。
+    5. 运行 `python manage.py migrate` 。 这将创建没有任何数据的数据库schema。
+    6. 运行 `python manage.py runserver` 运行您的数据库的TEST实例。 不要在生产环境中使用上面的命令。 使用一些其他的东西（例如Gunicorn）
+3. 设置您的图表库页面: 设置 `charts_storage_url = url-of-your-charts-storage`,
+并在widget的.ctor中设置`client_id`和`user_id`（见下文）。
+4. 请享用 !
 
-**Remark**: Manual filling/editing database is not the desired usage for this stuff. Please avoid this because you may hurt Django.
+**备注**：手动填充/编辑数据库不是这个东西所需的用法。 请避免这个，因为你可能会伤害Django。
 
-## Developing your own backend
-* Charting Library sends HTTP/HTTPS commands to `charts_storage_url/charts_storage_api_version/charts?client=client_id&user=user_id`. `charts_storage_url`, `charts_storage_api_version`, `client_id` and `user_id` are the arguments of the [widget constructor](https://github.com/tradingview/charting_library/wiki/Widget-Constructor).
-* You should implement processing of 4 requests: save chart / load chart / delete chart / list charts.
+## 开发自己的后端
+*图表库将HTTP / HTTPS命令发送到`charts_storage_url / charts_storage_api_version / charts？client = client_id＆user = user_id`。 `charts_storage_url`，`chart_storage_api_version`，`client_id`和`user_id`是[widget构造函数]（https://github.com/tradingview/charting_library/wiki/Widget-Constructor）的参数。
+*您应该执行4个请求的处理：保存图表/加载图表/删除图表/列表。
 
-#### LIST CHARTS
+#### 列出图表
 GET REQUEST: charts_storage_url/charts_storage_api_version/charts?client=client_id&user=user_id
 
 RESPONSE: JSON Object
@@ -38,7 +44,7 @@ RESPONSE: JSON Object
     4. "id": unique integer identifier of the chart (example, 9163)
     5. "name": chart name (example, "Test")
 
-#### SAVE CHART
+#### 存储图表
 
 POST REQUEST: charts_storage_url/charts_storage_api_version/charts?client=client_id&user=user_id
 
@@ -52,7 +58,7 @@ RESPONSE: JSON Object
 1. "status": "ok" or "error"
 2. "id": unique integer identifier of the chart (example, 9163)
 
-#### SAVE AS CHART
+#### 存储为图表
 
 POST REQUEST: charts_storage_url/charts_storage_api_version/charts?client=client_id&user=user_id&chart=chart_id
 
@@ -65,7 +71,7 @@ RESPONSE: JSON Object
 
 1. "status": "ok" or "error"
 
-#### LOAD CHART
+#### 加载图表
 GET REQUEST: charts_storage_url/charts_storage_api_version/charts?client=client_id&user=user_id&chart=chart_id
 
 RESPONSE: JSON Object
@@ -77,21 +83,22 @@ RESPONSE: JSON Object
     3. "id": unique integer identifier of the chart (example, 9163)
     4. "name": name of the chart
 
-#### DELETE CHART
+#### 删除图表
 DELETE REQUEST: charts_storage_url/charts_storage_api_version/charts?client=client_id&user=user_id&chart=chart_id
 
 RESPONSE: JSON Object
 
 1. "status": "ok" or "error"
 
-# Using Demo Charts and Study Templates Storage
+# 使用演示图和研究模板存储
 
-We're running demo charts storage service to let you try save/load as fast as you've got new Library's build. This storage URL is <http://saveload.tradingview.com>. It's just a demo so it is provided as-is. We do not guarantee its stability. Also, we drop all the data from this storage now and again.
+我们正在运行演示图存储服务，让您尽可能快地保存/加载新的库的构建。 此存储网址为<http://saveload.tradingview.com>。 这只是一个演示，所以它是按原样提供的。 我们不保证其稳定性。 此外，我们一次又一次地从这个存储中删除所有的数据。
 
-# Managing Saved Charts Access
+# 管理保存的图表访问
 You should take care of which charts your users will be able to see and load. Basically, user can see/load charts having the same `client_id` and `user_id` the user has. `client_id` is an identifier of user's group. It is intended to cover the case when you have few groups of users (i.e, when you have few sites) using the same charts storage. So the common practice is to set `client_id = your-site's-URL`. It's up to you however.
+您应该关心用户将能够查看和加载哪些图表。 基本上，用户可以看到/加载与用户具有相同的 `client_id` 和 `user_id` 的图表。 `client_id`是用户组的标识符。 当您使用相同的图表存储时，您的用户群体（即，当您有少量站点）时，可以覆盖这种情况。 所以常见的做法是设置'client_id = your-site'-URL'。 然而，这取决于你。
 
-`user_id` is expected to be user's id in context of your `client_id` group. You can either set is to each user individually (to make each user to have his own private charts storage) or set it the same for all users or any users group to create a kind of public storage. Here are a few examples:
+`user_id` 在您的 `client_id` 组的上下文中将是用户的id。 您可以单独设置每个用户（使每个用户拥有自己的私人图表存储），也可以将所有用户或任何用户组设置为相同，以创建一种公共存储。 以下是几个例子：
 
 client_id|user_id|Effect
 ---|---|---

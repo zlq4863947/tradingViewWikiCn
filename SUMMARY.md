@@ -41,11 +41,11 @@
 * [5-2、交易控制器](book/Trading-Controller.md)
 * [5-3、交易主机](book/Trading-Host.md)
 * [5-4、账户管理器](book/Account-Manager.md)
-* [5-5、Trading Objects and Constants](book/Trading-Objects-and-Constants.md)
+* [5-5、交易对象和常量](book/Trading-Objects-and-Constants.md)
 
 ---
 
-* [6、Saving/Loading Charts](book/Saving-and-Loading-Charts.md)
+* [6、储存和载入图表](book/Saving-and-Loading-Charts.md)
 * [7、Creating Custom Studies](book/Creating-Custom-Studies.md)
 * [7、Best Practices](book/Best-practices.md)
 * [9、Frequently Asked Questions](book/Frequently-Asked-Questions.md)
