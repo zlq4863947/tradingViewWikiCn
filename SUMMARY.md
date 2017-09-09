@@ -40,7 +40,7 @@
 * [5-1、交易终端简介](book/Trading-Terminal.md)
 * [5-2、交易控制器](book/Trading-Controller.md)
 * [5-3、交易主机](book/Trading-Host.md)
-* [5-4、Account Manager](book/Account-Manager.md)
+* [5-4、账户管理器](book/Account-Manager.md)
 * [5-5、Trading Objects and Constants](book/Trading-Objects-and-Constants.md)
 
 ---

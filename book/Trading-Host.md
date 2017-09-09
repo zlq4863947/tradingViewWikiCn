@@ -135,8 +135,7 @@ Returns a default [[Formatter|Trading-Objects-and-Constants#focusoptions]] forma
 当数据无效时调用此方法。 例如，用户帐户已被更改。
 
 #### plUpdate(positionId, pl)
-Call this method when a broker connection has received a PL update. This method should be used when `supportPLUpdate` flag is set in `configFlags`.
 当代理商连接收到PL更新时调用此方法。 当`configFlags`中设置`supportPLUpdate`标志时，应使用此方法。
 
 #### equityUpdate(equity)
-当代理商连接收到股权更新时调用此方法。 标准订单对话框需要此方法。
+当经纪商连接收到资产净值时调用此方法。标准订单对话框需要此方法。

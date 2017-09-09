@@ -1,186 +1,196 @@
-:chart: All content on this page is relevant for [[Trading Terminal]] only.
+#账户管理器
 
-Account Manager is an interactive table that displays trading information.
-Usually it has 3 pages: orders/positions and account information.
+---
 
-To create an account manager you will need to describe columns of each page and provide data.
+![](/images/trading.png)此页面上的所有内容仅适用于\[\[交易终端\]\]。
 
-Remark 1. [[supportCustomBottomWidget|Trading-Controller#configFlags]] flag should be disabled to display an Account Manager.
+帐户管理器是一个显示交易信息的交互式表格。
+通常它有3页：订单/头寸和帐户信息。
 
-Remark 2. [[Trading Controller]] should implement [[accountManagerInfo|Trading-Controller#accountmanagerinfo]]
+要创建帐户管理器，您需要描述每个页面的列并提供数据。
 
-## Account Manager Meta Information
+备注 1. [[supportCustomBottomWidget|Trading-Controller#configFlags]] 标志应被禁用，以显示客户经理。
 
-This information should be returned by [[accountManagerInfo|Trading-Controller#accountManagerInfo]].
+备注 2. [[Trading Controller]] 应实现 [[accountManagerInfo|Trading-Controller#accountmanagerinfo]]
 
-### Account Manager header
+## 帐户管理器Mete信息
 
-Account Manager's header consists of broker's title and an account name or a list of accounts.
+此信息将返回 [[accountManagerInfo|Trading-Controller#accountManagerInfo]].
+
+### 帐户管理器头信息
+
+帐户管理器头信息由经纪商的标题和帐户名或帐户列表组成。
 
 ##### accountTitle: String
-##### accountsList: array of AccountInfo
+##### accountsList: AccountInfo数组
 ##### account: [[WatchedValue]] of AccountInfo
 
-`AccountInfo` is an object with the only `name` required key and corresponding value.
+`AccountInfo` 是一个只有`name`为必须键和对应值的对象。
 
-### Orders Page
+### 订单页
 
 ##### orderColumns: array of [[Column|Account-Manager#columndescription]]
 
-Description of columns that you want to be displayed in the Orders page. 
-You can display any field of an [[order|Trading-Objects-and-Constants#order]] or add your own fields to an order object and display them.
+要在订单页面中显示的列的说明。
+您可以显示[[order|Trading-Objects-and-Constants＃order]]的任何字段，也可以将自己的字段添加到订单对象中并显示它们。
 
 ##### possibleOrderStatuses: array of [[OrderStatus|Trading-Objects-and-Constants#orderstatus]]
-Optional list of statuses to be used in the orders filter. If it is not set default list is used.
+在订单过滤器中使用的可选状态列表。如果未设置，则使用默认列表。
 
 #### hasHistory
-If it is `true` History page will be displayed. All orders from previous sessions will be shown in the History.
+如果是 `true` ，将显示历史页面。 历史上的所有订单将显示在历史记录中。
 
-### Positions Page
+### 头寸页
 
 ##### positionColumns: array of [[Column|Account-Manager#columndescription]]
 
-You can display any field of a [[position|Trading-Objects-and-Constants#position]] or add your own fields to a position object and display them.
+您可以显示[[position|Trading-Objects-and-Constants＃position]]的任何字段，或者将您自己的字段添加到位置对象并显示它们。
 
-### Additional Pages (e.g. Account Summary)
+### 附加页面（例如帐户摘要）
 
 ##### pages: array of [[Page|Account-Manager#page]]
  
 Using `pages` you can add new tabs to the Account Manager. Each tab is a set of tables.
+使用`pages`您可以向账户管理器添加新的tab页。每个选项卡都是一组列表。
 
 #### Page
 
-`Page` is a desciption of an additional Account Manager tab. It is an object with the following fields:
+`Page` 是额外的账户管理器tab页说明。 它是一个包含以下字段的对象：
 
 1. `id`: String
 
-Unique identifier of a page
+页面的唯一标识
 
 2. `title`: String
 
-Page title. It is displayed on a tab.
+页面标题。 显示在选项卡上。
 
 3. `tables`: Array of [[Table|Account-Manager#table]]. 
 
-It is possible to display one or more table in this tab.
+可以在此选项卡中显示一个或多个表。
 
 #### Table
 
-You can add one or more table to a [[Page|Account-Manager#page]]. 
-Account Summary table metainfo is an object with the following fields:
+您可以向[[Page|Account-Manager#page]]添加一个或多个表。
+帐户摘要表metainfo是一个包含以下字段的对象：
 
 1. `id`: String
 
-Unique identifier of a table.
+唯一标识
 
 2. `title`: String 
 
-Optional title of a table.
+表的可选标题。
 
 3. `columns`: array of [[Column|Account-Manager#columndescription]]
 
 4. `getData`: Promise
 
-This function is used to request table data. It should return promise (or Deferred) and resolve it with an array of data rows.
-Each row is an object. Keys of this object are column names with corresponding values.
-There is a predefined field `isTotalRow` which can be used to mark a row that should be at the bottom of a table.
+此方法用于请求表数据。 它返回promise（或Deferred）并接收它返回的数据数组。
+每一行都是一个对象。 此对象的键是具有相应值的列名称。
+有一个预定义的字段 `isTotalRow` 可以用来标记一个表的底部的一行。
 
 5. `changeDelegate` : [[Delegate]]
 
-This delegate is used to watch data changes and update the table. Pass new account manager data to `fire` method of the delegate.
+用于观察数据更改并更新表。 通过`fire`方法将新的账户管理器数据传递给delegate。
 
 **NOTE**: if you have more than 1 row in a table and want to update a row using `changeDelegate` make sure that you have `id` field in each row to identify it.
 It is not necessary if you have only 1 row in a table.
+**注意**：如果表中有多行，并且想使用 `changeDelegate` 更新一行，请确保每行中都有 `id` 字段来标识它。
+如果表中只有一行，则不是必须的。
 
 ### Formatters
 
-##### customFormatters: array of a column formatter description
+##### customFormatters: 一组列格式的描述
 
-Optional array to define custom formatters. Each description is an object with the following fields:
+可选数组定义自定义格式化。 每个描述都是一个包含以下字段的对象：
 
-`name`: unique identifier of a formatter.
-`format(options)`: function that is used for formatting of a cell value. `options` is an object with the following keys:
-1. `value` - value to be formatted
-2. `priceFormatter` - standard formatter for price. You can use method `format(price)` to prepare price value.
-3. `prevValue` - optional field. It is a previous value so you can compare and format accordingly. It exists if current column has `highlightDiff: true` key.
-4. `row` - object with all key/value pairs from current row
+`name`: 唯一标识
+`format(options)`: 用于格式化单元格值的方法。 `options` 是一个具有以下键的对象：
+1. `value` - 要格式化的值
+2. `priceFormatter` - 价格标准格式。 您可以使用`format(price)` 方法来设置价格的值。
+3. `prevValue` - 可选字段。 它是一个以前的值，所以你可以相应地进行比较和格式化。如果当前列具有 `highlightDiff: true` key.
+4. `row` - 具有当前行中所有键/值对的对象
 
-### Column description
+### 列描述
 
-Most valuable part of Account Manager description is a description of its columns.
+帐户管理器描述中最有价值的部分是其列的描述。
 
 ##### label
 
-Column title. It will be displayed in the table's header row.
+列标题。 它将显示在表的标题行中。
 
 ##### className
 
-Optional `className` is added to the html tag of each value cell.
-You can use it to customize table's style.
+可选的 `className` 被添加到每个值单元格的html标签。
+您可以使用它来自定义表的样式。
 
-Here is a list of predefined classes:
+以下是预定义类的列表：
 
-| class name   |   description  |
+| class名   |   描述  |
 |--------------|----------------|
-| tv-data-table__cell--symbol-cell | Special formatter for a symbol field |
-| tv-data-table__cell--right-align | It aligns cell value to the right |
-| tv-data-table__cell--buttons-cell | Cell with a buttons |
+| tv-data-table__cell--symbol-cell | 商品字段的特殊格式化器 |
+| tv-data-table__cell--right-align | 它将单元格值右对齐 |
+| tv-data-table__cell--buttons-cell | 单元格按钮 |
 
 ##### formatter
 
-Name of formatter to be used for formatting data. If `formatter` is not set the value is displayed as is.
-Formatter can be default or custom.
+用于格式化数据的格式化器。 如果没有设置 `formatter` ，则按照原样显示该值。
+格式化器可以是默认的或者是定制的
 
-Here is a list of default formatters:
+以下是默认格式化程序列表：
 
-| name | description |
+| 名称 | 描述 |
 | ---- | ----------- |
-| symbol | It is used for a symbol field. It displays `brokerSymbol`, but when you click on a symbol it sets `symbol` field to the chart. `property` key is ignored.|
-| side | It is used to display side: Sell or Buy. |
-| type| It is used to display type: Limit/Stop/StopLimit/Market. |
-| formatPrice | Formatting of a price using a price formatter for the symbol. |
-| formatPriceForexSup | The same as `formatPrice`, but it makes the last character of the price superscripted. It works only if type of the instrument is `forex`.|
-| status | Is is used to format `status`. |
-| date | Displays date or time. |
-| localDate | Displays date or time in local timezone. |
-| fixed | Displays a number with 2 decimal places. |
-| pips | Displays a number with 1 decimal place. |
-| profit | Displays profit. It also adds `+`, separates thousands and colors the cell text in red or green. |
+| symbol | 它用于商品字段。 它显示 `brokerSymbol` ，但是当您单击符号时，将 `symbol` 字段设置为图表。 `property`键被忽略。|
+| side | 它用于显示方向：卖或买。 |
+| type| 用于显示类型：限价/停损/限价停损/市价。 |
+| formatPrice | 格式化价格 |
+| formatPriceForexSup | 与 `formatPrice` 一样，但它使得价格的最后一个字符被上标。 只有当仪器的类型为 `forex` 时，它才起作用。|
+| status | 格式化`status` |
+| date | 显示日期或时间 |
+| localDate | 显示的日期或时间在本地时区。 |
+| fixed | 显示一个小数点后2位的数字。 |
+| pips | 显示一个小数点后1位的数字。 |
+| profit | 显示利润。它还添加了 `+`，分隔成千位，并设置红色或绿色的单元文本颜色。 |
 
 ##### property
 
-`property` is a key of the data object that is used to get data for displaying.
+`property` 是用于获取显示数据对象的关键字。
 
 ##### sortProp
 
 Optional `sortProp` is a key of the data object that is used for sorting of data.
+可选的 `sortProp` 是用于数据排序的数据对象的键。
 
 ##### modificationProperty
 
-Optional `modificationProperty` is a key of the data object that is used to be watched for modifications.
+可选的 `modifyProperty` 是数据对象的一个关键字，它被用于修改。
 
 ##### notSortable
 
-Optional `notSortable` can be set to prevent sorting of the column.
+可选的 `notSortable` 可以设置为防止列的排序。
 
 ##### help
 
-`help` is a tooltip string for the column.
+`help` 是列的提示字符串。
 
 ##### highlightDiff
 
-`highlightDiff` can be set with `formatPrice` and `formatPriceForexSup` formatters only to hightling changes of the field.
+`highlightDiff` 可以使用`formatPrice`和`formatPriceForexSup`格式化器来设置字段的更改。
 
 ##### fixedWidth
-If it is `true` the column width will not be reduced when value digits amount is decreased.
+如果为`true`，则当数字数字减少时，列宽不会减小。
 
-### Context Menu
+### 上下文菜单
 
 #### contextMenuActions(e, activePageItems)
 
-`e`: context object passed by a broswer
+`e`: 浏览器传递的上下文对象
 
-`activePageItems`: array of `ActionMetainfo` items for the current page
+`activePageItems`: 当前页面的`ActionMetainfo`项目数组
 
 Optional function to create a custom context menu.
 It should return `Promise` that is resolved with an array of `ActionMetainfo`.
+可选方法以创建一个自定义上下文菜单。
+它返回用`ActionMetainfo`数组解析的 `Promise`。
