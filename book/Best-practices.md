@@ -1,68 +1,72 @@
-## Creating the best user experience
+#最佳做法
 
-We love our charts. We want them to be the best: the most beautiful, the most responsive and the most powerful charts in the whole HTML5 world. We are working hard to reach these goals.
+---
 
-We know all about our charts and about how to create the best user experience on them and we'd be glad to share our knowledge to you. This document describes several best practices for integrating the Charting Library into your website/application. The main point is to always think about your users and their experience.
+## 创造最好的用户体验
 
-### 1. Understand what Charting Library IS and what it ISN’T
+我们喜欢我们的图表。 我们希望他们是最好的：在整个HTML5世界中最美丽，最灵敏和最强大的图表。 我们正在努力实现这些目标。
 
-Charting Library is a charting component able to show prices, charts & technical analysis tools. Library does the chart magic, and nothing more. If you want some additional functionality (like chats, special symbols list, hottest deals, ads, etc) the best approach is to implement them outside of the chart. However, if you want to link your outside functionality with the library, you can use the library’s API to link them.
+我们了解我们的图表，以及如何为他们创造最好的用户体验，我们很乐意与您分享我们的知识。 本文档介绍了将图表库集成到您的网站/应用程序中的几种最佳做法。 主要的一点是经常考虑您的用户和他们的经验。
 
-### 2. Return exactly as many bars as the Library requests
+### 1. 了解图表库是什么，不是什么
 
-Library will ask your backend for data and provide the required data range bounds with each request. Respect these bounds and return data filling this range as fully as possible. Do not return more bars. Do not return bars out of the requested range. If you want to extend the default data range requested by the Library, use our JS API (see calculateHistoryDepth).
+图表库是一个能够显示价格的图表组件，图表和技术分析工具。 图标库是一个奇幻的图表，只限于此。 如果您想要一些额外的功能（如聊天，特殊商品列表，最热门的交易，广告等），最好的方法是在图表之外实现它们。 但是，如果要将外部功能与库连接，您可以使用库的API来连接它们。
 
-### 3. Return exactly as many marks as the Library requests
+### 2. 返回与库请求完全一样多的K线
 
-The same as for the bars above. Send only marks matching the requested range.
+库会询问您的后端数据，并提供每个请求所需的数据范围。 尊重这些界限，并尽可能地填充此范围的数据。 不要返回更多的K线。 不要返回范围外的K线。 如果要扩展库请求的默认数据范围，请使用我们的JS API（请参阅calculateHistoryDepth）。
 
-### 4. Do not override calculateHistoryDepth() to get more than 2 screens of data
+### 3. 返回与库请求完全一样多的标记
 
-Charting Library avoids loading content which the user didn’t ask for. Loading more bars into the chart means loading the CPU and memory with more operations that necessary. This means responsiveness of the whole solution decreases.
+与上述K线相同。只发送符合要求范围的标记。
 
-### 5. Do not make your chart look as a mess
+### 4. 不要覆盖calculateHistoryDepth()以获取超过2个屏幕的数据
 
-Users like beautiful charts. As we do. Please remember to keep your chart looking good when customizing size or style. Avoid embedding custom controls that look alien to the entire chart's style.
+图表库避免加载用户没有要求的内容。在图表中加载更多的K线，意味着需要更多的CPU和内存。这意味着的响应效率会降低。
 
-### 6. Avoid making very small charts
+### 5. 不要让你的图表看起来像一团糟
 
-The smallest meaningful size that the Library supports is 600x600px. Avoid making charts smaller because it looks like a mess. Use the `mobile` preset, or hide some toolbars if you need charts smaller than mentioned above.
+用户喜欢美丽的图表。像我们一样 请记住，在定制尺寸或风格时，请保持您的图表看起来不错。 避免嵌入与整个图表风格不同的自定义控件。
 
-### 7. Use the appropriate language
+### 6. 避免制作非常小的图表
 
-The Charting Library is translated into tens of languages. Use the one that fits your users' needs.
+图书馆支持的最小尺寸是600x600像素。 避免使图表更小，因为它看起来像一团糟。 使用`mobile`预设，或者如果您需要比上述更小的图表，可以隐藏一些工具栏。
 
-### 8. If you are experiencing issues
+### 7. 使用适当的语言
 
-We are always eager to help you. But, unfortunately, we are really busy guys, so we don’t have much time. Please help us spend our time effectively and always update your Library's build to the latest `unstable` version to check if the issue still happens. Contact us if it does.
+图表库已翻译成数十种语言。 使用符合用户需求的语言。
 
-Also, check the data you are passing to the Charting Library and make sure it matches our requirements as described in the documentation. Pay special attention to SymbolInfo content because it's the most common place to make an error (according to our statistics).
+### 8. 如果您遇到问题
 
-You can watch the output of our [demo data service](https://demo_feed.tradingview.com/quotes?symbols=AAPL) and compare it to yours to ensure your backend behaves like it should.
+我们总是渴望帮助你。 但是，不幸的是，我们真的很忙，所以我们没有太多时间。 请帮助我们有效地度过时间，并始终将您的图书馆的版本更新为最新的`unstable`版本，以检查问题是否仍然发生。 如果有，请与我们联系。
 
-Always use `debug: true` in the Widget constructor options during the development and always remove it in the production to make the code work faster.
+另外，检查您传递给图表库的数据，并确保它符合我们的要求，如文档中所述。 要特别注意SymbolInfo的内容，因为它是最常见的发生错误的地方（根据我们的统计）。
 
-### 9. Read the docs
-We spent a lot of time creating those docs for you to make your life easier. Please give it a try.
+您可以看我们的输出[demo data service](https://demo_feed.tradingview.com/quotes?symbols=AAPL) 并将其与您的对比，以确保您的后端行为是正确的。
 
-### 10. Choose an appropriate data transport for your solution
+在开发过程中始终在Widget构造函数选项中使用`debug：true`，并在生产环境中将其删除，以使代码更快地工作。
 
-Pay attention to differences between JS API and UDF, and choose the API that fits your needs best.
-Do not use UDF if you need really fast data updates or data streaming.
-Do not use UDF with data grouping (see `supports_group_request`) if your backend has more than a dozen symbols.
+### 9. 阅读文档
+我们花了很多时间为您创建这些文档，使您的生活更轻松。 请试一试。
 
-### 11. Do not try to sniff our code and use undocumented features
+### 10. 为您的解决方案选择适当的数据传输
 
-All features not mentioned in our documentation are subjects for change without any warnings and backward compatibility. Also altering the source code is strictly prohibited by the legal agreement you signed.
+注意JS API和UDF之间的差异，并选择最符合您需求的API。
+如果您需要真正快速的数据更新或数据流传输，请勿使用UDF。
+如果您的后端有十几个符号，请勿使用UDF进行数据分组（请参阅`supports_group_request`）。
 
-### 12. Do not use our demo datafeed on your production website
+### 11. 不要尝试嗅探我们的代码并使用未记录的功能
 
-This datafeed is just a demo and is not intended for real usage. It may be unstable and can't bear significant load.
+我们的文档中没有提到的所有功能都是变化的主题，没有任何警告和向后兼容性。 您签署的法律协议也严格禁止修改源代码。
 
-### 13. Use the API for customization. Avoid editing CSS.
+### 12. 不要在您的生产网站上使用我们的演示数据源
 
-We do not guarantee CSS selectors' backward compatibility.
+这个数据源只是一个演示，不适合实际使用。它可能不稳定，不能承受显着的负载。
 
-### 14. Set up your server to gzip files when sending to client
+### 13. 使用API进行自定义。 避免编辑CSS。
 
-This is the common best practice for static HTML content. Gzipping the Library's HTML file will decrease your users' waiting time.
+我们不保证CSS选择器的向后兼容性。
+
+### 14. 发送到客户端时，将服务器设置为gzip文件
+
+这是静态HTML内容的常见最佳做法。 加载图标库的HTML文件会减少用户的等待时间。

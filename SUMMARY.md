@@ -47,9 +47,9 @@
 
 * [6、储存和载入图表](book/Saving-and-Loading-Charts.md)
 * [7、创建自定义研究](book/Creating-Custom-Studies.md)
-* [7、Best Practices](book/Best-practices.md)
-* [9、Frequently Asked Questions](book/Frequently-Asked-Questions.md)
-* [10、Breaking changes in versions\|Breaking Changes](book/Breaking-changes.md)
+* [7、最佳做法](book/Best-practices.md)
+* [9、经常被问到的问题](book/Frequently-Asked-Questions.md)
+* [10、版本变更点](book/Breaking-changes.md)
 
 ## 附录
 * [交易元语](book/Trading-Primitives.md)
