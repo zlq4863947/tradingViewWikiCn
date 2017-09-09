@@ -1,14 +1,19 @@
-We do our best to make every next version fully compartible with the previous one, but sometimes big changes requires you to make minor changes in your code when upgrading to a new version.
+#版本变更点
 
-_Note: you can check Charting Library version by executing `TradingView.version()` in a browser console._
+---
 
-Here is the list of breaking changes:
+我们尽最大努力使每个新版本与前一版本完全兼容，但有时需要大的更改需要在升级到新版本时对代码进行微小的更改。
+
+
+_注意：您可以通过在浏览器控制台中执行 `TradingView.version()` 来检查图表库版本。_
+
+以下是变更列表：
 
 **Version 1.11**
-The following stuff is still supported in Trading Terminal, but will be deprecated in future versions:
-- `supportDOME` renamed to `supportDOM`
-- Changed signature of `showClosePositionDialog
-- `showEditBracketsDialog` renamed to `showPositionBracketsDialog`, changed signature
+交易终端中仍然支持以下内容，但在将来的版本中将不再使用以下内容：
+- `supportDOME` 重命名为 `supportDOM`
+- 更改了签名 `showClosePositionDialog
+- `showEditBracketsDialog` 重命名为 `showPositionBracketsDialog`, 更改了签名
 
 
 **Version 1.10**
