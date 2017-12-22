@@ -36,7 +36,7 @@ Datafeed 响应通常可以被视为表。例如，关于交易所的商品列�
 
 Request:`GET /config`
 
-Response: Library期望接收与JS API调用[setup\(\)](/33001-shu-ju-bang-ding/iijs-api.md#onreadycallback)相同结构的JSON数据。 此外，还应该有2个附加属性：:
+Response: Library期望接收与JS API调用[setup\(\)](/book/JS-Api.md#onreadycallback)相同结构的JSON数据。 此外，还应该有2个附加属性：:
 
 * **supports\_search**: 设置这一选项为`true`如果你的datafed 支持商品查询和人商品解析逻辑。
 * **supports\_group\_request**: 设置这一选项为`true`如果您的datafeed只提供所有商品集合的完整信息，并且无法进行商品搜索或单个商品解析。
@@ -63,7 +63,7 @@ Request:`GET /symbol_info?group=<group_name>`
 
 Example:`GET /symbol_info?group=NYSE`
 
-Response: 预期响应是具有以下列出的属性的对象。 每个属性都被视为表的一列，如上所述（请参见[表式响应](#表式响应概念)）。响应结构与[SymbolInfo](https://github.com/tradingview/charting_library/wiki/Symbology#symbolinfo-structure)类似（但不等于），因此有关所有字段的详细信息，请参见其描述。
+Response: 预期响应是具有以下列出的属性的对象。 每个属性都被视为表的一列，如上所述（请参见[表式响应](#表式响应概念)）。响应结构与[SymbolInfo](/book/Symbology.md#symbolinfo-structure)类似（但不等于），因此有关所有字段的详细信息，请参见其描述。
 
 * **symbol**
 * **description**
@@ -122,7 +122,7 @@ Request:`GET /symbols?symbol=<symbol>`
 
 例:`GET /symbols?symbol=AAL`,`GET /symbols?symbol=NYSE:MSFT`
 
-Response: JSON包含的对象与[SymbolInfo](https://github.com/tradingview/charting_library/wiki/Symbology#symbolinfo-structure)完全一样
+Response: JSON包含的对象与[SymbolInfo](/book/Symbology.md#symbolinfo-structure)完全一样
 
 **Remark**: 如果您的datafeed配置supports\_group\_request：false 和 supports\_search：true，则将执行此调用。
 
@@ -131,13 +131,13 @@ Response: JSON包含的对象与[SymbolInfo](https://github.com/tradingview/char
 Request:`GET /search?query=<query>&type=<type>&exchange=<exchange>&limit=<limit>`
 
 1. `query`: string. 用户在商品搜索编辑框中输入的文本
-2. `type`: string. 您的后台[支持的类型](/33001-shu-ju-bang-ding/iijs-api.md#symbolstypes)之一
-3. `exchange`: string. 您的后台[支持的交易所](/33001-shu-ju-bang-ding/iijs-api.md#exchanges)之一
+2. `type`: string. 您的后台[支持的类型](/book/JS-Api.md#symbolstypes)之一
+3. `exchange`: string. 您的后台[支持的交易所](/book/JS-Api.md#exchanges)之一
 4. `limit`: integer. 响应最大项目数
 
 例:`GET /search?query=AA&type=stock&exchange=NYSE&limit=15`
 
-Response: 响应将是调用[JS API](/33001-shu-ju-bang-ding/iijs-api.md#searchsymbolsbynameuserinput-exchange-symboltype-onresultreadycallback)后返回的一个数组类型的商品记录
+Response: 响应将是调用[JS API](/book/JS-Api.md#searchsymbolsbynameuserinput-exchange-symboltype-onresultreadycallback)后返回的一个数组类型的商品记录
 
 **Remark**: 如果您的datafeed配置supports\_group\_request：false 和 supports\_search：true，则将执行此调用。
 
@@ -164,7 +164,7 @@ Response: 响应的预期是一个对象，下面列出了一些属性。每个�
 * **v**: 成交量 \(可选\)
 * **nextTime**: 下一个K线柱的时间 如果在请求期间无数据 \(状态码为`no_data`\)  \(可选\)
 
-**Remark**: bar time 对于日K线柱预期为 一个交易日 \(not session start day\) 以 00:00 UTC为起点。 Charting Library 会根据SymbolInfo的[Session](https://github.com/tradingview/charting_library/wiki/Symbology#session)时间进行匹配。
+**Remark**: bar time 对于日K线柱预期为 一个交易日 \(not session start day\) 以 00:00 UTC为起点。 Charting Library 会根据SymbolInfo的[Session](/book/Symbology.md#session)时间进行匹配。
 
 **Remark**: K线时间对于月K线柱为这个月的第一个交易日，除去时间的部分。
 
@@ -223,7 +223,7 @@ Request:`GET /marks?symbol=<ticker_name>&from=<unix_timestamp>&to=<unix_timestam
 3. `to`: unix timestamp \(UTC\) or rightmost visible bar
 4. `resolution`: string
 
-Response: 响应预期是一个对象，下面列出了一些属性。此对象与JS API中的[respective response](https://github.com/tradingview/charting_library/wiki/JS-Api#getmarkssymbolinfo-startdate-enddate-ondatacallback-resolution)相似，但每个属性都被视为表的列，如上所述。
+Response: 响应预期是一个对象，下面列出了一些属性。此对象与JS API中的[respective response](/book/JS-Api.md#getmarkssymbolinfo-startdate-enddate-ondatacallback-resolution)相似，但每个属性都被视为表的列，如上所述。
 
 ```
 {
@@ -274,7 +274,7 @@ Response: Response is an object.
 
 * **s**: status code for request. Expected values:`ok`\|`error`
 * **errmsg**: error message for client
-* **d**:[symbols data](https://github.com/tradingview/charting_library/wiki/Quotes) array
+* **d**:[symbols data](/book/Quotes.md) array
 
 Example:
 

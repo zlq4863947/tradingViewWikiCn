@@ -5,7 +5,7 @@
 **这是啥?** 一套JS方法（特定的公共接口）。  
 **我该怎么使用它?**: 您应该创建一个JS对象，它将以某种方式接收数据，并响应Charting Library请求。
 
-数据缓存（历史和股票信息）在图表库中实现。 当您创建一个实现描述的界面的对象时，只需通过\`datafeed\`参数将其传递给库小部件构造函数。
+数据缓存（历史和股票信息）在图表库中实现。当你创建一个实现描述接口的对象时，只需通过`datafeed`参数将其传递给图表库[Widget的构造函数](/book/Widget-Constructor.md)。
 
 # [Methods](#methods)
 
@@ -20,13 +20,13 @@
 9. [getTimescaleMarks](#gettimescalemarkssymbolinfo-startdate-enddate-ondatacallback-resolution)
 10. [getServerTime](#getservertimecallback)
 
-![](../images/trading.png)[交易终端专属](https://github.com/tradingview/charting_library/wiki/Trading-Terminal):
+![](../images/trading.png)[交易终端专属](/book/Trading-Terminal.md):
 
-1. [getQuotes](https://github.com/tradingview/charting_library/wiki/JS-Api#chart-getquotessymbols-ondatacallback-onerrorcallback)
-2. [subscribeQuotes](https://github.com/tradingview/charting_library/wiki/JS-Api#chart-subscribequotessymbols-fastsymbols-onrealtimecallback-listenerguid)
-3. [unsubscribeQuotes](https://github.com/tradingview/charting_library/wiki/JS-Api#chart-unsubscribequoteslistenerguid)
-4. ![](../images/trading.png)[subscribeDepth](https://github.com/tradingview/charting_library/wiki/JS-Api#subscribedepthsymbolinfo-callback)
-5. ![](../images/trading.png)[unsubscribeDepth](https://github.com/tradingview/charting_library/wiki/JS-Api#unsubscribedepthsubscriberuid)
+1. [getQuotes](#getquotessymbols-ondatacallback-onerrorcallback)
+2. [subscribeQuotes](#subscribequotessymbols-fastsymbols-onrealtimecallback-listenerguid)
+3. [unsubscribeQuotes](#unsubscribequoteslistenerguid)
+4. ![](../images/trading.png)[subscribeDepth](#subscribedepthsymbolinfo-callback-string)
+5. ![](../images/trading.png)[unsubscribeDepth](#unsubscribedepthsubscriberuid)
 
 ### [onReady\(callback\)](#onreadycallback)
 
@@ -35,7 +35,7 @@ callback: function(configurationData)
     configurationData: object (见下文)
 ```
 
-此方法旨在提供填充配置数据的对象。这些数据会影响图表的行为，所以它被调用在服务器端。
+此方法旨在提供填充配置数据的对象。这些数据会影响图表的行为，所以它被调用在[服务器端](Customization-Overview.md#customization-done-through-data-stream)。
 
 Charting Library 要求您使用回调函数来传递datafeed的configurationData参数。
 
@@ -106,14 +106,14 @@ configurationData是一个对象，现在支持以下属性:
 
 1. `symbolName`: string类型，商品名称 或`ticker`
    if provided.
-2. `onSymbolResolvedCallback`: function\([SymbolInfo](https://github.com/tradingview/charting_library/wiki/Symbology#symbolinfo-structure)\)
+2. `onSymbolResolvedCallback`: function\([SymbolInfo](/book/Symbology.md#symbolinfo-structure)\)
 3. `onResolveErrorCallback`: function\(reason\)
 
-方法介绍：通过商品名称解析商品信息\([SymbolInfo](https://github.com/tradingview/charting_library/wiki/Symbology#symbolinfo-structure)\)。
+方法介绍：通过商品名称解析商品信息\([SymbolInfo](/book/Symbology.md#symbolinfo-structure)\)。
 
 ### [getBars\(symbolInfo, resolution, from, to, onHistoryCallback, onErrorCallback, firstDataRequest\)](#getbarssymbolinfo-resolution-from-to-onhistorycallback-onerrorcallback-firstdatarequest)
 
-1. `symbolInfo`:[SymbolInfo](https://github.com/tradingview/charting_library/wiki/Symbology#symbolinfo-structure) 商品信息对象
+1. `symbolInfo`:[SymbolInfo](/book/Symbology.md#symbolinfo-structure) 商品信息对象
 2. `resolution`: string （分辨率）
 3. `from`: unix 时间戳, 最左边必须的K线时间
 4. `to`: unix 时间戳, 最又边必须的K线时间
@@ -132,13 +132,13 @@ configurationData是一个对象，现在支持以下属性:
 
 **Remark**:`bar.time`为以毫秒开始的Unix时间戳的UTC标准时区。
 
-**Remark**:`bar.time`对于日K线柱预期为 一个交易日 \(未开始交易\) 以 00:00 UTC为起点。 Charting Library 会根据商品的交易（[Session](https://github.com/tradingview/charting_library/wiki/Symbology#session)）时间进行匹配。
+**Remark**:`bar.time`对于日K线柱预期为 一个交易日 \(未开始交易\) 以 00:00 UTC为起点。 Charting Library 会根据商品的交易（[Session](/book/Symbology.md#session)）时间进行匹配。
 
 **Remark**:`bar.time`对于月K线柱为这个月的第一个交易日，除去时间的部分。
 
 ### [subscribeBars\(symbolInfo, resolution, onRealtimeCallback, subscriberUID, onResetCacheNeededCallback\)](#subscribebarssymbolinfo-resolution-onrealtimecallback-subscriberuid-onresetcacheneededcallback)
 
-1. `symbolInfo`:[SymbolInfo](https://github.com/tradingview/charting_library/wiki/Symbology#symbolinfo-structure) object
+1. `symbolInfo`:[SymbolInfo](/book/Symbology.md#symbolinfo-structure) object
 2. `resolution`: string 分辨率
 3. `onRealtimeCallback`: function\(bar\)
    1. `bar`: object`{time, close, open, high, low, volume}`
@@ -205,17 +205,17 @@ Datafeed.prototype.calculateHistoryDepth = function(resolution, resolutionBack, 
 
 ### [getMarks\(symbolInfo, startDate, endDate, onDataCallback, resolution\)](#getmarkssymbolinfo-startdate-enddate-ondatacallback-resolution)
 
-1. `symbolInfo`:[SymbolInfo](https://github.com/tradingview/charting_library/wiki/Symbology#symbolinfo-structure) 商品信息对象
+1. `symbolInfo`:[SymbolInfo](/book/Symbology.md#symbolinfo-structure) 商品信息对象
 2. `startDate`:  unix 时间戳, 最左边必须的K线时间
 3. `endDate`: unix 时间戳, 最又边必须的K线时间
 4. `onDataCallback`: function\(array of`mark`s\)
 5. `resolution`: string
 
 方法介绍：获取可见条范围的标记。图表预期您每个`getMarks`会调用一次`onDataCallback`。
-
+    
 `mark`为具有以下属性的对象:
 
-* **id**: 唯一标识id 。当用户点击标记时，将传递给相应的回调:[respective callback](https://github.com/tradingview/charting_library/wiki/Widget-Methods#onbarmarkclickedcallback) 
+* **id**: 唯一标识id 。当用户点击标记时，将传递给相应的回调:[respective callback](/book/Widget-Methods.md#onbarmarkclickedcallback) 
 * **time**: unix time, UTC
 * **color**:`red`\|`green`\|`blue`\|`yellow`\|`{ border: '#ff0000', background: '#00ff00' }`
 * **text**: 标记弹出式文字。 支持HTML
@@ -225,11 +225,11 @@ Datafeed.prototype.calculateHistoryDepth = function(resolution, resolutionBack, 
 
 每个K线允许几个标记（现在最多为10个）。不允许标记脱离线。
 
-**Remark**: 只有当您声明您的后端是支持标记时才会调用这个函数。[supporting marks](https://github.com/tradingview/charting_library/wiki/JS-Api#supports_marks).
+**Remark**: 只有当您声明您的后端是支持标记时才会调用这个函数。[supporting marks](/book/JS-Api.md#supports_marks).
 
 ### [getTimescaleMarks\(symbolInfo, startDate, endDate, onDataCallback, resolution\)](#gettimescalemarkssymbolinfo-startdate-enddate-ondatacallback-resolution)
 
-1. `symbolInfo`:[SymbolInfo](https://github.com/tradingview/charting_library/wiki/Symbology#symbolinfo-structure) object
+1. `symbolInfo`:[SymbolInfo](/book/Symbology.md#symbolinfo-structure) object
 2. `startDate`: unix timestamp \(UTC\). Leftmost visible bar's time.
 3. `endDate`: unix timestamp \(UTC\). Rightmost visible bar's time.
 4. `onDataCallback`: function\(array of`mark`s\)
@@ -239,7 +239,7 @@ Library 调用此函数获取可见bar范围的时间刻度标记的功能。图
 
 mark为具有以下属性的对象:
 
-* **id**: 唯一标识id 。当用户点击标记时，将传递给相应的回调:[respective callback](https://github.com/tradingview/charting_library/wiki/Widget-Methods#onbarmarkclickedcallback) 
+* **id**: 唯一标识id 。当用户点击标记时，将传递给相应的回调:[respective callback](/book/Widget-Methods.md#onbarmarkclickedcallback) 
 * **time**: unix time, UTC
 * **color**:`red`\|`green`\|`blue`\|`yellow`\| ... \| \#000000
 * **label**: 印在标记上的文字。单字符
@@ -247,7 +247,7 @@ mark为具有以下属性的对象:
 
 每个bar只允许一个标记。 不允许标记脱离bar。
 
-**Remark**: 只有当您声明您的后端是支持标记时才会调用这个函数。[upporting marks](https://github.com/tradingview/charting_library/wiki/JS-Api#supports_timescale_marks).
+**Remark**: 只有当您声明您的后端是支持标记时才会调用这个函数。[upporting marks](/book/JS-Api.md#supports_timescale_marks).
 
 ### [getServerTime\(callback\)](#getservertimecallback)
 
@@ -261,7 +261,7 @@ mark为具有以下属性的对象:
 
 1. `symbols`: 商品名称数组
 2. `onDataCallback`: function\(array of`data`\)
-   1. `data`:商品价格数据[symbol quote data](https://github.com/tradingview/charting_library/wiki/Quotes#symbol-quote-data)
+   1. `data`:商品价格数据[symbol quote data](/book/Quotes.md#symbol-quote-data)
 3. `onErrorCallback`: function\(reason\)
 
 当图表需要价格数据时，将调用此函数。图表库预期在收到所有请求数据时调用onDataCallback。No further calls are expected.
@@ -271,7 +271,7 @@ mark为具有以下属性的对象:
 1. `symbols`: 要很少更新的产品数组（建议频率为每分钟一次）。这些产品在观察列表中，但它们目前不可见。
 2. `fastSymbols`: 要频繁更新的产品数组（一次在10秒或更多次）
 3. `onRealtimeCallback`: function\(array of`data`\)
-   1. `data`:商品价格数据[symbol quote data](https://github.com/tradingview/charting_library/wiki/Quotes#symbol-quote-data)
+   1. `data`:商品价格数据[symbol quote data](/book/Quotes.md#symbol-quote-data)
 4. `listenerGUID`: 侦听器的唯一标识符
 
 交易终端当需要接收产品的实时报价时调用此功能。图表预期您每次要更新报价时都会调用`onRealtimeCallback`。
@@ -284,7 +284,7 @@ mark为具有以下属性的对象:
 
 ### ![](../images/trading.png)[subscribeDepth\(symbolInfo, callback\): String](#subscribedepthsymbolinfo-callback-string)
 
-1. `symbolInfo`:[SymbolInfo](https://github.com/tradingview/charting_library/wiki/Symbology#symbolinfo-structure) object
+1. `symbolInfo`:[SymbolInfo](/book/Symbology.md#symbolinfo-structure) object
 2. `callback`: function\(depth\)
    1. `depth`: object`{snapshot, asks, bids}`
       1. `snapshot`: Boolean - 如果`true`时`askh`和`bids`具有全部深度，否则只包含更新的级别。

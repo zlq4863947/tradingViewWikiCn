@@ -11,14 +11,14 @@
 
 如果您想定制您的图表，那么您可以更进一步。
 
-* 查询图表库 定制的概述 和 可使用的方法
-* [创建](https://github.com/tradingview/charting_library/wiki/Creating-Custom-Studies)定制课题
+* 查询图表库 [定制概述](/book/Customization-Overview.md) 和 [定制用例](/book/Customization-Use-Cases.md)
+* [创建](/book/Creating-Custom-Studies.md)自定义研究
 
 ### 拥有交易终端?
 
-![](../images/trading.png)交易终端是为强大图表配备的随时可用的产品，使图表具备交易功能。阅读更多。
+![](../images/trading.png)交易终端是为强大图表配备的随时可用的产品，使图表具备交易功能。[阅读更多](/book/Trading-Terminal.md)
 
 ### 最佳实践
 
-阅读这篇文章会让您避免常见的错误，节约您的时间。
+阅读这篇[文章](/book/Best-practices.md)会让您避免常见的错误，节约您的时间。
 
