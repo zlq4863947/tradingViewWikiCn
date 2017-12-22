@@ -1,6 +1,7 @@
 # Summary
 
 * [序言](README.md)
+* [更新日志](CHANGE-LOG.md)
 * [1、Charting Library是什么](book/Home.md)
 
 ---
