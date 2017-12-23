@@ -1,4 +1,4 @@
-# TradingView中文开发文档
+# TradingView中文开发文档 V1.1
 
 本书翻译自官方wiki：[https://github.com/tradingview/charting\_library/wiki](https://github.com/tradingview/charting_library/wiki)
 

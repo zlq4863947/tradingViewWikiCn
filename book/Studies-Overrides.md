@@ -1,4 +1,6 @@
-One can set default style and inputs values for newly created indicators using `studies_overrides` parameter. Its value is expected to be an object where key is a path to property being changed and value is the new value for it. Example:
+# 研究覆盖
+
+可以使用`studies_overrides`参数为新创建的指标设置默认样式和输入值。 它的值应该是一个对象，其中key是一个属性被改变的路径，value是它的新值。 例：
 ```
 studies_overrides: {
     "volume.volume.color.0": "#00FFFF",
@@ -14,15 +16,15 @@ studies_overrides: {
 }
 ```
 
-In the example above, in example, all created Bollinger Bands will have upper line width = 7 (unless you create it through API and have specified another value for this line).
+在上面的例子中，所有创建的布林带将具有上边线宽度 = 7（除非您通过API创建并为此线指定了另一个值）。
 
-### How to set study name
+### 如何设置研究名称
 
-You should use studies names as-they-are in the Insert Study dialog, but in lower case. So if you want to override default EMA's length, try using `moving average exponential.length`. The same principle works for inputs names: use names as you can see them in Study Properties dialog (use lower case also). Example: `stochastic.smooth d`.
+您应该在新建研究对话框中使用研究名称，但采用小写形式。 所以，如果你想覆盖默认的EMA长度，尝试使用`moving average exponential.lengt`h。 同样的原则适用于输入名称：使用名称，您可以在“研究属性”对话框中看到它们（也使用小写字母）。 例如：`stochastic.smooth d`。
 
-### Compare
+### 比较
 
-You can customize new series added via `Compare`. Use `compare.plot` to customize the line and `compare.source` to change the price source:
+您可以通过`比较`自定义新的系列。 使用`compare.plot`自定义行和`compare.source`来更改价格来源：
 
 ```
 "compare.plot.color": "#000000",
@@ -30,19 +32,19 @@ You can customize new series added via `Compare`. Use `compare.plot` to customiz
 ```
 
 
-# Syntax
+# 语法
 
-Property path is a set of lower-case identifiers splitted with dot (`.`). Path formats are described below.
+属性路径是用点（`.`）分割的一组小写标识符。 路径格式如下所述。
 
-**Remark**: If a plot/band/area/input name is the same you can get an error. In this case you can specify an exact destination that you want to change by adding `:plot`, `:band`, `:area` or `:input` to the path. (e.g. `short:plot.color`)
+**备注**：如果一个plot/band/area/input名称是相同的，则您会得到一个错误。 在这种情况下，您可以通过在路径中添加`：plot`，`：band`，`：area`或`：input`来指定一个确切的目的地。 （例如`short：plot.color`）
 
 ### Study input
-Format: `indicator_name.input_name`
+格式: `indicator_name.input_name`
 
-* **indicator_name**: use name as you can see it in `Indicators` dialog.
-* **input_name**: use name as you can see it in indicator's properties dialog (for example, `show ma`)
+* **indicator_name**: 使用名称，您可以在“指标器”对话框中看到它。
+* **input_name**: 使用名称，你可以在指标的属性对话框中看到它（例如`show ma`）
 
-Examples: `volume.show ma`, `bollinger bands.length`
+例如: `volume.show ma`, `bollinger bands.length`
 
 ### Plot property
 Format: `indicator_name.plot_name.property_name`

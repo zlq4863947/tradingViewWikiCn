@@ -270,7 +270,7 @@ STYLE_PB* = 7;
 3. `lock`: boolean, 是否锁定指标
 4. `inputs`: \(从版本`1.2`之后\) 指标数组参数, 这个数组只包含与指标属性页面打印相同顺序的输入值。
 5. `callback`: function\(`entityId`\)
-6. `overrides`: \(从版本`1.2`之后\) 一个对象 [containing properties](https://github.com/tradingview/charting_library/wiki/Studies-Overrides) 。注意：您不应指定指标名称：应以具有绘图名称的属性路径为起始。
+6. `overrides`: \(从版本`1.2`之后\) 一个对象 [containing properties](/book/Studies-Overrides.md) 。注意：您不应指定指标名称：应以具有绘图名称的属性路径为起始。
 7. `options`: 这个对象只支持关键字`checkLimit`. 如果为 `true` 时，超出限制，将显示学习限制对话框。
 
 创建一个主要商品的指标。 例子：
@@ -615,20 +615,19 @@ widget.chart().createExecutionShape()
 
 #### priceFormatter\(\)
 
-返回`format` 方法，用以格式化价格。Introduced in 1.5.
+返回`format` 方法，用以格式化价格。在1.5中引入。
 
 #### chartType\(\)
 
-返回主数据列风格。
+返回图表类型。
 
-# See Also
+# 也可以看看
 
-* \[Widget Methods\)
-* \[Customization Overview\)
-* \[Widget Constructor\)
-* \[Saving and Loading Charts\|Saving-and-Loading-Charts\)
-* \[Overriding Studies' Defaults\|Studies-Overrides\)
-* \[Overriding Chart's Defaults\|Overrides\)
-
+* [Widget方法](/book/Widget-Methods.md)
+* [定制概述](/book/Customization-Overview.md)
+* [Widgetg构造函数](/book/Widget-Constructor.md)
+* [存储于加载图表](/book/Saving-and-Loading-Charts.md)
+* [覆盖默认研究参数](/book/Studies-Overrides.md)
+* [覆盖默认图表参数](/book/Overrides.md)
 
 

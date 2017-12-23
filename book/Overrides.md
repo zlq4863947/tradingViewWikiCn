@@ -1,15 +1,16 @@
-This topic contains chart properties description. These properties are treated
-as customizable ones. Other properties customization is not supported.
+# 覆盖
 
-This file format:
+本主题包含图表属性说明。 这些属性被处理作为可定制的。 其他属性自定义则不被支持。
+
+文件的格式:
 
     <property_path>: <default Charting Library value>
 
 ```
-//	supported values: large, medium, small, tiny
+//	支持的值: large, medium, small, tiny
 volumePaneSize: "large"
 
-//	fonts available in text editors (i.e., in `Text` drawing tool properties dialog)
+//	在文本编辑器中可用的字体（即，在"文本"绘图工具属性对话框中）
 editorFontsList: ['Verdana', 'Courier New', 'Times New Roman', 'Arial']
 
 paneProperties.background: "#ffffff"
@@ -19,7 +20,7 @@ paneProperties.horzGridProperties.color: "#E6E6E6"
 paneProperties.horzGridProperties.style: LINESTYLE_SOLID
 paneProperties.crossHairProperties.color: "#989898"
 
-//	Margins (percent). Used for auto scaling.
+//	边际（百分比）。 用于自动缩放。
 paneProperties.topMargin: 5
 paneProperties.bottomMargin: 5
 
@@ -47,10 +48,9 @@ scalesProperties.scaleSeriesOnly : false
 
 timeScale.rightOffset: 5
 
-timezone: "Etc/UTC" # See supported timezones list (at Symbology#timezone page) for available values
+timezone: "Etc/UTC" # 查看支持的时区列表（在Symbology#时区页面）查看可用值
 
-
-//	Series style. See the supported values below
+//	系列风格。 请参阅下面的支持的值
 //		Bars = 0
 //		Candles = 1
 //		Line = 2
@@ -81,9 +81,9 @@ mainSeriesProperties.priceAxisProperties.logDisabled:false
 
 symbolWatermarkProperties.color : "rgba(0, 0, 0, 0.00)"
 
-//	Different chart types defaults
+//	不同的图表类型默认
 
-//	Candles styles
+//	蜡烛样式
 mainSeriesProperties.candleStyle.upColor: "#6ba583"
 mainSeriesProperties.candleStyle.downColor: "#d75442"
 mainSeriesProperties.candleStyle.drawWick: true
@@ -146,7 +146,7 @@ LINESTYLE_DASHED = 2
 
 LINESTYLE_LARGE_DASHED = 3
 
-#### Customization of Overlay Symbols
+#### 自定义覆盖商品
 
 ```
 study_Overlay@tv-basicstudies.style: (bars = 0, candles = 1, line = 2, area = 3, heiken ashi = 8, hollow candles = 9)

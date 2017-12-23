@@ -2,7 +2,7 @@
 
 ---
 
-图表消耗您自己的数据,所以商品代码体系100%您来决定。仅返回商品信息（图表库定义格式）和使用任意的符号商品。实际上，符号名称可以为任意字符串。
+图表需要您自己提供数据,所以商品代码体系100%您来决定。仅返回商品信息（图表库定义格式）和使用任意的符号商品。实际上，商品名称可以为任意字符串。
 
 但有些细节你应该知道:
 
@@ -12,7 +12,7 @@
 
 ## [商品信息结构](#商品信息结构)
 
-这一节非常重要。 Charting Library用户遇到的72.2％的问题，都是由于错误的/格式错误的SymbolInfo数据引起的。
+这一节非常重要。 图表库用户遇到的72.2％的问题，都是由于错误的/格式错误的SymbolInfo数据引起的。
 
 SymbolInfo是一个包含商品metadata的对象。 该对象是解析商品的结果。 SymbolInfo有以下字段：
 
@@ -22,7 +22,7 @@ SymbolInfo是一个包含商品metadata的对象。 该对象是解析商品的�
 
 ##### [ticker](#ticker)
 
-它是您的商品代码体系中此商品的唯一标识符。如果您指定此属性，则其值将用于所有数据请求，`ticker`如果未明确指定，则被视为等于`symbol`。
+它是您的商品代码体系中此商品的唯一标识符。如果您指定此属性，则其值将用于所有数据请求，`ticker`如果未明确指定，则被视为等于`symbol`。(译者注：请一定指定`ticker`，如果没有`ticker`可以将`symbol`赋值给`ticker`，未指定`ticker`时会发生错误。)
 
 ##### [description](#description)
 
@@ -132,7 +132,7 @@ resolutionAvailable  =
     symbol.supports_resoluiton(resolution);
 ```
 
-如果在商品信息中没有supported\_resolutionsin，则所有DWM分辨率都可用。 如果has\_intraday为true，则日内分辨率可用。
+如果在商品信息中没有supported\_resolutionsin，则所有DWM(daily, weekly, monthly)分辨率都可用。 如果has\_intraday为true，则日内分辨率可用。
 
 支持的分辨率也会影响可用的时间范围。 如果使用不支持的分辨率，则时间范围将不可用。
 
@@ -185,7 +185,7 @@ resolutionAvailable  =
 
 数据状态码。状态显示在图表的右上角。 支持的值:
 
-* streaming\(流动中\)
+* streaming\(实时\)
 * endofday\(已收盘\)
 * pulsed\(脉冲\)
 * delayed\_streaming\(延迟流动中\)

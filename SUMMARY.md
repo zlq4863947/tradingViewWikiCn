@@ -40,9 +40,10 @@
 
 * [5-1、交易终端简介](book/Trading-Terminal.md)
 * [5-2、交易控制器](book/Trading-Controller.md)
-* [5-3、交易主机](book/Trading-Host.md)
-* [5-4、账户管理器](book/Account-Manager.md)
-* [5-5、交易对象和常量](book/Trading-Objects-and-Constants.md)
+* [5-3、经纪商API](book/Broker-API.md)
+* [5-4、交易主机](book/Trading-Host.md)
+* [5-5、账户管理器](book/Account-Manager.md)
+* [5-6、交易对象和常量](book/Trading-Objects-and-Constants.md)
 
 ---
 
@@ -53,4 +54,11 @@
 * [10、版本变更点](book/Breaking-changes.md)
 
 ## 附录
+* [分辨率](book/Resolution.md)
+* [时间范围](book/Time-Frames.md)
+* [本地化](book/Localization.md)
+* [覆盖](book/Overrides.md)
+* [绘图覆盖](book/Drawings-Overrides.md)
+* [研究覆盖](book/Studies-Overrides.md)
+* [订阅](book/Subscription.md)
 * [交易元语](book/Trading-Primitives.md)

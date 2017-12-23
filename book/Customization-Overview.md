@@ -77,8 +77,8 @@ var widget = new TradingView.widget({
 
 # 也可以看看
 
-* [Widget's Constructor Arguments](https://github.com/tradingview/charting_library/wiki/Widget-Constructor)
-* [Customization Use Cases](https://github.com/tradingview/charting_library/wiki/Customization-Use-Cases)
+* [Widget方法](/book/Widget-Methods.md)
+* [定制的使用案例](/book/Customization-Use-Cases.md)
 
 
 

@@ -1,15 +1,15 @@
-#创建自定义研究
+# 创建自定义研究
 
 ---
 
-## 如何显示数据作为指示器
+## 如何显示您的数据作为一个指标
 
-如果您有一些要在图表上显示的数据，作为一个指标。
+如果您想要在图表上显示一些数据，例如指标，则此处为食用说明。
 
-请按照这几个步骤:
+请遵循以下几个步骤:
 
-  1. 为您的数据创建一个新的代码，并设置您的服务器返回有效的SymbolInfo为此代码。
-  2. 设置服务器以返回此代码的有效历史数据。
+  1. 为您的数据创建一个新的ticker，并设置您的服务器返回此ticker有效的SymbolInfo。
+  2. 设置服务器以返回此ticker的有效历史数据。
   3. 使用以下指标模板并填写所有占位符(placeholder)的值：名称，说明和代码。 如果需要，还可以修改绘图的默认样式。
 
 ```javascript
@@ -122,8 +122,8 @@ __customIndicators = [
 
 请注意，该指标文件是一个JavaScript源文件，它定义了一个指标对象数组。因此，您可以在其中放置多个指标，或者将它们与我们为您编译的指标组合起来。
 
-  5. 使用 [indicators_file_name](https://github.com/tradingview/charting_library/wiki/Widget-Constructor#indicators_file_name) 小部件构造函数的选项来从指标文件加载自定义指标。
-  6. 将小部件的初始化代码更新为[create](https://github.com/tradingview/charting_library/wiki/Chart-Methods#createstudyname-forceoverlay-lock-inputs-callback-overrides) this indicator when chart is ready.
+  5. 使用 [indicators_file_name](/book/Widget-Constructor.md#indicatorsfilename) Widget构造函数的选项来从指标文件加载自定义指标。
+  6. 图表准备好后，更新您的Widget初始化代码以[创建](/book/Chart-Methods.md#createstudyname-forceoverlay-lock-inputs-callback-overrides-options) 此指标。
 
 **例子**
 
@@ -211,8 +211,8 @@ __customIndicators = [
 ];
 ```
 
-* 使用[indicators_file_name](https://github.com/tradingview/charting_library/wiki/Widget-Constructor#indicators_file_name) 选项将指标器插入图表库。
-* 更改小部件的初始化代码。 添加如下内容：
+* 使用[indicators_file_name](/book/Widget-Constructor.md#indicatorsfilename) 选项将指标插入图表。
+* 更改Widget的初始化代码。 添加如下内容：
 
 ```javascript
 	widget = new TradingView.Widget(/* ... */);

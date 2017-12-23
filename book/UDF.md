@@ -2,8 +2,8 @@
 
 ---
 
-**这是啥 ?**: Universal Data Feed 通用数据饲料，基于HTTP协议的旨在以简单有效的方式向Charting Library提供数据。  
-**我该怎么使用它?**: 您应该创建小型的HTTP服务器，让它从您的数据库中获取数据并响应图表库请求。
+**这是啥 ?**: Universal Data Feed 图表库提供数据。  
+**我该怎么使用它?**: 您应该创建小型的HTTP服务，让它从您的数据库中获取数据并响应图表库请求。
 
 # [表式响应概念](#表式响应概念)
 
@@ -36,7 +36,7 @@ Datafeed 响应通常可以被视为表。例如，关于交易所的商品列�
 
 Request:`GET /config`
 
-Response: Library期望接收与JS API调用[setup\(\)](/book/JS-Api.md#onreadycallback)相同结构的JSON数据。 此外，还应该有2个附加属性：:
+Response: 图表库期望接收与JS API调用[setup\(\)](/book/JS-Api.md#onreadycallback)相同结构的JSON数据。 此外，还应该有2个附加属性：:
 
 * **supports\_search**: 设置这一选项为`true`如果你的datafed 支持商品查询和人商品解析逻辑。
 * **supports\_group\_request**: 设置这一选项为`true`如果您的datafeed只提供所有商品集合的完整信息，并且无法进行商品搜索或单个商品解析。
@@ -68,8 +68,8 @@ Response: 预期响应是具有以下列出的属性的对象。 每个属性都
 * **symbol**
 * **description**
 * **exchange-listed**/**exchange-traded**
-* **minmov**/**minmovement**
-* **minmov2**
+* **minmovement**/**minmov**（注意：minmov已被弃用，并将在未来的版本中被删除）
+* **minmovement2**/**minmov2**（注意：minmov2已被弃用，并将在未来的版本中被删除）
 * **fractional**
 * **pricescale**
 * **has-intraday**

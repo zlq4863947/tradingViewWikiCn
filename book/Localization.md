@@ -1,25 +1,27 @@
-Charting Library supports localization and is already translated to a number of languages. All you have to do to change your chart's language is to specify `locale` parameter when creating Library widget.
+# 本地化
 
-Our translations are crowd-sourced so everyone can participate. Visit [our page on WebtranslateIt ](https://webtranslateit.com/en/projects/11203-TradingView) to take a part.
+图表库支持本地化，并已被翻译成多种语言。您所要做的仅仅是在创建图表时指定`locale`参数。
 
-Supported languages list:
+我们的翻译为众包的，所以每个人都可以参与。访问[我们的WebtranslateIt页面](https://webtranslateit.com/en/projects/11203-TradingView)来参与。
 
-Language | `locale` argument value
+支持的语言列表
+
+语言 | `locale` 参数值
 ---|---
-Chinese (Taiwan)|zh_TW
-Chinese|zh
-Dutch (Netherlands)|nl_NL
-English|en
-French|fr
-German (Germany)|de_DE
-Greek|el
-Italian|it
-Japanese|ja
-Korean|ko
-Persian (Iran)|fa_IR
-Portuguese|pt
-Russian|ru
-Spanish|es
-Thai (Thailand)|th_TH
-Turkish|tr
-Vietnamese|vi
+中国语（台湾）|zh_TW
+中国语|zh
+荷兰语（荷兰）|nl_NL
+英语|en
+法语|fr
+德语 (德国)|de_DE
+希腊语|el
+意大利语|it
+日语|ja
+韩语|ko
+波斯语(伊朗)|fa_IR
+葡萄牙语|pt
+俄语|ru
+西班牙语|es
+泰语(泰国)|th_TH
+土耳其语|tr
+越南语|vi

@@ -11,8 +11,8 @@
 ## 交易终端功能
 
 #### 交易能力
-
-你可以在图表上进行交易，而你所要做的就是实现你的目标， 并将[交易控制器](/book/Trading-Controller.md)其插入图表窗口小部件。
+(/book/Trading-Controller.md)其插入图表窗口小部件。
+您可以在图表中进行交易，而您需要做的就是实现经纪商API并将其插入图表widget中。
 
 ![](/images/tt_trading.png)
 

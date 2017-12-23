@@ -1,9 +1,11 @@
-One may see the toolbar in the bottom of the chart. Each of those buttons on its left side switches time frame of the chart. Switching time frame means:
+# 时间范围
 
-1. switch the chart resolution
-2. force the chart bars to scale horizontally to have the whole requested range visible
+可以看到图表底部的工具栏。 左侧的每个按钮都会切换图表的时间范围。 切换时间范围意味着：
 
-I.e., clicking `1Y` will make the chart to switch resolution to `1D` and to scale to show all bars for 1 year back. Each time frame has its own chart resolution. Here it the list of default time frames:
+1. 切换图表分辨率
+2. 强制图表K线水平缩放以使整个请求范围可见
+
+即，单击`1Y`将使图表将分辨率切换到`1D`，并按比例缩放以显示1年前的所有K线。 每个时间范围都有自己的图表分辨率。 这里是默认时间范围的列表：
 
 Time Frame|Chart Resolution
 ---|---
@@ -15,6 +17,6 @@ Time Frame|Chart Resolution
 5D|5
 1D|1
 
-One may customize default time frames list using respective widget [[.ctor argument|Widget-Constructor#time_frames]].
+可以使用相应的widget自定义[默认时间范围列表](/book/Widget-Constructor.md#timeframes)。
 
-**Remark**: Time frames requiring resolutions which are not available for current chart's symbol will be hidden.
+**备注**：要求分辨率不适用于当前图表商品的时间范围将被隐藏。

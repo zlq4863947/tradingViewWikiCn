@@ -1,4 +1,6 @@
-Here is a full list of drawings overrides with default values. You can change default values using `overrides` argument of the [widget constructor](https://github.com/tradingview/charting_library/wiki/Widget-Constructor#overrides). At the bottom of the list you will find a list of constants and abbreviations used in the values.
+# 绘图覆盖
+
+以下是绘图覆盖的全部列表及默认值。 您可以使用[Widget构造函数](/book/Widget-Constructor.md#overrides)的`overrides`参数来更改默认值。在列表的底部，您可以找到值中使用的常量和缩写的列表。
 
 ```
 linetoolicon: {
@@ -960,9 +962,9 @@ linetoolvisibilities: {
 }
 ```
 
-### Constants
+### 常量
 
-These constants are used in the drawings defaults. You cannot use their names directly. Use the values instead.
+这些常量用于绘图的默认值。 你不能直接使用他们的名字，而是使用这些值。
 
 ```
 LINESTYLE_SOLID = 0;

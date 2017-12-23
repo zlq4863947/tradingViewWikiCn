@@ -1,54 +1,55 @@
-Resolution or interval is a time period of one bar. Charting Library supports intraday resolutions (seconds, minutes, hours) and DWM resolutions (daily, weekly, monthly).
-Charting Library API has lots of methods that accepts and returns Resolutions.
+# [分辨率](#分辨率)
 
-### Intraday
+分辨率或时间间隔是K线的时间段。 图表库支持日内分辨率(seconds, minutes, hours) and DWM 分辨率 (daily, weekly, monthly)。图表库API有很多方法用以接收和返回分辨率。
 
-#### Seconds
+### 日内
 
-Format: `xS`, where `x` is a number of seconds.
-Example: 1S - one second, 2S - two seconds, 100S - one hundred seconds.
+#### 秒
 
-#### Minutes
+格式: `xS`, 条件 `x` 为数字类型的秒数。
+例如: 1S - 1秒, 2S - 2秒, 100S - 100秒。
 
-Format: `x`, where `x` is a number of minutes.
-Example: 1 - one minute, 2 - two minutes, 100 - one hundred minutes.
+#### 分钟
 
-#### Hours
+格式: `x`, 条件 `x` 为数字类型的分钟数。
+例如: 1 - 1分钟, 2 - 2分钟, 100 - 100分钟。
 
-**Important:** while user interface allows a user to enter a number of hours as `xh` or `xH`, it is never passed to the API. Hours are always set using minutes in the Charting Library API.
+#### 小时
 
-Example: 60 - one hour, 120 - two hours, 240 - four hours.
+**重要:** 用户界面允许用户输入几个小时，格式为 `xh` 或 `xH`, 它永远不会传递给API。小时必须使用图表库API中的分钟数来设置。
+
+例如: 60 - 1小时, 120 - 2小时, 240 - 4小时.
 
 ### DWM
 
-#### Days
+#### 天（Days）
 
-Format: `xD`, where `x` is a number of days.
-Example: 1D - one day, 2D - two days, 100D - one hundred days.
+格式: `xD`, 条件 `x` 为数字类型的天数。
+例如: 1D - 1天, 2D - 2天, 100D - 100天。
 
-#### Weeks
+#### 周（Weeks）
 
-Format: `xW`, where `x` is a number of weeks.
-Example: 1W - one week, 2W - two weeks, 100W - one hundred weeks.
+格式: `xW`, 条件 `x` 为数字类型的周数。
+例如: 1W - 1周, 2W - 2周, 100W - 100周。
 
-#### Months
+#### 月（Months）
 
-Format: `xM`, where `x` is a number of months.
-Example: 1M - one month, 2M - two months, 100M - one hundred months.
+格式: `xM`, 条件 `x` 为数字类型的月数。
+例如: 1M - 1个月, 2M - 2个月, 100M - 100个月。
 
-#### Years
+#### 年
 
-Years are set using months.
-Example: 12M - one year, 24M - two year, 48 - four years.
+年是使用月数设置的。
+例如: 12M - 1年, 24M - 2年, 48 - 4年。
 
-#### See also
+#### 也可以看看
 
-[[How to set a list of available resolutions on a chart|JS-Api#supported_resolutions]]
+[如何设置图表上可用分辨率的列表](JS-Api.md#supportedresolutions)
 
-[[How to set a list of resolutions supported by an instrument|Symbology#supported_resolutions]]
+[如何设置产品支持的分辨率列表](Symbology.md#supportedresolutions)
 
-[[Set initial resolution on a chart|Widget-Constructor#interval|]]
+[在图表上设置初始分辨率](Widget-Constructor.md#interval)
 
-[[Get current chart resolution|Chart-Methods#resolution]]
+[获取当前图表分辨率](Chart-Methods.md#resolution)
 
-[[Change resolution on a chart|Chart-Methods#setresolutionresolution-callback]]
+[更改图表的分辨率](Chart-Methods.md#setresolutionresolutioncallback)
