@@ -1,10 +1,12 @@
-Charting Library supports showing marks on bars. Here is an example:
+# 在K线上做标记
 
-[[images/tv_bar_mark.png]]
+图表库支持在K线上显示标记。 这里是一个例子：
 
-Each mark can have a color, size, label and a pop-up message. Marks are requested from your back-end if it declared to support them. Marks are designed to give you an ability to show a number of events attached to bars. Here are a few examples:
+![](../images/tv_bar_mark.png)
 
-* News
-* Some very special bars configurations
-* Splits/Dividends
-* .. and so on.
+每个标记可以有一个颜色，大小，标签和弹出消息。 如果它声明支持它们，则从后端请求标记。 标记旨在让您能够显示附加到K线的一些事件。 这里有一些例子：
+
+* 新闻
+* 一些比较特殊的K线配置
+* 拆分/股息
+* 等等

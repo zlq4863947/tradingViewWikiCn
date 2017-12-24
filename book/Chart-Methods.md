@@ -6,7 +6,7 @@
 
 **在1.4版本之前** 您可以使用Widget的构造函数返回给您的widget对象来调用这些方法。
 
-**从1.5版本之后** 您可以使用Widget的方法返回给您的图表对象来调用这些方法 \[chart\(index\)\|Widget-Methods\#chart-chartindex\) 或 \[activeChart\(\)\|Widget-Methods\#chart-activechart\).
+**从1.5版本之后** 您可以使用Widget的方法返回给您的图表对象来调用这些方法 [chart\(index\)](Widget-Methods.md#chartindex) 或 [activeChart\(\)](Widget-Methods.md#activechart)。
 
 ## 方法
 
@@ -27,7 +27,7 @@
   * [refreshMarks\(\)](#refreshmarks)
   * [clearMarks\(\)](#clearmarks)
   * [setChartType\(type\)](#setcharttypetype)
-* 研究与形态
+* 研究与图形
   * [getAllShapes\(\)](#getallshapes)
   * [getAllStudies\(\)](#getallstudies)
   * [setEntityVisibility\(id, isVisible\)](#setentityvisibilityid-isvisible)
@@ -58,16 +58,16 @@
 
 #### onDataLoaded\(\)
 
-您可以通过订阅\[Subscription\)对象返回的此回调函数，通知当历史K线数组被加载并退订事件。
+您可以使用此方法返回的订阅[Subscription](/book/Subscription.md)对象进行订阅，以便在加载新历史K线时通知并取消订阅事件。
 
 #### onSymbolChanged\(\)
 
-您可以通过订阅\[Subscription\)对象返回的此回调函数，通知当商品发生变化并退订事件。
+您可以使用此方法返回的[Subscription](/book/Subscription.md)对象进行订阅，以便在更改商品时通知并取消订阅该事件。
 
 #### onIntervalChanged\(\)
 
-您可以通过订阅\[Subscription\)对象返回的此回调函数，通知当间隔发生变化并退订事件。  
-当事件被触发时，它将提供以下参数：  
+您可以使用此方法返回的[Subscription](/book/Subscription.md)对象进行订阅，以便在更改时间间隔时通知并取消订阅该事件。 
+当事件被触发时，它将提供以下参数：
 1. `interval`: 新间隔  
 2. `timeframeParameters`: 此对象只有一个字段 `timeframe`. 用户改变时间间隔时，它包含一个时间间隔。  
 否则 `timeframe` 为 `undefined` 然后你可以修改它以显示某一时段的K线。有效的时间间隔是一个数字，字母'D'为天，'M'为月。
@@ -93,7 +93,7 @@ widget.chart().onIntervalChanged().subscribe(null, function(interval, obj) {
 
 1. `callback`: function\({time, price}\)
 
-图表库会调用回调在每次准星位置改变时。
+每当十字线位置改变时，图表库将会调用回调函数。
 
 # 图表动作
 
@@ -111,35 +111,19 @@ widget.chart().onIntervalChanged().subscribe(null, function(interval, obj) {
 1. `symbol`: string
 2. `callback`: function\(\)
 
-使图表更改其商品。 新商品的数据到达后调用回调。
+使图表更改商品。 新商品的数据到达后调用回调。
 
 #### setResolution\(resolution, callback\)
 
-1. `resolution`: string. Format is described in another \[article\|Resolution\).
+1. `resolution`: string. 格式化详细参照:[文章](/book/Resolution.md)。
 2. `callback`: function\(\)
 
-使图表更改其分辨率。 新分辨率的数据到达后调用回调。
+使图表更改分辨率。 新分辨率的数据到达后调用回调。
 
 #### resetData\(\)
 
-使图表从数据饲料中请求数据。 通常当图表的数据发生更改时，您需要调用它。  
-调用此方法前您应该调用：\[onResetCacheNeededCallback\|JS-Api\#subscribebarssymbolinfo-resolution-onrealtimecallback-subscriberuid-onresetcacheneededcallback\).
-
-#### executeAction\(action\)
-
-_**已弃用，使用executeActionById代替**_
-
-1. `action`: string
-
-执行图表的菜单中的任意动作\(当右击主窗格上的空白空间时弹出的菜单\) 通过他们的名字。 使用英文本地化的名称。 例:
-
-```javascript
-// < ... >
-widget.chart().executeAction("Insert Indicator..."); // calling this will show `Insert Study` dialog
-// < ... >
-widget.chart().executeAction("Hide All Drawing Tools"); // this will toggle all shapes visibility
-// < ... >
-```
+使图表重新请求datafeed中的数据。 通常你需要在图表数据发生变化时调用它。 
+在调用这个之前，你应该调用[onResetCacheNeededCallback](JS-Api.md#subscribebarssymbolinfo-resolution-onrealtimecallback-subscriberuid-onresetcacheneededcallback)。
 
 #### executeActionById\(actionId\)
 
@@ -147,7 +131,7 @@ _**since version 1.3**_
 
 1. `actionId`: string
 
-Executes an action by its id.
+通过它的id执行一个动作。
 
 **显示对话框**
 
@@ -207,7 +191,7 @@ _**从1.7版本之后**_
 
 1. `actionId`: string
 
-获取可检查的操作 \(例. `lockDrawingsAction`, `stayInDrawingModeAction`, `magnetAction`\) 状态通过它们的id \(请参阅上述动作的ID\)
+获取可选的操作 \(例. `lockDrawingsAction`, `stayInDrawingModeAction`, `magnetAction`\) 状态通过它们的id \(请参阅上述动作的ID\)
 
 #### refreshMarks\(\)
 
@@ -243,18 +227,18 @@ STYLE_PB* = 7;
 
 调用此方法关闭一个上下文菜单或对话框,假设其已经显示。
 
-# 研究与形态
+# 研究与图形
 
 #### getAllShapes\(\)
 
-返回所有已创建的形态对象的数组。 每个对象都有以下字段：
+返回所有已创建的图形对象的数组。 每个对象都有以下字段：
 
 * `id`: id of a shape
 * `name`: name of a shape
 
 #### getAllStudies\(\)
 
-返回所有已创建的形态对象的数组。 每个对象都有以下字段：
+返回所有已创建的图形对象的数组。 每个对象都有以下字段：
 
 * `id`: id of a study
 * `name`: name of a study
@@ -273,25 +257,50 @@ STYLE_PB* = 7;
 6. `overrides`: \(从版本`1.2`之后\) 一个对象 [containing properties](/book/Studies-Overrides.md) 。注意：您不应指定指标名称：应以具有绘图名称的属性路径为起始。
 7. `options`: 这个对象只支持关键字`checkLimit`. 如果为 `true` 时，超出限制，将显示学习限制对话框。
 
-创建一个主要商品的指标。 例子：
 
-* `createStudy('MACD', false, false, [14, 30, "close", 9])`
-* `createStudy('Moving Average Exponential', false, false, [26])`
-* `createStudy('Stochastic', false, false, [26], null, {"%d.color" : "#FF0000"})`
+**从1.12开始，函数立即返回结果。 回调为保持兼容性**
 
-**Remark**: `Compare` 指标有两个输入参数: `[dataSource, symbol]`.  `dataSource` 的值: `["close", "high", "low", "open"]`.
+创建一个关于主商品的研究。 例子:
+  * `createStudy('MACD', false, false, [14, 30, "close", 9])`
+  * `createStudy('Moving Average Exponential', false, false, [26])`
+  * `createStudy('Stochastic', false, false, [26], null, {"%d.color" : "#FF0000"})`
+  * `chart.createStudy('Moving Average', false, false, [26], null, {'Plot.linewidth': 10})`
+
+**Remark**: `Compare` 研究有2个参数: `[dataSource, symbol]`. 支持 `dataSource` values: `["close", "high", "low", "open"]`.
 
 **Remark 2**: 当您选择在图表上添加数据列时，您实际使用了`Overlay`指标，这个指标只有一个参数 -- `symbol`. 以下是添加商品的示例：
 
 ```javascript
     widget.chart().createStudy('Overlay', false, false, ['AAPL']);
 ```
-
-**Remark 3**: 当您选择比较系列时，您实际上使用了`Compare`指标。 它有2个参数 -- `source` 和 `symbol`. 下面是一个添加比较数据列的例子:
+**Remark 3**: 当您选择比较数据列时，您实际上使用了`Compare`指标。 它有2个参数 -- `source` 和 `symbol`. 下面是一个添加比较数据列的例子:
 
 ```javascript
     widget.chart().createStudy('Compare', false, false, ["open", 'AAPL']);
 ```
+
+#### getStudyById(entityId)
+1. `entityId`: object. 通过API创建研究时返回的值。
+
+使用以下方法返回一个对象与研究交互：
+1. `isUserEditEnabled()` - 如果用户能够删除/更改/隐藏您的形状，则返回`true`
+1. `setUserEditEnabled(enabled)` - 启用或禁用删除/更改/隐藏 用户的研究
+1. `getInputsInfo()` - 返回有关所有输入的信息。 返回值是具有以下字段的对象数组：
+    - `id` - 研究ID
+    - `name` - 名称
+    - `type` - 类型
+    - `localizedName` - 输入翻译成当前语言的名称
+
+1. `getInputValues()` - 返回研究输入的值。 返回值是一个对象数组（`StudyInputValue`），它包含以下字段：
+    - `id` - 研究ID
+    - `value` - 值
+
+1. `setInputValues(inputs)` - 将输入值分配给研究。 `inputs`应该是一个包含`StudyInputValue`对象的数组（见上文）。 它可能只包含一些你想改变的输入。
+
+1. `mergeUp()` - 向上合并（如果可以）
+1. `mergeDown()` - 向下合并（如果可以）
+1. `unmergeUp()` - 向上分解（如果可以）
+1. `unmergeDown()` - 向下分解（如果可以）
 
 #### createShape\(point, options, callback\)
 
@@ -301,14 +310,14 @@ STYLE_PB* = 7;
    3. `channel`: 要保持价格水平线，要使用`channel` 参数 \(`open`, `high`, `low`, `close`\)。如果未指定则以'open'为默认值。
 2. `options`: object `{shape, [text], [lock], [overrides]}`
    1. `shape` 可能的值为\['arrow\_up', 'arrow\_down', 'flag', 'vertical\_line', 'horizontal\_line'\]，'flag'为默认值。
-   2. `text` 形态的内容
-   3. `lock` 是否锁定形态
+   2. `text` 图形的内容
+   3. `lock` 是否锁定图形
    4. `disableSelection` \(since `1.3`\) 禁用选择
    5. `disableSave` \(since `1.3`\) 禁用保存
    6. `disableUndo` \(since `1.4`\) 禁用撤销
-   7. `overrides` \(since `1.2`\). 它是一个对象，包含为新形态设置的属性。
+   7. `overrides` \(since `1.2`\). 它是一个对象，包含为新图形设置的属性。
    8. `zOrder` \(since `1.3`\) 可能的值为\[`top`, `bottom`\]. `top` 将线工具放在所有其他资源之上, `bottom` 将线工具放在所有其他资源之下, 'top'为默认值。
-   9. `showInObjectsTree`: `true`为默认值。在“对象树”对话框中显示形态。
+   9. `showInObjectsTree`: `true`为默认值。在“对象树”对话框中显示图形。
 3. `callback`: function\(`entityId`\)
 
 **从1.4开始，函数立即返回结果。回调保函数为持兼容性。**
@@ -323,25 +332,25 @@ STYLE_PB* = 7;
    3. `channel`: 要保持价格水平线，要使用`channel` 参数 \(`open`, `high`, `low`, `close`\)。如果未指定则以'open'为默认值。
 2. `options`: object `{shape, [text], [lock], [overrides]}`
    1. `shape` 可能的值为\['arrow\_up', 'arrow\_down', 'flag', 'vertical\_line', 'horizontal\_line'\]，'flag'为默认值。
-   2. `text` 形态的内容
-   3. `lock` 是否锁定形态
+   2. `text` 图形的内容
+   3. `lock` 是否锁定图形
    4. `disableSelection` \(since `1.3`\) 禁用选择
    5. `disableSave` \(since `1.3`\) 禁用保存
    6. `disableUndo` \(since `1.4`\) 禁用撤销
-   7. `overrides` \(since `1.2`\). 它是一个对象，包含为新形态设置的属性。
+   7. `overrides` \(since `1.2`\). 它是一个对象，包含为新图形设置的属性。
    8. `zOrder` \(since `1.3`\) 可能的值为\[`top`, `bottom`\]. `top` 将线工具放在所有其他资源之上, `bottom` 将线工具放在所有其他资源之下, 'top'为默认值。
-   9. `showInObjectsTree`: `true`为默认值。在“对象树”对话框中显示形态。
+   9. `showInObjectsTree`: `true`为默认值。在“对象树”对话框中显示图形。
 3. `callback`: function\(`entityId`\)
 
 **从1.4开始，函数立即返回结果。回调保函数为持兼容性。**
 
-Look \[Shapes and Overrides\|Shapes and Overrides\) for more information.
+查看[形状与覆盖](book/Shapes-and-Overrides.md)了解更多信息。
 
-此调用会在主数据列上指定几个点位创建一个形态。
+此调用会在主数据列上指定几个点位创建一个图形。
 
 #### removeEntity\(entityId\)
 
-1. `entityId`: object. 值为创建实体 \(形态的研究\) 后通过回调传递的值.
+1. `entityId`: object. 值为创建实体 \(图形的研究\) 后通过回调传递的值.
 
 删除指定实体。
 
@@ -354,7 +363,7 @@ Look \[Shapes and Overrides\|Shapes and Overrides\) for more information.
 
 #### removeAllShapes\(\)
 
-删除全部形态\(绘图\)。
+删除全部图形\(绘图\)。
 
 #### removeAllStudies\(\)
 
@@ -370,15 +379,15 @@ Look \[Shapes and Overrides\|Shapes and Overrides\) for more information.
 
 **从1.4开始，函数立即返回结果。回调保函数为持兼容性。**
 
-将指标模板保存到JS对象。 图表库将调用您的回调函数并将状态对象作为参数传递。 该调用为低级的一部分 \[save/load API\|Saving-and-Loading-Charts\).
+将指标模板保存到JS对象。 图表库将调用您的回调函数并将状态对象作为参数传递。 该调用为低级的一部分 [存储与加载图表](/book/Saving-and-Loading-Charts.md)。
 
 #### applyStudyTemplate\(template\)
 
 1. `template`: object 
 
-从状态对象加载指标模板。这个调用是低级的一部分。\[save/load API\|Saving-and-Loading-Charts\).
+从状态对象加载指标模板。这个调用是低级的一部分。[存储与加载图表](/book/Saving-and-Loading-Charts.md)。
 
-# Trading Primitives
+# 交易元语（Trading Primitives）
 
 #### createOrderLine\(options\)
 
@@ -455,7 +464,7 @@ widget.chart().createOrderLine()
 
 #### createPositionLine\(options\)
 
-在图表上创建一个新的位置并返回一个API对象，您可以使用它来控制位置属性和行为。 强烈推荐阅读\[this article\|Trading-Primitives\) 在调用此方法之前。
+在图表上创建一个新的位置并返回一个API对象，您可以使用它来控制位置属性和行为。 强烈推荐阅读[交易元语](/book/Trading-Primitives.md)在调用此方法之前。
 
 参数 \(自 1.4\):  
 `options` 是一个具有：`disableUndo`的对象, 这可以是 `true` 或 `false`. 出于兼容性原因，默认值为 `false`。
@@ -534,7 +543,7 @@ widget.chart().createPositionLine()
 
 #### createExecutionShape\(options\)
 
-在图表上创建一个新的执行，并返回一个可以用来控制执行属性的API对象。 在使用此呼叫之前，强烈建议您阅读\[this article\|Trading-Primitives\)。
+在图表上创建一个新的执行，并返回一个可以用来控制执行属性的API对象。 在使用此呼叫之前，强烈建议您阅读[交易元语](/book/Trading-Primitives.md)。
 
 参数 \(自 1.4\):  
 `options` 是一个具有：`disableUndo`的对象, 这可以是 `true` 或 `false`. 出于兼容性原因，默认值为 `false`。
@@ -543,7 +552,7 @@ API对象具有以下列出的一组属性。 每个属性都可以通过各自�
 
 API对象方法：
 
-* `remove()`: 从图表中删除执行信号形态。 此调用后不能使用API对象。
+* `remove()`: 从图表中删除执行信号图形。 此调用后不能使用API对象。
 
 **一般属性**:
 
@@ -601,7 +610,7 @@ widget.chart().createExecutionShape()
 
 #### resolution\(\)
 
-返回图表的分辨率。格式在这个文章中描述 \[article\|Resolution\).
+返回图表的分辨率。格式在这个[文章](/book/Resolution.md)中描述。
 
 #### getVisibleRange\(\)
 

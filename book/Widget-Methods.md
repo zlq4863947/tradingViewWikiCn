@@ -60,65 +60,23 @@ widget.onChartReady(function() {
   * [addCustomCSSFile\(url\)](/book/Widget-Methods.md#addcustomcssfileurl)
   * [applyOverrides\(overrides\)](/book/Widget-Methods.md#applyoverridesoverrides)
   * [applyStudiesOverrides\(overrides\)](/book/Widget-Methods.md#applystudiesoverridesoverrides)
-* ![](../images/trading.png)[交易终端](/book/Trading-Terminal) 特制
-  * [showSampleOrderDialog\(order\)](/book/Widget-Methods.md#chart-showsampleorderdialogorder)
-  * [watchList\(\)](/book/Widget-Methods.md#chart-watchlist)
+* ![](../images/trading.png)[交易终端特制](/book/Trading-Terminal.md)
+  * [showSampleOrderDialog\(order\)](/book/Widget-Methods.md#showsampleorderdialogorder)
+  * [watchList\(\)](/book/Widget-Methods.md#watchlist)
 * ![](../images/trading.png)多图表布局
-  * [chart\(index\)](/book/Widget-Methods.md#chart-chartindex)
-  * [activeChart\(\)](/book/Widget-Methods.md#chart-activechart)
-  * [chartsCount\(\)](/book/Widget-Methods.md#chart-chartscount)
-  * [layout\(\)](/book/Widget-Methods.md#chart-layout)
-  * [setLayout\(layout\)](/book/Widget-Methods.md#chart-setlayoutlayout)
+  * [chart\(index\)](/book/Widget-Methods.md#chartindex)
+  * [activeChart\(\)](/book/Widget-Methods.md#activechart)
+  * [chartsCount\(\)](/book/Widget-Methods.md#chartscount)
+  * [layout\(\)](/book/Widget-Methods.md#layout)
+  * [setLayout\(layout\)](/book/Widget-Methods.md#setlayoutlayout)
 
-# Subscribing To Chart Events
+# 订阅图表事件
 
 #### [onChartReady\(callback\)](#onchartreadycallback)
 
 1. `callback`: function\(\)
 
 当图表初始化并准备就绪时，图表库将调用提供的回调。 你可以从这一刻安全地调用所有其他方法。
-
-#### onSymbolChange\(callback\)
-
-1. `callback`: function\(symbolData\)
-   1. `symbolData`: object`{name, exchange, description, type, interval}`
-
-每当主系列商品发生变化时，图表库将调用回调。 新商品信息将作为参数传递。
-
-**已过时 将被删除 **在1.8开始，使用 [onSymbolChanged](/book/Chart-Methods.md#onsymbolchanged) 注册`chart`来代替。
-
-#### onIntervalChange\(callback\)
-
-1. `callback`: function\(interval\)
-   1. `interval`: string
-
-图表库将调用回调提供每次主系列间隔的更改。新的间隔将作为参数传递。
-
-**已过时 将被删除 **在1.8开始，使用 [onIntervalChanged](/book/Chart-Methods.md#onintervalchanged) 注册`chart`来代替。
-
-#### onAutoSaveNeeded\(callback\)
-
-1. `callback`: function\(\)
-
-每当用户更改图表时，库将调用该回调。`Chart change`意味着可以撤消用户的任何操作。回调不会在五秒内多次调用。参见[auto\_save\_delay](/book/Widget-Constructor#auto_save_delay).
-
-**已过时 将被删除 **在1.8开始，使用 [subscribe](/book/Widget-Methods.md#subscribeevent-callback) 方法中的`onAutoSaveNeeded`事件代替。
-
-#### onBarMarkClicked\(callback\)
-
-1. `callback`: function\(markId\)
-
-Library将提供回调，每次当用户点击K线上的标记时。标记ID将作为参数传递。
-
-**已过时 将被删除 **在1.8开始，使用 [subscribe](/book/Widget-Methods.md#subscribeevent-callback)方法中的`onMarkClick`事件代替。
-
-#### onTimescaleMarkClicked\(callback\)
-
-1. `callback`: function\(markId\)
-
-Library将提供回调，每次当用户点击时间刻度标记时。标记ID将作为参数传递。
-
-**已过时 将被删除 **在1.8开始，使用 [subscribe](/book/Widget-Methods.md#subscribeevent-callback)方法中的`onTimescaleMarkClick`事件代替。
 
 #### onGrayedObjectClicked\(callback\)
 
@@ -127,7 +85,7 @@ Library将提供回调，每次当用户点击时间刻度标记时。标记ID�
       1. `type`:`drawing`\|`study`
       2. `name`: string, 被点击的主题名称
 
-Library将提供回调，每当用户点击灰色对象时。例：
+每次用户点击灰色的对象时，图表库都会调用此回调函数。例：
 
 ```js
 new TradingView.widget({
@@ -150,37 +108,20 @@ new TradingView.widget({
 
 widget.onChartReady(function() {
     widget.onGrayedObjectClicked(function(data) {
-        // this function will be called when one tries to
-        // create Balance Of Power study or Trend Angle shape
+        // 当您尝试创建力量平衡研究或趋势图形时
+        // 此方法将被调用
 
         alert(data.name + " is grayed out!");
     })
 });
 ```
 
-#### onScreenshotReady\(callback\)
-
-1. `callback`: function\(imageName\)
-
-Library将提供回调，每当用户创建屏幕截图和服务器返回创建的图像名称时。
-
-**已过时 将被删除 **在1.8开始，使用 [subscribe](/book/Widget-Methods.md#subscribeevent-callback)方法中的`onScreenshotReady`事件代替。
-
-#### onTick\(callback\)
-
-1. `callback`
-   : function\(data\)
-
-Library将提供回调，每当最近的K线更新时。
-
-**已过时 将被删除 **在1.8开始，使用 [subscribe](/book/Widget-Methods.md#subscribeevent-callback)方法中的`onTick`事件代替。
-
 #### onShortcut\(shortcut, callback\)
 
 1. `shortcut`
 2. `callback`: function\(data\)
 
-Library将提供回调，每次按快捷方式时。
+每当按下快捷键时，图书馆将会调用此回调。
 
 例:
 
@@ -230,13 +171,13 @@ widget.onShortcut("alt+s", function() {
 
 #### chart\(\)
 
-返回图表对象，可用于调用[Chart-Methods](/book/Chart-Methods)
+返回图表对象，可用于调用[Chart-Methods](/book/Chart-Methods.md)
 
 #### setLanguage\(locale\)
 
 1. `locale`
    :
-   [language code](/book/Localization)
+   [language code](/book/Localization.md)
 
 设置Widget的语言。 目前此调用将重新加载图表。请避免使用它。
 
@@ -258,7 +199,7 @@ widget.onShortcut("alt+s", function() {
 
 #### selectLineTool\(drawingId\)
 
-1. `drawingId`: 可以为一个标识符[identifiers](/book/Shapes-and-Overrides) 或
+1. `drawingId`: 可以为一个[标识符](/book/Shapes-and-Overrides.md) 或
    1. `cursor`
    2. `dot`
    3. `arrow_cursor`
@@ -271,7 +212,7 @@ widget.onShortcut("alt+s", function() {
 
 #### selectedLineTool\(\)
 
-返回所选图形或光标的标识符[identifiers](/book/Shapes-and-Overrides)（见上文）。
+返回所选图形或光标的[标识符](/book/Shapes-and-Overrides.md)（见上文）。
 
 # Saving/Loading Charts
 
@@ -396,30 +337,30 @@ widget.onChartReady(function() {
 
 #### showNoticeDialog\(params\)
 
-1. `params`: object:
-   1. `title`: text to be shown in the title
-   2. `body`: text to be shown in the body
-   3. `callback`: function to be called when ok button is pressed
+1. `params`: 对象:
+   1. `title`: 标题
+   2. `body`: 正文
+   3. `callback`: 当按下ok按钮时调用的函数。
 
-This method shows a dialog with custom title and text and "OK" button.
+此方法显示一个对话框，其中包含自定义标题和文本以及“确定”按钮。
 
 #### showConfirmDialog\(params\)
 
-1. `params`: object:
-   1. `title`: text to be shown in the title
-   2. `body`: text to be shown in the body
-   3. `callback(result)`: function to be called when ok button is pressed.
-      `result`is`true`if`OK`is pressed, otherwise it is`false`.
+1. `params`: 对象:
+   1. `title`: 标题
+   2. `body`: 正文
+   3. `callback(result)`: 当按下ok按钮时调用的函数。
+      `result`点击ok时为`true`, 否则为`false`。
 
-This method shows a dialog with custom title and text and "OK", "CANCEL" buttons.
+此方法显示一个带有自定义标题和文本以及"确定"、"取消"按钮的对话框。
 
 #### showLoadChartDialog\(\)
 
-Displays Load chart dialog.
+显示加载图表对话框。
 
 #### showSaveAsChartDialog\(\)
 
-Displays Save As... chart dialog.
+显示另存为...图表对话框。
 
 # Getters
 
@@ -430,7 +371,7 @@ Displays Save As... chart dialog.
 
 **由于1.4开始方法会立即返回结果。回调是为了保证兼容性。**
 
-Charting Library will call your callback with an object containing chart's symbol and interval.
+图表库将调用回调函数，参数对象包含图表商品和时间间隔。
 
 #### mainSeriesPriceFormatter\(\)
 
@@ -448,15 +389,15 @@ Charting Library will call your callback with an object containing chart's symbo
 
 #### addCustomCSSFile\(url\)
 
-1. `url`should be absolute or relative path to 'static\` folder
+1. `url` 绝对或相对路径的 `static` 文件夹
 
-该方法在版本`1.3`中引入。从1.4开始，使用[custom\_css\_url](/book/Widget-Constructor#custom_css_url)替代。
+该方法在版本`1.3`中引入。从1.4开始，使用[custom\_css\_url](/book/Widget-Constructor.md#loadlastchart)替代。
 
 #### applyOverrides\(overrides\)
 
 _该方法在版本`1.5`中引入_
 
-1. `overrides`is an object. It is the same as [overrides](/book/Widget-Constructor#overrides) in Widget Constructor.
+1. `overrides`为一个对象，和[overrides](/book/Widget-Constructor.md#overrides)相同。
 
 此方法在不重新加载图表的情况下将覆盖应用属性。
 
@@ -464,11 +405,11 @@ _该方法在版本`1.5`中引入_
 
 _该方法在版本`1.9`中引入_
 
-1. `overrides`is an object. It is the same as[studies\_overrides](/book/Widget-Constructor#studies_overrides)in Widget Constructor.
+1. `overrides` 为一个对象，和[studies\_overrides](/book/Widget-Constructor.md#studiesoverrides)相同。
 
-This method applies studies overrides to indicators' style or inputs without reloading the chart.
+此方法将重写研究的指标样式或输入参数，而无需重新加载图表。
 
-# ![](../images/trading.png)Trading Terminal
+# ![](../images/trading.png)交易终端特制
 
 以下方法只在[交易终端](/book/Trading-Terminal)可用.
 
@@ -494,13 +435,13 @@ _该方法在版本`1.9`中引入_
 
 #### ![](../images/trading.png)chart\(index\)
 
-1. `index`: index of a chart starting from 0.`index`is 0 by default.
+1. `index`: 从0开始的图表索引，默认为0。
 
-返回chart对象，用于调用[Chart-Methods](/book/Chart-Methods)
+返回chart对象，用于调用[Chart-Methods](/book/Chart-Methods.md)
 
 #### ![](../images/trading.png)activeChart\(\)
 
-返回当前chart对象，用于调用[Chart-Methods](/book/Chart-Methods)
+返回当前chart对象，用于调用[Chart-Methods](/book/Chart-Methods.md)
 
 #### ![](../images/trading.png)chartsCount\(\)
 
@@ -521,7 +462,7 @@ _该方法在版本`1.9`中引入_
 * [图表方法](/book/Chart-Methods.md)
 * [定制概述](/book/Customization-Overview.md)
 * [Widgetg构造函数](/book/Widget-Constructor.md)
-* [存储于加载图表](/book/Saving-and-Loading-Charts.md)
+* [存储与加载图表](/book/Saving-and-Loading-Charts.md)
 * [覆盖默认研究参数](/book/Studies-Overrides.md)
 * [覆盖默认图表参数](/book/Overrides.md)
 

@@ -10,24 +10,24 @@
 经纪商API的构造函数通常需要[交易主机](/book/Trading-Host.md)。
 
 #### positions : Promise
-交易终端调用这种方法来请求仓位。你应该返回[仓位](/book/Trading-Objects-and-Constants.md#position)对象。
+交易终端调用这种方法来请求仓位。你应该返回[仓位](/book/Trading-Objects-and-Constants.md#position)数组。
 
 #### orders : Promise
-交易终端调用这种方法来请求订单。你应该返回[订单](/book/Trading-Objects-and-Constants.md#order)对象。
+交易终端调用这种方法来请求订单。你应该返回[订单](/book/Trading-Objects-and-Constants.md#order)数组。
 
 #### executions(symbol) : Promise
-交易终端调用这种方法来请求执行。你应该返回[执行](/book/Trading-Objects-and-Constants.md#execution)对象。
+交易终端调用这种方法来请求执行。你应该返回[执行](/book/Trading-Objects-and-Constants.md#execution)数组。
 
 #### trades : Promise
-交易终端调用这种方法来请求交易（个别仓位）。 你应该返回一个[交易对象](/book/Trading-Objects-and-Constants.md#trade)的数组。
+交易终端调用这种方法来请求交易（个别仓位）。 你应该返回[交易对象](/book/Trading-Objects-and-Constants.md#trade)数组。
 
 #### chartContextMenuActions(e)
-图表可以在上下文菜单中有一个子菜单“交易”。 返回子菜单的项目列表。 格式与`buttonDropdownItems`相同。
+图表可以在菜单中拥有一个子菜单`交易`。 返回子菜单的项目列表。 格式与`buttonDropdownItems`相同。
 
 `e` 是浏览器传递的上下文对象
 
 #### connectionStatus()
-通常你不需要返回'1`以外的值，因为当你创建widget时经纪商已经连接。 如果要在加载数据时在底部面板中显示微调框，则可以使用它。
+通常你不需要返回`1`以外的值，因为当你创建widget时经纪商已经连接。 如果要在加载数据时在底部面板中显示一个spinner，则可以使用它。
 可能的返回值是：
 
 ```
@@ -38,7 +38,7 @@ ConnectionStatus.Error = 4
 ```
 
 #### isTradable(symbol)
-该功能是浮动交易面板所必需的。 通过面板进行交易的能力取决于这个函数的结果：`true`还是`false`。 如果所有符号都可以交易，则不需要实现这个方法。
+该功能是浮动交易面板所必需的。通过面板进行交易的能力取决于这个函数的结果：`true`还是`false`。 如果所有商品都可以交易，则不需要实现这个方法。
 
 #### accountManagerInfo()
 此功能用于返回账户管理器的信息。请参阅[账户管理器](/book/Account-Manager.md)了解更多信息。
@@ -56,7 +56,7 @@ ConnectionStatus.Error = 4
 #### modifyOrder([order](/book/Trading-Objects-and-Constants.md#order), silently, focus)
 1. `order` 是要修改的订单对象
 2. `silently` - 如果是 `true` ，则不应显示任何订单对话框
-3. `focus` - [OrderTicketFocusControl constants](/book/Trading-Objects-and-Constants.md#orderticketfocuscontrol)。它可以已经由图表初始化。
+3. `focus` - [OrderTicketFocusControl constants](/book/Trading-Objects-and-Constants.md#orderticketfocuscontrol)。它可以通过图表初始化。
 
 方法在用户想要修改现有订单时被调用。
 
@@ -67,10 +67,9 @@ ConnectionStatus.Error = 4
 #### cancelOrders(symbol, side, ordersIds, silently)
 1. `symbol` - symbol string
 2. `side`: [Side](/book/Trading-Objects-and-Constants.md#side) or `undefined`
-3. `ordersIds` - 已经通过商品和side收集的ids
-如果`silently`是`true`，则不显示任何对话框。
+3. `ordersIds` - `symbol`和`side`收集的ids。如果`silently`是`true`，则不显示任何对话框。
 
-这个方法被调用来取消一个`symbol`和`side`的多个订单。
+这个方法被调用来取消`symbol`和`side`的多个订单。
 
 #### editPositionBrackets(positionId, focus)
 如果`supportPositionBrackets`配置标志打开，将显示一个用于编辑止盈和止损的对话框，此方法将被调用。
@@ -87,7 +86,7 @@ ConnectionStatus.Error = 4
 
 #### editTradeBrackets(tradeId, focus)
 如果`supportTradeBrackets`配置标志打开，将显示一个用于编辑止盈和止损的对话框。
-1.`tradeId`是要修改的现有交易ID
+1.`tradeId`是要修改的交易id
 2.`focus` - [Focus constant](/book/Trading-Objects-and-Constants.md#focusoptions])。
 
 #### closeTrade(tradeId, silently)
@@ -100,13 +99,13 @@ ConnectionStatus.Error = 4
 这个方法由内部的Order Dialog，DOM面板和浮动交易面板调用，以获取商品信息。
 结果是具有以下数据的对象：
 
-- `qty` - object with fields `min`, `max` and `step` that specifies Quantity field step and boundaries.
-- `pipSize` - size of 1 pip (e.g., 0.0001 for EURUSD)
-- `pipValue` - values of 1 pip in account currency (e.g., 1 for EURUSD for an account in USD)
-- `minTick` - minimal price change (e.g., 0.00001 for EURUSD). It is used for price fields.
-- `description` - a description to be displayed in the dialog
-- `type` - instrument type, only `forex` matters - it enables negative pips check in the order dialog
-- `domVolumePrecision` - number of decimal places of DOM asks/bids volume (optional, 0 by default)
+- `qty` - 对象拥有这3个属性：`min`、`max`、`step`，用于指定数量的`step`和边界。
+- `pipSize` - 点数的大小（例如，EURUSD为0.0001）
+- `pipValue` - 账户币种的点数值（例如，对于以美元为账户的EURUSD为1）
+- `minTick` - 最低的价格变动（例如，EURUSD为0.00001）。 它用于价格字段。
+- `description` - 要在对话框中显示的描述
+- `type` - 商品类型, 只要 `forex` 比较特殊 - 它允许在订单对话框中检查负的点数。
+- `domVolumePrecision` - DOM 卖出/买入量的小数位数（可选，默认为0）
 
 #### accountInfo() : Deferred (or Promise)
 
@@ -114,19 +113,18 @@ ConnectionStatus.Error = 4
 现在应该只返回一个字段：
 1. currencySign：字符串 - 这是一个计数货币的标志
 
-由于这种方法被调用，经纪人应该停止提供利润/损失。
+由于这种方法被调用，经纪商应该停止提供利润/损失。
 
 #### subscribeEquity()
 
-如果您使用标准订单对话框并支持止损，则应实施方法。
-由于这种方法被调用，经纪商应该通过[equityUpdate](/book/Trading-Host.md#equityupdateequity)方法提供股票更新。
+如果您使用标准订单对话框并支持止损，则应实现这个方法。
+由于这种方法被调用，经纪商应该通过[equityUpdate](/book/Trading-Host.md#equityupdateequity)方法提供净资产更新。
 
 #### unsubscribeEquity()
-如果您使用标准订单对话框并支持止损，则应实施方法。
-由于这种方法被调用，经纪商应该停止提供股票更新。
+如果您使用标准订单对话框并支持止损，则应实现这个方法。
+由于这种方法被调用，经纪商应该停止提供净资产更新。
 
 这就是它！
 
-# See Also
-  * [[How to connect|Widget-Constructor#chart-trading_controller]] your trading controller to the chart
-  * [[Trading Host]]
+# 也可以看看
+  * [交易主机](/book/Trading-Host.md)

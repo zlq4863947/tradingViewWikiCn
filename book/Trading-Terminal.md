@@ -10,35 +10,33 @@
 
 ## 交易终端功能
 
-#### 交易能力
-(/book/Trading-Controller.md)其插入图表窗口小部件。
-您可以在图表中进行交易，而您需要做的就是实现经纪商API并将其插入图表widget中。
+#### 交易功能
+
+您可以通过图表进行交易，您需要做的所有工作就是实现您的[经纪商API](/book/Broker-API.md)并将其接入到图表widget。
 
 ![](/images/tt_trading.png)
 
 #### 高级订单对话框
 
-完全可定制的订单对话框允许设置市场/限价/止损/止损限价，输入止损和收益价格，  
-选择到期并计算风险。
+完全可定制的订单对话框允许设置市价/限价/止损/限价止损 订单，输入止损和获利价格，选择到期日和计算风险。
 
 ![](/images/tt_orderdialog.png)
 
 #### 账户管理器
 
-您可以在底部的交互式表格中显示订单/头寸和帐户信息，也可以在其中嵌入任何其他小部件。
+在底部的交互式表格中显示订单/仓位和帐户信息，也可以在其中嵌入任何其他小部件。
 
 ###### 详细了解此功能：
 
-* \[\[如何启用账户管理器\|Account-Manager\]\]
+* [如何启用账户管理器](/book/Account-Manager.md)
 
 #### DOM小部件
-
-You can display orders/positions and Level 2 data in an interactive DOM.  
-您可以在交互式DOM中显示订单/位置以及Level-2数据。
+ 
+您可以在交互式DOM中显示订单/持仓以及Level-2数据。
 
 ![](/images/tt_dom.png)
 
-#### 边栏报价（商品详情和观察列表）
+#### 侧边栏报价（商品详情和观察列表）
 
 在交易终端中，您可以拥有观察列表和商品详情窗口小部件（请参阅下面的快照）功能。
 
@@ -46,10 +44,10 @@ You can display orders/positions and Level 2 data in an interactive DOM.
 
 ###### 详细了解此功能：
 
-* \[\[如何启用侧边栏报价\|Widget-Constructor\#chart-widgetbar\]\]
-* 如何提供报价数据：取决于您使用什么样的数据集成 --\[\[JS API\|JS-Api\#chart-trading-terminal-specific\]\] 或 \[\[UDF\|UDF\#quotes\]\]
+* [如何启用侧边栏报价](/book/Widget-Constructor.md#组件工具栏)
+* 如何提供报价数据：取决于您使用什么样的数据集成 --[JS API](/book/JS-Api.md#交易终端专属) 或 [UDF](/book/UDF.md#quotes)
 
-#### 边栏市场新闻Feed
+#### 侧边栏市场新闻Feed
 
 您可以在图表的侧栏中直接显示新闻提要。 我们对新闻Feed的支持是灵活的：例如，您可以为不同类型的商品提供不同的Feed，等等。
 
@@ -57,12 +55,12 @@ You can display orders/positions and Level 2 data in an interactive DOM.
 
 ###### 详细了解此功能：
 
-* \[\[如何启用侧边栏新闻\|Widget-Constructor\#chart-widgetbar\]\]
-* \[\[如何设置要使用的Feed\|Widget-Constructor\#chart-rss\_news\_feed\]\]
+* [如何启用侧边栏新闻](/book/Widget-Constructor.md#组件工具栏)
+* [如何设置要使用的Feed](/book/Widget-Constructor.md#rssnewsfeed)
 
-#### 多重图表布局
+#### 多图表布局
 
-在同一个小部件中，您可以有多个图表。 这使您的用户能够使用更广泛的策略，以及更广泛的市场观点的能力。 您不必做任何事情来启用或调整它：它可以开箱即用。
+在同一个小部件中，您可以同时显示多个图表。 这使您的用户能够使用更广泛的策略，以及更广泛的市场观点的能力。您不必做任何事情来启用或调整它：它可以开箱即用。
 
 ![](/images/tt_charts.png)
 
@@ -72,7 +70,7 @@ You can display orders/positions and Level 2 data in an interactive DOM.
 
 #### 量能分布图 :![](/images/time.png)
 
-这项研究将需要一些服务器端的支持。 准备好后，我们会提供更多的细节。
+这项研究将需要一些服务器端的支持。准备好后，我们会提供更多的细节。
 
 #### 绘图工具模板 :![](/images/time.png)
 
@@ -80,13 +78,13 @@ You can display orders/positions and Level 2 data in an interactive DOM.
 
 ## 如何使用文档
 
-由于交易终端基于图表库，我们决定将文档合并到单个维基中。 所以所有的文档都在一个地方。 您唯一应该记住的是，特定于交易终端的功能标有这个可爱的绿色标记：图表：。
+由于交易终端基于图表库，我们决定将文档合并到单个维基中。 所以所有的文档都在一个地方。 您唯一应该记住的是，特定于交易终端的功能标有这个可爱的绿色标记：![](/images/trading.png)。
 
-# See Also
+# 也可以看看
 
-* \[\[How to connect your trading to the charts\|Trading Controller\]\]
-* \[\[Widget methods specific for Trading Terminal\|Widget-Methods\#chart-trading-terminal\]\]
-* \[\[Widget constructor parameters specific for Trading Terminal\|Widget-Constructor\#chart-trading-terminal-only\]\]
+* [如何将您的交易接口连接到图表](/book/Broker-API.md)
+* [交易终端专用的Widget方法](/book/Widget-Method.md#交易终端专属)
+* [用于交易终端的Widget构造函数参数](/book/Widget-Constructor.md)
 
 
 

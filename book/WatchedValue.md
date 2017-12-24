@@ -1,17 +1,19 @@
-WatchedValue object is returned by some [[Trading Terminal]] methods. Using this object you can get/set value and be notified when the value is changed.
+# WatchedValue
+
+WatchedValue对象由一些[Trading Terminal](book/Trading-Terminal.md)方法返回。 使用这个对象，你可以获得/设置值，并在值改变时得到通知。
 
 ### value()
-Returns current value.
+返回当前值。
 
 ### setValue(value)
-Sets new value.
+设置新价值。
 
 ### subscribe(callback, options)
-1. `callback` is a function to be called when the value is changed
-2. `options` is an object with the following properties:
-    1. `once` - if it is true the callback will be executed only once
-    2. `callWithLast` - if it is true the callback will be executed with the previous value (if available)
+1. `callback` 值被改变时被调用的函数
+2. `options` 具有以下属性的对象：
+    1. `once` - 如果是true，回调将只执行一次
+    2. `callWithLast` - 如果它是true，回调将被执行以前的值（如果可用）
 
 ### unsubscribe(callback)
 
-Use the same function which you used in `subscribe` function to unsubscribe from the updates.
+使用您在`subscribe`函数中使用的相同函数来取消订阅更新。

@@ -20,7 +20,7 @@
 9. [getTimescaleMarks](#gettimescalemarkssymbolinfo-startdate-enddate-ondatacallback-resolution)
 10. [getServerTime](#getservertimecallback)
 
-![](../images/trading.png)[交易终端专属](/book/Trading-Terminal.md):
+![](../images/trading.png)[交易终端专属](#交易终端专属):
 
 1. [getQuotes](#getquotessymbols-ondatacallback-onerrorcallback)
 2. [subscribeQuotes](#subscribequotessymbols-fastsymbols-onrealtimecallback-listenerguid)

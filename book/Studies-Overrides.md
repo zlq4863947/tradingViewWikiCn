@@ -20,7 +20,7 @@ studies_overrides: {
 
 ### 如何设置研究名称
 
-您应该在新建研究对话框中使用研究名称，但采用小写形式。 所以，如果你想覆盖默认的EMA长度，尝试使用`moving average exponential.lengt`h。 同样的原则适用于输入名称：使用名称，您可以在“研究属性”对话框中看到它们（也使用小写字母）。 例如：`stochastic.smooth d`。
+您应该在新建研究对话框中使用研究名称，但采用小写形式。 所以，如果你想覆盖默认的EMA长度，尝试使用`moving average exponential.length`。 同样的原则适用于输入名称：使用名称，您可以在“研究属性”对话框中看到它们（也使用小写字母）。 例如：`stochastic.smooth d`。
 
 ### 比较
 
@@ -46,55 +46,55 @@ studies_overrides: {
 
 例如: `volume.show ma`, `bollinger bands.length`
 
-### Plot property
+### 绘图属性
 Format: `indicator_name.plot_name.property_name`
 
 * **indicator_name**:  < ... >
-* **plot_name**: as you can see it in indicator's properties dialog (for example, `Volume` or `Plot`)
-* **property_name**: one of the following:
+* **plot_name**: 你可以在指标的属性对话框中看到它（例如`Volume`或`Plot`）
+* **property_name**: 下列之一:
   * **transparency**
   * **linewidth**
-  * **plottype**. Supported plot types are:
-    * line
-    * histogram
-    * cross
-    * area
-    * columns
-    * circles
-    * line_with_breaks
-    * area_with_breaks
+  * **plottype**. 支持的绘图类型有:
+    * line（线形图）
+    * histogram（直方图）
+    * cross（十字指针）
+    * area（山形图）
+    * columns（柱状图）
+    * circles（圆圈图）
+    * line_with_breaks（中断线）
+    * area_with_breaks（中断区块）
 
 
-Examples: `volume.volume.transparency`, `bollinger bands.median.linewidth`
+例子: `volume.volume.transparency`, `bollinger bands.median.linewidth`
 
-### Plot colors
-Format: `indicator_name.plot_name.color<.color_index>`
+### 绘图颜色
+格式: `indicator_name.plot_name.color<.color_index>`
 
 * **indicator_name**:  < ... >
 * **plot_name**:  < ... >
-* **color**. It is just a keyword.
-* **color_index** (optional): color index (if any). It's just an ordinal number of a color for this plot. I.e., to replace the color which is green by default for Volume, one should use `color_index = 1`.
+* **color**. 这只是一个关键字。
+* **color_index** （可选）：颜色索引（如果有的话）。 这只是一个颜色索引。 也就是说，要取代成交量默认为绿色的颜色，应该使用`color_index = 1`。
 
-**Remark 1**: `color.0` is a synonym of `color` .So paths `volume.volume.color.0` and `volume.volume.color` are treated to be the same.
+**备注1**: `color.0` 是`color`的同义词。因此路径 `volume.volume.color.0` 和 `volume.volume.color` 被视为相同。
 
-**Remark 2**: For now, customizing area fill color and transparency is not supported.
+**备注2**: 现在，不支持自定义区域填充颜色和透明度。
 
-**Limitations**:
-* Only `#RRGGBB` format is supported for colors. Do not use short format `#RGB`.
-* Transparency varies in [0..100] range. 100 means plot is fully opaque.
-* Thickness is an integer.
+**限制**:
+* 颜色只支持`＃RRGGBB`格式。 不要使用短格式的“＃RGB”。
+* 透明度在[0..100]范围内变化。 100意味着完全不透明的。
+* 厚度是一个整数。
 
-### Study options
-Format: `indicator_name.options.option_name`
+### 研究选项
+格式: `indicator_name.options.option_name`
 
 * **indicator_name**:  < ... >
-* **options**:  Keyword
-* **option_name**: name of option you want to assign. Supported values are:
-  * **showStudyArguments**: boolean, controls arguments visibility in header
-  * **showLastValue**: boolean, controls visibility of price scale labels
+* **options**:  关键字
+* **option_name**: 你想分配的选项名称。 支持的值是：
+  * **showStudyArguments**: boolean, 控制标题中的参数可见性
+  * **showLastValue**: boolean, 控制价格标签的可见性
 
-Examples: `volume.options.showStudyArguments`, `volume.options.showLastValue`
+例子: `volume.options.showStudyArguments`, `volume.options.showLastValue`
 
-### Default precision
-Since 1.6 you can change default precision of studies using `name.precision` format. Example:
+### 默认精度
+1.6版本开始，您可以使用`name.precision`格式更改研究的默认精度。 例：
 `"average true range.precision": 8`

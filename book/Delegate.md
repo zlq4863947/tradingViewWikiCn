@@ -1,10 +1,12 @@
-Delegate object is returned by some [[Trading Terminal]] methods and is is required to use an [[Account Manager]]. Using this object you can get updated and update of an event.
+# 委托
+
+委托对象由一些[Trading Terminal](book/Trading-Terminal.md)方法返回，并且需要使用[Account Manager](book/Account-Manager.md)。 使用这个对象，你可以更新和更新一个事件。
 
 ### subscribe(object, member)
-Subscribes object::member to the event.
-1. `object` is an owner of member, it can be null for a function
-2. `member` is a method of object
+订阅事件.
+1. `object` 是`member`的所有者，它可以为null
+2. `member` 是对象的一种方法
 
 ### unsubscribe(object, member)
-Unsubscribes object::member from the event.
-Use the same object and member that you used in `subscribe` function to unsubscribe from the event.
+取消订阅事件
+使用与`subscribe`函数中使用的相同的对象和成员来取消订阅事件。

@@ -229,11 +229,94 @@ time_frames: [
 
 * **intervals\(间隔\)**: 收藏的间隔数组。 例：`["D", "2D"]`
 * **chartTypes\(图表类型\)**: 收藏的图表类型数组 。图表类型名称与图表的UI中的英文版本相同。 例:`["Area", "Candles"]`
-  .
 
-## ![](../images/trading.png)交易终端专属
+#### save_load_adapter (since 1.12)
 
-#### ![](../images/trading.png)组件工具栏
+包含保存/加载功能的对象。 如果设置了，应有以下方法：
+
+**Chart layouts**
+
+ 1. `getAllCharts(): Promise<ChartMetaInfo[]>` 
+ 
+    获取所有保存的图表。
+
+    `ChartMetaInfo` 具有以下字段的对象:
+      - `id` - 图表id
+      - `name` - 图表名
+      - `symbol` - 图表的商品
+      - `resolution` - 分辨率
+      - `timestamp` - 最后修改日期（从01/01/2015 UTC午夜开始的毫秒数）。
+
+ 1. `removeChart(chartId): Promise<void>`
+     
+     删除图表。 `chartId`是图表的唯一ID（参见上面的`getAllCharts`）。
+
+ 1. `saveChart(chartData: ChartData): Promise<ChartId>`
+     
+     存储图表。
+
+    `ChartData` 具有以下字段的对象:
+      - `id` - 图表的唯一标识（如果未保存则可能是`undefined`）。
+      - `name` - 图表名
+      - `symbol` - 图表的商品
+      - `resolution` - 分辨率
+      - `content` - 图表的内容
+
+    `ChartId` - 图表唯一id (string)
+
+ 1. `getChartContent(chartId): Promise<ChartContent>`
+     
+     通过服务器加载图表
+
+    `ChartContent` 带有图表内容的字符串（参见`saveChart`函数中的`ChartData :: content`字段）。
+
+**Study Templates**
+
+ 1. `getAllStudyTemplates(): Promise<StudyTemplateMetaInfo[]>`
+     
+     获取所有保存的研究模板。
+     
+    `StudyTemplateMetaInfo` 具有以下字段的对象:
+      - `name` - 研究模板名称
+
+ 1. `removeStudyTemplate(studyTemplateInfo: StudyTemplateMetaInfo): Promise<void>`
+     
+     删除研究模板
+
+ 1. `saveStudyTemplate(studyTemplateData: StudyTemplateData): Promise<void>`
+     
+     存储研究模板
+     
+    `StudyTemplateData` 具有以下字段的对象:
+      - `name` - 研究模板名称
+      - `content` - 研究模板的内容
+
+ 1. `getStudyTemplateContent(studyTemplateInfo: StudyTemplateMetaInfo): Promise<StudyTemplateContent>`
+ 
+     通过服务器加载研究模板
+     
+    `StudyTemplateContent` - 研究模板的内容 (string)
+
+ 如果同时设置了 `charts_storage_url` 和 `save_load_adapter` 将被设置 - `save_load_adapter`
+
+ **重要：** 所有函数应该返回`Promise`（或`Promise`类对象）。
+
+#### settings_adapter (since 1.11)
+
+包含设置/删除的方法。 使用它将图表设置保存到您的首选存储，包括服务器端。 如果设置了，应该有以下方法：
+
+1. `initialSettings: Object`
+初始化设置
+
+1. `setValue(key: string, value: string): void`
+存储键/值对
+
+1. `removeValue(key: string): void`
+删除键
+
+## ![](../images/trading.png) 交易终端专属
+
+#### ![](../images/trading.png) 组件工具栏
 
 该对象包含图表右侧窗口小部件栏的设置。 右侧窗口小部件栏中的数据窗口，观察列表和详细信息选项卡可以使用Widget构造函数中的widgetbar 开启此功能：
 
@@ -253,7 +336,7 @@ widgetbar: {
 * **watchlist\_settings.default\_symbols &lt;\[\]&gt;**: 给观察列表设置商品数组。
 * \*\*watchlist\_settings.readonly: 给观察列表开启只读模式。
 
-#### ![](../images/trading.png)rss\_news\_feed
+#### ![](../images/trading.png) rss\_news\_feed
 
 使用此属性更改RSS新闻。 您可以为每个商品类型设置不同的rss，或为每个商品使用一个rss。 对象将拥有`default`属性，其他属性是可选的; 它们的名字为商品的类型. 每个属性都拥有一个对象\(或对象数组\) 并且具有以下属性:
 
@@ -300,26 +383,26 @@ widgetbar: {
 }
 ```
 
-#### ![](../images/trading.png)news\_provider
+#### ![](../images/trading.png) news\_provider
 
 代表新闻提供者的对象。 它可能包含以下属性：
 
-1. `is_news_generic`- 如果为`true`新闻小部件的标题将不会有产品名称 \(只是`Headlines`\). 否则`SYMBOL_NAME`将会被添加。
+1. `is_news_generic`- 如果为`true`新闻小部件的标题将不会有产品名称 \(只有`Headlines`\). 否则`SYMBOL_NAME`将会被添加。
 
 2. `get_news`- 使用此属性设置自己的新闻 getter 方法.`symbol`和`callback`将会传递给此方法。
 
-   回调函数将被调用，并且传递一下结构的新闻对象:
+   回调函数被调用时，会传递一下结构的新闻对象:
 
-   1. `title`\(required\) - 新闻项目标题。
-   2. `published`\(required\) - 新闻项目时间（以ms为单位）
-   3. `source`\(optional\) - 标题的新闻项目来源。
-   4. `shortDescription`\(optional\) - 将显示的新闻项目的简短说明。
-   5. `link`\(optional\) - 新闻URL 
-   6. `fullDescription`\(optional\) - 新闻项目的完整描述（正文）
+   1. `title`\(必须\) - 新闻项目标题。
+   2. `published`\(必须\) - 新闻项目时间（以ms为单位）
+   3. `source`\(可选\) - 标题的新闻项目来源。
+   4. `shortDescription`\(可选\) - 将显示的新闻项目的简短说明。
+   5. `link`\(可选\) - 新闻URL 
+   6. `fullDescription`\(可选\) - 新闻项目的完整描述（正文）
 
    **注意:**当用户点击新闻项目时，将打开带有`link`URL的新标签页。 如果没有指定`link`，将显示带有`fullDescription`的对话框弹出窗口。
 
-   **注意2:**如果它设置为`rss_news_feed`则将会被忽略.
+   **注意2:**如果它设置为`rss_news_feed`则将会被忽略。
 
 例:
 
@@ -348,9 +431,9 @@ news_provider: {
 }
 ```
 
-#### ![](../images/trading.png)trading\_controller
+#### ![](../images/trading.png) trading\_controller
 
-交易控制器可以让您在线交易。[阅读更多](/book/Trading-Controller.md).
+交易控制器可以让您在线交易。[阅读更多](/book/Trading-Controller.md)
 
 ```js
 new TradingView.widget({
@@ -358,6 +441,14 @@ new TradingView.widget({
     trading_controller: new MyTradingController()
 });
 ```
+
+#### ![](../images/trading.png) brokerFactory
+使用这个字段来传递构造[经纪商API](/book/Broker-API.md)的实现函数。 
+这是一个接收[交易主机](/book/Trading-Host.md)并返回[经纪商API](/book/Broker-API.md)的函数。
+
+#### ![](../images/trading.png) brokerConfig
+`brokerConfig: { configFlags: {...} }`
+使用此字段设置交易终端的配置标志。 [了解更多](/book/Broker-API.md#tradingconfiguration)
 
 # 也可以看看
 
