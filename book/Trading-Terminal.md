@@ -4,7 +4,7 @@
 
 ![](/images/trading.png)此页面上的所有内容仅与交易终端相关。
 
-交易终端是一个即用型产品，为那些想要有一个全功能图表解决方案，以及从图表交易的能力。This 产品基于图表库，并包含其所有功能，而且还包含一大堆新功能。 交易终端资源[链接](https://github.com/tradingview/trading_platform)。
+交易终端是一个即用型产品，为那些想要有一个全功能图表解决方案，以及从图表交易的能力。该产品基于图表库，并包含其所有功能，而且还包含一大堆新功能。 交易终端资源[链接](https://github.com/tradingview/trading_platform)。
 
 该产品正在开发中，因此一些功能还没有。 它们被标记为：![](/images/time.png)
 
