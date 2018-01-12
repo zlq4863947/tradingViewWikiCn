@@ -10,7 +10,7 @@
 # [Methods](#methods)
 
 1. [onReady](#onreadycallback)
-2. [searchSymbolsByName](#searchsymbolsbynameuserinput-exchange-symboltype-onresultreadycallback)
+2. [searchSymbols](#searchSymbolsuserinput-exchange-symboltype-onresultreadycallback)
 3. [resolveSymbol](#resolvesymbolsymbolname-onsymbolresolvedcallback-onresolveerrorcallback)
 4. [getBars](#getbarssymbolinfo-resolution-from-to-onhistorycallback-onerrorcallback-firstdatarequest)
 5. [subscribeBars](#subscribebarssymbolinfo-resolution-onrealtimecallback-subscriberuid-onresetcacheneededcallback)
@@ -75,7 +75,9 @@ configurationData是一个对象，现在支持以下属性:
 
 将此设置为`true`假如您的datafeed提供服务器时间（unix时间）。 它用于调整时间刻度上的价格比例。
 
-### [searchSymbolsByName\(userInput, exchange, symbolType, onResultReadyCallback\)](#searchsymbolsbynameuserinput-exchange-symboltype-onresultreadycallback)
+#####futures_regex 如果您想在商品搜索中对期货进行分组，请设置它。 这个 REGEX 应该将仪器名称分为两部分：根和期满。 实例 regex: : /^(.+)([12]!|[FGHJKMNQUVXZ]\d{1,2})$/. 它将应用于类型为期货的图表。
+
+### [searchSymbols\(userInput, exchange, symbolType, onResultReadyCallback\)](#searchsymbolsuserinput-exchange-symboltype-onresultreadycallback)
 
 1. `userInput`: string，用户在商品搜索中输入的文字。
 2. `exchange`:string，请求的交易所（由用户选择）。空值表示没有指定。

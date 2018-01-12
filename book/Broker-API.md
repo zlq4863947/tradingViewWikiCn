@@ -107,7 +107,7 @@ ConnectionStatus.Error = 4
 - `type` - 商品类型, 只要 `forex` 比较特殊 - 它允许在订单对话框中检查负的点数。
 - `domVolumePrecision` - DOM 卖出/买入量的小数位数（可选，默认为0）
 
-#### accountInfo() : Deferred (or Promise)
+#### accountInfo() : Deferred (或 Promise)
 
 这个方法被内部的Order Dialog调用来获取帐户信息。
 现在应该只返回一个字段：

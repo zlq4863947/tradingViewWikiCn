@@ -8,9 +8,9 @@
 
 请遵循以下几个步骤:
 
-  1. 为您的数据创建一个新的ticker，并设置您的服务器返回此ticker有效的SymbolInfo。
-  2. 设置服务器以返回此ticker的有效历史数据。
-  3. 使用以下指标模板并填写所有占位符(placeholder)的值：名称，说明和代码。 如果需要，还可以修改绘图的默认样式。
+  1、 为您的数据创建一个新的ticker，并设置您的服务器返回此ticker有效的SymbolInfo。
+  2、 设置服务器以返回此ticker的有效历史数据。
+  3、 使用以下指标模板并填写所有占位符(placeholder)的值：名称，说明和代码。 如果需要，还可以修改绘图的默认样式。
 
 ```javascript
 {
@@ -112,7 +112,7 @@
 }
 ```
 
-  4. 将指标保存到具有以下结构的自定义指标文件中:
+  4、 将指标保存到具有以下结构的自定义指标文件中:
 
 ```javascript
 __customIndicators = [
@@ -122,8 +122,8 @@ __customIndicators = [
 
 请注意，该指标文件是一个JavaScript源文件，它定义了一个指标对象数组。因此，您可以在其中放置多个指标，或者将它们与我们为您编译的指标组合起来。
 
-  5. 使用 [indicators_file_name](/book/Widget-Constructor.md#indicatorsfilename) Widget构造函数的选项来从指标文件加载自定义指标。
-  6. 图表准备好后，更新您的Widget初始化代码以[创建](/book/Chart-Methods.md#createstudyname-forceoverlay-lock-inputs-callback-overrides-options) 此指标。
+  5、 使用 [indicators_file_name](/book/Widget-Constructor.md#indicatorsfilename) Widget构造函数的选项来从指标文件加载自定义指标。
+  6、 图表准备好后，更新您的Widget初始化代码以[创建](/book/Chart-Methods.md#createstudyname-forceoverlay-lock-inputs-callback-overrides-options) 此指标。
 
 **例子**
 
