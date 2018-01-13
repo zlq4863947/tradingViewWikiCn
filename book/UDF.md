@@ -254,7 +254,7 @@ Response: 响应预期为一个具有下列属性的数组对象。
 2. `color`: rgba color
 3. `label`: 显示在圆圈中的文字
 4. `time`: unix time
-5. `tooltip`: tooltip text
+5. `tooltip`: 提示文本
 
 **Remark**: This call will be requested if your datafeed sent`supports_timescale_marks: true`in configuration data.
 
@@ -262,7 +262,7 @@ Response: 响应预期为一个具有下列属性的数组对象。
 
 Request:`GET /time`
 
-Response: Numeric unix time without milliseconds. Example: 1445324591
+Response: 数字unix时间没有毫秒。 例: 1445324591
 
 ### [报价](#报价)
 

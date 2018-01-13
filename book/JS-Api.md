@@ -5,7 +5,7 @@
 **这是啥?** 一套JS方法（特定的公共接口）。  
 **我该怎么使用它?**: 您应该创建一个JS对象，它将以某种方式接收数据，并响应Charting Library请求。
 
-数据缓存（历史和股票信息）在图表库中实现。当你创建一个实现描述接口的对象时，只需通过`datafeed`参数将其传递给图表库[Widget的构造函数](/book/Widget-Constructor.md)。
+在图表库中实现了数据缓存（历史和商品信息）。当您创建一个实现接口的对象时，只需将它传递给图表库[Widget的构造函数](/book/Widget-Constructor.md)。
 
 # [Methods](#methods)
 
@@ -35,9 +35,9 @@
     i.configurationData: object (见下文)
 ```
 
-此方法旨在提供填充配置数据的对象。这些数据会影响图表的行为，所以它被称为[服务端定制](Customization-Overview.md#customization-done-through-data-stream)。
+此方法旨在提供填充配置数据的对象。这些数据会影响图表的行为表现，所以它被调用在[服务端定制](Customization-Overview.md#customization-done-through-data-stream)。
 
-Charting Library 要求您使用回调函数来传递datafeed的configurationData参数。
+图表库要求您使用回调函数来传递datafeed的configurationData参数。
 
 configurationData是一个对象，现在支持以下属性:
 
@@ -45,21 +45,21 @@ configurationData是一个对象，现在支持以下属性:
 
 一个交易所数组。 Exchange是一个对象`{value, name, desc}`。
 
-`value将被作为exchange参数传递给` searchSymbolsByName \(见下文\)。
+`value将被作为exchange参数传递给` searchSymbols \(见下文\)。
 
 `exchanges= []`会导致商品查询列表中看不到交易所过滤器。使用`value= ""`来创建通配符筛选器（所有的交易所）。
 
 ##### [symbols\_types](#symbolstypes)
 
-一个商品类型过滤器数组。该商品类型过滤器是个对象`{name, value}`。`value`将被作为`symbolType`参数传递给searchSymbolsByName。
+一个商品类型过滤器数组。该商品类型过滤器是个对象`{name, value}`。`value`将被作为`symbolType`参数传递给searchSymbolsB。
 
-`symbolsTypes`= \[\] 会导致商品查询列表中看不到商品类型过滤器。 使用`value`= ""来创建通配符筛选器（所有的商品类型）。
+`symbolsTypes`= \[\] 会导致商品查询列表中看不到商品类型过滤器。 使用`value= ""`来创建通配符筛选器（所有的商品类型）。
 
 ##### [supported\_resolutions](#supportedresolutions)
 
 一个表示服务器支持的分辨率数组，分辨率可以是数字或字符串。 如果分辨率是一个数字，它被视为分钟数。 字符串可以是“\*D”，“\*W”，“\_M”（\_的意思是任何数字）。格式化详细参照:[文章](/book/Resolution.md)。
 
-'resolutions'=undefined 或 \[\] 时，分辨率拥有默认内容 \(见：[http://tradingview.com/e/](http://tradingview.com/e/)\)。
+`resolutions`=undefined 或 \[\] 时，分辨率拥有默认内容 \(见：[http://tradingview.com/e/](http://tradingview.com/e/)\)。
 
 例:`[1, 15, 240, "D", "6M"]`您将在分辨率中得到 "1 分钟, 15 分钟, 4 小时, 1 天, 6 个月" 。
 
@@ -79,7 +79,7 @@ configurationData是一个对象，现在支持以下属性:
 
 ### [searchSymbols\(userInput, exchange, symbolType, onResultReadyCallback\)](#searchsymbolsuserinput-exchange-symboltype-onresultreadycallback)
 
-1. `userInput`: string，用户在商品搜索中输入的文字。
+1. `userInput`: string，用户在商品搜索框中输入的文字。
 2. `exchange`:string，请求的交易所（由用户选择）。空值表示没有指定。
 3. `symbolType`: string，请求的商品类型：指数、股票、外汇等等（由用户选择）。空值表示没有指定。
 4. `onResultReadyCallback`: function\(result\)
@@ -117,16 +117,16 @@ configurationData是一个对象，现在支持以下属性:
 
 1. `symbolInfo`:[SymbolInfo](/book/Symbology.md#商品信息结构) 商品信息对象
 2. `resolution`: string （分辨率）
-3. `from`: unix 时间戳, 最左边必须的K线时间
-4. `to`: unix 时间戳, 最右边必须的K线时间
+3. `from`: unix 时间戳, 最左边请求的K线时间
+4. `to`: unix 时间戳, 最右边请求的K线时间
 5. `onHistoryCallback`: function\(数组`bars`,`meta`=_{ noData = false }_\)
    1. `bars`: Bar对象数组`{time, close, open, high, low, volume}[]`
-   2. `meta`: object`{noData = true | false, nextTime - unix time}`
+   2. `meta`: object`{noData = true | false, nextTime = unix time}`
 6. `onErrorCallback`: function\(reason：错误原因\)
 7. `firstDataRequest`: 布尔值，以标识是否第一次调用此商品/分辨率的历史记录。当设置为`true`时
    你可以忽略`to`参数（这取决于浏览器的`Date.now()`\) 并返回K线数组直到当前K线（包括它）。
 
-方法介绍：通过日期范围获取历史K线数据。图表库希望通过`onHistoryCallback`仅一次调用，接收所有的请求历史。而不被多次调用。
+方法介绍：通过日期范围获取历史K线数据。图表库希望通过`onHistoryCallback`仅一次调用，接收所有的请求历史。而不是被多次调用。
 
 > 发生不断自动刷新图表问题时，请检查`from`与`onHistoryCallback`方法返回的`bars`时间是否一致，没有数据时请返回`noData = true`
 
@@ -153,17 +153,12 @@ configurationData是一个对象，现在支持以下属性:
 
 **Remark**: 当您调用`onRealtimeCallback`且K线时间等于最近一条K线时间时，那么这条最近的K线将被您传入的K线所替换。 例:
 
-1. 最近一条K线为
-   `{1419411578413, 10, 12, 9, 11}`
-2. 您的调用
-   `onRealtimeCallback({1419411578413, 10, 14, 9, 14})`
-3. 图表库通过时间找出K线
-   `1419411578413`
-   已经存在，并且是最近的那一个
-4. 图表库替换K线，因此现在最近一条K线为
-   `{1419411578413, 10, 14, 9, 14}`
+1. 最近一条K线为 `{1419411578413, 10, 12, 9, 11}`
+2. 调用 `onRealtimeCallback({1419411578413, 10, 14, 9, 14})`
+3. 图表库通过时间`1419411578413`找出K线，已存在并且是最近的那一个
+4. 图表库替换K线，因此现在最近一条K线为 `{1419411578413, 10, 14, 9, 14}`
 
-**Remark 2**: 是否可以更新最近的K线或追加一条新的，取决于`onRealtimeCallback`。 如果您调用此功能尝试更新历史记录中的一个K线，则会收到错误消息。
+**Remark 2**: 是否可以更新最近的K线或追加一条新的，取决于`onRealtimeCallback`。 如果您调用此功能尝试更新历史记录中的一个K线时，则会收到错误消息。
 
 **Remark 3**: 现在，在图表接收到数据后，没有办法改变历史上的K线。
 
@@ -179,12 +174,12 @@ configurationData是一个对象，现在支持以下属性:
 2. `resolutionBack`: 期望历史周期刻度。支持的值:`D`\|`M`
 3. `intervalBack`: 数量
 
-方法介绍：算出历史数据周期刻度，使您能够重写所需的历史深度。
+方法介绍：图表库在它要请求一些历史数据的时候会调用这个函数，让你能够覆盖所需的历史深度。
 
-通过一些参数，让您知道要获得的是什么样数据。 以下是几个例子:
+通过传递的参数，可以让您知道要获得什么样的K线数据。 以下是几个例子:
 
 * `calculateHistoryDepth("D", "M", 12)`
-  调用: 图表库请求 12 个月的日线数据
+  调用: 图表库请求12个月的日线数据
 * `calculateHistoryDepth(60, "D", 15)`
   调用: 图表库请求15天的60分钟数据
 
@@ -210,12 +205,12 @@ Datafeed.prototype.calculateHistoryDepth = function(resolution, resolutionBack, 
 ### [getMarks\(symbolInfo, startDate, endDate, onDataCallback, resolution\)](#getmarkssymbolinfo-startdate-enddate-ondatacallback-resolution)
 
 1. `symbolInfo`:[SymbolInfo](/book/Symbology.md#商品信息结构) 商品信息对象
-2. `startDate`:  unix 时间戳, 最左边必须的K线时间
-3. `endDate`: unix 时间戳, 最右边必须的K线时间
+2. `startDate`:  unix 时间戳, 最左边请求的K线时间
+3. `endDate`: unix 时间戳, 最右边请求的K线时间
 4. `onDataCallback`: function\(标记数字`marks`\)
 5. `resolution`: string
 
-方法介绍：获取可见K线范围的标记。图表预期每调用一次`getMarks`就会调用一次`onDataCallback`。
+方法介绍：图书馆调用这个函数来获得可见的K线范围的标记。 图表预期每调用一次`getMarks`就会调用一次`onDataCallback`。
     
 `mark`为具有以下属性的对象:
 

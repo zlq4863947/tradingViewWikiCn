@@ -19,7 +19,7 @@ new TradingView.widget({
 
 属性标记为![](../images/trading.png)的只在交易终端可用。
 
-#### symbol, interval \[mandatory\]
+#### symbol, interval \[必填项\]
 
 您的图表的初始商品和间隔。间隔的格式在另一篇[文章](/book/Resolution.md)中说明。
 
@@ -27,11 +27,11 @@ new TradingView.widget({
 
 设置图表的初始时间范围。时间范围是加载并显示在屏幕上的K线范围。有效的时间范围是一个数字加一个字母，D为数天，M为数月。
 
-#### container\_id \[mandatory\]
+#### container\_id \[必填项\]
 
 `id`属性为指定要包含widget的DOM元素id。
 
-#### datafeed \[mandatory\]
+#### datafeed \[必填项\]
 
 JavaScript对象的实现接口 [JS API](/book/JS-Api.md) 以反馈图表及数据。
 
@@ -67,7 +67,7 @@ widget的尺寸，请确保widget拥有足够的空间。
 
 #### auto\_save\_delay
 
-延迟秒数等待 onAutoSaveNeeded 可以被再次调用。 该参数介绍在1.5版本中。
+延迟秒数等待 `onAutoSaveNeeded` 可以被再次调用。 该参数介绍在1.5版本中。
 
 #### toolbar\_bg
 
@@ -223,6 +223,18 @@ time_frames: [
 
 将您的自定义CSS添加到图表中。url应该是到'static\`文件夹的绝对或相对路径。
 
+#### loading\_screen \(since 1.12\)
+
+定制加载进度条。值是具有以下可能 `key` 的对象。
+
+- `backgroundColor`
+- `foregroundColor`
+
+Example:
+```javascript
+loading_screen: { backgroundColor: "#000000" }
+```
+
 #### favorites
 
 默认支持该项目。此选项需要禁用localstorage的使用（请参阅[功能集](/book/Featuresets.md)以了解更多\)。`favorites`property 为一个对象，拥有以下属性：
@@ -247,11 +259,11 @@ time_frames: [
       - `resolution` - 分辨率
       - `timestamp` - 最后修改日期（从01/01/2015 UTC午夜开始的毫秒数）。
 
- 1. `removeChart(chartId): Promise<void>`
+ 2. `removeChart(chartId): Promise<void>`
      
      删除图表。 `chartId`是图表的唯一ID（参见上面的`getAllCharts`）。
 
- 1. `saveChart(chartData: ChartData): Promise<ChartId>`
+ 3. `saveChart(chartData: ChartData): Promise<ChartId>`
      
      存储图表。
 
@@ -264,7 +276,7 @@ time_frames: [
 
     `ChartId` - 图表唯一id (string)
 
- 1. `getChartContent(chartId): Promise<ChartContent>`
+ 4. `getChartContent(chartId): Promise<ChartContent>`
      
      通过服务器加载图表
 
@@ -279,11 +291,11 @@ time_frames: [
     `StudyTemplateMetaInfo` 具有以下字段的对象:
       - `name` - 研究模板名称
 
- 1. `removeStudyTemplate(studyTemplateInfo: StudyTemplateMetaInfo): Promise<void>`
+ 2. `removeStudyTemplate(studyTemplateInfo: StudyTemplateMetaInfo): Promise<void>`
      
      删除研究模板
 
- 1. `saveStudyTemplate(studyTemplateData: StudyTemplateData): Promise<void>`
+ 3. `saveStudyTemplate(studyTemplateData: StudyTemplateData): Promise<void>`
      
      存储研究模板
      
@@ -291,7 +303,7 @@ time_frames: [
       - `name` - 研究模板名称
       - `content` - 研究模板的内容
 
- 1. `getStudyTemplateContent(studyTemplateInfo: StudyTemplateMetaInfo): Promise<StudyTemplateContent>`
+ 4. `getStudyTemplateContent(studyTemplateInfo: StudyTemplateMetaInfo): Promise<StudyTemplateContent>`
  
      通过服务器加载研究模板
      
@@ -308,10 +320,10 @@ time_frames: [
 1. `initialSettings: Object`
 初始化设置
 
-1. `setValue(key: string, value: string): void`
+2. `setValue(key: string, value: string): void`
 存储键/值对
 
-1. `removeValue(key: string): void`
+3. `removeValue(key: string): void`
 删除键
 
 ## ![](../images/trading.png) 交易终端专属
