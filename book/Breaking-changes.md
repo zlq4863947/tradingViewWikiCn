@@ -18,7 +18,7 @@ _注意：您可以通过在浏览器控制台中执行 `TradingView.version()` 
 但是，如果将它作为模块导入，则应该直接导入它的`widget`，`version`和`onready`函数。
 
 研究覆盖:
-- 覆盖 `Overlay` 只能通过 `studies_overrides` (以及运行时的 `applyStudiesOverrides` )。 在以前版本中您使用 `overrides` 和 `applyOverrides`). 查看 [研究覆盖](Studies-Overrides.md) 页.
+- 覆盖 `Overlay` 只能通过 `studies_overrides` (或运行时的 `applyStudiesOverrides` )。 在以前版本中您可以使用 `overrides` 和 `applyOverrides`). 查看 [研究覆盖](Studies-Overrides.md) 页.
 - 从这个版本开始，您将不能再使用 `options` 关键字以覆盖 `showStudyArguments` 和 `showLastValue` 。
 
 **交易终端**
@@ -57,21 +57,21 @@ _注意：您可以通过在浏览器控制台中执行 `TradingView.version()` 
 
 先前的行为：在仪表或分辨率切换时，根据成交量支持选项来确定成交量指标的添加/删除。 您可以通过禁用`create_volume_indicator_by_default_once` 功能集来恢复到此行为。
 
-新的行为：如果当前仪表支持，则在空白图表的第一次加载时会添加成交量指标。
+新的行为：如果当前仪表支持成交量，则在空白图表的第一次加载时会添加成交量指标。
 
 ## Version 1.9
 - 我们不再编译更多Pine脚本。您仍然可以使用以前编译过的脚本。
 
 ## Version 1.8 的交易终端
--  图表没有选择只显示实际订单。已删除了适当的方法。
-- `showOrderDialog` 接收一个对象而不是参数列表
+-  图表不可以只显示当前订单。适当的方法已被删除。
+- `showOrderDialog` 输入参数时一个对象而不是列表
 - `showSampleOrderDialog` 已被移除。 请使用 [showOrderDialog](Trading-Host.md#showorderdialogorder-handler) 代替。
 - 在 [交易控制器](Trading-Controller.md) 中删除`showOrderDialog`, 使用 `placeOrder` 和 `modifyOrder` 接收 `silently` 参数。
-- `reversePosition`, `closePosition`, `cancelOrder` 有一个额外的参数 `silently`. 从现在起他们有自己适当的对话框。
+- `reversePosition`, `closePosition`, `cancelOrder` 有一个额外的参数 `silently`. 从现在起他们有了自己的对话框。
 
 ## Version 1.7
 
-- 从这个版本开始不能够通过相同的商品调用 `setSymbol`。 您应该先从 `subscribeBars` 调用 `onResetCacheNeededCallback` 开始。 然后您可以使用图表的 `setSymbol` 或 新的 `resetData` 方法。
+- 从这个版本开始不能够用相同的商品代码调用 `setSymbol`。 您应该先从 `subscribeBars` 调用 `onResetCacheNeededCallback` 开始。 然后您才可以使用图表的 `setSymbol` 或 新的 `resetData` 方法。
 - JSAPI 协议版本 1 不在被支持。必须提供 `nextTime` 和 `noData`。
 
 ## Version 1.5
