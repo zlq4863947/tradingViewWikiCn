@@ -1,3 +1,4 @@
+git clean -i
 git config --global http.postBuffer 1048576000
 rm -rf _book
 #rm -rf testPro
