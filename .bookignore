@@ -1,0 +1,4 @@
+deploy.sh
+hexo-site
+.gitignore
+.bookignore
