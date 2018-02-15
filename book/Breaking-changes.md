@@ -20,6 +20,8 @@ _注意：您可以通过在浏览器控制台中执行 `TradingView.version()` 
 如果您只是将这个脚本嵌入到HTML中 - 没有任何改变。
 但是，如果将它作为模块导入，则应该直接导入它的`widget`，`version`和`onready`函数。
 
+- `searchSymbolsByName` is removed from `JS-API`, use `searchSymbols` instead.
+
 研究覆盖:
 - 覆盖 `Overlay` 只能通过 `studies_overrides` (或运行时的 `applyStudiesOverrides` )。 在以前版本中您可以使用 `overrides` 和 `applyOverrides`). 查看 [研究覆盖](Studies-Overrides.md) 页.
 - 从这个版本开始，您将不能再使用 `options` 关键字以覆盖 `showStudyArguments` 和 `showLastValue` 。
@@ -95,5 +97,5 @@ _注意：您可以通过在浏览器控制台中执行 `TradingView.version()` 
 * 覆盖 `mainSeriesProperties.candleStyle.wickColor` 不在被支持。
 请使用 `mainSeriesProperties.candleStyle.wickUpColor` 和 `mainSeriesProperties.candleStyle.wickDownColor`
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE1OTM0ODE3NjVdfQ==
+eyJoaXN0b3J5IjpbMTA2OTQ5MTg5N119
 -->
