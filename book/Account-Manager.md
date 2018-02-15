@@ -188,3 +188,6 @@
 
 可选方法以创建一个自定义上下文菜单。
 它返回用`ActionMetainfo`数组解析的 `Promise`。
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbMTUwMTA5Mjk5MF19
+-->
