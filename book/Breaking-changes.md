@@ -1,4 +1,4 @@
-#版本变更点
+# 版本变更点
 
 ---
 
@@ -91,3 +91,6 @@ _注意：您可以通过在浏览器控制台中执行 `TradingView.version()` 
 
 * 覆盖 `mainSeriesProperties.candleStyle.wickColor` 不在被支持。
 请使用 `mainSeriesProperties.candleStyle.wickUpColor` 和 `mainSeriesProperties.candleStyle.wickDownColor`
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbMTYwNzQ2OTMzNV19
+-->
