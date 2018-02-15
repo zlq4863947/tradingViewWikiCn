@@ -300,3 +300,6 @@ mark为具有以下属性的对象:
 
 交易终端当不希望接收此监听时调用此函数。
 
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbLTc2NDg3ODgxMV19
+-->
