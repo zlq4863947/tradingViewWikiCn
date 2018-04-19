@@ -449,10 +449,25 @@ id: string;
 title: string;
 symbols: string[];
 ```
+
 如果没有监视列表或者已有一个等价列表，则返回`false` 否则返回 `true` 。
 
 1.  `deleteList(listId: string)` - 允许您删除商品列表。
-6. `onListChanged()`- 您可以通过订阅[Subscription](/book/Subscription.md)对象返回此回调函数，通知当观察列表发生变化并退订事件，如果没有观察列表将返回null。
+6. `onListChanged()`- 当在监视列表中的商品更改时, 可以使用此方法进行通知。您可以使用此方法返回的 [Subscription](/book/Subscription.md)对象进行订阅和取消订阅。  
+
+1.  `onActiveListChanged()` - you can use this method to be notified when a different list of the watchlist is selected. You can subscribe and unsubscribe using the [[Subscription]] object returned by this function.
+
+  
+
+1.  `onListAdded()` - - you can use this method to be notified when the new list is added to the watchlist. You can subscribe and unsubscribe using the [[Subscription]] object returned by this function.
+
+  
+
+1.  `onListRemoved()` - you can use this method to be notified when the list is removed from the watchlist. You can subscribe and unsubscribe using the [[Subscription]] object returned by this function.
+
+  
+
+1.  `onListRenamed()` - - you can use this method to be notified when the list is renamed in the watchlist. You can subscribe and unsubscribe using the [[Subscription]] object returned by this function.
 
 # ![](../images/trading.png)多图表布局
 
@@ -492,8 +507,8 @@ symbols: string[];
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE0MzQ5Njg4NCwxNjA3MzE4MDUxLC0yNT
-k0MDY4OTMsMTk3NzgwMzg4MSwxNjg3OTE0NzEsLTIwMzk4MzM1
-MDMsLTEyNzI4NTg2NTgsMzk0NTM1MjU2LC0zNDc0MTA0OTRdfQ
-==
+eyJoaXN0b3J5IjpbMTM1Mjg5NTM1NiwtMTQzNDk2ODg0LDE2MD
+czMTgwNTEsLTI1OTQwNjg5MywxOTc3ODAzODgxLDE2ODc5MTQ3
+MSwtMjAzOTgzMzUwMywtMTI3Mjg1ODY1OCwzOTQ1MzUyNTYsLT
+M0NzQxMDQ5NF19
 -->
