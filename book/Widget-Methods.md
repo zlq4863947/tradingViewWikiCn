@@ -215,9 +215,9 @@ widget.onShortcut("alt+s", function() {
 #### ### takeScreenshot\(\)
 此方法创建图表的快照并将其上传到服务器。
 
-When it is done the [onScreenshotReady](#subscribeevent-callback) callback function is called.
+完成后, 调用 [onScreenshotReady](#subscribeevent-callback) 回调函数。
 
-The URL of the snapshot will be passed as an argument to the callback function.
+快照的 URL 将作为参数传递给回调函数。
 
 # Saving/Loading Charts
 
@@ -474,6 +474,6 @@ _该方法在版本`1.9`中引入_
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTU0NDkzMzUxNywzOTQ1MzUyNTYsLTM0Nz
-QxMDQ5NF19
+eyJoaXN0b3J5IjpbLTEyNzI4NTg2NTgsMzk0NTM1MjU2LC0zND
+c0MTA0OTRdfQ==
 -->
