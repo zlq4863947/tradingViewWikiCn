@@ -440,7 +440,7 @@ _该方法在版本`1.9`中引入_
 
 1.  `renameList(listId: string, newName: string)` - 允许您将列表重命名为 `newName`.
 
-1.  `createList(listName?: string, symbols?: string[])` - 允许您创建具有`listName` 名称的符号列表。如果未传递 `listName` 参数huozor there is no WatchList then `null` will be returned;
+1.  `createList(listName?: string, symbols?: string[])` - 允许您创建具有`listName` 名称的符号列表。如果未传递 `listName` 参数或者没有监视列表，则返回 `null`。
 
   
 
@@ -504,8 +504,8 @@ If there is no WatchList or an equivalent list already exists then `false` will 
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEzMDg1MTI0NjksMTYwNzMxODA1MSwtMj
-U5NDA2ODkzLDE5Nzc4MDM4ODEsMTY4NzkxNDcxLC0yMDM5ODMz
-NTAzLC0xMjcyODU4NjU4LDM5NDUzNTI1NiwtMzQ3NDEwNDk0XX
-0=
+eyJoaXN0b3J5IjpbLTM1NDE4ODU5OCwxNjA3MzE4MDUxLC0yNT
+k0MDY4OTMsMTk3NzgwMzg4MSwxNjg3OTE0NzEsLTIwMzk4MzM1
+MDMsLTEyNzI4NTg2NTgsMzk0NTM1MjU2LC0zNDc0MTA0OTRdfQ
+==
 -->
