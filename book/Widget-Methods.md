@@ -159,7 +159,11 @@ widget.onShortcut("alt+s", function() {
 
 2.`callback`: function\(arguments\)
 
-当GUI事件发生时，库将调用回调。 每个事件都可以有不同的参数。
+当GUI事件发生时，图表库将调用回调。 每个事件都可以有不同的参数。
+
+#### unsubscribe\(event, callback\)
+
+1. `event`: can be
 
 # 图表功能
 
@@ -463,5 +467,5 @@ _该方法在版本`1.9`中引入_
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE2NDIzMDQ2NzgsLTM0NzQxMDQ5NF19
+eyJoaXN0b3J5IjpbMTI0NzU3OTY4MywtMzQ3NDEwNDk0XX0=
 -->
