@@ -422,12 +422,6 @@ _该方法在版本`1.9`中引入_
 
 以下方法只在[交易终端](/book/Trading-Terminal)可用.
 
-#### ![](../images/trading.png)showSampleOrderDialog\(order\)
-
-1. `order`: object
-
-显示样品订单对话框。 这个对话框看起来像Trading View Paper一样。 通常您不需要使用样品对话框。 这种方法用于交易样本。
-
 #### ![](../images/trading.png)watchList\(\)
 
 _该方法在版本`1.9`中引入_
@@ -478,6 +472,6 @@ _该方法在版本`1.9`中引入_
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTIwMzk4MzM1MDMsLTEyNzI4NTg2NTgsMz
-k0NTM1MjU2LC0zNDc0MTA0OTRdfQ==
+eyJoaXN0b3J5IjpbMTY4NzkxNDcxLC0yMDM5ODMzNTAzLC0xMj
+cyODU4NjU4LDM5NDUzNTI1NiwtMzQ3NDEwNDk0XX0=
 -->
