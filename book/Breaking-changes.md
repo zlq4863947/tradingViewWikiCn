@@ -12,7 +12,7 @@ _注意：您可以通过在浏览器控制台中执行 `TradingView.version()` 
 - 动作 `takeScreenshot` 从 [executeActionById](Chart-Methods.md#executeactionbyidactionid) 方法中被删除。 改用 [takeScreenshot](Widget-Methods.md#takescreenshot) 方法。
 - 动作 `lockDrawingsAction` 从[executeActionById](Chart-Methods#executeactionbyidactionid) 和 [getCheckableActionState](Chart-Methods#getcheckableactionstateactionid) 方法中被删除。 改用[lockAllDrawingTools](Widget-Methods#lockalldrawingtools) 代替。
 - 功能集 `caption_buttons_text_if_possible` 默认开启。
-- 修复一个[问题](https://github.com/tradingview/charting_library/issues/2652) 导致K线发生偏移。当日K线有一个负交易所时区偏移至24x7交易时段时，会出现K线的偏移。 如果您已通过变通方法解决此问题，请在更新此ban
+- 修复一个[问题](https://github.com/tradingview/charting_library/issues/2652) 导致K线发生偏移。当日K线有一个负交易所时区偏移至24x7交易时段时，会出现K线的偏移。 如果您已通过变通方法解决此问题，请在更新此版本之前将其删除。
 
 ## Version 1.12
 
@@ -99,6 +99,6 @@ _注意：您可以通过在浏览器控制台中执行 `TradingView.version()` 
 * 覆盖 `mainSeriesProperties.candleStyle.wickColor` 不在被支持。
 请使用 `mainSeriesProperties.candleStyle.wickUpColor` 和 `mainSeriesProperties.candleStyle.wickDownColor`
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTg1NjM1MzQzOCwxNDA1MTc0ODk5LC0xOT
-c2MTg2NTk1LDU0NTY0MDQ2MywtMTU1NzY3NjM1Nl19
+eyJoaXN0b3J5IjpbLTE2NjI1OTA2OTcsMTQwNTE3NDg5OSwtMT
+k3NjE4NjU5NSw1NDU2NDA0NjMsLTE1NTc2NzYzNTZdfQ==
 -->
