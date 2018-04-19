@@ -449,7 +449,7 @@ id: string;
 title: string;
 symbols: string[];
 ```
-If there is no WatchList or an equivalent list already exists then `false` will be returned, otherwise `true` will returned.
+如果没有监视列表或者`false` will be returned, otherwise `true` will returned.
 
 1.  `deleteList(listId: string)` - allows you to delete a list of symbols.
 
@@ -493,8 +493,8 @@ If there is no WatchList or an equivalent list already exists then `false` will 
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEyMjM0MDA3OTUsMTYwNzMxODA1MSwtMj
-U5NDA2ODkzLDE5Nzc4MDM4ODEsMTY4NzkxNDcxLC0yMDM5ODMz
-NTAzLC0xMjcyODU4NjU4LDM5NDUzNTI1NiwtMzQ3NDEwNDk0XX
-0=
+eyJoaXN0b3J5IjpbLTYwMTcxNTA0OCwxNjA3MzE4MDUxLC0yNT
+k0MDY4OTMsMTk3NzgwMzg4MSwxNjg3OTE0NzEsLTIwMzk4MzM1
+MDMsLTEyNzI4NTg2NTgsMzk0NTM1MjU2LC0zNDc0MTA0OTRdfQ
+==
 -->
