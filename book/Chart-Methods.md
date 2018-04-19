@@ -368,11 +368,8 @@ widget.activeChart().setTimezone('Asia/Singapore');
 ### getShapeById\(entityId\)
 1.  `entityId`: 对象。通过 API 创建形状时返回的值。  
 
-Returns an object with the following methods that allows you to interact with the study:
-
-  
-
-1.  `isSelectionEnabled()` - returns `true` if the shape cannot be selected by a user
+返回一个对象, 其中的方法允许您与该研究进行交互:
+1.  `isSelectionEnabled()` - 如果用户无法选择该形状，则返回 `true`。
 
 1.  `setSelectionEnabled(enable)` - enables or disables shape selection (see `disableSelection` option of `createMultipointShape`)
 
@@ -697,5 +694,5 @@ widget.chart().createExecutionShape()
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTI1MDk3NDg3OSw1MDQxMTA2MDFdfQ==
+eyJoaXN0b3J5IjpbMTQxODM5MzQ2Myw1MDQxMTA2MDFdfQ==
 -->
