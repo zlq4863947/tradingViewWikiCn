@@ -18,16 +18,10 @@ widget.onChartReady(function() {
 
 * 订阅图表事件
   * [onChartReady\(callback\)](#onchartreadycallback)
-  * [onSymbolChange\(callback\)](#onsymbolchangecallback)\[已过时\]
-  * [onIntervalChange\(callback\)](#onintervalchangecallback)\[已过时\]
-  * [onAutoSaveNeeded\(callback\)](#onautosaveneededcallback)\[已过时\]
-  * [onBarMarkClicked\(callback\)](#onbarmarkclickedcallback)\[已过时\]
-  * [onTimescaleMarkClicked\(callback\)](#ontimescalemarkclickedcallback)\[已过时\]
   * [onGrayedObjectClicked\(callback\)](#ongrayedobjectclickedcallback)
-  * [onScreenshotReady\(callback\)](#onscreenshotreadycallback)\[已过时\]
-  * [onTick\(callback\)](#ontickcallback)\[已过时\]
   * [onShortcut\(shortcut, callback\)](#onshortcutshortcut-callback)
   * [subscribe\(event, callback\)](#subscribeevent-callback)
+  * [unsubscribe\(event, callback\)](#unsubscribeevent-callback)
 * 图表动作
   * [chart\(\)](/book/Widget-Methods.md#chart)
   * [setLanguage\(locale\)](/book/Widget-Methods.md#setlanguagelocale)
@@ -469,5 +463,5 @@ _该方法在版本`1.9`中引入_
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTM0NzQxMDQ5NF19
+eyJoaXN0b3J5IjpbLTE2NDIzMDQ2NzgsLTM0NzQxMDQ5NF19
 -->
