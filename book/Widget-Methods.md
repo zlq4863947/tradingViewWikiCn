@@ -442,20 +442,12 @@ _该方法在版本`1.9`中引入_
 
 1.  `createList(listName?: string, symbols?: string[])` - 允许您创建具有`listName` 名称的符号列表。如果未传递 `listName` 参数或者没有监视列表，则返回 `null`。
 
-  
-
-1.  `saveList(list: SymbolList)` - allows you to save a list of symbols where `list` is an object with the following keys:
-
-  
+1.  `saveList(list: SymbolList)` - 允许您保存一个商品列表 where `list` is an object with the following keys:
 
 ```js
-
 id: string;
-
 title: string;
-
 symbols: string[];
-
 ```
 
 If there is no WatchList or an equivalent list already exists then `false` will be returned, otherwise `true` will returned.
@@ -504,8 +496,7 @@ If there is no WatchList or an equivalent list already exists then `false` will 
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTM1NDE4ODU5OCwxNjA3MzE4MDUxLC0yNT
-k0MDY4OTMsMTk3NzgwMzg4MSwxNjg3OTE0NzEsLTIwMzk4MzM1
-MDMsLTEyNzI4NTg2NTgsMzk0NTM1MjU2LC0zNDc0MTA0OTRdfQ
-==
+eyJoaXN0b3J5IjpbNTk1MTA2MjM2LDE2MDczMTgwNTEsLTI1OT
+QwNjg5MywxOTc3ODAzODgxLDE2ODc5MTQ3MSwtMjAzOTgzMzUw
+MywtMTI3Mjg1ODY1OCwzOTQ1MzUyNTYsLTM0NzQxMDQ5NF19
 -->
