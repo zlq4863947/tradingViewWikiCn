@@ -390,9 +390,9 @@ widget.activeChart().setTimezone('Asia/Singapore');
 
 13.  `getProperties()` - 获取形状的所有属性。
 14.  `setProperties(properties)` - 设置形状的属性。
-`properties` 应与 `getProperties`. It can only include the properties that you want to override.
+`properties` 应与 `getProperties`中的对象具有相同的结构。它只能包含要重写的属性。
 
-1.  `getPoints()` - returns the points of the shape. `Point` is an object with the following keys `{ price, time }`.
+1.  `getPoints()` - 返回形状的points。 `Point` 具有以下键 s `{ price, time }`.
 
 1.  `setPoints(points)` - set the new points of the shape.
 
@@ -691,5 +691,5 @@ widget.chart().createExecutionShape()
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTkyMDk2MzQ4MCw1MDQxMTA2MDFdfQ==
+eyJoaXN0b3J5IjpbLTExMTAyMTMxMDYsNTA0MTEwNjAxXX0=
 -->
