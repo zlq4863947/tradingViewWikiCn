@@ -14,8 +14,6 @@ widget.onChartReady(function() {
 
 # Methods
 
-**在1.5之前**[**Chart Methods**](/book/Chart-Methods.md)** 归属于 Widget. 请参阅完整的操作列表**[**here**](/book/Chart-Methods.md)
-
 * 订阅图表事件
   * [onChartReady\(callback\)](#onchartreadycallback)
   * [onGrayedObjectClicked\(callback\)](#ongrayedobjectclickedcallback)
@@ -163,7 +161,7 @@ widget.onShortcut("alt+s", function() {
 
 #### unsubscribe\(event, callback\)
 
-取消订阅特定事件（）
+取消订阅特定事件 (即上表中的事件之一) 。
 
 # 图表功能
 
@@ -467,5 +465,5 @@ _该方法在版本`1.9`中引入_
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTAzMDk1MDU2OSwtMzQ3NDEwNDk0XX0=
+eyJoaXN0b3J5IjpbLTY4MjkyNDAzNSwtMzQ3NDEwNDk0XX0=
 -->
