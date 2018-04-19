@@ -219,6 +219,8 @@ widget.onShortcut("alt+s", function() {
 
 快照的 URL 将作为参数传递给回调函数。
 
+#### ### lockAllDrawingTools\(\)
+This method returns a [WatchedValue](WatchedValue) object that can be used to read/set/watch the state of Lock All Drawing Tools button.
 # Saving/Loading Charts
 
 #### save\(callback\)
@@ -474,6 +476,6 @@ _该方法在版本`1.9`中引入_
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEyNzI4NTg2NTgsMzk0NTM1MjU2LC0zND
-c0MTA0OTRdfQ==
+eyJoaXN0b3J5IjpbMTM5MjI2NjM2OSwtMTI3Mjg1ODY1OCwzOT
+Q1MzUyNTYsLTM0NzQxMDQ5NF19
 -->
