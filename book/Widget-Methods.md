@@ -451,7 +451,7 @@ symbols: string[];
 ```
 如果没有监视列表或者已有一个等价列表，则返回`false` 否则返回 `true` 。
 
-1.  `deleteList(listId: string)` - 
+1.  `deleteList(listId: string)` - 允许您删除商品列表。
 6. `onListChanged()`- 您可以通过订阅[Subscription](/book/Subscription.md)对象返回此回调函数，通知当观察列表发生变化并退订事件，如果没有观察列表将返回null。
 
 # ![](../images/trading.png)多图表布局
@@ -492,7 +492,8 @@ symbols: string[];
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEwMjM0NjEzLDE2MDczMTgwNTEsLTI1OT
-QwNjg5MywxOTc3ODAzODgxLDE2ODc5MTQ3MSwtMjAzOTgzMzUw
-MywtMTI3Mjg1ODY1OCwzOTQ1MzUyNTYsLTM0NzQxMDQ5NF19
+eyJoaXN0b3J5IjpbLTE0MzQ5Njg4NCwxNjA3MzE4MDUxLC0yNT
+k0MDY4OTMsMTk3NzgwMzg4MSwxNjg3OTE0NzEsLTIwMzk4MzM1
+MDMsLTEyNzI4NTg2NTgsMzk0NTM1MjU2LC0zNDc0MTA0OTRdfQ
+==
 -->
