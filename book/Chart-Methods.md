@@ -371,9 +371,9 @@ widget.activeChart().setTimezone('Asia/Singapore');
 返回一个对象, 其中的方法允许您与该研究进行交互:
 1.  `isSelectionEnabled()` - 如果用户无法选择该形状，则返回 `true`。
 
-1.  `setSelectionEnabled(enable)` - enables or disables shape selection (see `disableSelection` option of `createMultipointShape`)
+1.  `setSelectionEnabled(enable)` - 启用或禁用形状选择 (请参阅 "createMultipointShape" 的 "disableSelection" 选项)
 
-1.  `isSavingEnabled()` - returns `true` if the shape is not saved on the chart
+1.  `isSavingEnabled()` - 如果形状未保存在图表上, 则返回`true` 。
 
 1.  `setSavingEnabled(enable)` - enables or disables saving of the shape in the chart layout (see `disableSave` option of `createMultipointShape`)
 
@@ -694,5 +694,5 @@ widget.chart().createExecutionShape()
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTQxODM5MzQ2Myw1MDQxMTA2MDFdfQ==
+eyJoaXN0b3J5IjpbLTE2MTg5OTMzMTEsNTA0MTEwNjAxXX0=
 -->
