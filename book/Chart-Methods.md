@@ -396,7 +396,7 @@ widget.activeChart().setTimezone('Asia/Singapore');
 
 1.  `setPoints(points)` - 设置形状的新points。
 
-The point format is the same as `points` argument from `createMultipointShape` method.
+point 格式与`createMultipointShape` 方法中`points`参数相同。
 
 #### removeEntity\(entityId\)
 
@@ -691,5 +691,5 @@ widget.chart().createExecutionShape()
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEwMTgxNjI3OTIsNTA0MTEwNjAxXX0=
+eyJoaXN0b3J5IjpbLTcyMjc2NjA1MSw1MDQxMTA2MDFdfQ==
 -->
