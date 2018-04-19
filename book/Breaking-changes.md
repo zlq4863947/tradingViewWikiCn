@@ -12,7 +12,7 @@ _注意：您可以通过在浏览器控制台中执行 `TradingView.version()` 
 - 动作 `takeScreenshot` 从 [executeActionById](Chart-Methods.md#executeactionbyidactionid) 方法中被删除。 改用 [takeScreenshot](Widget-Methods.md#takescreenshot) 方法。
 - 动作 `lockDrawingsAction` 从[executeActionById](Chart-Methods#executeactionbyidactionid) 和 [getCheckableActionState](Chart-Methods#getcheckableactionstateactionid) 方法中被删除。 改用[lockAllDrawingTools](Widget-Methods#lockalldrawingtools) 代替。
 - 功能集 `caption_buttons_text_if_possible` 默认开启。
-- 修复一个[问题](https://github.com/tradingview/charting_library/issues/2652) 导致K线发生偏移。当日K线与24x7交易时段同时偏移至负交易时区为付was causing bars to shift. Time-shifted bars used to appear when daily bars had a negative exchange timezone offset along with a 24x7 session. If you have a workaround for this issue, please remove it before updating to this version.
+- 修复一个[问题](https://github.com/tradingview/charting_library/issues/2652) 导致K线发生偏移。当日K线有一个负交易所时区偏移至24x7交易时段时，会出现was causing bars to shift. Time-shifted bars used to appear when daily bars had a negative exchange timezone offset along with a 24x7 session. If you have a workaround for this issue, please remove it before updating to this version.
 
 ## Version 1.12
 
@@ -99,6 +99,6 @@ _注意：您可以通过在浏览器控制台中执行 `TradingView.version()` 
 * 覆盖 `mainSeriesProperties.candleStyle.wickColor` 不在被支持。
 请使用 `mainSeriesProperties.candleStyle.wickUpColor` 和 `mainSeriesProperties.candleStyle.wickDownColor`
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjczNjc3NTYsLTE5NzYxODY1OTUsNTQ1Nj
+eyJoaXN0b3J5IjpbMzMwMjA3ODMsLTE5NzYxODY1OTUsNTQ1Nj
 QwNDYzLC0xNTU3Njc2MzU2XX0=
 -->
