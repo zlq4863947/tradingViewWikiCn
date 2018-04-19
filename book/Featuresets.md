@@ -95,6 +95,7 @@
 | chart\_zoom | on | 1.10 | 允许缩放图表 |
 | high\_density\_bars | off | 1.11 | 允许缩小在1个屏幕上显示超过60000条个K线 |
 | cl\_feed\_return\_all\_data | off | 1.11 | 允许您从Feed中返回更多的条，并立即在图表上显示 |
+| uppercase_instrument_names | on | 1.12 | 禁用此功能允许用户输入区分大小写的商品 |
 
 ### 大石块\(Big Rocks\)
 
@@ -119,6 +120,5 @@
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTIwMzMxMjk0NTUsLTEyMjc2NDE3OTVdfQ
-==
+eyJoaXN0b3J5IjpbLTgyOTMzMDg3MiwtMTIyNzY0MTc5NV19
 -->
