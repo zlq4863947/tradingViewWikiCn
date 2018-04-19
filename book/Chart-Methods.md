@@ -31,7 +31,7 @@
 * 研究与图形
   * [getAllShapes\(\)](#getallshapes)
   * [getAllStudies\(\)](#getallstudies)
-  * [setEntityVisibility\(id, isVisible\)](#setentityvisibilityid-isvisible)
+  * [setEntityVisibility\(id, isVisible\)](#setentityvisibilityid-isvisible)[过时]
   * [createStudy\(name, forceOverlay, lock, inputs, callback, overrides, options\)](#createstudyname-forceoverlay-lock-inputs-callback-overrides-options)
   * [createShape\(point, options, callback\)](#createshapepoint-options-callback)
   * [createMultipointShape\(points, options, callback\)](#createmultipointshapepoints-options-callback)
@@ -657,5 +657,5 @@ widget.chart().createExecutionShape()
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTY5MDM2MjM3OSw1MDQxMTA2MDFdfQ==
+eyJoaXN0b3J5IjpbOTMxMzUyMDk4LDUwNDExMDYwMV19
 -->
