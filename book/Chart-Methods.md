@@ -37,7 +37,6 @@
   * [createMultipointShape\(points, options, callback\)](#createmultipointshapepoints-options-callback)
   * [getShapeById(entityId)](#getshapebyidentityid)
   * [removeEntity\(entityId\)](#removeentityentityid)
-  * [createVerticalLine\(point, options\)](#createverticallinepoint-options)
   * [removeAllShapes\(\)](#removeallshapes)
   * [removeAllStudies\(\)](#removeallstudies)
 * 指标模板
@@ -404,13 +403,6 @@ point 格式与`createMultipointShape` 方法中`points`参数相同。
 
 删除指定实体。
 
-#### createVerticalLine\(point, options\)
-
-1. `point`: object `{time}`
-2. `options`: obejct `{lock}`
-
-此方法为`createShape`的同义词，并且 shape = 'vertical\_line'. 它被视为 **已过时**.
-
 #### removeAllShapes\(\)
 
 删除全部图形\(绘图\)。
@@ -691,5 +683,5 @@ widget.chart().createExecutionShape()
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTcyMjc2NjA1MSw1MDQxMTA2MDFdfQ==
+eyJoaXN0b3J5IjpbMTcxMTA2NzU1OCw1MDQxMTA2MDFdfQ==
 -->
