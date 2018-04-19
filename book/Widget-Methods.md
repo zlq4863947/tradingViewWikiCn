@@ -429,7 +429,9 @@ _该方法在版本`1.9`中引入_
 返回一个对象来操作观察列表。 该对象具有以下方法：
 
 1. `defaultList()`- 允许您获取默认的商品列表。
-1. `getList(id?: string)`- 允许您获取商品列表。 如果未传递`id` 则返回当前列表。 如果没有监视列表则返回 `null` 。
+1. `getList(id?: string)`- 允许您获取商品列表。 如果未传递`id` 则返回当前列表。 如果没有监视列表则返回 `null` 。  
+
+1.  `getActiveListId()` - allows you to get the ID of the current list. If there is no WatchList then `null` will be returned.
 
 2. `setList(symbols)`- 允许您将商品列表设置到观察列表中。 它将替换整个列表。
 
@@ -473,7 +475,7 @@ _该方法在版本`1.9`中引入_
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTIwNDg5NjE2MzUsMTY4NzkxNDcxLC0yMD
-M5ODMzNTAzLC0xMjcyODU4NjU4LDM5NDUzNTI1NiwtMzQ3NDEw
-NDk0XX0=
+eyJoaXN0b3J5IjpbMTk3NzgwMzg4MSwxNjg3OTE0NzEsLTIwMz
+k4MzM1MDMsLTEyNzI4NTg2NTgsMzk0NTM1MjU2LC0zNDc0MTA0
+OTRdfQ==
 -->
