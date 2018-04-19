@@ -436,7 +436,33 @@ _该方法在版本`1.9`中引入_
 4.  `getAllLists()` - 允许您获取所有列表。如果没有监视列表则返回`null` 。
 5.  `setList(symbols: string[])`- 允许您将商品列表设置到观察列表中。 它将替换整个列表。**过时。将在 `1.13`版本中删除。用  `updateList` 替换。**  
 
-1.  `updateList(listId: string, symbols: string[])` - 允许您编辑商品列表。
+1.  `updateList(listId: string, symbols: string[])` - 允许您编辑商品列表。  
+
+1.  `renameList(listId: string, newName: string)` - 允许您将列表重命名为 `newName`.
+
+1.  `createList(listName?: string, symbols?: string[])` - allows you to create a list of symbols with `listName` name. If the `listName` parameter is not provided or there is no WatchList then `null` will be returned;
+
+  
+
+1.  `saveList(list: SymbolList)` - allows you to save a list of symbols where `list` is an object with the following keys:
+
+  
+
+```js
+
+id: string;
+
+title: string;
+
+symbols: string[];
+
+```
+
+If there is no WatchList or an equivalent list already exists then `false` will be returned, otherwise `true` will returned.
+
+  
+
+1.  `deleteList(listId: string)` - allows you to delete a list of symbols.
 
 6. `onListChanged()`- 您可以通过订阅[Subscription](/book/Subscription.md)对象返回此回调函数，通知当观察列表发生变化并退订事件，如果没有观察列表将返回null。
 
@@ -478,7 +504,8 @@ _该方法在版本`1.9`中引入_
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbODMwMTkxNDQsMTYwNzMxODA1MSwtMjU5ND
-A2ODkzLDE5Nzc4MDM4ODEsMTY4NzkxNDcxLC0yMDM5ODMzNTAz
-LC0xMjcyODU4NjU4LDM5NDUzNTI1NiwtMzQ3NDEwNDk0XX0=
+eyJoaXN0b3J5IjpbLTkwNTgxMDcxOSwxNjA3MzE4MDUxLC0yNT
+k0MDY4OTMsMTk3NzgwMzg4MSwxNjg3OTE0NzEsLTIwMzk4MzM1
+MDMsLTEyNzI4NTg2NTgsMzk0NTM1MjU2LC0zNDc0MTA0OTRdfQ
+==
 -->
