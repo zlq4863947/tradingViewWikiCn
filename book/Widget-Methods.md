@@ -221,7 +221,9 @@ widget.onShortcut("alt+s", function() {
 
 #### ### lockAllDrawingTools\(\)
 此方法返回一个 [WatchedValue](/book/WatchedValue.md) object 
-对象, 可用于读取/设置/监视 "锁定所有绘图工具" 按钮的状态。# Saving/Loading Charts
+对象, 可用于读取/设置/监视 "锁定所有绘图工具" 按钮的状态。
+
+# 保存/加载图表
 
 #### save\(callback\)
 
@@ -476,6 +478,6 @@ _该方法在版本`1.9`中引入_
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTczOTk3OTgxNiwtMTI3Mjg1ODY1OCwzOT
-Q1MzUyNTYsLTM0NzQxMDQ5NF19
+eyJoaXN0b3J5IjpbLTIwMzk4MzM1MDMsLTEyNzI4NTg2NTgsMz
+k0NTM1MjU2LC0zNDc0MTA0OTRdfQ==
 -->
