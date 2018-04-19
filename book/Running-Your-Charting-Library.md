@@ -10,3 +10,6 @@
 
 **重要**: 这个datafeed只是个示例。它只包含了十几个股票数据（从雅虎获得），仅提供DWM(日周月)。然而，它支持报价。请使用它仅用于测试目的。
 
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbMTU5MzI4Mzc0MV19
+-->
