@@ -7,15 +7,24 @@ Charting Library 图表库包可在GitHub上获得（必须获得授权才能访
 您可以通过在浏览器控制台中执行 TradingView.version\(\) 来查看图表库版本。
 
 ### [图表库内容](#图表库内容)
+  
 
-```js
+```
 +/charting_library
-    - charting_library.min.js
-+ /datafeed
-+ /udf
-    - datafeed.js
 + /static
+- charting_library.min.js
+- charting_library.min.d.ts
+- datafeed-api.d.ts
++ /datafeeds
++ /udf
 - index.html
+
+- mobile_black.html
+
+- mobile_white.html
+
+- test.html
+
 ```
 
 * /charting\_library 包含所有的库文件。
@@ -34,5 +43,5 @@ Charting Library 图表库包可在GitHub上获得（必须获得授权才能访
 
 从版本1.1开始，所有内部库的JS和CSS代码都被内联和缩小，以减少页面加载时间。 您要编辑的文件不会被缩小。
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTU0NjExOTA5Nl19
+eyJoaXN0b3J5IjpbLTMzMjMxMjA2OV19
 -->
