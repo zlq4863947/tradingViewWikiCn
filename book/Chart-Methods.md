@@ -365,13 +365,8 @@ widget.activeChart().setTimezone('Asia/Singapore');
 
 此调用会在主数据列上指定几个点位创建一个图形。  
 
-### getShapeById(entityId)
-
-  
-
-1.  `entityId`: object. The value that is returned when a shape is created via API
-
-  
+### getShapeById\(entityId\)
+1.  `entityId`: 对象。通过 API 创建形状时返回的值。  
 
 Returns an object with the following methods that allows you to interact with the study:
 
@@ -702,5 +697,5 @@ widget.chart().createExecutionShape()
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTgwNDExMzE3NCw1MDQxMTA2MDFdfQ==
+eyJoaXN0b3J5IjpbMTI1MDk3NDg3OSw1MDQxMTA2MDFdfQ==
 -->
