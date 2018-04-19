@@ -385,8 +385,8 @@ widget.activeChart().setTimezone('Asia/Singapore');
 
 9.  `setUserEditEnabled(enabled)` - 启用或禁用用户删除/更改/隐藏形状
 
-11.  `bringToFront()` - 将 "线条" 工具放在所有其他图表对象的顶部。
-12.  `sendToBack()` - places the line tool behind all other chart objects.
+10.  `bringToFront()` - 将 `线条` 工具放在所有其他图表对象的顶部。
+11.  `sendToBack()` - 将线条工具置于所有其他图表对象的后面。
 
 13.  `getProperties()` - gets all the properties of the shape.
 
@@ -693,5 +693,5 @@ widget.chart().createExecutionShape()
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTExODQ5MDYwNyw1MDQxMTA2MDFdfQ==
+eyJoaXN0b3J5IjpbLTY4NDk2NTAzNiw1MDQxMTA2MDFdfQ==
 -->
