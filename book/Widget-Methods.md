@@ -163,7 +163,7 @@ widget.onShortcut("alt+s", function() {
 
 #### unsubscribe\(event, callback\)
 
-1. `event`: can be
+取消订阅特定事件（）
 
 # 图表功能
 
@@ -467,5 +467,5 @@ _该方法在版本`1.9`中引入_
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTI0NzU3OTY4MywtMzQ3NDEwNDk0XX0=
+eyJoaXN0b3J5IjpbMTAzMDk1MDU2OSwtMzQ3NDEwNDk0XX0=
 -->
