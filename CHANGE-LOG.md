@@ -5,6 +5,9 @@
 
 ## 1.12 -- 20180113
 * 中文开发文档版本与tradingview开发库版本一致
+*
+## 1.12 -- 20180113
+* 中文开发文档版本与tradingview开发库版本一致
 
 
 ## 1.1 -- 20171223
@@ -25,5 +28,5 @@
 ![膜拜](images/muobai.gif)
 ![zlq4863947](images/zlq4863947.jpg)
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTQ3MjI0MjUzNF19
+eyJoaXN0b3J5IjpbNzk4NDEwMzU1XX0=
 -->
