@@ -428,7 +428,7 @@ _该方法在版本`1.9`中引入_
 
 返回一个对象来操作观察列表。 该对象具有以下方法：
 
-1. `defaultList()`- 允许您获得mor的商品列表。
+1. `defaultList()`- 允许您获得默认的商品列表。
 1. `getList()`- 允许您获取当前的商品列表。
 
 2. `setList(symbols)`- 允许您将商品列表设置到观察列表中。 它将替换整个列表。
@@ -473,7 +473,7 @@ _该方法在版本`1.9`中引入_
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE1NjM1MzAwMjAsMTY4NzkxNDcxLC0yMD
-M5ODMzNTAzLC0xMjcyODU4NjU4LDM5NDUzNTI1NiwtMzQ3NDEw
-NDk0XX0=
+eyJoaXN0b3J5IjpbMTczNDE1OTY5NiwxNjg3OTE0NzEsLTIwMz
+k4MzM1MDMsLTEyNzI4NTg2NTgsMzk0NTM1MjU2LC0zNDc0MTA0
+OTRdfQ==
 -->
