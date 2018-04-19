@@ -381,12 +381,11 @@ widget.activeChart().setTimezone('Asia/Singapore');
 
 7.  `setShowInObjectsTreeEnabled(enabled)` - 在 `对象树` 对话框中启用或禁用显示形状
 
-9.  `isUserEditEnabled()` - returns `true` if a user can remove/change/hide the shape
+8.  `isUserEditEnabled()` - 如果用户可以删除/更改/隐藏形状, 则返回`true` 。
 
-10.  `setUserEditEnabled(enabled)` - enables or disables removing/changing/hiding of the shape by a user
+9.  `setUserEditEnabled(enabled)` - 启用或禁用用户删除/更改/隐藏形状
 
-11.  `bringToFront()` - places the line tool on top of all other chart objects.
-
+11.  `bringToFront()` - 将 "线条" 工具放在所有其他图表对象的顶部。
 12.  `sendToBack()` - places the line tool behind all other chart objects.
 
 13.  `getProperties()` - gets all the properties of the shape.
@@ -694,5 +693,5 @@ widget.chart().createExecutionShape()
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTc4MDMxOTkyNiw1MDQxMTA2MDFdfQ==
+eyJoaXN0b3J5IjpbMTExODQ5MDYwNyw1MDQxMTA2MDFdfQ==
 -->
