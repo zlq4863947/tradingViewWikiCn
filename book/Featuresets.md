@@ -116,12 +116,9 @@
 | add\_to\_watchlist | on | 1.9 | 在菜单中启用“添加商品到观察列表”项 |
 | footer\_screenshot | on | 1.11 | 显示页脚中的截图按钮（客户经理） |
 | open\_account\_manager | on | 1.11 | 默认情况下保留客户经理的打开 |
-| multiple_watchlists | on | 1.12 | Enables creating of multiple watchlists
-| show_trading_notifications_history | on
- | 1.13 | Enables the Notifications Log tab in the bottom panel
-
+| multiple_watchlists | on | 1.12 | 启用创建多个监视列表| show_trading_notifications_history | on | 1.13 | 启用底部面板中的 "通知日志" 选项卡
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTQzMTI5Nzg2NCwtMTIyNzY0MTc5NV19
+eyJoaXN0b3J5IjpbLTc0Mzg5ODc5OSwtMTIyNzY0MTc5NV19
 -->
