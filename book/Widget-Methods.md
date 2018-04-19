@@ -457,10 +457,9 @@ symbols: string[];
 
 1.  `onActiveListChanged()` - 当选择了不同的监视列表时, 可以使用此方法进行通知。您可以使用此方法返回的 [Subscription](/book/Subscription.md)对象进行订阅和取消订阅。
 
-1.  `onListAdded()` - - 当新的列表添加到监视li表中时, 可以使用此方法进行通知。您可以使用此方法返回的 [Subscription](/book/Subscription.md)对象进行订阅和取消订阅。
+1.  `onListAdded()` - - 当新的列表添加到监视列表中时, 可以使用此方法进行通知。您可以使用此方法返回的 [Subscription](/book/Subscription.md)对象进行订阅和取消订阅。
  
-1.  `onListRemoved()` - you can use this method to be notified when the list is removed from the watchlist. You can subscribe and unsubscribe using the [[Subscription]] object returned by this function.
-
+1.  `onListRemoved()` - 当监视列表中删除商品列表时, 可以使用此方法进行通知。您可以使用此方法返回的 [Subscription](/book/Subscription.md)对象进行订阅和取消订阅。
   
 
 1.  `onListRenamed()` - - you can use this method to be notified when the list is renamed in the watchlist. You can subscribe and unsubscribe using the [[Subscription]] object returned by this function.
@@ -503,8 +502,8 @@ symbols: string[];
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTU1MDA3MjAyOCwtNzE2MTI1MTI0LC0xND
-M0OTY4ODQsMTYwNzMxODA1MSwtMjU5NDA2ODkzLDE5Nzc4MDM4
-ODEsMTY4NzkxNDcxLC0yMDM5ODMzNTAzLC0xMjcyODU4NjU4LD
-M5NDUzNTI1NiwtMzQ3NDEwNDk0XX0=
+eyJoaXN0b3J5IjpbLTE5NDM5OTQ3MjAsLTcxNjEyNTEyNCwtMT
+QzNDk2ODg0LDE2MDczMTgwNTEsLTI1OTQwNjg5MywxOTc3ODAz
+ODgxLDE2ODc5MTQ3MSwtMjAzOTgzMzUwMywtMTI3Mjg1ODY1OC
+wzOTQ1MzUyNTYsLTM0NzQxMDQ5NF19
 -->
