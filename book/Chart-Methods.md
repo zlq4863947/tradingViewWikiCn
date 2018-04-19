@@ -27,6 +27,7 @@
   * [refreshMarks\(\)](#refreshmarks)
   * [clearMarks\(\)](#clearmarks)
   * [setChartType\(type\)](#setcharttypetype)
+  *  [setTimezone(timezone)](#settimezonetimezone)
 * 研究与图形
   * [getAllShapes\(\)](#getallshapes)
   * [getAllStudies\(\)](#getallstudies)
@@ -640,3 +641,6 @@ widget.chart().createExecutionShape()
 * [覆盖默认图表参数](/book/Overrides.md)
 
 
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbNTA0MTEwNjAxXX0=
+-->
