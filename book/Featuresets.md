@@ -60,6 +60,10 @@
 | snapshot\_trading\_drawings | off | 1.6 | 包含屏幕截图中的订单/位置/执行信号 |
 | source\_selection\_markers | on | 1.11 | 禁用数据列和指标指示器的选择标记 |
 | keep\_left\_toolbar\_visible\_on\_small\_screens | off | 1.11 | 防止左侧工具栏在小屏幕上消失 |
+| go_to_date | on | 1.11 | 允许您使用'Go to' dialog |
+| adaptive_logo | on | 1.11 | Allows you to hide 'charts by TradingView' text on small-screen devices |
+| show_dom_first_time | off | 1.12 | Shows DOM panel when a user opens the Chart for the first time |
+| hide_left_toolbar_by_default | off | 1.12 | Hides left toolbar when a user opens the Chart for the first time |
 
 ### 元素放置
 
@@ -115,5 +119,5 @@
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEyMjc2NDE3OTVdfQ==
+eyJoaXN0b3J5IjpbMTE1MTg1Nzg0OCwtMTIyNzY0MTc5NV19
 -->
