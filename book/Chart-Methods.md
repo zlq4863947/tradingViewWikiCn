@@ -225,17 +225,13 @@ STYLE_PB* = 7;
 \*- :chart: available in Trading Terminal
   
 
-### setTimezone(timezone)
+### setTimezone\(timezone\)
 
-  
-1.  `timezone`: string
-  
+1.  `timezone`: string  
 
-See [timezone](Widget-Constructor#timezone) for more information.
+查看[timezone](book/Widget-Constructor.md#timezone) for more information.
 
- 
-
-Example:
+里:
 
   
 
@@ -663,5 +659,5 @@ widget.chart().createExecutionShape()
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE2MzQyOTYyODQsNTA0MTEwNjAxXX0=
+eyJoaXN0b3J5IjpbLTIwODEyMDM1MDYsNTA0MTEwNjAxXX0=
 -->
