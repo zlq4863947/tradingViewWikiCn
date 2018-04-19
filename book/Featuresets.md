@@ -97,11 +97,11 @@
 | cl\_feed\_return\_all\_data | off | 1.11 | 允许您从Feed中返回更多的条，并立即在图表上显示 |
 | uppercase_instrument_names | on | 1.12 | 禁用此功能允许用户输入区分大小写的商品 |
 
-### 大石块\(Big Rocks\)
+### 重要功能
 
 | ID | 默认状态 | 库版本 | 描述 |
 | --- | --- | --- | --- |
-|  | study\_templates | off |  |
+| study\_templates | off |  |
 | datasource\_copypaste | on |  | 允许复制图纸和研究 |
 | seconds\_resolution | off | 1.4 | 支持秒分辨率 |
 
@@ -116,9 +116,12 @@
 | add\_to\_watchlist | on | 1.9 | 在菜单中启用“添加商品到观察列表”项 |
 | footer\_screenshot | on | 1.11 | 显示页脚中的截图按钮（客户经理） |
 | open\_account\_manager | on | 1.11 | 默认情况下保留客户经理的打开 |
+| multiple_watchlists | on | 1.12 | Enables creating of multiple watchlists
+| show_trading_notifications_history | on
+ | 1.13 | Enables the Notifications Log tab in the bottom panel
 
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTgyOTMzMDg3MiwtMTIyNzY0MTc5NV19
+eyJoaXN0b3J5IjpbMTQzMTI5Nzg2NCwtMTIyNzY0MTc5NV19
 -->
