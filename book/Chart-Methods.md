@@ -223,6 +223,27 @@ STYLE_PB* = 7;
 ```
 
 \*- :chart: available in Trading Terminal
+  
+
+### setTimezone(timezone)
+
+  
+1.  `timezone`: string
+  
+
+See [timezone](Widget-Constructor#timezone) for more information.
+
+ 
+
+Example:
+
+  
+
+```javascript
+
+widget.activeChart().setTimezone('Asia/Singapore');
+
+```
 
 #### closePopupsAndDialogs\(\)
 
@@ -642,5 +663,5 @@ widget.chart().createExecutionShape()
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNTA0MTEwNjAxXX0=
+eyJoaXN0b3J5IjpbLTE2MzQyOTYyODQsNTA0MTEwNjAxXX0=
 -->
