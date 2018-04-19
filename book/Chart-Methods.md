@@ -35,6 +35,7 @@
   * [createStudy\(name, forceOverlay, lock, inputs, callback, overrides, options\)](#createstudyname-forceoverlay-lock-inputs-callback-overrides-options)
   * [createShape\(point, options, callback\)](#createshapepoint-options-callback)
   * [createMultipointShape\(points, options, callback\)](#createmultipointshapepoints-options-callback)
+  * [getShapeById(entityId)](#getshapebyidentityid)
   * [removeEntity\(entityId\)](#removeentityentityid)
   * [createVerticalLine\(point, options\)](#createverticallinepoint-options)
   * [removeAllShapes\(\)](#removeallshapes)
@@ -362,7 +363,51 @@ widget.activeChart().setTimezone('Asia/Singapore');
 
 查看[形状与覆盖](book/Shapes-and-Overrides.md)了解更多信息。
 
-此调用会在主数据列上指定几个点位创建一个图形。
+此调用会在主数据列上指定几个点位创建一个图形。  
+
+### getShapeById(entityId)
+
+  
+
+1.  `entityId`: object. The value that is returned when a shape is created via API
+
+  
+
+Returns an object with the following methods that allows you to interact with the study:
+
+  
+
+1.  `isSelectionEnabled()` - returns `true` if the shape cannot be selected by a user
+
+1.  `setSelectionEnabled(enable)` - enables or disables shape selection (see `disableSelection` option of `createMultipointShape`)
+
+1.  `isSavingEnabled()` - returns `true` if the shape is not saved on the chart
+
+1.  `setSavingEnabled(enable)` - enables or disables saving of the shape in the chart layout (see `disableSave` option of `createMultipointShape`)
+
+1.  `isShowInObjectsTreeEnabled()` - returns `true` if the shape is displayed in the Objects Tree dialog
+
+1.  `setShowInObjectsTreeEnabled(enabled)` - enables or disables displaying of the shape in the Objects Tree dialog
+
+1.  `isUserEditEnabled()` - returns `true` if a user can remove/change/hide the shape
+
+1.  `setUserEditEnabled(enabled)` - enables or disables removing/changing/hiding of the shape by a user
+
+1.  `bringToFront()` - places the line tool on top of all other chart objects.
+
+1.  `sendToBack()` - places the line tool behind all other chart objects.
+
+1.  `getProperties()` - gets all the properties of the shape.
+
+1.  `setProperties(properties)` - sets the properties of the shape.
+
+`properties` should have the same structure as an object from `getProperties`. It can only include the properties that you want to override.
+
+1.  `getPoints()` - returns the points of the shape. `Point` is an object with the following keys `{ price, time }`.
+
+1.  `setPoints(points)` - set the new points of the shape.
+
+The point format is the same as `points` argument from `createMultipointShape` method.
 
 #### removeEntity\(entityId\)
 
@@ -657,5 +702,5 @@ widget.chart().createExecutionShape()
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbOTMxMzUyMDk4LDUwNDExMDYwMV19
+eyJoaXN0b3J5IjpbMTgwNDExMzE3NCw1MDQxMTA2MDFdfQ==
 -->
