@@ -237,6 +237,7 @@ STYLE_PB* = 7;
 
 widget.activeChart().setTimezone('Asia/Singapore');
 ```
+使图表更改时区。
 
 #### closePopupsAndDialogs\(\)
 
@@ -656,5 +657,5 @@ widget.chart().createExecutionShape()
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTM4ODI3NTM2OSw1MDQxMTA2MDFdfQ==
+eyJoaXN0b3J5IjpbLTY5MDM2MjM3OSw1MDQxMTA2MDFdfQ==
 -->
