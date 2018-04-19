@@ -388,11 +388,9 @@ widget.activeChart().setTimezone('Asia/Singapore');
 10.  `bringToFront()` - 将 `线条` 工具放在所有其他图表对象的顶部。
 11.  `sendToBack()` - 将线条工具置于所有其他图表对象的后面。
 
-13.  `getProperties()` - gets all the properties of the shape.
-
-14.  `setProperties(properties)` - sets the properties of the shape.
-
-`properties` should have the same structure as an object from `getProperties`. It can only include the properties that you want to override.
+13.  `getProperties()` - 获取形状的所有属性。
+14.  `setProperties(properties)` - 设置形状的属性。
+`properties` 应与 `getProperties`. It can only include the properties that you want to override.
 
 1.  `getPoints()` - returns the points of the shape. `Point` is an object with the following keys `{ price, time }`.
 
@@ -693,5 +691,5 @@ widget.chart().createExecutionShape()
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTY4NDk2NTAzNiw1MDQxMTA2MDFdfQ==
+eyJoaXN0b3J5IjpbLTkyMDk2MzQ4MCw1MDQxMTA2MDFdfQ==
 -->
