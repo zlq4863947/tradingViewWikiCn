@@ -25,7 +25,7 @@ Charting Library 图表库包可在GitHub上获得（必须获得授权才能访
 * /charting\_library 包含所有的库文件。
 * /charting\_library/charting\_library.min.js 包含外部图表库widget 接口。不建议修改该文件。
 *  `/charting_library/charting_library.min.d.ts` 包含TypeScript 定义的widget接口
-*   `/charting_library/datafeed-api.d.ts` 包含TypeScript 定义的for the data feed interface.
+*   `/charting_library/datafeed-api.d.ts` 包含TypeScript 定义的data feed接口。
 * /charting\_library/datafeeds/udf/datafeed.js 包含[UDF-compatible](/book/UDF.md) 的datafeed包装器（用于实现[JS API](/book/JS-Api.md)以连接Charting Library和UDF连接datafeed）。例子中的datafeed包装器实现了脉冲实时仿真数据。您可以自由编辑此文件。
 * /charting\_library/static 文件夹中存储图表库内部资源，不适用于其他目的。
 
@@ -37,5 +37,5 @@ Charting Library 图表库包可在GitHub上获得（必须获得授权才能访
 
 从版本1.1开始，所有内部库的JS和CSS代码都被内联和缩小，以减少页面加载时间。 您要编辑的文件不会被缩小。
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjIzNTU2ODcsLTk3ODQ1NjAwNV19
+eyJoaXN0b3J5IjpbMTcwMjc3MDIwNiwtOTc4NDU2MDA1XX0=
 -->
