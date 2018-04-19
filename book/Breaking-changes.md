@@ -10,6 +10,7 @@ _注意：您可以通过在浏览器控制台中执行 `TradingView.version()` 
 ## Version 1.13
 
 - 动作 `takeScreenshot` 从 [executeActionById](Chart-Methods.md#executeactionbyidactionid) 方法中被删除。 改用 [takeScreenshot](Widget-Methods.md#takescreenshot) 方法。
+-Action `lockDrawingsAction` from [executeActionById](Chart-Methods#executeactionbyidactionid) and [getCheckableActionState](Chart-Methods#getcheckableactionstateactionid) method are removed. Use [lockAllDrawingTools](Widget-Methods#lockalldrawingtools) instead.
 - 功能集 `caption_buttons_text_if_possible` 默认开启。
 
 ## Version 1.12
@@ -97,5 +98,5 @@ _注意：您可以通过在浏览器控制台中执行 `TradingView.version()` 
 * 覆盖 `mainSeriesProperties.candleStyle.wickColor` 不在被支持。
 请使用 `mainSeriesProperties.candleStyle.wickUpColor` 和 `mainSeriesProperties.candleStyle.wickDownColor`
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE1NTc2NzYzNTZdfQ==
+eyJoaXN0b3J5IjpbMTk5NjE1MTMyOSwtMTU1NzY3NjM1Nl19
 -->
