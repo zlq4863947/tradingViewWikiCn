@@ -63,7 +63,7 @@
 | go_to_date | on | 1.11 | 允许您使用'Go to'对话框跳转到任意K线 |
 | adaptive_logo | on | 1.11 | 允许您在小屏幕设备上隐藏 'charts by TradingView' 文本 |
 | show_dom_first_time | off | 1.12 | 当用户第一次打开图表时显示 DOM 面板 |
-| hide_left_toolbar_by_default | off | 1.12 | Hides left toolbar when a user opens the Chart for the first time |
+| hide_left_toolbar_by_default | off | 1.12 | 当用户第一次打开图表时隐藏左工具栏 |
 
 ### 元素放置
 
@@ -119,6 +119,6 @@
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEyOTM0NDM1MDMsLTEyMjc2NDE3OTVdfQ
+eyJoaXN0b3J5IjpbLTIwMzMxMjk0NTUsLTEyMjc2NDE3OTVdfQ
 ==
 -->
