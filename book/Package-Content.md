@@ -8,7 +8,6 @@ Charting Library 图表库包可在GitHub上获得（必须获得授权才能访
 
 ### [图表库内容](#图表库内容)
   
-
 ```
 +/charting_library
 + /static
@@ -34,6 +33,6 @@ Charting Library 图表库包可在GitHub上获得（必须获得授权才能访
 
 所有内部库的JS和CSS代码都被内联和缩小，以减少页面加载时间。 希望由您编辑的文件不会被缩小。
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTg4NTA4NDYwMSwxMDU5NDIzMjM3LC05Nz
+eyJoaXN0b3J5IjpbMTYwMTQzNDk2OSwxMDU5NDIzMjM3LC05Nz
 g0NTYwMDVdfQ==
 -->
