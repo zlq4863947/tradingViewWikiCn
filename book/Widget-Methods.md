@@ -212,6 +212,8 @@ widget.onShortcut("alt+s", function() {
 
 返回所选图形或光标的[标识符](/book/Shapes-and-Overrides.md)（见上文）。
 
+#### ### takeScreenshot\(\)
+
 # Saving/Loading Charts
 
 #### save\(callback\)
@@ -467,5 +469,5 @@ _该方法在版本`1.9`中引入_
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE0MDU1NzU2MzMsLTM0NzQxMDQ5NF19
+eyJoaXN0b3J5IjpbLTE3OTI3OTE1NiwtMzQ3NDEwNDk0XX0=
 -->
