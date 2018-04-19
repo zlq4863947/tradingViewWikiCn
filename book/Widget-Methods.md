@@ -28,8 +28,8 @@ widget.onChartReady(function() {
   * [closePopupsAndDialogs\(\)](/book/Widget-Methods.md#closepopupsanddialogs)
   * [selectLineTool\(drawingId\)](/book/Widget-Methods.md#selectlinetooldrawingid)
   * [selectedLineTool\(\)](/book/Widget-Methods.md#selectedlinetool)
-  * [[takeScreenshot](https://github.com/tradingview/charting_library/wiki/Widget-Methods#takescreenshot)\(\)](/book/Widget-Methods.md#selectedlinetool)
-  * [selectedLineTool\(\)](/book/Widget-Methods.md#selectedlinetool)
+  * [takeScreenshot\(\)](/book/Widget-Methods.md#takeScreenshot)
+  * [lockAllDrawingTools\(\)](/book/Widget-Methods.md#lockAllDrawingTools)
 * 保存/加载图表
   * [save\(callback\)](/book/Widget-Methods.md#savecallback)
   * [load\(state\)](/book/Widget-Methods.md#loadstate)
@@ -467,5 +467,5 @@ _该方法在版本`1.9`中引入_
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTA5NDAxMjExMCwtMzQ3NDEwNDk0XX0=
+eyJoaXN0b3J5IjpbLTE0MDU1NzU2MzMsLTM0NzQxMDQ5NF19
 -->
