@@ -6,7 +6,7 @@
 
 图表库中不管是[JS API](/book/JS-Api.md)还是[UDF](/book/UDF.md)都使用相同的数据结构来进行报价。
 
-以下是响应对象的描述：
+以下是响应返回对象的描述：
 
 # [商品报价数据](#商品报价数据)
 
@@ -30,3 +30,6 @@
 
 
 
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbLTE5NjAwNTA1MDBdfQ==
+-->
