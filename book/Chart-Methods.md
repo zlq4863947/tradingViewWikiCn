@@ -229,16 +229,13 @@ STYLE_PB* = 7;
 
 1.  `timezone`: string  
 
-查看[timezone](book/Widget-Constructor.md#timezone) for more information.
+查看[timezone](book/Widget-Constructor.md#timezone)更多信息
 
-里:
-
-  
+例:
 
 ```javascript
 
 widget.activeChart().setTimezone('Asia/Singapore');
-
 ```
 
 #### closePopupsAndDialogs\(\)
@@ -659,5 +656,5 @@ widget.chart().createExecutionShape()
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTIwODEyMDM1MDYsNTA0MTEwNjAxXX0=
+eyJoaXN0b3J5IjpbLTM4ODI3NTM2OSw1MDQxMTA2MDFdfQ==
 -->
