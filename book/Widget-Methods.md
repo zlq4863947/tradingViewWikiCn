@@ -429,14 +429,14 @@ _该方法在版本`1.9`中引入_
 返回一个对象来操作观察列表。 该对象具有以下方法：
 
 1. `defaultList()`- 允许您获取默认的商品列表。
-1. `getList(id?: string)`- 允许您获取商品列表。 如果未传递`id` 则返回当前列表。 如果没有监视列表则返回 `null` 。  
+2. `getList(id?: string)`- 允许您获取商品列表。 如果未传递`id` 则返回当前列表。 如果没有监视列表则返回 `null` 。  
 
-1.  `getActiveListId()` - 允许您获取当前列表的ID。如果没有监视列表则返回`null` 。
+3.  `getActiveListId()` - 允许您获取当前列表的ID。如果没有监视列表则返回`null` 。
  
-1.  `getAllLists()` - allows you to get all lists. If there is no WatchList then `null` will be returned.
-2. `setList(symbols)`- 允许您将商品列表设置到观察列表中。 它将替换整个列表。
+4.  `getAllLists()` - 允许您获取所有列表。如果没有监视列表则返回`null` 。
+5.  `setList(symbols: string[])`- 允许您将商品列表设置到观察列表中。 它将替换整个列表。
 
-3. `onListChanged()`- 您可以通过订阅[Subscription](/book/Subscription.md)对象返回此回调函数，通知当观察列表发生变化并退订事件，如果没有观察列表将返回null。
+6. `onListChanged()`- 您可以通过订阅[Subscription](/book/Subscription.md)对象返回此回调函数，通知当观察列表发生变化并退订事件，如果没有观察列表将返回null。
 
 # ![](../images/trading.png)多图表布局
 
@@ -476,7 +476,7 @@ _该方法在版本`1.9`中引入_
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTI1OTQwNjg5MywxOTc3ODAzODgxLDE2OD
-c5MTQ3MSwtMjAzOTgzMzUwMywtMTI3Mjg1ODY1OCwzOTQ1MzUy
-NTYsLTM0NzQxMDQ5NF19
+eyJoaXN0b3J5IjpbMTYwNzMxODA1MSwtMjU5NDA2ODkzLDE5Nz
+c4MDM4ODEsMTY4NzkxNDcxLC0yMDM5ODMzNTAzLC0xMjcyODU4
+NjU4LDM5NDUzNTI1NiwtMzQ3NDEwNDk0XX0=
 -->
