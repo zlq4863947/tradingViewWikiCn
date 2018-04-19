@@ -369,29 +369,29 @@ widget.activeChart().setTimezone('Asia/Singapore');
 1.  `entityId`: 对象。通过 API 创建形状时返回的值。  
 
 返回一个对象, 其中的方法允许您与该研究进行交互:
-1.  `isSelectionEnabled()` - 如果用户无法选择该形状，则返回 `true`。
+2.  `isSelectionEnabled()` - 如果用户无法选择该形状，则返回 `true`。
 
-1.  `setSelectionEnabled(enable)` - 启用或禁用形状选择 (请参阅 `createMultipointShape` 的 `disableSelection` 选项选项)
+3.  `setSelectionEnabled(enable)` - 启用或禁用形状选择 (请参阅 `createMultipointShape` 的 `disableSelection` 选项选项)
 
-1.  `isSavingEnabled()` - 如果形状未保存在图表上, 则返回`true` 。
+4.  `isSavingEnabled()` - 如果形状未保存在图表上, 则返回`true` 。
 
-1.  `setSavingEnabled(enable)` - 启用或禁用图表布局中的形状保存 (请参阅`disableSave` 的 `createMultipointShape`)
+5.  `setSavingEnabled(enable)` - 启用或禁用图表布局中的形状保存 (请参阅`disableSave` 的 `createMultipointShape`)
 
-1.  `isShowInObjectsTreeEnabled()` - returns `true` if the shape is displayed in the Objects Tree dialog
+6.  `isShowInObjectsTreeEnabled()` - 如果形状显示在 `对象树` 对话框中, 则返回 `true` 。
 
-1.  `setShowInObjectsTreeEnabled(enabled)` - enables or disables displaying of the shape in the Objects Tree dialog
+7.  `setShowInObjectsTreeEnabled(enabled)` - 在 `对象树` 对话框中启用或禁用显示形状
 
-1.  `isUserEditEnabled()` - returns `true` if a user can remove/change/hide the shape
+9.  `isUserEditEnabled()` - returns `true` if a user can remove/change/hide the shape
 
-1.  `setUserEditEnabled(enabled)` - enables or disables removing/changing/hiding of the shape by a user
+10.  `setUserEditEnabled(enabled)` - enables or disables removing/changing/hiding of the shape by a user
 
-1.  `bringToFront()` - places the line tool on top of all other chart objects.
+11.  `bringToFront()` - places the line tool on top of all other chart objects.
 
-1.  `sendToBack()` - places the line tool behind all other chart objects.
+12.  `sendToBack()` - places the line tool behind all other chart objects.
 
-1.  `getProperties()` - gets all the properties of the shape.
+13.  `getProperties()` - gets all the properties of the shape.
 
-1.  `setProperties(properties)` - sets the properties of the shape.
+14.  `setProperties(properties)` - sets the properties of the shape.
 
 `properties` should have the same structure as an object from `getProperties`. It can only include the properties that you want to override.
 
@@ -694,5 +694,5 @@ widget.chart().createExecutionShape()
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTQyMjIyNDA4OCw1MDQxMTA2MDFdfQ==
+eyJoaXN0b3J5IjpbLTc4MDMxOTkyNiw1MDQxMTA2MDFdfQ==
 -->
