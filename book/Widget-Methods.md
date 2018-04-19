@@ -434,7 +434,9 @@ _该方法在版本`1.9`中引入_
 3.  `getActiveListId()` - 允许您获取当前列表的ID。如果没有监视列表则返回`null` 。
  
 4.  `getAllLists()` - 允许您获取所有列表。如果没有监视列表则返回`null` 。
-5.  `setList(symbols: string[])`- 允许您将商品列表设置到观察列表中。 它将替换整个列表。
+5.  `setList(symbols: string[])`- 允许您将商品列表设置到观察列表中。 它将替换整个列表。**过时。将在 `1.13`版本中删除。用  `updateList` 替换。**  
+
+1.  `updateList(listId: string, symbols: string[])` - 允许您编辑商品列表。
 
 6. `onListChanged()`- 您可以通过订阅[Subscription](/book/Subscription.md)对象返回此回调函数，通知当观察列表发生变化并退订事件，如果没有观察列表将返回null。
 
@@ -476,7 +478,7 @@ _该方法在版本`1.9`中引入_
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTYwNzMxODA1MSwtMjU5NDA2ODkzLDE5Nz
-c4MDM4ODEsMTY4NzkxNDcxLC0yMDM5ODMzNTAzLC0xMjcyODU4
-NjU4LDM5NDUzNTI1NiwtMzQ3NDEwNDk0XX0=
+eyJoaXN0b3J5IjpbODMwMTkxNDQsMTYwNzMxODA1MSwtMjU5ND
+A2ODkzLDE5Nzc4MDM4ODEsMTY4NzkxNDcxLC0yMDM5ODMzNTAz
+LC0xMjcyODU4NjU4LDM5NDUzNTI1NiwtMzQ3NDEwNDk0XX0=
 -->
