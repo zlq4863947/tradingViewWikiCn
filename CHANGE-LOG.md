@@ -4,10 +4,10 @@
 * [版本变更点](book/Breaking-changes.md)
 
 ## 1.13 -- 20180419
-* 更新至radingview 1.13 开发库版本
+* 文档更新至Tradingview 1.13 开发库版本
 
 ## 1.12 -- 20180113
-* 中文开发文档版本与tradingview开发库版本一致
+* 中文开发文档版本与Tradingview开发库版本一致
 
 
 ## 1.1 -- 20171223
@@ -28,5 +28,5 @@
 ![膜拜](images/muobai.gif)
 ![zlq4863947](images/zlq4863947.jpg)
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE5NjIwNDExMTBdfQ==
+eyJoaXN0b3J5IjpbMTE0MDI0MDk2MF19
 -->
