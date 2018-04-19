@@ -455,9 +455,7 @@ symbols: string[];
 1.  `deleteList(listId: string)` - 允许您删除商品列表。
 6. `onListChanged()`- 当在监视列表中的商品更改时, 可以使用此方法进行通知。您可以使用此方法返回的 [Subscription](/book/Subscription.md)对象进行订阅和取消订阅。  
 
-1.  `onActiveListChanged()` - you can use this method to be notified when a different list of the watchlist is selected. You can subscribe and unsubscribe using the [[Subscription]] object returned by this function.
-
-  
+1.  `onActiveListChanged()` - 当选择了不同的监视列表时, 可以使用此方法进行通知。您可以使用此方法返回的 [Subscription](/book/Subscription.md)对象进行订阅和取消订阅。
 
 1.  `onListAdded()` - - you can use this method to be notified when the new list is added to the watchlist. You can subscribe and unsubscribe using the [[Subscription]] object returned by this function.
 
@@ -507,8 +505,8 @@ symbols: string[];
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTM1Mjg5NTM1NiwtMTQzNDk2ODg0LDE2MD
-czMTgwNTEsLTI1OTQwNjg5MywxOTc3ODAzODgxLDE2ODc5MTQ3
-MSwtMjAzOTgzMzUwMywtMTI3Mjg1ODY1OCwzOTQ1MzUyNTYsLT
-M0NzQxMDQ5NF19
+eyJoaXN0b3J5IjpbLTEwNzExNjYzMjcsLTE0MzQ5Njg4NCwxNj
+A3MzE4MDUxLC0yNTk0MDY4OTMsMTk3NzgwMzg4MSwxNjg3OTE0
+NzEsLTIwMzk4MzM1MDMsLTEyNzI4NTg2NTgsMzk0NTM1MjU2LC
+0zNDc0MTA0OTRdfQ==
 -->
