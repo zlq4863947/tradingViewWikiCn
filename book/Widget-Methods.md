@@ -213,6 +213,11 @@ widget.onShortcut("alt+s", function() {
 返回所选图形或光标的[标识符](/book/Shapes-and-Overrides.md)（见上文）。
 
 #### ### takeScreenshot\(\)
+This method creates a snapshot of the chart and uploads it to the server.
+
+When it is done the [onScreenshotReady](#subscribeevent-callback) callback function is called.
+
+The URL of the snapshot will be passed as an argument to the callback function.
 
 # Saving/Loading Charts
 
@@ -469,5 +474,5 @@ _该方法在版本`1.9`中引入_
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE3OTI3OTE1NiwtMzQ3NDEwNDk0XX0=
+eyJoaXN0b3J5IjpbMzk0NTM1MjU2LC0zNDc0MTA0OTRdfQ==
 -->
