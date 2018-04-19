@@ -18,15 +18,10 @@ Charting Library 图表库包可在GitHub上获得（必须获得授权才能访
 + /datafeeds
 + /udf
 - index.html
-
 - mobile_black.html
-
 - mobile_white.html
-
 - test.html
-
 ```
-
 * /charting\_library 包含所有的库文件。
 
 * /charting\_library/charting\_library.min.js 包含Charting Library widget 接口。不建议修改该文件。
@@ -43,5 +38,5 @@ Charting Library 图表库包可在GitHub上获得（必须获得授权才能访
 
 从版本1.1开始，所有内部库的JS和CSS代码都被内联和缩小，以减少页面加载时间。 您要编辑的文件不会被缩小。
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTMzMjMxMjA2OV19
+eyJoaXN0b3J5IjpbLTE1NzE4MzAxNjddfQ==
 -->
