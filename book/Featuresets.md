@@ -81,7 +81,7 @@
 | - save\_chart\_properties\_to\_local\_storage | on |  | 禁用此功能可防止将图表属性（颜色，样式，字体）保存到本地存储，但仍保存最喜欢的项目 |
 | create\_volume\_indicator\_by\_default | on |  |
 | create\_volume\_indicator\_by\_default\_once | on |  |
-| volume\_force\_overlay | on |  | 在与主数据列相同的窗格中放置成交量指示器 |
+| volume\_force\_overlay | on |  | 在主数据列的同一窗格上放置成交量指示器 |
 | right\_bar\_stays\_on\_scroll | on |  | 确定缩放行为：禁用光标下的K现 |
 | constraint\_dialogs\_movement | on |  | 阻止从图表中移动对话框 |
 | charting\_library\_debug\_mode | off |  | 启用日志 |
@@ -121,5 +121,6 @@
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTQ3ODk5OTM4NywtMTIyNzY0MTc5NV19
+eyJoaXN0b3J5IjpbLTEzMzQxMDU1MzIsMTQ3ODk5OTM4NywtMT
+IyNzY0MTc5NV19
 -->
