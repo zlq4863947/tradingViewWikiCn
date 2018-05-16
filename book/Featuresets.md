@@ -60,6 +60,10 @@
 | snapshot\_trading\_drawings | off | 1.6 | 包含屏幕截图中的订单/位置/执行信号 |
 | source\_selection\_markers | on | 1.11 | 禁用数据列和指标指示器的选择标记 |
 | keep\_left\_toolbar\_visible\_on\_small\_screens | off | 1.11 | 防止左侧工具栏在小屏幕上消失 |
+| go_to_date | on | 1.11 | 允许您使用'Go to'对话框跳转到任意K线 |
+| adaptive_logo | on | 1.11 | 允许您在小屏幕设备上隐藏 'charts by TradingView' 文本 |
+| show_dom_first_time | off | 1.12 | 当用户第一次打开图表时显示 DOM 面板 |
+| hide_left_toolbar_by_default | off | 1.12 | 当用户第一次打开图表时隐藏左工具栏 |
 
 ### 元素放置
 
@@ -77,7 +81,7 @@
 | - save\_chart\_properties\_to\_local\_storage | on |  | 禁用此功能可防止将图表属性（颜色，样式，字体）保存到本地存储，但仍保存最喜欢的项目 |
 | create\_volume\_indicator\_by\_default | on |  |
 | create\_volume\_indicator\_by\_default\_once | on |  |
-| volume\_force\_overlay | on |  | 在与主数据列相同的窗格中放置成交量指示器 |
+| volume\_force\_overlay | on |  | 在主数据列的同一窗格上放置成交量指示器 |
 | right\_bar\_stays\_on\_scroll | on |  | 确定缩放行为：禁用光标下的K现 |
 | constraint\_dialogs\_movement | on |  | 阻止从图表中移动对话框 |
 | charting\_library\_debug\_mode | off |  | 启用日志 |
@@ -91,12 +95,13 @@
 | chart\_zoom | on | 1.10 | 允许缩放图表 |
 | high\_density\_bars | off | 1.11 | 允许缩小在1个屏幕上显示超过60000条个K线 |
 | cl\_feed\_return\_all\_data | off | 1.11 | 允许您从Feed中返回更多的条，并立即在图表上显示 |
+| uppercase_instrument_names | on | 1.12 | 禁用此功能允许用户输入区分大小写的商品 |
 
-### 大石块\(Big Rocks\)
+### 重要功能
 
 | ID | 默认状态 | 库版本 | 描述 |
 | --- | --- | --- | --- |
-|  | study\_templates | off |  |
+| study\_templates | off |  |
 | datasource\_copypaste | on |  | 允许复制图纸和研究 |
 | seconds\_resolution | off | 1.4 | 支持秒分辨率 |
 
@@ -111,6 +116,11 @@
 | add\_to\_watchlist | on | 1.9 | 在菜单中启用“添加商品到观察列表”项 |
 | footer\_screenshot | on | 1.11 | 显示页脚中的截图按钮（客户经理） |
 | open\_account\_manager | on | 1.11 | 默认情况下保留客户经理的打开 |
+| multiple_watchlists | on | 1.12 | 启用创建多个监视列表| 
+| show_trading_notifications_history | on | 1.13 | 启用底部面板中的 "通知日志" 选项卡
 
 
-
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbLTEzMzQxMDU1MzIsMTQ3ODk5OTM4NywtMT
+IyNzY0MTc5NV19
+-->

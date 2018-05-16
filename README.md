@@ -1,10 +1,10 @@
-# TradingView 中文开发文档 V1.12
+# TradingView 中文开发文档 V1.13
 
 本书翻译自官方 wiki：[https://github.com/tradingview/charting_library/wiki](https://github.com/tradingview/charting_library/wiki)
 
 > 未申请 lincense 的同学，点击上面官方 wiki 会报 404 错误：）
 
-TradingView 为优秀的交易技术分析金融图表，拥有丰富的技术指标库，并拥有直接交易的交易终端插件。
+TradingView 为优秀的交易技术分析金融图表，拥有丰富的技术指标库，并拥有直接交易的交易终端插件。 
 
 ## 本项目地址
 
@@ -20,5 +20,6 @@ TradingView 为优秀的交易技术分析金融图表，拥有丰富的技术�
 eyJoaXN0b3J5IjpbLTIwODI2MjcwMTZdfQ==
 -->
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTgzODAyNzExNF19
+eyJoaXN0b3J5IjpbMTgzNDMxNjUwOSwxMjQ3MzE5Mjc1LDE4Mz
+gwMjcxMTRdfQ==
 -->

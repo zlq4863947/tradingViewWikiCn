@@ -14,20 +14,12 @@ widget.onChartReady(function() {
 
 # Methods
 
-**在1.5之前**[**Chart Methods**](/book/Chart-Methods.md)** 归属于 Widget. 请参阅完整的操作列表**[**here**](/book/Chart-Methods.md)
-
 * 订阅图表事件
   * [onChartReady\(callback\)](#onchartreadycallback)
-  * [onSymbolChange\(callback\)](#onsymbolchangecallback)\[已过时\]
-  * [onIntervalChange\(callback\)](#onintervalchangecallback)\[已过时\]
-  * [onAutoSaveNeeded\(callback\)](#onautosaveneededcallback)\[已过时\]
-  * [onBarMarkClicked\(callback\)](#onbarmarkclickedcallback)\[已过时\]
-  * [onTimescaleMarkClicked\(callback\)](#ontimescalemarkclickedcallback)\[已过时\]
   * [onGrayedObjectClicked\(callback\)](#ongrayedobjectclickedcallback)
-  * [onScreenshotReady\(callback\)](#onscreenshotreadycallback)\[已过时\]
-  * [onTick\(callback\)](#ontickcallback)\[已过时\]
   * [onShortcut\(shortcut, callback\)](#onshortcutshortcut-callback)
   * [subscribe\(event, callback\)](#subscribeevent-callback)
+  * [unsubscribe\(event, callback\)](#unsubscribeevent-callback)
 * 图表动作
   * [chart\(\)](/book/Widget-Methods.md#chart)
   * [setLanguage\(locale\)](/book/Widget-Methods.md#setlanguagelocale)
@@ -36,6 +28,8 @@ widget.onChartReady(function() {
   * [closePopupsAndDialogs\(\)](/book/Widget-Methods.md#closepopupsanddialogs)
   * [selectLineTool\(drawingId\)](/book/Widget-Methods.md#selectlinetooldrawingid)
   * [selectedLineTool\(\)](/book/Widget-Methods.md#selectedlinetool)
+  * [takeScreenshot\(\)](/book/Widget-Methods.md#takeScreenshot)
+  * [lockAllDrawingTools\(\)](/book/Widget-Methods.md#lockAllDrawingTools)
 * 保存/加载图表
   * [save\(callback\)](/book/Widget-Methods.md#savecallback)
   * [load\(state\)](/book/Widget-Methods.md#loadstate)
@@ -165,7 +159,11 @@ widget.onShortcut("alt+s", function() {
 
 2.`callback`: function\(arguments\)
 
-当GUI事件发生时，库将调用回调。 每个事件都可以有不同的参数。
+当GUI事件发生时，图表库将调用回调。 每个事件都可以有不同的参数。
+
+#### unsubscribe\(event, callback\)
+
+取消订阅特定事件 (即上表中的事件之一) 。
 
 # 图表功能
 
@@ -214,7 +212,18 @@ widget.onShortcut("alt+s", function() {
 
 返回所选图形或光标的[标识符](/book/Shapes-and-Overrides.md)（见上文）。
 
-# Saving/Loading Charts
+#### ### takeScreenshot\(\)
+此方法创建图表的快照并将其上传到服务器。
+
+完成后, 调用 [onScreenshotReady](#subscribeevent-callback) 回调函数。
+
+快照的 URL 将作为参数传递给回调函数。
+
+#### ### lockAllDrawingTools\(\)
+此方法返回一个 [WatchedValue](/book/WatchedValue.md) object 
+对象, 可用于读取/设置/监视 "锁定所有绘图工具" 按钮的状态。
+
+# 保存/加载图表
 
 #### save\(callback\)
 
@@ -413,23 +422,46 @@ _该方法在版本`1.9`中引入_
 
 以下方法只在[交易终端](/book/Trading-Terminal)可用.
 
-#### ![](../images/trading.png)showSampleOrderDialog\(order\)
-
-1. `order`: object
-
-显示样品订单对话框。 这个对话框看起来像Trading View Paper一样。 通常您不需要使用样品对话框。 这种方法用于交易样本。
-
 #### ![](../images/trading.png)watchList\(\)
 
 _该方法在版本`1.9`中引入_
 
 返回一个对象来操作观察列表。 该对象具有以下方法：
 
-1. `getList()`- 允许您获取当前的商品列表。
+1. `defaultList()`- 允许您获取默认的商品列表。
+2. `getList(id?: string)`- 允许您获取商品列表。 如果未传递`id` 则返回当前列表。 如果没有监视列表则返回 `null` 。  
 
-2. `setList(symbols)`- 允许您将商品列表设置到观察列表中。 它将替换整个列表。
+3.  `getActiveListId()` - 允许您获取当前列表的ID。如果没有监视列表则返回`null` 。
+ 
+4.  `getAllLists()` - 允许您获取所有列表。如果没有监视列表则返回`null` 。
+5.  `setList(symbols: string[])`- 允许您将商品列表设置到观察列表中。 它将替换整个列表。**过时。将在 `1.13`版本中删除。用  `updateList` 替换。**  
 
-3. `onListChanged()`- 您可以通过订阅[Subscription](/book/Subscription.md)对象返回此回调函数，通知当观察列表发生变化并退订事件，如果没有观察列表将返回null。
+1.  `updateList(listId: string, symbols: string[])` - 允许您编辑商品列表。  
+
+1.  `renameList(listId: string, newName: string)` - 允许您将列表重命名为 `newName`.
+
+1.  `createList(listName?: string, symbols?: string[])` - 允许您创建具有`listName` 名称的符号列表。如果未传递 `listName` 参数或者没有监视列表，则返回 `null`。
+
+1.  `saveList(list: SymbolList)` - 允许您保存一个商品列表， `list` 是具有以下key的集合对象:
+
+```js
+id: string;
+title: string;
+symbols: string[];
+```
+
+如果没有监视列表或者已有一个等价列表，则返回`false` 否则返回 `true` 。
+
+1.  `deleteList(listId: string)` - 允许您删除商品列表。
+2. `onListChanged()`- 当在监视列表中的商品更改时, 可以使用此方法进行通知。您可以使用此方法返回的 [Subscription](/book/Subscription.md)对象进行订阅和取消订阅。  
+
+3.  `onActiveListChanged()` - 当选择了不同的监视列表时, 可以使用此方法进行通知。您可以使用此方法返回的 [Subscription](/book/Subscription.md)对象进行订阅和取消订阅。
+
+4.  `onListAdded()` - - 当新的列表添加到监视列表中时, 可以使用此方法进行通知。您可以使用此方法返回的 [Subscription](/book/Subscription.md)对象进行订阅和取消订阅。
+ 
+5.  `onListRemoved()` - 当监视列表中删除商品列表时, 可以使用此方法进行通知。您可以使用此方法返回的 [Subscription](/book/Subscription.md)对象进行订阅和取消订阅。
+
+6.  `onListRenamed()` - - 当监视列表中重命名商品列表时, 可以使用此方法进行通知。您可以使用此方法返回的 [Subscription](/book/Subscription.md)对象进行订阅和取消订阅。
 
 # ![](../images/trading.png)多图表布局
 
@@ -468,3 +500,9 @@ _该方法在版本`1.9`中引入_
 
 
 
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbLTE1MzU3MjA3MTgsLTcxNjEyNTEyNCwtMT
+QzNDk2ODg0LDE2MDczMTgwNTEsLTI1OTQwNjg5MywxOTc3ODAz
+ODgxLDE2ODc5MTQ3MSwtMjAzOTgzMzUwMywtMTI3Mjg1ODY1OC
+wzOTQ1MzUyNTYsLTM0NzQxMDQ5NF19
+-->

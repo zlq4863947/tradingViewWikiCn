@@ -27,15 +27,16 @@
   * [refreshMarks\(\)](#refreshmarks)
   * [clearMarks\(\)](#clearmarks)
   * [setChartType\(type\)](#setcharttypetype)
+  *  [setTimezone(timezone)](#settimezonetimezone)
 * 研究与图形
   * [getAllShapes\(\)](#getallshapes)
   * [getAllStudies\(\)](#getallstudies)
-  * [setEntityVisibility\(id, isVisible\)](#setentityvisibilityid-isvisible)
+  * [setEntityVisibility\(id, isVisible\)](#setentityvisibilityid-isvisible)[过时]
   * [createStudy\(name, forceOverlay, lock, inputs, callback, overrides, options\)](#createstudyname-forceoverlay-lock-inputs-callback-overrides-options)
   * [createShape\(point, options, callback\)](#createshapepoint-options-callback)
   * [createMultipointShape\(points, options, callback\)](#createmultipointshapepoints-options-callback)
+  * [getShapeById(entityId)](#getshapebyidentityid)
   * [removeEntity\(entityId\)](#removeentityentityid)
-  * [createVerticalLine\(point, options\)](#createverticallinepoint-options)
   * [removeAllShapes\(\)](#removeallshapes)
   * [removeAllStudies\(\)](#removeallstudies)
 * 指标模板
@@ -222,6 +223,21 @@ STYLE_PB* = 7;
 ```
 
 \*- :chart: available in Trading Terminal
+  
+
+### setTimezone\(timezone\)
+
+1.  `timezone`: string  
+
+查看[timezone](book/Widget-Constructor.md#timezone)更多信息
+
+例:
+
+```javascript
+
+widget.activeChart().setTimezone('Asia/Singapore');
+```
+使图表更改时区。
 
 #### closePopupsAndDialogs\(\)
 
@@ -346,20 +362,46 @@ STYLE_PB* = 7;
 
 查看[形状与覆盖](book/Shapes-and-Overrides.md)了解更多信息。
 
-此调用会在主数据列上指定几个点位创建一个图形。
+此调用会在主数据列上指定几个点位创建一个图形。  
+
+### getShapeById\(entityId\)
+1.  `entityId`: 对象。通过 API 创建形状时返回的值。  
+
+返回一个对象, 其中的方法允许您与该研究进行交互:
+2.  `isSelectionEnabled()` - 如果用户无法选择该形状，则返回 `true`。
+
+3.  `setSelectionEnabled(enable)` - 启用或禁用形状选择 (请参阅 `createMultipointShape` 的 `disableSelection` 选项选项)
+
+4.  `isSavingEnabled()` - 如果形状未保存在图表上, 则返回`true` 。
+
+5.  `setSavingEnabled(enable)` - 启用或禁用图表布局中的形状保存 (请参阅`disableSave` 的 `createMultipointShape`)
+
+6.  `isShowInObjectsTreeEnabled()` - 如果形状显示在 `对象树` 对话框中, 则返回 `true` 。
+
+7.  `setShowInObjectsTreeEnabled(enabled)` - 在 `对象树` 对话框中启用或禁用显示形状
+
+8.  `isUserEditEnabled()` - 如果用户可以删除/更改/隐藏形状, 则返回`true` 。
+
+9.  `setUserEditEnabled(enabled)` - 启用或禁用用户删除/更改/隐藏形状
+
+10.  `bringToFront()` - 将 `线条` 工具放在所有其他图表对象的顶部。
+11.  `sendToBack()` - 将线条工具置于所有其他图表对象的后面。
+
+13.  `getProperties()` - 获取形状的所有属性。
+14.  `setProperties(properties)` - 设置形状的属性。
+`properties` 应与 `getProperties`中的对象具有相同的结构。它只能包含要重写的属性。
+
+1.  `getPoints()` - 返回形状的points。 `Point` 具有以下key `{ price, time }`的对象。
+
+1.  `setPoints(points)` - 设置形状的新points。
+
+point 格式与`createMultipointShape` 方法中`points`参数相同。
 
 #### removeEntity\(entityId\)
 
 1. `entityId`: object. 值为创建实体 \(图形的研究\) 后通过回调传递的值.
 
 删除指定实体。
-
-#### createVerticalLine\(point, options\)
-
-1. `point`: object `{time}`
-2. `options`: obejct `{lock}`
-
-此方法为`createShape`的同义词，并且 shape = 'vertical\_line'. 它被视为 **已过时**.
 
 #### removeAllShapes\(\)
 
@@ -640,3 +682,6 @@ widget.chart().createExecutionShape()
 * [覆盖默认图表参数](/book/Overrides.md)
 
 
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbMTcxMTA2NzU1OCw1MDQxMTA2MDFdfQ==
+-->
