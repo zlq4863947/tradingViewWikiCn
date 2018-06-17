@@ -12,6 +12,10 @@ TradingView 为优秀的交易技术分析金融图表，拥有丰富的技术�
 * 在线阅读：[https://zlq4863947.gitbooks.io/tradingview/](https://zlq4863947.gitbooks.io/tradingview/)
 * 在线阅读(国内防墙)：[https://b.aitrade.ga/books/tradingview/](https://b.aitrade.ga/books/tradingview/)
 
+## 视频教程
+* 仓库：[https://github.com/zlq4863947/proficient-tradingview](https://github.com/zlq4863947/proficient-tradingview)
+* 在线阅读：[https://b.aitrade.ga/books/proficient-tradingview](https://b.aitrade.ga/books/proficient-tradingview)
+
 ## 开发交流 QQ 群
 
 * tradingview 开发：313839516
