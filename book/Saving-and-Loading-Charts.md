@@ -2,11 +2,11 @@
 
 ---
 
-图表库支持保存/加载图表和研究模板（研究模板在 `unstable`中提供）在2级抽象上：
+图表库支持保存/加载图表和指标模板（指标模板在 `unstable`中提供）在2级抽象上：
 
 1. **低级别**：保存/加载功能通过widget的`save()`/`load()`[方法](/book/Widget-Methods.md#savecallback)和`createStudyTemplate()`/ `applyStudyTemplate（）`方法呈现。 使用它们的人应该自己处理物理存储。 因此，您可以将这些JSON保存到您想要的位置，例如，您可以将它们嵌入到已保存的页面或用户的工作区域等等。
 
-2. **高级别**：图表库可以从您指向的存储中保存/加载图表和研究模板。 我们使用Python和PostgreSQL创建了一个小型存储示例，并将其放在[我们的GitHub](https://github.com/tradingview/saveload_backend)上。 您可以获取它并运行在您自己的服务器上，以便您可以控制所有用户的保存数据。
+2. **高级别**：图表库可以从您指向的存储中保存/加载图表和指标模板。 我们使用Python和PostgreSQL创建了一个小型存储示例，并将其放在[我们的GitHub](https://github.com/tradingview/saveload_backend)上。 您可以获取它并运行在您自己的服务器上，以便您可以控制所有用户的保存数据。
 
 # 使用高级别保存/加载
 
@@ -90,7 +90,7 @@ DELETE REQUEST: charts_storage_url/charts_storage_api_version/charts?client=clie
 
 1. "status": "ok" or "error"
 
-# 使用演示图和研究模板存储
+# 使用演示图和指标模板存储
 
 我们正在运行演示图存储服务，让您尽可能快地保存/加载新的库的构建。 此存储网址为<http://saveload.tradingview.com>。 这只是一个演示，所以它是按原样提供的。 我们不保证其稳定性。 此外，我们一次又一次地从这个存储中删除所有的数据。
 

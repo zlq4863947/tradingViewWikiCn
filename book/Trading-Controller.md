@@ -1,4 +1,4 @@
-#交易控制器
+#交易控制器(已废弃)
 
 ---
 
@@ -32,7 +32,7 @@
 
 * supportPLUpdate
 
-  经纪人提供PL的头寸。 如果经纪商自己计算利润/损失，它应该调用 \[\[plUpdate\|Trading-Host\#plupdatepositionid-pl\]\] 一旦PL改变了。 否则图表将计算PL作为当前交易与头寸平均价格之间的差额。
+  经纪人提供PL的持仓。 如果经纪商自己计算利润/损失，它应该调用 \[\[plUpdate\|Trading-Host\#plupdatepositionid-pl\]\] 一旦PL改变了。 否则图表将计算PL作为当前交易与持仓平均价格之间的差额。
 
 * supportBrackets
 
@@ -79,7 +79,7 @@
 return [{ name: 'DAY', value: 'DAY' }, { name: 'GTC', value: 'GTC' }];
 ```
 
-#### 头寸 : [Deferred](https://api.jquery.com/category/deferred-object/)
+#### 持仓 : [Deferred](https://api.jquery.com/category/deferred-object/)
 
 #### 订单 : [Deferred](https://api.jquery.com/category/deferred-object/)
 
@@ -168,7 +168,7 @@ return [{ name: 'DAY', value: 'DAY' }, { name: 'GTC', value: 'GTC' }];
 
 #### reversePosition\(positionId, silently\)
 
-如果“supportReversePosition”配置标志打开，则通过id来反转头寸，将调用此方法。
+如果“supportReversePosition”配置标志打开，则通过id来反转持仓，将调用此方法。
 如果 `silently` 为`true`，则不显示任何对话框。
 
 #### symbolInfo\(symbol\) : Deferred \(or Promise\)

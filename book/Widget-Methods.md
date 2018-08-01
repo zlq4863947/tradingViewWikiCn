@@ -102,7 +102,7 @@ new TradingView.widget({
 
 widget.onChartReady(function() {
     widget.onGrayedObjectClicked(function(data) {
-        // 当您尝试创建力量平衡研究或趋势图形时
+        // 当您尝试创建力量平衡指标或趋势图形时
         // 此方法将被调用
 
         alert(data.name + " is grayed out!");
@@ -134,7 +134,7 @@ widget.onShortcut("alt+s", function() {
 | toggle\_sidebar |  | 绘图工具栏 显示/隐藏 |
 | indicators\_dialog |  | 显示指标对话框 |
 | toggle\_header |  | 图表头 显示/隐藏 |
-| edit\_object\_dialog |  | 显示图/研究属性对话框 |
+| edit\_object\_dialog |  | 显示图/指标属性对话框 |
 | chart\_load\_requested |  | 即将载入的新图表 |
 | chart\_loaded |  |  |
 | mouse\_down |  |  |
@@ -146,7 +146,7 @@ widget.onShortcut("alt+s", function() {
 | reset\_scales | 1.7 | 复位比例按钮被点击后 |
 | compare\_add | 1.7 | 显示比较对话框 |
 | add\_compare | 1.7 | 添加比较工具 |
-| load\_study template | 1.7 | 研究模板被载入后 |
+| load\_study template | 1.7 | 指标模板被载入后 |
 | onTick |  | 回调将被调用每当最近的K线更新时 |
 | onAutoSaveNeeded |  | 每当用户更改图表时，库将调用该回调。`Chart change`意味着可以撤消用户的任何操作。回调不会在五秒内多次调用。参见[auto\_save\_delay](/book/Widget-Constructor#auto_save_delay) |
 | onScreenshotReady |  | 每当用户创建屏幕截图和服务器返回创建的图像名称时。 |
@@ -276,7 +276,7 @@ widget.onShortcut("alt+s", function() {
 
 从服务器移除图表。
 
-# Custom UI Controls
+# 自定义UI控件
 
 #### onContextMenu\(callback\)
 
@@ -416,7 +416,7 @@ _该方法在版本`1.9`中引入_
 
 1. `overrides` 为一个对象，和[studies\_overrides](/book/Widget-Constructor.md#studiesoverrides)相同。
 
-此方法将重写研究的指标样式或输入参数，而无需重新加载图表。
+此方法将重写指标的指标样式或输入参数，而无需重新加载图表。
 
 # ![](../images/trading.png)交易终端特制
 
@@ -495,8 +495,8 @@ symbols: string[];
 * [定制概述](/book/Customization-Overview.md)
 * [Widgetg构造函数](/book/Widget-Constructor.md)
 * [存储与加载图表](/book/Saving-and-Loading-Charts.md)
-* [覆盖默认研究参数](/book/Studies-Overrides.md)
-* [覆盖默认图表参数](/book/Overrides.md)
+* [指标覆盖默](/book/Studies-Overrides.md)
+* [覆盖](/book/Overrides.md)
 
 
 

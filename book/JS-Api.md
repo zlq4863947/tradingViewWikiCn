@@ -2,15 +2,15 @@
 
 ---
 
-**这是啥?** 一套JS方法（特定的公共接口）。  
-**我该怎么使用它?**: 您应该创建一个JS对象，它将以某种方式接收数据，并响应Charting Library请求。
+**这是啥?** 一套JS方法（以实现指定的公共接口）。  
+**我该怎么使用它?**: 您应该创建一个JS对象，它将以某种方式接收数据，并响应图表库的请求。
 
 在图表库中实现了数据缓存（历史和商品信息）。当您创建一个实现接口的对象时，只需将它传递给图表库[Widget的构造函数](/book/Widget-Constructor.md)。
 
 # [Methods](#methods)
 
 1. [onReady](#onreadycallback)
-2. [searchSymbols](#searchSymbolsuserinput-exchange-symboltype-onresultreadycallback)
+2. [searchSymbols](#searchsymbolsuserinput-exchange-symboltype-onresultreadycallback)
 3. [resolveSymbol](#resolvesymbolsymbolname-onsymbolresolvedcallback-onresolveerrorcallback)
 4. [getBars](#getbarssymbolinfo-resolution-from-to-onhistorycallback-onerrorcallback-firstdatarequest)
 5. [subscribeBars](#subscribebarssymbolinfo-resolution-onrealtimecallback-subscriberuid-onresetcacheneededcallback)
@@ -25,8 +25,8 @@
 1. [getQuotes](#getquotessymbols-ondatacallback-onerrorcallback)
 2. [subscribeQuotes](#subscribequotessymbols-fastsymbols-onrealtimecallback-listenerguid)
 3. [unsubscribeQuotes](#unsubscribequoteslistenerguid)
-4. ![](../images/trading.png)[subscribeDepth](#subscribedepthsymbolinfo-callback-string)
-5. ![](../images/trading.png)[unsubscribeDepth](#unsubscribedepthsubscriberuid)
+4. [subscribeDepth](#subscribedepthsymbolinfo-callback-string)
+5. [unsubscribeDepth](#unsubscribedepthsubscriberuid)
 
 ### [onReady\(callback\)](#onreadycallback)
 
@@ -37,7 +37,7 @@
 
 此方法旨在提供填充配置数据的对象。这些数据会影响图表的行为表现，所以它被调用在[服务端定制](Customization-Overview.md#customization-done-through-data-stream)。
 
-图表库要求您使用回调函数来传递datafeed的configurationData参数。
+图表库要求您使用回调函数来传递datafeed的 `configurationData`参数。
 
 configurationData是一个对象，现在支持以下属性:
 
@@ -45,13 +45,13 @@ configurationData是一个对象，现在支持以下属性:
 
 一个交易所数组。 Exchange是一个对象`{value, name, desc}`。
 
-`value将被作为exchange参数传递给` searchSymbols \(见下文\)。
+`value`将被作为`exchange`参数传递给 [searchSymbols](#searchsymbolsuserinput-exchange-symboltype-onresultreadycallback)。
 
-`exchanges= []`会导致商品查询列表中看不到交易所过滤器。使用`value= ""`来创建通配符筛选器（所有的交易所）。
+`exchanges = []`会导致商品查询列表中看不到交易所过滤器。使用`value = ""`来创建通配符筛选器（所有的交易所）。
 
 ##### [symbols\_types](#symbolstypes)
 
-一个商品类型过滤器数组。该商品类型过滤器是个对象`{name, value}`。`value`将被作为`symbolType`参数传递给searchSymbolsB。
+一个商品类型过滤器数组。该商品类型过滤器是个对象`{name, value}`。`value`将被作为`symbolType`参数传递给[searchSymbols](#searchsymbolsuserinput-exchange-symboltype-onresultreadycallback)。
 
 `symbolsTypes`= \[\] 会导致商品查询列表中看不到商品类型过滤器。 使用`value= ""`来创建通配符筛选器（所有的商品类型）。
 
@@ -59,7 +59,7 @@ configurationData是一个对象，现在支持以下属性:
 
 一个表示服务器支持的分辨率数组，分辨率可以是数字或字符串。 如果分辨率是一个数字，它被视为分钟数。 字符串可以是“\*D”，“\*W”，“\_M”（\_的意思是任何数字）。格式化详细参照:[文章](/book/Resolution.md)。
 
-`resolutions`=undefined 或 \[\] 时，分辨率拥有默认内容 \(见：[http://tradingview.com/e/](http://tradingview.com/e/)\)。
+`resolutions = undefined` 或 `resolutions = []` 时，分辨率拥有默认内容。
 
 例:`[1, 15, 240, "D", "6M"]`您将在分辨率中得到 "1 分钟, 15 分钟, 4 小时, 1 天, 6 个月" 。
 
@@ -75,7 +75,11 @@ configurationData是一个对象，现在支持以下属性:
 
 将此设置为`true`假如您的datafeed提供服务器时间（unix时间）。 它用于调整时间刻度上的价格比例。
 
-#####futures_regex 如果您想在商品搜索中对期货进行分组，请设置它。 这个 REGEX 应该将仪器名称分为两部分：根和期满。 实例 regex: : /^(.+)([12]!|[FGHJKMNQUVXZ]\d{1,2})$/. 它将应用于类型为期货的图表。
+##### futures_regex 
+
+如果您想在商品搜索中对期货进行分组，请设置它。 这个正则表达式会将仪器名称分为两部分：根和期满。 
+
+实例 regex: : `/^(.+)([12]!|[FGHJKMNQUVXZ]\d{1,2})$/`. 它将应用于类型为期货的图表。
 
 ### [searchSymbols\(userInput, exchange, symbolType, onResultReadyCallback\)](#searchsymbolsuserinput-exchange-symboltype-onresultreadycallback)
 
@@ -90,11 +94,11 @@ configurationData是一个对象，现在支持以下属性:
 ```js
 [
     {
-        "symbol": <商品缩写名>,
-        "full_name": <商品全称 -- 例: BTCE:BTCUSD>,
-        "description": <商品描述>,
-        "exchange": <交易所名>,
-        "ticker": <商品代码, 可选>,
+        "symbol": "<商品缩写名>",
+        "full_name": "<商品全称 -- 例: BTCE:BTCUSD>",
+        "description": "<商品描述>",
+        "exchange": "<交易所名>",
+        "ticker": "<商品代码, 可选>",
         "type": "stock" | "futures" | "bitcoin" | "forex" | "index"
     }, {
         //    .....
@@ -102,7 +106,7 @@ configurationData是一个对象，现在支持以下属性:
 ]
 ```
 
-如果没有找到商品，则应该使用空数组来调用回调。查看更多关于`ticker`值的细节 [在这里](/book/Symbology.md#ticker)
+如果没有找到商品，则应该使用空数组来调用回调。查看更多关于`ticker`的细节 [在这里](/book/Symbology.md#ticker)
 
 ### [resolveSymbol\(symbolName, onSymbolResolvedCallback, onResolveErrorCallback\)](#resolvesymbolsymbolname-onsymbolresolvedcallback-onresolveerrorcallback)
 

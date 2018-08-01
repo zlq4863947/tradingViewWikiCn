@@ -88,7 +88,7 @@
 | show\_dialog\_on\_snapshot\_ready | on |  | 禁用此功能允许您以静默方式进行快照 |
 | study\_market\_minimized | on |  | 涉及“指标”对话框，确定它是否紧凑或包含搜索栏和类别 |
 | study\_dialog\_search\_control | on | 1.6 | 在指标对话框中显示搜索对话框 |
-| side\_toolbar\_in\_fullscreen\_mode | off |  | 使用此功能，您可以在全屏模式下启用绘图工具栏 |
+| side\_toolbar\_in\_fullscreen\_mode | off | 1.13 | 使用此功能，您可以在全屏模式下启用绘图工具栏 |
 | same\_data\_requery | off |  | 允许您使用相同的商品调用`setSymbol`来刷新数据 |
 | disable\_resolution\_rebuild | off |  | 显示的时间与DataFeed提供的时间完全一致，而不进行对齐。 如果您希望图表构建一些分辨率，则不建议使用此方法。 |
 | chart\_scroll | on | 1.10 | 允许滚动图表 |
@@ -102,7 +102,7 @@
 | ID | 默认状态 | 库版本 | 描述 |
 | --- | --- | --- | --- |
 | study\_templates | off |  |
-| datasource\_copypaste | on |  | 允许复制图纸和研究 |
+| datasource\_copypaste | on |  | 允许复制图纸和指标 |
 | seconds\_resolution | off | 1.4 | 支持秒分辨率 |
 
 ## ![](/images/trading.png)交易终端

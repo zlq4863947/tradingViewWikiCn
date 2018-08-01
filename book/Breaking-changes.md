@@ -24,8 +24,8 @@ _注意：您可以通过在浏览器控制台中执行 `TradingView.version()` 
 
 - `searchSymbolsByName` 从 `JS-API` 中移除, 使用 `searchSymbols` 代替。
 
-研究覆盖:
--  `Overlay` 的覆盖只能通过 `studies_overrides` (或运行时的 `applyStudiesOverrides` )。 在以前版本中您可以使用 `overrides` 和 `applyOverrides`). 参见 [研究覆盖](Studies-Overrides.md) 页.
+指标覆盖:
+-  `Overlay` 的覆盖只能通过 `studies_overrides` (或运行时的 `applyStudiesOverrides` )。 在以前版本中您可以使用 `overrides` 和 `applyOverrides`). 参见 [指标覆盖](Studies-Overrides.md) 页.
 - 从这个版本开始，您将不能再使用 `options` 关键字以覆盖 `showStudyArguments` 和 `showLastValue` 。
 
 **交易终端**

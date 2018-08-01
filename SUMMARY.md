@@ -48,7 +48,7 @@
 ---
 
 * [6、储存和载入图表](book/Saving-and-Loading-Charts.md)
-* [7、创建自定义研究](book/Creating-Custom-Studies.md)
+* [7、创建自定义指标](book/Creating-Custom-Studies.md)
 * [7、最佳做法](book/Best-practices.md)
 * [9、经常被问到的问题](book/Frequently-Asked-Questions.md)
 * [10、版本变更点](book/Breaking-changes.md)
@@ -59,7 +59,7 @@
 * [本地化](book/Localization.md)
 * [覆盖](book/Overrides.md)
 * [绘图覆盖](book/Drawings-Overrides.md)
-* [研究覆盖](book/Studies-Overrides.md)
+* [指标覆盖](book/Studies-Overrides.md)
 * [形状与覆盖](book/Shapes-and-Overrides.md)
 * [订阅](book/Subscription.md)
 * [交易元语](book/Trading-Primitives.md)

@@ -1,4 +1,4 @@
-# 研究覆盖
+# 指标覆盖
 
 可以使用`studies_overrides`参数为新创建的指标设置默认样式和输入值。 它的值应该是一个对象，其中key是一个属性被改变的路径，value是它的新值。 例：
 ```
@@ -18,9 +18,9 @@ studies_overrides: {
 
 在上面的例子中，所有创建的布林带将具有上边线宽度 = 7（除非您通过API创建并为此线指定了另一个值）。
 
-### 如何设置研究名称
+### 如何设置指标名称
 
-您应该在新建研究对话框中使用研究名称，但采用小写形式。 所以，如果你想覆盖默认的EMA长度，尝试使用`moving average exponential.length`。 同样的原则适用于输入名称：使用名称，您可以在“研究属性”对话框中看到它们（也使用小写字母）。 例如：`stochastic.smooth d`。
+您应该在新建指标对话框中使用指标名称，但采用小写形式。 所以，如果你想覆盖默认的EMA长度，尝试使用`moving average exponential.length`。 同样的原则适用于输入名称：使用名称，您可以在“指标属性”对话框中看到它们（也使用小写字母）。 例如：`stochastic.smooth d`。
 
 ### 比较
 
@@ -84,7 +84,7 @@ Format: `indicator_name.plot_name.property_name`
 * 透明度在[0..100]范围内变化。 100意味着完全不透明的。
 * 厚度是一个整数。
 
-### 研究选项
+### 指标选项
 格式: `indicator_name.options.option_name`
 
 * **indicator_name**:  < ... >
@@ -96,5 +96,5 @@ Format: `indicator_name.plot_name.property_name`
 例子: `volume.options.showStudyArguments`, `volume.options.showLastValue`
 
 ### 默认精度
-1.6版本开始，您可以使用`name.precision`格式更改研究的默认精度。 例：
+1.6版本开始，您可以使用`name.precision`格式更改指标的默认精度。 例：
 `"average true range.precision": 8`
