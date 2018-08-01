@@ -2,7 +2,7 @@
 
 ---
 
-![](/images/trading.png)此页面上的所有内容仅适用于\[\[交易终端\]\]。
+![](/images/trading.png)此页面上的所有内容仅适用于[交易终端](Trading-Terminal.md)。
 
 **注意：** 如果您使用TypeScript，您可以从`broker-api.d.ts`文件中导入本文的常量/接口/类型。
 
@@ -12,69 +12,74 @@
 
 这是一个应该在交易终端的构造函数中传递给[brokerConfig](/book/Widget-Constructor.md#brokerConfig)的对象。 每个字段应该有一个布尔值（`true` /`false`）：
 
-* supportReversePosition
+* `supportReversePosition`
 
-    经纪商支持反转头寸。
+    经纪商支持反转持仓。
     如果经纪商不支持，图表将有反转按钮，但是它会发出反转订单。
 
-* supportClosePosition
+* `supportClosePosition`
 
     经纪商支持平仓。
     如果经纪商不支持，图表将有平仓按钮，但它将发出平仓订单。
 
-* supportReducePosition
+* `supportReducePosition`
 
-    经纪商支持在没有订单的情况下更改头寸。
+    经纪商支持在没有订单的情况下更改持仓。
 
-* supportPLUpdate
+* `supportPLUpdate`
 
     经纪商支持持仓损益(PL)。如果经纪商本身计算利润/损失，则应在PL更改后立即调用[PLUpdate](Trading-Host.md#plupdatepositionid-pl)。 否则，图表将计算PL作为当前交易与仓位平均价格之差。
 
-* supportOrderBrackets
+* `supportOrderBrackets`
 
     经纪商支持订单的包围单（止盈和止损）。 如果此标志为`true`，则图表将在图表和账户管理器中的订单编号和修改按钮中显示附加字段。
 
-* supportPositionBrackets
+* `supportPositionBrackets`
 
-    经纪商支持仓位的包围单（止盈和止损）。 如果此标志为`true`，则图表将显示位置的编辑按钮，并将`编辑头寸...`添加到仓位的上下文菜单中。
+    经纪商支持仓位的包围单（止盈和止损）。 如果此标志为`true`，则图表将显示位置的编辑按钮，并将`编辑持仓...`添加到仓位的上下文菜单中。
 
-* supportTradeBrackets
+* `supportTradeBrackets`
 
-    经纪商支持单一交易的包围单（止盈和止损订单）。 如果此标志为`true`，则图表将显示用于交易（单个头寸）的编辑按钮，并将`编辑头寸...`添加到交易的上下文菜单中。
+    经纪商支持单一交易的包围单（止盈和止损订单）。 如果此标志为`true`，则图表将显示用于交易（单个持仓）的编辑按钮，并将`编辑持仓...`添加到交易的上下文菜单中。
 
-* supportTrades
+* `supportTrades`
 
-    经纪商支持单个头寸（交易）。如果设置为`true`，帐户管理器中将有两个选项卡：单个头寸和净头寸。
+    经纪商支持单个持仓（交易）。如果设置为`true`，帐户管理器中将有两个选项卡：单个持仓和净持仓。
 
-* requiresFIFOCloseTrades
+* `requiresFIFOCloseTrades`
 
     交易账户需要以先进先出顺序结算交易。
 
-* supportCloseTrade
+* `supportCloseTrade`
 
-    单个头寸（交易）可以关闭。
+    单个持仓（交易）可以关闭。
 
-* supportMultiposition
+* `supportMultiposition`
 
-    支持多头寸防止创建反转头寸的默认实现。
+    支持多持仓防止创建反转持仓的默认实现。
 
-* showQuantityInsteadOfAmount
+* `showQuantityInsteadOfAmount`
 
   此标志可用于在订单对话框中将"Amount"更改为"Quantity"
 
-* supportLevel2Data
+* `supportLevel2Data`
 
     Level2数据用于DOM小部件。 应该执行`subscribeDepth`和`unsubscribeDepth`。
 
-* supportStopLimitOrders
+* s`upportStopLimitOrders`
 
     此标志将止损限价订单类型添加到订单对话框。
     
-* supportMarketBrackets
+* `supportMarketBrackets`
   使用这个标志你可以禁止市价单的包围单。 默认情况下启用。
 
-* supportModifyDuration
+* `supportModifyDuration`
     使用这个标志你可以修改现有订单的持续时间。 默认情况下它被禁用。
+
+* `supportModifyOrder`
+    *默认：*`true`
+
+    使用此标志可以禁用现有订单的修改。 它默认启用。
 
 #### durations: array of objects
 
@@ -106,86 +111,97 @@ customNotificationFields: ['additionalType']
 * brokerSymbol : String. 如果经纪商商品代码与TV商品代码相同，则可以为空。
 * type : [OrderType](Trading-Objects-and-Constants.md#ordertype)
 * side : [Side](Trading-Objects-and-Constants.md#side)
-* qty : Double
+* qty : number
 * status : [OrderStatusSide](Trading-Objects-and-Constants.md#orderstatus)
-* limitPrice : double
-* stopPrice : double
-* avg_price : double
-* filledQty : double
+* limitPrice : number
+* stopPrice : number
+* avg_price : number
+* filledQty : number
 * parentId : String. 如果订单是一组parentOrderId应该包含基本订单/仓位ID。
 * parentType: [ParentType](Trading-Objects-and-Constants.md#parenttype)
 
 ## Position
 
-描述一个头寸。
+描述一个持仓。
 
 * id: String. 通常id应等于brokerSymbol
 * symbol : String
 * brokerSymbol : String. 如果经纪商商品代码与TV商品代码相同，则可以为空。
-* qty : Double positive
-* side: [[Side|Trading-Objects-and-Constants#side]]
-* avg_price : Double
+* qty : number positive
+* side: [Side](#side)
+* avg_price : number
 
 ## Execution
 
 Describes a single execution.
 
-* symbol : String
-* brokerSymbol : String. 如果经纪商商品代码与TV商品代码相同，则可以为空。
-* price : double
-* time: time_t
-* side : [[Side|Trading-Objects-and-Constants#side]]
-* qty : double
+* `symbol` : String
+* `brokerSymbol` : String. 如果经纪商商品代码与TV商品代码相同，则可以为空。
+* `price` : number
+* `time`: Date
+* `side` : [Side](#side)
+* `qty` : number
 
 
 ## ActionMetainfo
 
 描述将其放入下拉菜单或上下文菜单中的单个操作。它是一个结构。
 
-* text : String
-* checkable : Boolean. 如果需要复选框，将其设置为true。
-* checked : Boolean
-* 复选框的值。
-* enabled: Boolean
-* action: function. 当用户单击该项目时执行操作。 它有一个参数 - 复选框的值（如果存在）。
+* `text` : String
+* `checkable` : Boolean. 如果需要复选框，将其设置为true。
+* `checked` : Boolean
+* `enabled`: Boolean
+* `action`: function. 当用户单击该项目时执行操作。 它有一个参数 - 复选框的值（如果存在）。
 
 ## OrderType
 
 用于描述订单状态的字符串常量。
 
-* market
-* limit
-* stop
-* stoplimit
+```javascript
+OrderType.Limit = 1
+OrderType.Market = 2
+OrderType.Stop = 3
+OrderType.StopLimit = 4
+```
 
 ## Side
 
 用于描述订单/交易执行的字符串常量。
 
-* buy
-* Sell
+```javascript
+Side.Buy = 1
+Side.Sell = -1
+```
 
 
 ## ParentType
 
 用于描述包围单所有者的字符串常量。
 
-* ORDER_PARENT
-* POSITION_PARENT
-
+```javascript
+ParentType.Order = 1
+ParentType.Position = 2
+```
 
 ## OrderStatus
 
 用于描述订单状态的字符串常量。
 
-| 状态    | 描述 |
-|-----------|-------------|
-| pending 	| 订单还未在经纪商一方创建 |
-| inactive 	| bracket order is created but waiting for a base order to be filled |
-| working	| 订单被创建还未执行成功 |
-| rejected	| 订单因某些原因被拒绝 |
-| filled	| 订单已成交 |
-| canceled	| 订单被取消 |
+```JavaScript
+OrderStatus.Canceled = 1 //订单被取消
+OrderStatus.Filled = 2 //订单已完全执行
+OrderStatus.Inactive = 3 //创建了括号顺序，但等待填写基本订单
+OrderStatus.Placing = 4 //尚未在代理端创建订单
+OrderStatus.Rejected = 5 //由于某种原因拒绝订单
+OrderStatus.Working = 6 //已创建订单但尚未执行
+```
+
+## OrderDuration
+
+订单的持续时间或到期时间。
+
+* `type`：传递给的列表中的字符串标识符[durations](#orderduration)
+* `datetime`number
 
 ## DOMEObject
 
@@ -201,22 +217,23 @@ Describes a single execution.
 
 单个DOME价格水平对象。
 
-* `price`: double
-* `volume`: double
+* `price`: number
+* `volume`: number
 
+## OrderTicketFocusControl
 
-## FocusOptions
+打开标准订单对话框或持仓对话框时设置焦点的字符串常量。
 
-打开标准订单对话框或头寸对话框时设置焦点的字符串常量。
-
-* STOP_PRICE_FIELD     focus stop price for StopLimit orders
-* TAKE_PROFIT_FIELD    focus take profit control
-* STOP_LOSS_FIELD      focus stop loss control
+```JavaScript
+OrderTicketFocusControl.StopLoss = 1 //焦点止损控制
+OrderTicketFocusControl.StopPrice = 2 //停止StopLimit订单的止损价格
+OrderTicketFocusControl.TakeProfit = 3 //焦点获利控制
+```
 
 ## Brackets
 
-# `stopLoss`: double
-# `takeProfit`: double
+# `stopLoss`: number
+# `takeProfit`: number
 
 ## Formatter
 

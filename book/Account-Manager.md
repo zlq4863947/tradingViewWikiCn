@@ -2,20 +2,18 @@
 
 ---
 
-![](/images/trading.png)此页面上的所有内容仅适用于\[\[交易终端\]\]。
+![](/images/trading.png)此页面上的所有内容仅适用于[交易终端](Trading-Terminal.md)。
 
 帐户管理器是一个显示交易信息的交互式表格。
-通常它有3页：订单/头寸和帐户信息。
+通常它有3页：订单/持仓和帐户信息。
 
 要创建帐户管理器，您需要描述每个页面的列并提供数据。
 
-备注 1. [[supportCustomBottomWidget|Trading-Controller#configFlags]] 标志应被禁用，以显示客户经理。
-
-备注 2. [[Trading Controller]] 应实现 [[accountManagerInfo|Trading-Controller#accountmanagerinfo]]
+备注 1. [Broker API](Broker-API.md) 应实现 [accountManagerInfo](Broker-API.md#accountmanagerinfo)
 
 ## 帐户管理器Mete信息
 
-此信息将返回 [[accountManagerInfo|Trading-Controller#accountManagerInfo]].
+此信息将返回 [accountManagerInfo](Broker-API.md#accountManagerInfo).
 
 ### 帐户管理器头信息
 
@@ -23,32 +21,39 @@
 
 ##### accountTitle: String
 ##### accountsList: AccountInfo数组
-##### account: [[WatchedValue]] of AccountInfo
+##### account: [WatchedValue](WatchedValue.md) of AccountInfo
 
 `AccountInfo` 是一个只有`name`为必须键和对应值的对象。
 
+1. `id` - 帐户ID
+1. `name` - 账户名称
+1. `currency` - 账户货币
+
+如果未设置`currency`，则`USD`将用作默认值。
+
 ### 订单页
 
-##### orderColumns: array of [[Column|Account-Manager#columndescription]]
+##### orderColumns: array of [Column](#column-description)
 
 要在订单页面中显示的列的说明。
-您可以显示[[order|Trading-Objects-and-Constants＃order]]的任何字段，也可以将自己的字段添加到订单对象中并显示它们。
+您可以显示[order](Trading-Objects-and-Constants.md#order)的任何字段，也可以将自己的字段添加到订单对象中并显示它们。
 
-##### possibleOrderStatuses: array of [[OrderStatus|Trading-Objects-and-Constants#orderstatus]]
+##### possibleOrderStatuses: array of [OrderStatus](Trading-Objects-and-Constants.md#orderstatus)
 在订单过滤器中使用的可选状态列表。如果未设置，则使用默认列表。
 
-#### hasHistory
-如果是 `true` ，将显示历史页面。 历史上的所有订单将显示在历史记录中。
+#### historyColumns: array of [Column](#column-description)
 
-### 头寸页
+如果存在，将显示历史页面。 之前会话的所有订单都将显示在历史记录中。
 
-##### positionColumns: array of [[Column|Account-Manager#columndescription]]
+### 持仓页
 
-您可以显示[[position|Trading-Objects-and-Constants＃position]]的任何字段，或者将您自己的字段添加到位置对象并显示它们。
+##### positionColumns: array of [Column](#column-description)
+
+您可以显示[position](Trading-Objects-and-Constants.md#position)的任何字段，或者将您自己的字段添加到位置对象并显示它们。
 
 ### 附加页面（例如帐户摘要）
 
-##### pages: array of [[Page|Account-Manager#page]]
+##### pages: array of [Page](#page)
  
 使用`pages`您可以向账户管理器添加新的tab页。每个选项卡都是一组列表。
 
@@ -70,7 +75,7 @@
 
 #### Table
 
-您可以向[[Page|Account-Manager#page]]添加一个或多个表。
+您可以向[Page](#page)添加一个或多个表。
 帐户摘要表metainfo是一个包含以下字段的对象：
 
 1. `id`: String
@@ -81,7 +86,7 @@
 
 表的可选标题。
 
-3. `columns`: array of [[Column|Account-Manager#columndescription]]
+3. `columns`: array of [Column](#column-description)
 
 4. `getData`: Promise
 
@@ -89,9 +94,15 @@
 每一行都是一个对象。 此对象的键是具有相应值的列名称。
 有一个预定义的字段 `isTotalRow` 可以用来标记一个表的底部的一行。
 
-5. `changeDelegate` : [[Delegate]]
+5. `changeDelegate` : [Delegate](Delegate.md)
 
 用于观察数据更改并更新表。 通过`fire`方法将新的账户管理器数据传递给delegate。
+
+6. `initialSorting`: 具有以下属性的对象:
+    - `columnId` - 将用于排序的列的`id`或`property`。
+    - `asc` - （可选，默认为`false`） - 如果是`true`，则初始排序将按升序排列。
+
+    `initialSorting` 是表的可选排序。 如果未设置，则表按第一列排序。
 
 **注意**：如果表中有多行，并且想使用 `changeDelegate` 更新一行，请确保每行中都有 `id` 字段来标识它。
 如果表中只有一行，则不是必须的。
@@ -150,6 +161,14 @@
 | fixed | 显示一个小数点后2位的数字。 |
 | pips | 显示一个小数点后1位的数字。 |
 | profit | 显示利润。它还添加了 `+`，分隔成千位，并设置红色或绿色的单元文本颜色。 |
+
+有一些特殊的格式化程序用于向表中添加按钮：
+
+`orderSettings`将修改/取消按钮添加到订单选项卡。 始终为此格式化程序将`modificationProperty`值设置为`status`。
+
+`posSettings`将编辑/关闭按钮添加到位置/净位置选项卡
+
+`tradeSettings`将编辑/关闭按钮添加到个人位置选项卡。 始终为此格式化程序将`modificationProperty`值设置为`canBeClosed`。
 
 ##### property
 

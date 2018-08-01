@@ -28,7 +28,7 @@
   * [clearMarks\(\)](#clearmarks)
   * [setChartType\(type\)](#setcharttypetype)
   *  [setTimezone(timezone)](#settimezonetimezone)
-* 研究与图形
+* 指标与图形
   * [getAllShapes\(\)](#getallshapes)
   * [getAllStudies\(\)](#getallstudies)
   * [setEntityVisibility\(id, isVisible\)](#setentityvisibilityid-isvisible)[过时]
@@ -243,7 +243,7 @@ widget.activeChart().setTimezone('Asia/Singapore');
 
 调用此方法关闭一个上下文菜单或对话框,假设其已经显示。
 
-# 研究与图形
+# 指标与图形
 
 #### getAllShapes\(\)
 
@@ -276,13 +276,13 @@ widget.activeChart().setTimezone('Asia/Singapore');
 
 **从1.12开始，函数立即返回结果。 回调为保持兼容性**
 
-创建一个关于主商品的研究。 例子:
+创建一个关于主商品的指标。 例子:
   * `createStudy('MACD', false, false, [14, 30, "close", 9])`
   * `createStudy('Moving Average Exponential', false, false, [26])`
   * `createStudy('Stochastic', false, false, [26], null, {"%d.color" : "#FF0000"})`
   * `chart.createStudy('Moving Average', false, false, [26], null, {'Plot.linewidth': 10})`
 
-**Remark**: `Compare` 研究有2个参数: `[dataSource, symbol]`. 支持 `dataSource` values: `["close", "high", "low", "open"]`.
+**Remark**: `Compare` 指标有2个参数: `[dataSource, symbol]`. 支持 `dataSource` values: `["close", "high", "low", "open"]`.
 
 **Remark 2**: 当您选择在图表上添加数据列时，您实际使用了`Overlay`指标，这个指标只有一个参数 -- `symbol`. 以下是添加商品的示例：
 
@@ -296,22 +296,22 @@ widget.activeChart().setTimezone('Asia/Singapore');
 ```
 
 #### getStudyById(entityId)
-1. `entityId`: object. 通过API创建研究时返回的值。
+1. `entityId`: object. 通过API创建指标时返回的值。
 
-使用以下方法返回一个对象与研究交互：
+使用以下方法返回一个对象与指标交互：
 1. `isUserEditEnabled()` - 如果用户能够删除/更改/隐藏您的形状，则返回`true`
-1. `setUserEditEnabled(enabled)` - 启用或禁用删除/更改/隐藏 用户的研究
+1. `setUserEditEnabled(enabled)` - 启用或禁用删除/更改/隐藏 用户的指标
 1. `getInputsInfo()` - 返回有关所有输入的信息。 返回值是具有以下字段的对象数组：
-    - `id` - 研究ID
+    - `id` - 指标ID
     - `name` - 名称
     - `type` - 类型
     - `localizedName` - 输入翻译成当前语言的名称
 
-1. `getInputValues()` - 返回研究输入的值。 返回值是一个对象数组（`StudyInputValue`），它包含以下字段：
-    - `id` - 研究ID
+1. `getInputValues()` - 返回指标输入的值。 返回值是一个对象数组（`StudyInputValue`），它包含以下字段：
+    - `id` - 指标ID
     - `value` - 值
 
-1. `setInputValues(inputs)` - 将输入值分配给研究。 `inputs`应该是一个包含`StudyInputValue`对象的数组（见上文）。 它可能只包含一些你想改变的输入。
+1. `setInputValues(inputs)` - 将输入值分配给指标。 `inputs`应该是一个包含`StudyInputValue`对象的数组（见上文）。 它可能只包含一些你想改变的输入。
 
 1. `mergeUp()` - 向上合并（如果可以）
 1. `mergeDown()` - 向下合并（如果可以）
@@ -367,7 +367,7 @@ widget.activeChart().setTimezone('Asia/Singapore');
 ### getShapeById\(entityId\)
 1.  `entityId`: 对象。通过 API 创建形状时返回的值。  
 
-返回一个对象, 其中的方法允许您与该研究进行交互:
+返回一个对象, 其中的方法允许您与该指标进行交互:
 2.  `isSelectionEnabled()` - 如果用户无法选择该形状，则返回 `true`。
 
 3.  `setSelectionEnabled(enable)` - 启用或禁用形状选择 (请参阅 `createMultipointShape` 的 `disableSelection` 选项选项)
@@ -399,7 +399,7 @@ point 格式与`createMultipointShape` 方法中`points`参数相同。
 
 #### removeEntity\(entityId\)
 
-1. `entityId`: object. 值为创建实体 \(图形的研究\) 后通过回调传递的值.
+1. `entityId`: object. 值为创建实体 \(图形的指标\) 后通过回调传递的值.
 
 删除指定实体。
 
@@ -678,7 +678,7 @@ widget.chart().createExecutionShape()
 * [定制概述](/book/Customization-Overview.md)
 * [Widgetg构造函数](/book/Widget-Constructor.md)
 * [存储于加载图表](/book/Saving-and-Loading-Charts.md)
-* [覆盖默认研究参数](/book/Studies-Overrides.md)
+* [覆盖默认指标参数](/book/Studies-Overrides.md)
 * [覆盖默认图表参数](/book/Overrides.md)
 
 
