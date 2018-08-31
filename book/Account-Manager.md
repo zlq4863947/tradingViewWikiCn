@@ -5,9 +5,9 @@
 ![](/images/trading.png)此页面上的所有内容仅适用于[交易终端](Trading-Terminal.md)。
 
 帐户管理器是一个显示交易信息的交互式表格。
-通常它有3页：订单/持仓和帐户信息。
+通常它有3个标签页：订单/持仓和帐户信息。
 
-要创建帐户管理器，您需要描述每个页面的列并提供数据。
+要创建帐户管理器，您需要描述每个标签页的列并提供数据。
 
 备注 1. [Broker API](Broker-API.md) 应实现 [accountManagerInfo](Broker-API.md#accountmanagerinfo)
 
@@ -21,7 +21,7 @@
 
 ##### accountTitle: String
 ##### accountsList: AccountInfo数组
-##### account: [WatchedValue](WatchedValue.md) of AccountInfo
+##### account: 账户信息的[WatchedValue](WatchedValue.md)
 
 `AccountInfo` 是一个只有`name`为必须键和对应值的对象。
 
@@ -44,6 +44,10 @@
 #### historyColumns: array of [Column](#column-description)
 
 如果存在，将显示历史页面。 之前会话的所有订单都将显示在历史记录中。
+
+### historyColumnsSorting: [SortingParameters](#sortingparameters)
+
+表的可选排序。 如果未设置，则表按第一列排序。
 
 ### 持仓页
 
@@ -196,6 +200,19 @@
 
 ##### fixedWidth
 如果为`true`，则当数字数字减少时，列宽不会减小。
+
+### supportedStatusFilters
+
+订单状态的可选数字数组，仅应用于订单列。 如果可用，则该列将仅显示在状态过滤器的指定选项卡中。
+
+以下是可能的订单状态列表：
+
+- 0 - All
+- 1 - Canceled
+- 2 - Filled
+- 3 - Inactive
+- 5 - Rejected,
+- 6 - Working
 
 ### 上下文菜单
 

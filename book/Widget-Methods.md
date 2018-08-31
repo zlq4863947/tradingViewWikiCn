@@ -30,6 +30,7 @@ widget.onChartReady(function() {
   * [selectedLineTool\(\)](/book/Widget-Methods.md#selectedlinetool)
   * [takeScreenshot\(\)](/book/Widget-Methods.md#takeScreenshot)
   * [lockAllDrawingTools\(\)](/book/Widget-Methods.md#lockAllDrawingTools)
+  * [hideAllDrawingTools\(\)](/book/Widget-Methods.md#hideAllDrawingTools)
 * 保存/加载图表
   * [save\(callback\)](/book/Widget-Methods.md#savecallback)
   * [load\(state\)](/book/Widget-Methods.md#loadstate)
@@ -51,11 +52,11 @@ widget.onChartReady(function() {
   * [getIntervals\(\)](/book/Widget-Methods.md#getintervals)
   * [getStudiesList\(\)](/book/Widget-Methods.md#getstudieslist)
 * 定制
+  * [changeTheme\(themeName\)](/book/Widget-Methods.md#changethemethemename)
   * [addCustomCSSFile\(url\)](/book/Widget-Methods.md#addcustomcssfileurl)
   * [applyOverrides\(overrides\)](/book/Widget-Methods.md#applyoverridesoverrides)
   * [applyStudiesOverrides\(overrides\)](/book/Widget-Methods.md#applystudiesoverridesoverrides)
 * ![](../images/trading.png)[交易终端特制](/book/Trading-Terminal.md)
-  * [showSampleOrderDialog\(order\)](/book/Widget-Methods.md#showsampleorderdialogorder)
   * [watchList\(\)](/book/Widget-Methods.md#watchlist)
 * ![](../images/trading.png)多图表布局
   * [chart\(index\)](/book/Widget-Methods.md#chartindex)
@@ -185,7 +186,7 @@ widget.onShortcut("alt+s", function() {
 2. `interval`: string
 3. `callback`: function\(\)
 
-使图表更改其商品和分辨率。 新商品的数据到达后调用回调。
+使图表更改其商品和周期。 新商品的数据到达后调用回调。
 
 #### remove\(\)
 
@@ -220,8 +221,13 @@ widget.onShortcut("alt+s", function() {
 快照的 URL 将作为参数传递给回调函数。
 
 #### ### lockAllDrawingTools\(\)
-此方法返回一个 [WatchedValue](/book/WatchedValue.md) object 
-对象, 可用于读取/设置/监视 "锁定所有绘图工具" 按钮的状态。
+此方法返回一个 [WatchedValue](/book/WatchedValue.md) 对象,
+可用于读取/设置/监视 "锁定所有绘图工具" 按钮的状态。
+
+### hideAllDrawingTools()
+
+此方法返回 [WatchedValue](/book/WatchedValue.md) 对象,
+该对象可用于读取/设置/监视 "隐藏所有绘图工具" 按钮的状态。
 
 # 保存/加载图表
 
@@ -380,7 +386,7 @@ widget.onChartReady(function() {
 
 **由于1.4开始方法会立即返回结果。回调是为了保证兼容性。**
 
-图表库将调用回调函数，参数对象包含图表商品和时间间隔。
+图表库将调用回调函数，参数对象包含图表商品和时间周期。
 
 #### mainSeriesPriceFormatter\(\)
 
@@ -388,13 +394,23 @@ widget.onChartReady(function() {
 
 #### getIntervals\(\)
 
-返回支持的分辨率数组。被引入在1.7.
+返回支持的周期数组。被引入在1.7.
 
 #### getStudiesList\(\)
 
 返回全部技术指标数组，您可以通过它们创建技术指标指示器。
 
 # 定制
+
+#### changeTheme\(themeName\)
+
+*从1.13版开始.*
+
+1. `themeName` 可以为 `"Light"` | `"Dark"`
+
+此方法更改图表主题而不重新加载图表。
+
+您还可以使用Widget构造函数中的[theme](Widget-Constructor.md#theme)来创建具有自定义主题的图表。
 
 #### addCustomCSSFile\(url\)
 

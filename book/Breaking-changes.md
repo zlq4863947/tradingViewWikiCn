@@ -7,6 +7,16 @@ _注意：您可以通过在浏览器控制台中执行 `TradingView.version()` 
 
 以下是变更列表：
 
+## Version 1.14
+
+**TypeScript 类型定义**
+
+- `StudyInputValueType` 改名为 `StudyInputValue`.
+
+**功能集**
+
+- 从此版本开始，您将无法再使用`keep_left_toolbar_visible_on_small_screens`功能集。 此功能集已删除，左侧工具栏可见性不再取决于屏幕大小。
+
 ## Version 1.13
 
 - 动作 `takeScreenshot` 从 [executeActionById](Chart-Methods.md#executeactionbyidactionid) 方法中被删除。 改用 [takeScreenshot](Widget-Methods.md#takescreenshot) 方法。
@@ -62,7 +72,7 @@ _注意：您可以通过在浏览器控制台中执行 `TradingView.version()` 
 ## Version 1.10
 - 更改成交量指标的默认行为。
 
-先前的行为：在仪表或分辨率切换时，根据成交量支持选项来确定成交量指标的添加/删除。 您可以通过禁用`create_volume_indicator_by_default_once` 功能集来恢复到此行为。
+先前的行为：在仪表或周期切换时，根据成交量支持选项来确定成交量指标的添加/删除。 您可以通过禁用`create_volume_indicator_by_default_once` 功能集来恢复到此行为。
 
 新的行为：如果当前仪表支持成交量，则在空白图表的第一次加载时会添加成交量指标。
 

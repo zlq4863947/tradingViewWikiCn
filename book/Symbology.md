@@ -33,7 +33,19 @@ SymbolInfo是一个包含商品metadata的对象。 该对象是解析商品的�
 
 ##### [type](#type)
 
-仪表的可选类型。 可能的值：stock, index, forex, futures, bitcoin, expression, spread, cfd 或其他字符串。 某些类型在图表中有特定的处理。
+仪表的可选类型。 
+
+*可能的类型是:*
+
+- `stock`
+- `index`
+- `forex`
+- `futures`
+- `bitcoin`
+- `expression`
+- `spread`
+- `cfd`
+- 或其他字符串。
 
 ##### [session](#session)
 
@@ -45,57 +57,85 @@ SymbolInfo是一个包含商品metadata的对象。 该对象是解析商品的�
 
 ##### [timezone](#timezone)
 
-这个商品的交易所时区。我们希望以olsondb格式获取时区的名称。支持的时区为:
+这个商品的交易所时区。我们希望以olsondb格式获取时区的名称。
 
-```js
-UTC
-America/New_York
-America/Los_Angeles
-America/Chicago
-America/Phoenix
-America/Toronto
-America/Vancouver
-America/Argentina/Buenos_Aires
-America/El_Salvador
-America/Sao_Paulo
-America/Bogota
-Europe/Moscow
-Europe/Athens
-Europe/Berlin
-Europe/London
-Europe/Madrid
-Europe/Paris
-Europe/Warsaw
-Australia/Sydney
-Australia/Brisbane
-Australia/Adelaide
-Australia/ACT
-Asia/Almaty
-Asia/Ashkhabad
-Asia/Tokyo
-Asia/Taipei
-Asia/Singapore
-Asia/Shanghai
-Asia/Seoul
-Asia/Tehran
-Asia/Dubai
-Asia/Kolkata
-Asia/Hong_Kong
-Asia/Bangkok
-Pacific/Auckland
-Pacific/Chatham
-Pacific/Fakaofo
-Pacific/Honolulu
-America/Mexico_City
-Africa/Johannesburg
-Asia/Kathmandu
-US/Mountain
-```
+*支持的时区为:*
+
+- `Etc/UTC`
+- `Africa/Cairo`
+- `Africa/Johannesburg`
+- `Africa/Lagos`
+- `America/Argentina/Buenos_Aires`
+- `America/Bogota`
+- `America/Caracas`
+- `America/Chicago`
+- `America/El_Salvador`
+- `America/Juneau`
+- `America/Lima`
+- `America/Los_Angeles`
+- `America/Mexico_City`
+- `America/New_York`
+- `America/Phoenix`
+- `America/Santiago`
+- `America/Sao_Paulo`
+- `America/Toronto`
+- `America/Vancouver`
+- `Asia/Almaty`
+- `Asia/Ashkhabad`
+- `Asia/Bahrain`
+- `Asia/Bangkok`
+- `Asia/Chongqing`
+- `Asia/Dubai`
+- `Asia/Ho_Chi_Minh`
+- `Asia/Hong_Kong`
+- `Asia/Jakarta`
+- `Asia/Jerusalem`
+- `Asia/Kathmandu`
+- `Asia/Kolkata`
+- `Asia/Kuwait`
+- `Asia/Muscat`
+- `Asia/Qatar`
+- `Asia/Riyadh`
+- `Asia/Seoul`
+- `Asia/Shanghai`
+- `Asia/Singapore`
+- `Asia/Taipei`
+- `Asia/Tehran`
+- `Asia/Tokyo`
+- `Atlantic/Reykjavik`
+- `Australia/ACT`
+- `Australia/Adelaide`
+- `Australia/Brisbane`
+- `Australia/Sydney`
+- `Europe/Athens`
+- `Europe/Belgrade`
+- `Europe/Berlin`
+- `Europe/Copenhagen`
+- `Europe/Helsinki`
+- `Europe/Istanbul`
+- `Europe/London`
+- `Europe/Luxembourg`
+- `Europe/Madrid`
+- `Europe/Moscow`
+- `Europe/Paris`
+- `Europe/Riga`
+- `Europe/Rome`
+- `Europe/Stockholm`
+- `Europe/Tallinn`
+- `Europe/Vilnius`
+- `Europe/Warsaw`
+- `Europe/Zurich`
+- `Pacific/Auckland`
+- `Pacific/Chatham`
+- `Pacific/Fakaofo`
+- `Pacific/Honolulu`
+- `Pacific/Norfolk`
+- `US/Mountain`
 
 ##### [minmov\(最小波动\), pricescale\(价格精度\), minmove2, fractional\(分数\)](#minmov最小波动-pricescale价格精度-minmove2-fractional分数)
 
 1. 最小的价格变化是由这些值决定的。
-2. PriceScale 参数确定了图表价格量表上的价格线之间的间隔。
+2. PriceScale 参数确定了图表价格量表上的价格线之间的周期。
 
 这三个键有不同意义时，使用通常价格和分数价格。
 
@@ -124,13 +164,13 @@ ZFM2014（5年期国债），1/32的1/4：minmov = 1，pricecale = 128，minmove
 
 ##### [has\_intraday](#hasintraday)
 
-布尔值显示商品是否具有日内（分钟）历史数据。 如果它为`false`，则当图表中的该商品处于活动状态时，日内分辨率的所有按钮将被禁用。 如果设置为`true`，则由datafeed直接提供的所有分辨率必须在intraday\_multipliers数组中设定。
+布尔值显示商品是否具有日内（分钟）历史数据。 如果它为`false`，则当图表中的该商品处于活动状态时，日内周期的所有按钮将被禁用。 如果设置为`true`，则由datafeed直接提供的所有周期必须在intraday\_multipliers数组中设定。
 
 ##### [supported\_resolutions](#supportedresolutions)
 
-在这个商品的分辨率选择器中启用一个分辨率数组。 数组的每个项目都是字符串。
+在这个商品的周期选择器中启用一个周期数组。 数组的每个项目都是字符串。
 
-被datafeed支持（见datafeed配置数据）但不受当前商品支持的分辨率,将在分辨率选择器部件中禁用。 如果更改商品，新商品不支持选定的分辨率，则分辨率将切换到支持的分辨率列表中的第一项。 分辨率可用性逻辑（伪代码）:
+被datafeed支持（见datafeed配置数据）但不受当前商品支持的周期,将在周期选择器部件中禁用。 如果更改商品，新商品不支持选定的周期，则周期将切换到支持的周期列表中的第一项。 周期可用性逻辑（伪代码）:
 
 ```js
 resolutionAvailable  =
@@ -139,32 +179,32 @@ resolutionAvailable  =
     symbol.supports_resoluiton(resolution);
 ```
 
-如果在商品信息中没有supported\_resolutionsin，则所有DWM(daily, weekly, monthly)分辨率都可用。 如果has\_intraday为true，则日内分辨率可用。
+如果在商品信息中没有supported\_resolutionsin，则所有DWM(daily, weekly, monthly)周期都可用。 如果has\_intraday为true，则日内周期可用。
 
-支持的分辨率也会影响可用的时间范围。 如果使用不支持的分辨率，则时间范围将不可用。
+支持的周期也会影响可用的时间范围。 如果使用不支持的周期，则时间范围将不可用。
 
 ##### [intraday\_multipliers &lt;\[\]&gt;](#intradaymultipliers-)
 
-这是一个包含日内分辨率\(分钟单位\)的数组，datafeed将会自行构建它。
+这是一个包含日内周期\(分钟单位\)的数组，datafeed将会自行构建它。
 
-举例来说：如果datafeed报告说它支持 \["1", "5", "15"\]，但事实上股票X只有1分钟的数据，股票X将设定 intraday\_multipliers = \[1\]，那么Charting Library将自行构建5分钟和15分钟的分辨率。
+举例来说：如果datafeed报告说它支持 \["1", "5", "15"\]，但事实上股票X只有1分钟的数据，股票X将设定 intraday\_multipliers = \[1\]，那么Charting Library将自行构建5分钟和15分钟的周期。
 
 ##### [has\_seconds](#hasseconds)
 
-布尔值显示商品是否具有以秒为单位的历史数据。如果它为`false`，那么在图表中此商品处于活动状态时，所有秒的分辨率的按钮将被禁用。如果它为`true`，则由datafeed直接提供的所有分辨率必须在`seconds_multipliers`数组中设定。
+布尔值显示商品是否具有以秒为单位的历史数据。如果它为`false`，那么在图表中此商品处于活动状态时，所有秒的周期的按钮将被禁用。如果它为`true`，则由datafeed直接提供的所有周期必须在`seconds_multipliers`数组中设定。
 
 ##### [seconds\_multipliers &lt;\[\]&gt;](#secondsmultipliers-)
 
-这是一个包含秒分辨率\(以秒为单位，无小数\) ，datafeed将会自行构建它。  
-举例来说：如果datafeed报告说它支持 \["1S", "5S", "15S"\]，但事实上股票X只有1秒钟的数据，股票X将设定 seconds\_multipliers = \[1\]，那么Charting Library将自行构建5S和15S的分辨率。
+这是一个包含秒周期\(以秒为单位，无小数\) ，datafeed将会自行构建它。  
+举例来说：如果datafeed报告说它支持 \["1S", "5S", "15S"\]，但事实上股票X只有1秒钟的数据，股票X将设定 seconds\_multipliers = \[1\]，那么Charting Library将自行构建5S和15S的周期。
 
 ##### [has\_daily](#hasdaily)
 
-布尔值显示商品是否具有以日为单位的历史数据。如果它为false，则Charting Library将自行构建日单位的分辨率。如果没有，则会向datafeed请求这些数据。
+布尔值显示商品是否具有以日为单位的历史数据。如果它为false，则Charting Library将自行构建日单位的周期。如果没有，则会向datafeed请求这些数据。
 
 ##### [has\_weekly\_and\_monthly](#hasweeklyandmonthly)
 
-布尔值显示商品是否具有以W和M为单位的历史数据。如果它为false，则Charting Library将通过日单位的分辨率自行构建。如果没有，则会向datafeed请求这些数据。
+布尔值显示商品是否具有以W和M为单位的历史数据。如果它为false，则Charting Library将通过日单位的周期自行构建。如果没有，则会向datafeed请求这些数据。
 
 ##### [has\_empty\_bars](#hasemptybars)
 
@@ -174,7 +214,7 @@ resolutionAvailable  =
 
 ##### [force\_session\_rebuild](#forcesessionrebuild)
 
-布尔值显示library是否会随着当前交易而过滤K柱。如果为false，则当library从其他分辨率构建数据或将has\_empty\_bars设置为true时，K柱将被过滤。 如果为true，Library将会删除那些不是交易K柱的数据。
+布尔值显示library是否会随着当前交易而过滤K柱。如果为false，则当library从其他周期构建数据或将has\_empty\_bars设置为true时，K柱将被过滤。 如果为true，Library将会删除那些不是交易K柱的数据。
 
 ##### [has\_no\_volume](#hasnovolume)
 
@@ -190,12 +230,14 @@ resolutionAvailable  =
 
 ##### [data\_status](#datastatus)
 
-数据状态码。状态显示在图表的右上角。 支持的值:
+数据状态码。状态显示在图表的右上角。
 
-* streaming\(实时\)
-* endofday\(已收盘\)
-* pulsed\(脉冲\)
-* delayed\_streaming\(延迟流动中\)
+*支持的值:*
+
+- `streaming`\(实时\)
+- `endofday`\(已收盘\)
+- `pulsed`\(缓冲\)
+- `delayed_streaming`\(延迟流动中\)
 
 ##### [expired](#expired)
 
@@ -203,7 +245,7 @@ resolutionAvailable  =
 
 ##### [expiration\_date](#expirationdate)
 
-到期日\(Unix时间戳\)。 如果expired = true，则必须设置此值。 图表库将从该时间点而不是实际时刻请求该商品的数据。
+到期日\(Unix时间戳\)。 如果`expired` = `true`，则必须设置此值。 图表库将从该时间点而不是实际时刻请求该商品的数据。
 
 ##### [sector](#sector)
 

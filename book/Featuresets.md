@@ -90,7 +90,7 @@
 | study\_dialog\_search\_control | on | 1.6 | 在指标对话框中显示搜索对话框 |
 | side\_toolbar\_in\_fullscreen\_mode | off | 1.13 | 使用此功能，您可以在全屏模式下启用绘图工具栏 |
 | same\_data\_requery | off |  | 允许您使用相同的商品调用`setSymbol`来刷新数据 |
-| disable\_resolution\_rebuild | off |  | 显示的时间与DataFeed提供的时间完全一致，而不进行对齐。 如果您希望图表构建一些分辨率，则不建议使用此方法。 |
+| disable\_resolution\_rebuild | off |  | 显示的时间与DataFeed提供的时间完全一致，而不进行对齐。 如果您希望图表构建一些周期，则不建议使用此方法。 |
 | chart\_scroll | on | 1.10 | 允许滚动图表 |
 | chart\_zoom | on | 1.10 | 允许缩放图表 |
 | high\_density\_bars | off | 1.11 | 允许缩小在1个屏幕上显示超过60000条个K线 |
@@ -103,7 +103,7 @@
 | --- | --- | --- | --- |
 | study\_templates | off |  |
 | datasource\_copypaste | on |  | 允许复制图纸和指标 |
-| seconds\_resolution | off | 1.4 | 支持秒分辨率 |
+| seconds\_resolution | off | 1.4 | 支持秒周期 |
 
 ## ![](/images/trading.png)交易终端
 

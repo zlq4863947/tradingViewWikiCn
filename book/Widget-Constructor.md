@@ -20,7 +20,7 @@ new TradingView.widget({
 属性标记为![](../images/trading.png)的只在交易终端可用。
 
 #### symbol, interval
-您的图表的初始商品和间隔。`interval`的格式在另一篇[文章](/book/Resolution.md)中说明。 *必须项*
+您的图表的初始商品和周期。`interval`的格式在另一篇[文章](/book/Resolution.md)中说明。 *必须项*
 
 #### timeframe
 
@@ -207,7 +207,7 @@ time_frames: [
 ]
 ```
 
-时间范围是一个包含`text`和`resolution属性的对象。文本必须具有以下格式：<integer><y|m|d>`\( \d+\(y\|m\|d\) 为正则表达式 \). 分辨率是具有通用分辨率格式的字符串. 请参阅[本主题](/book/Time-Frames.md)了解有关时间范围的更多信息。在1.7中添加了描述属性，并显示在弹出菜单中。此参数是可选的（如果时间范围描述符不包含此属性：title（如果指定）或使用）。title属性在1.9中添加，此值将覆盖从text属性生成的默认标题。 此参数是可选的。
+时间范围是一个包含`text`和`resolution属性的对象。文本必须具有以下格式：<integer><y|m|d>`\( \d+\(y\|m\|d\) 为正则表达式 \). 周期是具有通用周期格式的字符串. 请参阅[本主题](/book/Time-Frames.md)了解有关时间范围的更多信息。在1.7中添加了描述属性，并显示在弹出菜单中。此参数是可选的（如果时间范围描述符不包含此属性：title（如果指定）或使用）。title属性在1.9中添加，此值将覆盖从text属性生成的默认标题。 此参数是可选的。
 
 #### charts\_storage\_url, client\_id, user\_id
 
@@ -241,7 +241,7 @@ loading_screen: { backgroundColor: "#000000" }
 
 默认支持该项目。此选项需要禁用localstorage的使用（请参阅[功能集](/book/Featuresets.md)以了解更多\)。`favorites`property 为一个对象，拥有以下属性：
 
-* **intervals\(间隔\)**: 收藏的间隔数组。 例：`["D", "2D"]`
+* **intervals\(周期\)**: 收藏的周期数组。 例：`["D", "2D"]`
 * **chartTypes\(图表类型\)**: 收藏的图表类型数组 。图表类型名称与图表的UI中的英文版本相同。 例:`["Area", "Candles"]`
 
 #### save_load_adapter (since 1.12)
@@ -258,7 +258,7 @@ loading_screen: { backgroundColor: "#000000" }
       - `id` - 图表id
       - `name` - 图表名
       - `symbol` - 图表的商品
-      - `resolution` - 分辨率
+      - `resolution` - 周期
       - `timestamp` - 最后修改日期（从01/01/2015 UTC午夜开始的毫秒数）。
 
  2. `removeChart(chartId): Promise<void>`
@@ -273,7 +273,7 @@ loading_screen: { backgroundColor: "#000000" }
       - `id` - 图表的唯一标识（如果未保存则可能是`undefined`）。
       - `name` - 图表名
       - `symbol` - 图表的商品
-      - `resolution` - 分辨率
+      - `resolution` - 周期
       - `content` - 图表的内容
 
     `ChartId` - 图表唯一id (string)

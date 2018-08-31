@@ -6,23 +6,23 @@
 
 这里是唯一可以找到最常用的定制链接和描述的地方。
 
-#### 默认仪表和分辨率
+#### 默认仪表和周期
 
-更改默认商品（仪表）和分辨率（间隔）。
+更改默认商品（仪表）和周期（周期）。
 
-最小支持的分辨率为1秒。
+最小支持的周期为1秒。
 
 [文档说明](/book/Widget-Constructor.md#symbol-interval-mandatory)
 
 #### 默认可见范围 \(时间范围\)
 
-更改默认分辨率K线的时间范围
+更改默认周期K线的时间范围
 
 [文档说明](/book/Widget-Constructor.md#timeframe)
 
-#### 分辨率的默认可见范围
+#### 周期的默认可见范围
 
-当用户更改分辨率时，更改K线的时间范围。 看这里的样本：
+当用户更改周期时，更改K线的时间范围。 看这里的样本：
 
 [文档说明](/book/Chart-Methods.md#onintervalchanged)
 
@@ -97,20 +97,20 @@ TradingView允许您在其服务器上保存快照，但如果您希望您也可
 
 #### 图表底部的时间范围
 
-时间范围是K线的时间段和优先显示时段的分辨率。 您可以自定义列表。  
+时间范围是K线的时间段和优先显示时段的周期。 您可以自定义列表。  
 [文档说明](/book/Widget-Constructor.md#timeframes)
 
-#### 收藏的间隔/图表样式的初始化列表
+#### 收藏的周期/图表样式的初始化列表
 
-默认情况下，您可以选择在顶部工具栏上显示什么间隔和图表样式。如果在 [功能集](/book/Featuresets.md)中设置`items_favoriting` 为 enabled，则允许用户改变他们。
+默认情况下，您可以选择在顶部工具栏上显示什么周期和图表样式。如果在 [功能集](/book/Featuresets.md)中设置`items_favoriting` 为 enabled，则允许用户改变他们。
 
 [文档说明](/book/Widget-Constructor.md#favorites)
 
-#### 菜单中显示分辨率
+#### 菜单中显示周期
 
-1. 在datafeed的配置对象中提供了完整的分辨率列表 -[文档说明](/book/JS-Api.md#supportedresolutions)
-2. 根据商品信息在列表中启用或禁用分辨率 - [文档说明](/book/Symbology.md#supportedresolutions)
-3. 可以设置喜欢的分辨率的初始列表 - [文档说明](/book/Widget-Constructor.md#favorites)
+1. 在datafeed的配置对象中提供了完整的周期列表 -[文档说明](/book/JS-Api.md#supportedresolutions)
+2. 根据商品信息在列表中启用或禁用周期 - [文档说明](/book/Symbology.md#supportedresolutions)
+3. 可以设置喜欢的周期的初始列表 - [文档说明](/book/Widget-Constructor.md#favorites)
 
 #### 成交量指标
 

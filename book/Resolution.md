@@ -1,6 +1,6 @@
-# [分辨率](#分辨率)
+# [周期](#周期)
 
-分辨率或时间间隔是K线的时间段。 图表库支持日内分辨率(seconds, minutes, hours) and DWM 分辨率 (daily, weekly, monthly)。图表库API有很多方法用以接收和返回分辨率。
+周期或时间周期是K线的时间段。 图表库支持日内周期(seconds, minutes, hours) and DWM 周期 (daily, weekly, monthly)。图表库API有很多方法用以接收和返回周期。
 
 ### 日内
 
@@ -44,12 +44,12 @@
 
 #### 也可以看看
 
-[如何设置图表上可用分辨率的列表](JS-Api.md#supportedresolutions)
+[如何设置图表上可用周期的列表](JS-Api.md#supportedresolutions)
 
-[如何设置产品支持的分辨率列表](Symbology.md#supportedresolutions)
+[如何设置产品支持的周期列表](Symbology.md#supportedresolutions)
 
-[在图表上设置初始分辨率](Widget-Constructor.md#interval)
+[在图表上设置初始周期](Widget-Constructor.md#interval)
 
-[获取当前图表分辨率](Chart-Methods.md#resolution)
+[获取当前图表周期](Chart-Methods.md#resolution)
 
-[更改图表的分辨率](Chart-Methods.md#setresolutionresolutioncallback)
+[更改图表的周期](Chart-Methods.md#setresolutionresolutioncallback)

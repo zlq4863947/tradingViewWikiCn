@@ -39,7 +39,7 @@ GET REQUEST: charts_storage_url/charts_storage_api_version/charts?client=client_
 2. data: 对象数组
     1. "timestamp": 保存图表时的UNIX时间（例如，1449084321）
     2. "symbol": 图表的商品（例如，“AA”）
-    3. "resolution": 分辨率（例如，“D”）
+    3. "resolution": 周期（例如，“D”）
     4. "id": 图表的唯一整数标识符（例如，9163）
     5. "name": 图表名称（例如，“测试”）
 
@@ -50,7 +50,7 @@ POST REQUEST: charts_storage_url/charts_storage_api_version/charts?client=client
 1. "name": 图表名称
 2. "content": 图表内容
 3. "symbol": 图表商品(例如, "AA")
-4. "resolution: 图表分辨率 (例如, "D")
+4. "resolution: 图表周期 (例如, "D")
 
 响应：JSON对象
 
@@ -64,7 +64,7 @@ POST REQUEST: charts_storage_url/charts_storage_api_version/charts?client=client
 1. "name": 图表名称
 2. "content": 图表内容
 3. "symbol": 图表商品(例如, "AA")
-4. "resolution: 图表分辨率 (例如, "D")
+4. "resolution: 图表周期 (例如, "D")
 
 响应：JSON对象
 
@@ -79,7 +79,7 @@ GET REQUEST: charts_storage_url/charts_storage_api_version/charts?client=client_
 2. data: 对象数组
     1. "timestamp": 保存图表时的UNIX时间（例如，1449084321）
     2. "symbol": 图表的商品（例如，“AA”）
-    3. "resolution": 分辨率（例如，“D”）
+    3. "resolution": 周期（例如，“D”）
     4. "id": 图表的唯一整数标识符（例如，9163）
     5. "name": 图表名称（例如，“测试”）
 

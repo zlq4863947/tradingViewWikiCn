@@ -30,7 +30,7 @@
 通常你不需要返回`1`以外的值，因为当你创建widget时经纪商已经连接。 如果要在加载数据时在底部面板中显示一个spinner，则可以使用它。
 可能的返回值是：
 
-```
+```javascript
 ConnectionStatus.Connected = 1
 ConnectionStatus.Connecting = 2
 ConnectionStatus.Disconnected = 3
@@ -127,4 +127,6 @@ ConnectionStatus.Error = 4
 这就是它！
 
 # 也可以看看
-  * [交易主机](/book/Trading-Host.md)
+
+- [如何连接](/book/Widget-Constructor.md#brokerfactory)你的交易控制器到图表
+- [交易主机](/book/Trading-Host.md)

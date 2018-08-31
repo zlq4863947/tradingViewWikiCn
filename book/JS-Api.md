@@ -57,11 +57,11 @@ configurationData是一个对象，现在支持以下属性:
 
 ##### [supported\_resolutions](#supportedresolutions)
 
-一个表示服务器支持的分辨率数组，分辨率可以是数字或字符串。 如果分辨率是一个数字，它被视为分钟数。 字符串可以是“\*D”，“\*W”，“\_M”（\_的意思是任何数字）。格式化详细参照:[文章](/book/Resolution.md)。
+一个表示服务器支持的周期数组，周期可以是数字或字符串。 如果周期是一个数字，它被视为分钟数。 字符串可以是“\*D”，“\*W”，“\_M”（\_的意思是任何数字）。格式化详细参照:[文章](/book/Resolution.md)。
 
-`resolutions = undefined` 或 `resolutions = []` 时，分辨率拥有默认内容。
+`resolutions = undefined` 或 `resolutions = []` 时，周期拥有默认内容。
 
-例:`[1, 15, 240, "D", "6M"]`您将在分辨率中得到 "1 分钟, 15 分钟, 4 小时, 1 天, 6 个月" 。
+例:`[1, 15, 240, "D", "6M"]`您将在周期中得到 "1 分钟, 15 分钟, 4 小时, 1 天, 6 个月" 。
 
 ##### [supports\_marks](#supportsmarks)
 
@@ -120,14 +120,14 @@ configurationData是一个对象，现在支持以下属性:
 ### [getBars\(symbolInfo, resolution, from, to, onHistoryCallback, onErrorCallback, firstDataRequest\)](#getbarssymbolinfo-resolution-from-to-onhistorycallback-onerrorcallback-firstdatarequest)
 
 1. `symbolInfo`:[SymbolInfo](/book/Symbology.md#商品信息结构) 商品信息对象
-2. `resolution`: string （分辨率）
+2. `resolution`: string （周期）
 3. `from`: unix 时间戳, 最左边请求的K线时间
 4. `to`: unix 时间戳, 最右边请求的K线时间
 5. `onHistoryCallback`: function\(数组`bars`,`meta`=_{ noData = false }_\)
    1. `bars`: Bar对象数组`{time, close, open, high, low, volume}[]`
    2. `meta`: object`{noData = true | false, nextTime = unix time}`
 6. `onErrorCallback`: function\(reason：错误原因\)
-7. `firstDataRequest`: 布尔值，以标识是否第一次调用此商品/分辨率的历史记录。当设置为`true`时
+7. `firstDataRequest`: 布尔值，以标识是否第一次调用此商品/周期的历史记录。当设置为`true`时
    你可以忽略`to`参数（这取决于浏览器的`Date.now()`\) 并返回K线数组直到当前K线（包括它）。
 
 方法介绍：通过日期范围获取历史K线数据。图表库希望通过`onHistoryCallback`仅一次调用，接收所有的请求历史。而不是被多次调用。
@@ -147,7 +147,7 @@ configurationData是一个对象，现在支持以下属性:
 ### [subscribeBars\(symbolInfo, resolution, onRealtimeCallback, subscriberUID, onResetCacheNeededCallback\)](#subscribebarssymbolinfo-resolution-onrealtimecallback-subscriberuid-onresetcacheneededcallback)
 
 1. `symbolInfo`:object [SymbolInfo](/book/Symbology.md#商品信息结构)
-2. `resolution`: string 分辨率
+2. `resolution`: string 周期
 3. `onRealtimeCallback`: function\(bar\)
    1. `bar`: object`{time, close, open, high, low, volume}`
 4. `subscriberUID`: object
@@ -174,7 +174,7 @@ configurationData是一个对象，现在支持以下属性:
 
 ### [calculateHistoryDepth\(resolution, resolutionBack, intervalBack\)](#calculatehistorydepthresolution-resolutionback-intervalback)
 
-1. `resolution`: 请求商品的分辨率
+1. `resolution`: 请求商品的周期
 2. `resolutionBack`: 期望历史周期刻度。支持的值:`D`\|`M`
 3. `intervalBack`: 数量
 
@@ -204,7 +204,7 @@ Datafeed.prototype.calculateHistoryDepth = function(resolution, resolutionBack, 
 }
 ```
 
-以上代码为当图表库将要求分辨率为`1D`，历史为6个月的深度。 在其他情况下，历史深度将具有其他默认值。
+以上代码为当图表库将要求周期为`1D`，历史为6个月的深度。 在其他情况下，历史深度将具有其他默认值。
 
 ### [getMarks\(symbolInfo, startDate, endDate, onDataCallback, resolution\)](#getmarkssymbolinfo-startdate-enddate-ondatacallback-resolution)
 

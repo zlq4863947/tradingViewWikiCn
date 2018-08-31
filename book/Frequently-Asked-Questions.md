@@ -128,27 +128,27 @@
 
 </details>
 <details>
-<summary><b>3. 如何更改图表上的分辨率列表（时间间隔），使其变灰?</b></summary>
+<summary><b>3. 如何更改图表上的周期列表（时间周期），使其变灰?</b></summary>
 
-* 在图表弹出窗口中显示的分辨率列表由data feed配置中的[[supported_resolutions|https://github.com/tradingview/charting_library/wiki/JS-Api#supported_resolutions]] 定义。
+* 在图表弹出窗口中显示的周期列表由data feed配置中的[[supported_resolutions|https://github.com/tradingview/charting_library/wiki/JS-Api#supported_resolutions]] 定义。
 
-* 某些仪器的分辨率由仪器/商品信息中的 [[supported_resolutions|https://github.com/tradingview/charting_library/wiki/Symbology#supported_resolutions]] 定义。
+* 某些仪器的周期由仪器/商品信息中的 [[supported_resolutions|https://github.com/tradingview/charting_library/wiki/Symbology#supported_resolutions]] 定义。
 
-* 如果您支持日内分辨率，则需要设置[[has_intraday|https://github.com/tradingview/charting_library/wiki/Symbology#has_intraday-]]
+* 如果您支持日内周期，则需要设置[[has_intraday|https://github.com/tradingview/charting_library/wiki/Symbology#has_intraday-]]
 
 * 另外，如果您支持秒，你需要设置 [[has_seconds|https://github.com/tradingview/charting_library/wiki/Symbology#has_seconds-]]
 
-* 如果您支持日分辨率，你应该设置[[has_daily|https://github.com/tradingview/charting_library/wiki/Symbology#has_daily-]]
+* 如果您支持日周期，你应该设置[[has_daily|https://github.com/tradingview/charting_library/wiki/Symbology#has_daily-]]
 
 * 如果您支持周和月，你应该设置 [[has_weekly_and_monthly|https://github.com/tradingview/charting_library/wiki/Symbology#has_weekly_and_monthly-]]
 
-* 此外，您应该设置的分辨率，这是由您的服务器[[[intraday resolutions|https://github.com/tradingview/charting_library/wiki/Symbology#intraday_multipliers-]]和[[seconds|https://github.com/tradingview/charting_library/wiki/Symbology#seconds_multipliers-]]。
+* 此外，您应该设置的周期，这是由您的服务器[[[intraday resolutions|https://github.com/tradingview/charting_library/wiki/Symbology#intraday_multipliers-]]和[[seconds|https://github.com/tradingview/charting_library/wiki/Symbology#seconds_multipliers-]]。
 
-* 如果仪器支持（`supported_resolutions`）更多的分辨率，可以由服务器提供（`intraday_multipliers`），其他分辨率由图表构建。
+* 如果仪器支持（`supported_resolutions`）更多的周期，可以由服务器提供（`intraday_multipliers`），其他周期由图表构建。
 
 </details>
 <details>
-<summary><b>4. 如何隐藏GUI元素(商品、间隔、按钮等)?</b></summary>
+<summary><b>4. 如何隐藏GUI元素(商品、周期、按钮等)?</b></summary>
 
 * 大多数GUI元素可以使用[[Featureets]]隐藏。 请查看[Interactive map of featuresets](http://tradingview.github.io/featuresets.html)，找到您需要的内容。
 
