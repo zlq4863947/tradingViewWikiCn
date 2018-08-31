@@ -2,18 +2,21 @@
 
 ---
 
-![](/images/trading.png)此页面上的所有内容仅适用于[交易终端](Trading-Terminal.md)。
+![](/images/trading.png)此页面上的所有内容仅适用于\[\[交易终端](Trading-Terminal.md)\]\]。
 
 帐户管理器是一个显示交易信息的交互式表格。
+
 通常它有3个标签页：订单/持仓和帐户信息。
 
 要创建帐户管理器，您需要描述每个标签页的列并提供数据。
 
-备注 1. [Broker API](Broker-API.md) 应实现 [accountManagerInfo](Broker-API.md#accountmanagerinfo)
+备注 1. [Broker API](Broker-API.md)[supportCustomBottomWidget|Trading-Controller#configFlags]] 标志应被禁用，以显示客户经理。
+
+备注 2. [[Trading Controller]] 应实现 [[accountManagerInfo](Broker-API.md|Trading-Controller#accountmanagerinfo)]]
 
 ## 帐户管理器Mete信息
 
-此信息将返回 [accountManagerInfo](Broker-API.md#accountManagerInfo).
+此信息将返回 [[accountManagerInfo](Broker-API.md|Trading-Controller#accountManagerInfo)]].
 
 ### 帐户管理器头信息
 
@@ -33,17 +36,18 @@
 
 ### 订单页
 
-##### orderColumns: array of [Column](#column-description)
+##### orderColumns: array of [[Column](|Account-Manager#column-description)]]
 
 要在订单页面中显示的列的说明。
-您可以显示[order](Trading-Objects-and-Constants.md#order)的任何字段，也可以将自己的字段添加到订单对象中并显示它们。
+您可以显示[[order](|Trading-Objects-and-Constants.md#＃order)]]的任何字段，也可以将自己的字段添加到订单对象中并显示它们。
 
-##### possibleOrderStatuses: array of [OrderStatus](Trading-Objects-and-Constants.md#orderstatus)
+##### possibleOrderStatuses: array of [[OrderStatus](|Trading-Objects-and-Constants.md#orderstatus)]]
 在订单过滤器中使用的可选状态列表。如果未设置，则使用默认列表。
 
-#### historyColumns: array of [Column](#column-description)
+#### hasHistoryColumns: array of [Column](#column-description)
 
-如果存在，将显示历史页面。 之前会话的所有订单都将显示在历史记录中。
+如果存在
+如果是 `true` ，将显示历史页面。 之前会话历史上的所有订单都将显示在历史记录中。
 
 ### historyColumnsSorting: [SortingParameters](#sortingparameters)
 
@@ -51,13 +55,13 @@
 
 ### 持仓页
 
-##### positionColumns: array of [Column](#column-description)
+##### positionColumns: array of [[Column](|Account-Manager#column-description)]]
 
-您可以显示[position](Trading-Objects-and-Constants.md#position)的任何字段，或者将您自己的字段添加到位置对象并显示它们。
+您可以显示[[position](|Trading-Objects-and-Constants.md#＃position)]]的任何字段，或者将您自己的字段添加到位置对象并显示它们。
 
 ### 附加页面（例如帐户摘要）
 
-##### pages: array of [Page](#page)
+##### pages: array of [[Page](|Account-Manager#page)]]
  
 使用`pages`您可以向账户管理器添加新的tab页。每个选项卡都是一组列表。
 
@@ -79,7 +83,7 @@
 
 #### Table
 
-您可以向[Page](#page)添加一个或多个表。
+您可以向[[Page](|Account-Manager#page)]]添加一个或多个表。
 帐户摘要表metainfo是一个包含以下字段的对象：
 
 1. `id`: String
@@ -90,7 +94,7 @@
 
 表的可选标题。
 
-3. `columns`: array of [Column](#column-description)
+3. `columns`: array of [[Column](|Account-Manager#column-description)]]
 
 4. `getData`: Promise
 
@@ -98,7 +102,7 @@
 每一行都是一个对象。 此对象的键是具有相应值的列名称。
 有一个预定义的字段 `isTotalRow` 可以用来标记一个表的底部的一行。
 
-5. `changeDelegate` : [Delegate](Delegate.md)
+5. `changeDelegate` : [[Delegate](Delegate.md)]
 
 用于观察数据更改并更新表。 通过`fire`方法将新的账户管理器数据传递给delegate。
 
@@ -225,5 +229,5 @@
 可选方法以创建一个自定义上下文菜单。
 它返回用`ActionMetainfo`数组解析的 `Promise`。
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTUwMTA5Mjk5MF19
+eyJoaXN0b3J5IjpbLTE2NzE2MDMzODYsMTUwMTA5Mjk5MF19
 -->
