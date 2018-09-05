@@ -56,6 +56,8 @@
   * [getVisiblePriceRange\(\)](#getvisiblepricerange)
   * [priceFormatter\(\)](#priceformatter)
   * [chartType\(\)](#charttype)
+* [其他](#其他)
+  * [exportData(options)](#exportdataoptions)
 
 # 订阅图表事件
 
@@ -678,7 +680,7 @@ widget.chart().createExecutionShape()
 
 ### exportData(options)
 
-*从版本1.13开始。*
+*从版本1.14开始。*
 
 1. `options` (可选)是一个对象，它可以包含以下属性：
     * `from` (`number`) - 第一个导出k线的时间(UNIX时间戳，以秒为单位)。
@@ -712,7 +714,7 @@ widget.chart().createExecutionShape()
 
 1. `chart.exportData({ includeTime: false, includeSeries: true, includedStudies: [] })` - 仅导出数据列。
 1. `chart.exportData({ includeTime: true, includeSeries: true, includedStudies: [] })` - 随时间导出数据列。
-1. `chart.exportData({ includeTime: false, includeSeries: false, includedStudies: ['STUDY_ID'] })` - 导出ID为“STUDY_ID”的指标数据。
+1. `chart.exportData({ includeTime: false, includeSeries: false, includedStudies: ['STUDY_ID'] })` - 导出ID为`STUDY_ID`的指标数据。
 1. `chart.exportData({ includeTime: true, includeSeries: true, includedStudies: 'all' })` - 从图表中导出所有可用数据。
 1. `chart.exportData({ includeTime: false, includeSeries: true, to: Date.UTC(2018, 0, 1) / 1000 })` - 导出`2018-01-01`以前的数据。
 1. `chart.exportData({ includeTime: false, includeSeries: true, from: Date.UTC(2018, 0, 1) / 1000 })` - 导出`2018-01-01`之后的数据。

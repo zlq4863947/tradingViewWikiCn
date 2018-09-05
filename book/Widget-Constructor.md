@@ -173,6 +173,7 @@ TradingView.onready(function()
     var widget = new TradingView.widget({
         /* .... */
         disabled_features: ["header_widget", "left_toolbar"],
+        enabled_features: ["move_logo_to_main_pane"]
     });
 });
 ```
@@ -187,11 +188,11 @@ TradingView.onready(function()
 
 #### preset
 
-`preset`是一组预定义窗口小部件设置的名称。预设中使用的所有设置也可以直接在窗口小部件的构造函数中使用。现在只支持`mobile`预设。此预设的示例可在线获取。
+`preset`是一组预定义窗口小部件设置的名称。预设中使用的所有设置也可以直接在窗口小部件的构造函数中使用。现在只支持`mobile`预设。此预设的示例可[在线获取](https://demo_chart.tradingview.com/mobile_black.html)。
 
 #### studies\_overrides
 
-使用此选项自定义默认指标的样式及输入值。 您还可以使用此参数自定义`Compare`系列的样式和输入值。 [查看更多](/book/Studies-Overrides.md)
+使用此选项自定义默认指标的样式及输入值。 您还可以使用此参数自定义`Compare`数据列的样式和输入值。 [查看更多](/book/Studies-Overrides.md)
 
 #### time\_frames
 
@@ -220,6 +221,12 @@ time_frames: [
 #### load\_last\_chart
 
 将此参数设置为`true`如果您希望库加载用户的最后一张图表（您也应该具有\[save/load\|Saving-and-Loading-Charts\]）。
+
+### theme
+
+*从1.13版开始。*
+
+为图表添加自定义主题颜色。 支持的值是: `"Light"` | `"Dark"`.
 
 #### custom\_css\_url \(since 1.4\)
 

@@ -9,6 +9,9 @@ _注意：您可以通过在浏览器控制台中执行 `TradingView.version()` 
 
 ## Version 1.14
 
+- [createButton](Widget-Methods.md#createButtonoptions) 返回 `HTMLElement` 以代替 `JQuery`.
+- [createButton](Widget-Methods.md#createButtonoptions) 必须在 [headerReady()](Widget-Methods.md#headerready)返回的 `Promise` 为resolved之后使用.
+
 **TypeScript 类型定义**
 
 - `StudyInputValueType` 改名为 `StudyInputValue`.

@@ -54,7 +54,7 @@
 * [10、版本变更点](book/Breaking-changes.md)
 
 ## 附录
-* [分辨率](book/Resolution.md)
+* [周期](book/Resolution.md)
 * [时间范围](book/Time-Frames.md)
 * [本地化](book/Localization.md)
 * [覆盖](book/Overrides.md)

@@ -4,7 +4,7 @@
 
 以下是widget支持的方法列表。您可以使用widget构造函数返回给您的widget对象来调用它们。
 
-**Remark**: 请注意，只有在onChartReady回调触发后才可以调用这些方法。 所以常见的做法就是这样：
+**Remark**: 请注意，只有在onChartReady回调触发后才可以调用这些方法。
 
 ```js
 widget.onChartReady(function() {
@@ -16,6 +16,7 @@ widget.onChartReady(function() {
 
 * 订阅图表事件
   * [onChartReady\(callback\)](#onchartreadycallback)
+  * [headerReady()](#headerready)
   * [onGrayedObjectClicked\(callback\)](#ongrayedobjectclickedcallback)
   * [onShortcut\(shortcut, callback\)](#onshortcutshortcut-callback)
   * [subscribe\(event, callback\)](#subscribeevent-callback)
@@ -72,6 +73,10 @@ widget.onChartReady(function() {
 1. `callback`: function\(\)
 
 当图表初始化并准备就绪时，图表库将调用提供的回调。 你可以从这一刻安全地调用所有其他方法。
+
+### headerReady()
+
+返回一个`Promise`对象，该对象应该在图表库头部widget API准备就绪时用于处理其他事件（例如: [createButton](#createbuttonoptions)）。
 
 #### onGrayedObjectClicked\(callback\)
 
@@ -213,14 +218,14 @@ widget.onShortcut("alt+s", function() {
 
 返回所选图形或光标的[标识符](/book/Shapes-and-Overrides.md)（见上文）。
 
-#### ### takeScreenshot\(\)
+### takeScreenshot\(\)
 此方法创建图表的快照并将其上传到服务器。
 
 完成后, 调用 [onScreenshotReady](#subscribeevent-callback) 回调函数。
 
 快照的 URL 将作为参数传递给回调函数。
 
-#### ### lockAllDrawingTools\(\)
+### lockAllDrawingTools\(\)
 此方法返回一个 [WatchedValue](/book/WatchedValue.md) 对象,
 可用于读取/设置/监视 "锁定所有绘图工具" 按钮的状态。
 
@@ -235,13 +240,15 @@ widget.onShortcut("alt+s", function() {
 
 1. `callback`: function\(object\)
 
-将图表状态保存到JS对象。图表库将调用您的回调函数并将状态对象作为参数传递。 这个调用是一部分低级别的[save/load API](/book/Saving-and-Loading-Charts).
+将图表状态保存到JS对象。图表库将调用您的回调函数并将状态对象作为参数传递。
+
+此调用是低级[保存/加载API](/book/Saving-and-Loading-Charts.md)的一部分。
 
 #### load\(state\)
 
 1. `state`: object
 
-从状态对象加载图表。这个调用是一部分低级别的[save/load API](/book/Saving-and-Loading-Charts).
+从`state`对象加载图表。 此调用是低级[保存/加载API](/book/Saving-and-Loading-Charts.md)的一部分。
 
 #### getSavedCharts\(callback\)
 
@@ -260,7 +267,7 @@ widget.onShortcut("alt+s", function() {
 
 #### loadChartFromServer\(chartRecord\)
 
-1. `chartRecord是您使用`[getSavedCharts\(callback\)](/book/Widget-Methods.md#getsavedchartscallback) 的对象
+1. `chartRecord`是您使用[getSavedCharts\(callback\)](/book/Widget-Methods.md#getsavedchartscallback) 返回的对象
 
 从服务器加载并显示图表。
 
@@ -335,14 +342,19 @@ widget.onChartReady(function() {
 1. `options`: object`{ align: "left" }`
    1. `align`: "right" \| "left". default: "left"
 
-在图表顶部工具栏中创建一个新的DOM元素，并返回此按钮的jQuery对象。 您可以使用它直接在图表上附加自定义控件。 例：
+在图表的顶部工具栏中创建一个新的DOM元素，并为此按钮返回[HTMLElement](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement)。
+您可以使用它在图表上添加自定义控件。
+
+**注意：**必须在[headerReady](＃headerready)返回的 `Promise` 为resolved之后使用。
+
+例：
 
 ```js
-widget.onChartReady(function() {
-    widget.createButton()
-        .attr('title', "My custom button tooltip")
-        .on('click', function (e) { alert("My custom button pressed!"); })
-        .append($('<span>My custom button caption</span>'));
+widget.headerReady().then(function() {
+    var button = widget.createButton();
+    button.setAttribute('title', 'My custom button tooltip');
+    button.addEventListener('click', function() { alert("My custom button pressed!"); });
+    button.textContent = 'My custom button caption';
 });
 ```
 

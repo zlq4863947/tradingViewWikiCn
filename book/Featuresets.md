@@ -8,7 +8,7 @@
 
 ### 控件和其他视觉元素的可见性
 
-[**互动地图的功能**](http://tradingview.gitee.io/featuresets)
+[**功能集互动地图**](http://tradingview.gitee.io/featuresets)
 
 | ID | 默认状态 | 库版本 | 描述 |
 | --- | --- | --- | --- |
