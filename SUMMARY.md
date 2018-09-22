@@ -66,6 +66,7 @@
 * [在K线上做标记](book/Marks-On-Bars.md)
 * [委托](book/Delegate.md)
 * [WatchedValue](book/WatchedValue.md)
+* [指标API](book/Study-Api.md)
 * [形状API](book/Shape-Api.md)
 * [容器API](book/Pane-Api.md)
 * [价格坐标Api](book/Price-Scale-Api.md)

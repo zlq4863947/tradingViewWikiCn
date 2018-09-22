@@ -1,4 +1,4 @@
-## 指标 API
+## 指标API
 
 ### isUserEditEnabled()
 

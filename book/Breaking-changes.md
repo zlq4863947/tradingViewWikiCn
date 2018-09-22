@@ -23,7 +23,8 @@ _注意：您可以通过在浏览器控制台中执行 `TradingView.version()` 
 ## Version 1.13
 
 - 动作 `takeScreenshot` 从 [executeActionById](Chart-Methods.md#executeactionbyidactionid) 方法中被删除。 改用 [takeScreenshot](Widget-Methods.md#takescreenshot) 方法。
-- 动作 `lockDrawingsAction` 从[executeActionById](Chart-Methods#executeactionbyidactionid) 和 [getCheckableActionState](Chart-Methods#getcheckableactionstateactionid) 方法中被删除。 改用[lockAllDrawingTools](Widget-Methods#lockalldrawingtools) 代替。
+- 动作 `lockDrawingsAction` 从[executeActionById](Chart-Methods.md#executeactionbyidactionid) 和 [getCheckableActionState](Chart-Methods#getcheckableactionstateactionid) 方法中被删除。 改用[lockAllDrawingTools](Widget-Methods#lockalldrawingtools) 代替。
+- 动作 `hideAllDrawingsAction` 从 [executeActionById](Chart-Methods.md#executeactionbyidactionid) 和 [getCheckableActionState](Chart-Methods#getcheckableactionstateactionid) 方法中被删除。 改用[hideAllDrawingTools](Widget-Methods#hidealldrawingtools) 代替。
 - 功能集 `caption_buttons_text_if_possible` 默认开启。
 - 修复一个[问题](https://github.com/tradingview/charting_library/issues/2652) 导致K线发生偏移。当日K线有一个负交易所时区偏移至24x7交易时段时，会出现K线的偏移。 如果您已通过变通方法解决此问题，请在更新此版本之前将其删除。
 

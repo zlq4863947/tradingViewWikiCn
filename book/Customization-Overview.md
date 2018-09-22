@@ -8,7 +8,7 @@
 
 他们最关心的是数据相关的东西。定制的配置可以通过datafeed响应来实现。响应配置实例：
 
-```js
+```javascript
 {
     supports_search: true,
     supports_group_request: false,

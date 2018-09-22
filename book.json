@@ -12,7 +12,7 @@
   ],
   "pluginsConfig": {
     "disqus": {
-      "shortName": "aistock-ga"
+      "shortName": "aitrade-ga"
     },
     "github": {
       "url": "https://github.com/zlq4863947/tradingViewWikiCn"
@@ -25,7 +25,7 @@
       "wechatText": "微信打赏"
     },
     "sitemap": {
-      "hostname": "http://aistock.ga"
+      "hostname": "http://aitrade.ga"
     }
   }
 }

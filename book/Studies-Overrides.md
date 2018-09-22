@@ -1,7 +1,7 @@
 # 指标覆盖
 
 可以使用`studies_overrides`参数为新创建的指标设置默认样式和输入值。 它的值应该是一个对象，其中key是一个属性被改变的路径，value是它的新值。 例：
-```
+```javascript
 studies_overrides: {
     "volume.volume.color.0": "#00FFFF",
     "volume.volume.color.1": "#0000FF",
@@ -26,11 +26,56 @@ studies_overrides: {
 
 您可以通过`比较`自定义新的系列。 使用`compare.plot`自定义行和`compare.source`来更改价格来源：
 
-```
+```javascript
 "compare.plot.color": "#000000",
 "compare.source": "high"
 ```
 
+### 覆盖
+
+从V1.12开始，您可以使用以下属性来自定义`Overlay`：
+
+```javascript
+Overlay.style: (bars = 0, candles = 1, line = 2, area = 3, heiken ashi = 8, hollow candles = 9)
+Overlay.showPriceLine: boolean
+
+Overlay.candleStyle.upColor: color
+Overlay.candleStyle.downColor: color
+Overlay.candleStyle.drawWick: boolean
+Overlay.candleStyle.drawBorder: boolean
+Overlay.candleStyle.borderColor: color
+Overlay.candleStyle.borderUpColor: color
+Overlay.candleStyle.borderDownColor: color
+Overlay.candleStyle.wickColor: color
+Overlay.candleStyle.barColorsOnPrevClose: boolean
+
+Overlay.hollowCandleStyle.upColor: color
+Overlay.hollowCandleStyle.downColor: color
+Overlay.hollowCandleStyle.drawWick: boolean
+Overlay.hollowCandleStyle.drawBorder: boolean
+Overlay.hollowCandleStyle.borderColor: color
+Overlay.hollowCandleStyle.borderUpColor: color
+Overlay.hollowCandleStyle.borderDownColor: color
+Overlay.hollowCandleStyle.wickColor: color
+Overlay.hollowCandleStyle.barColorsOnPrevClose: boolean
+
+Overlay.barStyle.upColor: color
+Overlay.barStyle.downColor: color
+Overlay.barStyle.barColorsOnPrevClose: boolean
+Overlay.barStyle.dontDrawOpen: boolean
+
+Overlay.lineStyle.color: color
+Overlay.lineStyle.linewidth: integer
+Overlay.lineStyle.priceSource: open/high/low/close
+Overlay.lineStyle.styleType: (bars = 0, candles = 1, line = 2, area = 3, heiken ashi = 8, hollow candles = 9)
+
+Overlay.areaStyle.color1: color
+Overlay.areaStyle.color2: color
+Overlay.areaStyle.linecolor: color
+Overlay.areaStyle.linestyle: (solid = 0; dotted = 1; dashed = 2; large dashed = 3)
+Overlay.areaStyle.linewidth: integer
+Overlay.areaStyle.priceSource: open/high/low/close
+```
 
 # 语法
 

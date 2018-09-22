@@ -8,9 +8,9 @@
 
 请遵循以下几个步骤:
 
-  1、 为您的数据创建一个新的ticker，并设置您的服务器返回此ticker有效的SymbolInfo。
-  2、 设置服务器以返回此ticker的有效历史数据。
-  3、 使用以下指标模板并填写所有占位符(placeholder)的值：名称，说明和代码。 如果需要，还可以修改绘图的默认样式。
+1. 为您的数据创建一个新的ticker，并设置您的服务器返回此ticker有效的SymbolInfo。
+1. 设置服务器以返回此ticker的有效历史数据。
+1. 使用以下指标模板并填写所有占位符(placeholder)的值：名称，说明和代码。 如果需要，还可以修改绘图的默认样式。
 
 ```javascript
 {
@@ -112,7 +112,7 @@
 }
 ```
 
-  4、 将指标保存到具有以下结构的自定义指标文件中:
+1. 将指标保存到具有以下结构的自定义指标文件中:
 
 ```javascript
 __customIndicators = [
@@ -122,17 +122,32 @@ __customIndicators = [
 
 请注意，该指标文件是一个JavaScript源文件，它定义了一个指标对象数组。因此，您可以在其中放置多个指标，或者将它们与我们为您编译的指标组合起来。
 
-  5、 使用 [indicators_file_name](/book/Widget-Constructor.md#indicatorsfilename) Widget构造函数的选项来从指标文件加载自定义指标。
-  6、 图表准备好后，更新您的Widget初始化代码以[创建](/book/Chart-Methods.md#createstudyname-forceoverlay-lock-inputs-callback-overrides-options) 此指标。
+1. 使用 [indicators_file_name](/book/Widget-Constructor.md#indicatorsfilename) Widget构造函数的选项来从指标文件加载自定义指标。
+1. 图表准备好后，更新您的Widget初始化代码以[创建](/book/Chart-Methods.md#createstudyname-forceoverlay-lock-inputs-callback-overrides-options) 此指标。
 
-**例子**
+## 例子
+
+1. 使用[indicators_file_name](Widget-Constructor.md#indicators_file_name)选项将指标添加到图表库。
+1. 更改Widget的初始化代码。 这是一个例子。
+
+    ```javascript
+    widget = new TradingView.widget(/* ... */);
+
+    widget.onChartReady(function() {
+        widget.chart().createStudy('<indicator-name>', false, true);
+		});
+    ```
+		
+### 请求另一个商品代码的数据
 
 假设您希望在图表上显示用户的权益曲线。你必须做以下事情：
 
 * 为新的代码创建一个名称。 假设它为 `#EQUITY` 代码。 您可以使用您想像到的任何名字。
 * 更改服务器的代码以将此代码作为有效商品。 为此返回最小的有效SymbolInfo。
 * 使服务器返回有效的历史记录。 即，服务器可以询问您的数据库的股权历史记录，并返回此数据，就像返回普通商品的历史记录一样（例如 `AAPL`)。
-* 采用上述指标模板，创建指标文件（或向现有指标文件添加新指标）。 例如：
+* 采用上述指标模板，创建指标文件（或向现有指标文件添加新指标）。
+
+例如：
 
 ```javascript
 __customIndicators = [
@@ -220,4 +235,88 @@ __customIndicators = [
 	widget.onChartReady(function() {
 		widget.chart().createStudy('Equity', false, true);
 	});
+```
+
+### 着色K线
+
+```javascript
+__customIndicators = [
+    {
+        name: "Bar Colorer Demo",
+        metainfo: {
+            _metainfoVersion: 42,
+
+            id: "BarColoring@tv-basicstudies-1",
+
+            name: "BarColoring",
+            description: "Bar Colorer Demo",
+            shortDescription: "BarColoring",
+            scriptIdPart: "",
+            is_price_study: true,
+            is_hidden_study: false,
+            isCustomIndicator: true,
+
+            isTVScript: false,
+            isTVScriptStub: false,
+            defaults: {
+                precision: 4,
+                palettes: {
+                    palette_0: {
+                        // 调色板颜色
+                        // 将其更改为您喜欢的默认颜色，
+                        // 但请注意，用户可以在“样式”选项卡中更改它们
+                        // 指标属性
+                        colors: [
+                            { color: "#FFFF00" },
+                            { color: "#0000FF" }
+                        ]
+                    }
+                }
+            },
+            inputs: [],
+            plots: [{
+                id: "plot_0",
+
+                // plot类型应设置为 'bar_colorer'
+                type: "bar_colorer",
+
+                // 这是定义的调色板的名称
+                // 在 'palettes' 和 'defaults.palettes' 部分
+                palette: "palette_0"
+            }],
+            palettes: {
+                palette_0: {
+                    colors: [
+                        { name: "Color 0" },
+                        { name: "Color 1" }
+                    ],
+
+                    // 值之间的映射
+                    // 返回脚本和调色板颜色
+                    valToIndex: {
+                        100: 0,
+                        200: 1
+                    }
+                }
+            }
+        },
+        constructor: function() {
+            this.main = function(context, input) {
+                this._context = context;
+                this._input = input;
+
+                var valueForColor0 = 100;
+                var valueForColor1 = 200;
+
+                // 在这里执行计算并返回其中一个常量
+                // 在'valToIndex'映射中指定为键
+                var result =
+                    Math.random() * 100 % 2 > 1 ? // we randomly select one of the color values
+                        valueForColor0 : valueForColor1;
+
+                return [result];
+            }
+        }
+    }
+];
 ```

@@ -236,7 +236,7 @@ resolutionAvailable  =
 
 - `streaming`\(实时\)
 - `endofday`\(已收盘\)
-- `pulsed`\(缓冲\)
+- `pulsed`\(脉冲\)
 - `delayed_streaming`\(延迟流动中\)
 
 ##### [expired](#expired)
