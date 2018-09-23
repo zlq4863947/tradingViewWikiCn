@@ -2,11 +2,15 @@
 
 ---
 
-图表库支持保存/加载图表和指标模板（指标模板在 `unstable`中提供）在2级抽象上：
+图表库支持使用2个级别的API，用以保存/加载图表和指标模板：
 
-1. **低级别**：保存/加载功能通过widget的`save()`/`load()`[方法](/book/Widget-Methods.md#savecallback)和`createStudyTemplate()`/ `applyStudyTemplate（）`方法呈现。 使用它们的人应该自己处理物理存储。 因此，您可以将这些JSON保存到您想要的位置，例如，您可以将它们嵌入到已保存的页面或用户的工作区域等等。
+1. **低级**：保存/加载功能由`save()` / `load()` [方法](/book/Widget-Methods.md#savecallback)和`createStudyTemplate()` / `applyStudyTemplate()`[方法](Chart-Methods.md#createstudytemplateoptions)提供实现。
+     应该考虑服务器上的存储数据。
+     您可以将JSON保存在您希望的位置。 例如，您可以将它们嵌入到已保存的页面或用
 
-2. **高级别**：图表库可以从您指向的存储中保存/加载图表和指标模板。 我们使用Python和PostgreSQL创建了一个小型存储示例，并将其放在[我们的GitHub](https://github.com/tradingview/saveload_backend)上。 您可以获取它并运行在您自己的服务器上，以便您可以控制所有用户的保存数据。
+1. **高级**：图表库能够从您指向的存储中保存/加载图表和指标模板。
+     我们使用Python和PostgreSQL创建了一个小型存储示例，可以在 [我们的GitHub](https://github.com/tradingview/saveload_backend)中找到。
+     您可以使用它并在自己的服务器上运行，这样您就可以控制所有用户的已保存数据。
 
 # 使用高级别保存/加载
 
@@ -27,80 +31,92 @@
 **备注**：手动填充/编辑数据库并不是理想做饭。 请避免这个，因为你可能会伤害Django。
 
 ## 开发自己的后端
-*图表库将HTTP/HTTPS命令发送到`charts_storage_url / charts_storage_api_version / charts？client = client_id＆user = user_id`。 `charts_storage_url`，`chart_storage_api_version`，`client_id`和`user_id`是[widget构造函数](/book/Widget-Constructor)的参数。
+*图表库将HTTP/HTTPS命令发送到`charts_storage_url / charts_storage_api_version / charts？client = client_id＆user = user_id`。 `charts_storage_url`，`chart_storage_api_version`，`client_id`和`user_id`是[widget构造函数](/book/Widget-Constructor.md)的参数。
 *您应该执行4个请求的处理：保存图表/加载图表/删除图表/列出图表。
 
 #### 列出图表
-GET REQUEST: charts_storage_url/charts_storage_api_version/charts?client=client_id&user=user_id
+GET REQUEST: `charts_storage_url/charts_storage_api_version/charts?client=client_id&user=user_id`
 
 响应：JSON对象
 
-1. status: "ok" or "error"
-2. data: 对象数组
-    1. "timestamp": 保存图表时的UNIX时间（例如，1449084321）
-    2. "symbol": 图表的商品（例如，“AA”）
-    3. "resolution": 周期（例如，“D”）
-    4. "id": 图表的唯一整数标识符（例如，9163）
-    5. "name": 图表名称（例如，“测试”）
+1. `status`: `ok` 或 `error`
+1. `data`: 对象数组
+    1. `timestamp`: 保存图表时的UNIX时间（例如，1449084321）
+    1. `symbol`: 图表的商品（例如，`AA`）
+    1. `resolution`: 周期（例如，`D`）
+    1. `id`: 图表的唯一整数标识符（例如，`9163`）
+    1. `name`: 图表名称（例如，`Test`）
 
 #### 存储图表
 
-POST REQUEST: charts_storage_url/charts_storage_api_version/charts?client=client_id&user=user_id
+POST REQUEST: `charts_storage_url/charts_storage_api_version/charts?client=client_id&user=user_id`
 
-1. "name": 图表名称
-2. "content": 图表内容
-3. "symbol": 图表商品(例如, "AA")
-4. "resolution: 图表周期 (例如, "D")
+1. `name`: 图表名称
+1. `content`: 图表内容
+1. `symbol`: 图表商品(例如, `AA`)
+1. `resolution`: 图表周期 (例如, `D`)
 
 响应：JSON对象
 
-1. "status": "ok" or "error"
-2. "id": 图表的唯一整数标识符（例如，9163）
+1. `status`: `ok` 或 `error`
+1. `id`: 图表的唯一整数标识符（例如，`9163`)
 
 #### 存储为图表
 
-POST REQUEST: charts_storage_url/charts_storage_api_version/charts?client=client_id&user=user_id&chart=chart_id
+POST REQUEST: `charts_storage_url/charts_storage_api_version/charts?client=client_id&user=user_id&chart=chart_id`
 
-1. "name": 图表名称
-2. "content": 图表内容
-3. "symbol": 图表商品(例如, "AA")
-4. "resolution: 图表周期 (例如, "D")
+1. `name`: 图表名称
+1. `content`: 图表内容
+1. `symbol`: 图表商品(例如, `AA`)
+1. `resolution`: 图表周期 (例如, `D`)
 
 响应：JSON对象
 
-1. "status": "ok" or "error"
+1. `status`: `ok` 或 `error`
 
 #### 加载图表
-GET REQUEST: charts_storage_url/charts_storage_api_version/charts?client=client_id&user=user_id&chart=chart_id
+GET REQUEST: `charts_storage_url/charts_storage_api_version/charts?client=client_id&user=user_id&chart=chart_id`
 
 响应：JSON对象
 
-1. status: "ok" or "error"
-2. data: 对象数组
-    1. "timestamp": 保存图表时的UNIX时间（例如，1449084321）
-    2. "symbol": 图表的商品（例如，“AA”）
-    3. "resolution": 周期（例如，“D”）
-    4. "id": 图表的唯一整数标识符（例如，9163）
-    5. "name": 图表名称（例如，“测试”）
+1. `status`: `ok` 或 `error`
+1. `data`: 对象数组
+    1. `timestamp`: 保存图表时的UNIX时间（例如，1449084321）
+    1. `symbol`: 图表的商品（例如，`AA`）
+    1. `resolution`: 周期（例如，`D`）
+    1. `id`: 图表的唯一整数标识符（例如，`9163`）
+    1. `name`: 图表名称（例如，`Test`）
 
 #### 删除图表
-DELETE REQUEST: charts_storage_url/charts_storage_api_version/charts?client=client_id&user=user_id&chart=chart_id
+
+DELETE REQUEST: `charts_storage_url/charts_storage_api_version/charts?client=client_id&user=user_id&chart=chart_id`
 
 响应：JSON对象
 
-1. "status": "ok" or "error"
+1. `status`: `ok` 或 `error`
 
-# 使用演示图和指标模板存储
+# 使用演示图表和指标模板存储
 
-我们正在运行演示图存储服务，让您尽可能快地保存/加载新的库的构建。 此存储网址为<http://saveload.tradingview.com>。 这只是一个演示，所以它是按原样提供的。 我们不保证其稳定性。 此外，我们一次又一次地从这个存储中删除所有的数据。
+我们正在运行演示图存储服务，以便在构建图表库时立即保存/加载图表。
+这是链接<http://saveload.tradingview.com>。 请注意，它是按原样提供的，因为它是一个演示。
 
-# 管理保存的图表访问
-您应该关心用户将能够查看和加载哪些图表。 基本上，用户可以看到/加载与用户具有相同的 `client_id` 和 `user_id` 的图表。 `client_id`是用户组的标识符。 当您使用相同的图表存储时，您的用户群体（即，当您有少量站点）时，可以覆盖这种情况。 所以常见的做法是设置`client_id = your-site's-URL`。 然而，这取决于你。
+我们不保证其稳定性。 另请注意，我们会定期删除存储中的数据。
 
-`user_id` 在您的 `client_id` 组的上下文中将是用户的id。 您可以单独设置每个用户（使每个用户拥有自己的私人图表存储），也可以将所有用户或任何用户组设置为相同，以创建一种公共存储。 以下是几个例子：
+# 管理对已保存图表的访问
+
+您负责用户能够查看和加载的图表。
+用户可以查看/加载和用户相同的`client_id`和`user_id`的图表。
+`client_id`是用户组的标识符。
+预期用途是当您有几组用户或有少数几个使用相同图表存储的网站时。
+所以通常的做法是设置`client_id = your-site's-URL`。 这由你来决定。
+
+`user_id`是用户的唯一标识符。 用户ID属于特定的`client_id`组。
+您可以单独为每个用户设置它（每个用户的私有存储），也可以为所有用户或用户组（公共存储）设置它。
+
+这里有一些例子：
 
 client_id|user_id|作用
 ---|---|---
-您的网站网址或其他任何内容|唯一用户ID|每个用户都有他的私人图表存储其他用户看不到。
-您的网站网址或其他任何内容|所有用户的相同值|每个用户都可以看到并加载每个保存的图表。
-您的网站网址或其他任何信息|注册用户的唯一用户ID和所有匿名用户的常量|每个注册用户都有他的私有图表存储其他用户看不到。 所有匿名用户都有一个共享存储。
+您的站点URL或其他链接|唯一用户ID |每个用户都有一个其他用户看不到的私有图表存储。
+您的站点URL或其他链接|所有用户都为相同值|每个用户都可以查看和加载任何已保存的图表。
+您的站点URL或其他链接|注册用户的唯一用户ID以及匿名用户的单独设置|每个注册用户都有一个其他用户看不到的私有图表存储。 所有匿名用户共享一个存储。
