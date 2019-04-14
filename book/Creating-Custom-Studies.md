@@ -112,35 +112,35 @@
 }
 ```
 
-1. 将指标保存到具有以下结构的自定义指标文件中:
+1. 将[custom_indicators_getter](Widget-Constructor.md#custom_indicators_getter)添加到widget构造函数中。它的值是一个方法，返回带有自定义指标列表的Promise对象。
 
-```javascript
-__customIndicators = [
-	*** 您的指标对象，由模板创建 ***
-];
-```
+    ```javascript
+    {
+        custom_indicators_getter: function(PineJS) {
+            return Promise.resolve([
+                // *** 您的指标对象，通过模板创建 ***
+            ]);
+        },
+    }
+    ```
+1.更新widget的初始化代码，以便在图表准备就绪时[创建](Chart-Methods.md#createstudyname-forceoverlay-lock-inputs-overrides-options)此指标。
 
-请注意，该指标文件是一个JavaScript源文件，它定义了一个指标对象数组。因此，您可以在其中放置多个指标，或者将它们与我们为您编译的指标组合起来。
+## 例
 
-1. 使用 [indicators_file_name](/book/Widget-Constructor.md#indicatorsfilename) Widget构造函数的选项来从指标文件加载自定义指标。
-1. 图表准备好后，更新您的Widget初始化代码以[创建](/book/Chart-Methods.md#createstudyname-forceoverlay-lock-inputs-callback-overrides-options) 此指标。
-
-## 例子
-
-1. 使用[indicators_file_name](Widget-Constructor.md#indicators_file_name)选项将指标添加到图表库。
-1. 更改Widget的初始化代码。 这是一个例子。
+1. 使用[custom_indicators_getter](Widget-Constructor.md#custom_indicators_getter)选项，将指标添加到图表库。
+1. 更改widget的初始化代码。下面是一个例子。
 
     ```javascript
     widget = new TradingView.widget(/* ... */);
 
     widget.onChartReady(function() {
         widget.chart().createStudy('<indicator-name>', false, true);
-		});
+    });
     ```
 		
 ### 请求另一个商品代码的数据
 
-假设您希望在图表上显示用户的权益曲线。你必须做以下事情：
+假设您希望在图表上显示用户的收益曲线。你必须做以下事情：
 
 * 为新的代码创建一个名称。 假设它为 `#EQUITY` 代码。 您可以使用您想像到的任何名字。
 * 更改服务器的代码以将此代码作为有效商品。 为此返回最小的有效SymbolInfo。
@@ -150,7 +150,6 @@ __customIndicators = [
 例如：
 
 ```javascript
-__customIndicators = [
 {
 	name: "Equity",
 	metainfo: {
@@ -188,7 +187,7 @@ __customIndicators = [
 				}
 			},
 
-			// 精度是一位数，如777.7
+			// 精度为小数点后一位数，如777.7
 			"precision": 1,
 
 			"inputs": {}
@@ -223,21 +222,9 @@ __customIndicators = [
 		}
 	}
 }
-];
 ```
 
-* 使用[indicators_file_name](/book/Widget-Constructor.md#indicatorsfilename) 选项将指标插入图表。
-* 更改Widget的初始化代码。 添加如下内容：
-
-```javascript
-	widget = new TradingView.Widget(/* ... */);
-
-	widget.onChartReady(function() {
-		widget.chart().createStudy('Equity', false, true);
-	});
-```
-
-### 着色K线
+### 染色K线
 
 ```javascript
 __customIndicators = [
@@ -311,7 +298,7 @@ __customIndicators = [
                 // 在这里执行计算并返回其中一个常量
                 // 在'valToIndex'映射中指定为键
                 var result =
-                    Math.random() * 100 % 2 > 1 ? // we randomly select one of the color values
+                    Math.random() * 100 % 2 > 1 ? // 我们随机选择一个颜色值
                         valueForColor0 : valueForColor1;
 
                 return [result];

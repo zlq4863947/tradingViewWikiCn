@@ -5,12 +5,40 @@
 
 _注意：您可以通过在浏览器控制台中执行 `TradingView.version()` 来检查图表库版本。_
 
-以下是变更列表：
+以下是重大变更列表：
+
+## Version 1.15
+
+- 功能集 `show_logo_on_all_charts` 被删除。
+- 动作 `magnetAction` 从 [executeActionById](Chart-Methods.md#executeactionbyidactionid) 和 [getCheckableActionState](Chart-Methods.md#getcheckableactionstateactionid) 中被删除。 使用 [magnetEnabled](Widget-Methods.md#magnetenabled) 代替。
+- [createStudy](Chart-Methods.md#createstudyname-forceoverlay-lock-inputs-overrides-options) 的 `callback` 参数被删除。
+- [createStudy](Chart-Methods.md#createstudyname-forceoverlay-lock-inputs-overrides-options) 返回值使用 [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) 代替 `entityId`.
+
+**交易终端**
+
+我们改变了经纪商的互动流程。请仔细阅读以下内容，以了解应在代码中进行哪些更改以切换到新版本。
+
+到目前为止，当用户点击`买入/卖出/修改`按钮时，交易终端会调用代理适配器的方法 (例如: `placeOrder`, `modifyOrder`)。在调用这些方法时，交易终端会传递 `silently` 参数。 当 `silently` 设置为 `true` 时, 代理适配器可以在不显示对话框的情况下发送订单。当它被设置为 `false` 时, 代理适配器必须从 `host` 调用一个方法来显示订单窗口 (或仓位变更对话框)。
+
+从1.15开始，交易终端单独显示所有对话框，并调用代理适配器的方法向代理的服务器发送订单或头寸。这种变化的原因是我们添加了一个订单面板，可以随时用于下订单。
+如果您使用自己的订单对话框，那么您仍然需要在代理适配器的方法中进行更改, 另外您需要使用 `metainfo` 参数将对话框构造函数传递给交易终端。
+
+- 参数 `silently` 已从 [Broker API](Broker-API.md) 的这些方法: `placeOrder`, `modifyOrder`, `reversePosition`, `closePosition`, `closeTrade`, `cancelOrder`, `cancelOrders` 中删除。
+- 参数 `handler` 和 `options` 从 [Trading Host](Trading-Host.md) 的 `showOrderDailog` 方法中被删除。
+- 参数 `handler` 从 [Trading Host](Trading-Host.md) 的 `showPositionBracketsDailog` 方法中被删除。
+- 标记 `supportCustomPlaceOrderTradableCheck` 不再被支持。
+- 覆盖 `symbolWatermarkProperties` 不再被支持。 您可以使用 [settings_adapter](Widget-Constructor.md#settings_adapter) 的 `symbolWatermark` 。
 
 ## Version 1.14
 
 - [createButton](Widget-Methods.md#createButtonoptions) 返回 `HTMLElement` 以代替 `JQuery`.
 - [createButton](Widget-Methods.md#createButtonoptions) 必须在 [headerReady()](Widget-Methods.md#headerready)返回的 `Promise` 为resolved之后使用.
+- [getVisibleRange](Chart-Methods.md#getVisibleRange) 返回UTC时区的 `{from, to}` (之前返回的是图表选择的时区)。
+- 方法 `onready` 被上次。 您可以使用 `window.addEventListener('DOMContentLoaded', callback, false)` 代替。
+- [saveChartToServer](Widget-Methods.md#savecharttoserveroncompletecallback-onfailcallback-options)中 `saveAsSnapshot` 参数被删除。
+- `indicators_file_name` 构造选项被删除。 请改用 [custom_indicators_getter](Widget-Constructor.md#custom_indicators_getter)。
+  我们进行了此更改以加快图表库的加载并消除加载文件时可能发生的漏洞。
+  您只需将自定义指标的代码从JS文件移动到widget构造函数，将它们包装在函数和Promise中。
 
 **TypeScript 类型定义**
 
@@ -74,11 +102,11 @@ _注意：您可以通过在浏览器控制台中执行 `TradingView.version()` 
 
 
 ## Version 1.10
-- 更改成交量指标的默认行为。
+- 更改成交量指标的默认特性。
 
-先前的行为：在仪表或周期切换时，根据成交量支持选项来确定成交量指标的添加/删除。 您可以通过禁用`create_volume_indicator_by_default_once` 功能集来恢复到此行为。
+先前的特性：在仪表或周期切换时，根据成交量支持选项来确定成交量指标的添加/删除。 您可以通过禁用`create_volume_indicator_by_default_once` 功能集来恢复到此特性。
 
-新的行为：如果当前仪表支持成交量，则在空白图表的第一次加载时会添加成交量指标。
+新的特性：如果当前仪表支持成交量，则在空白图表的第一次加载时会添加成交量指标。
 
 ## Version 1.9
 - 我们不再编译更多Pine脚本。您仍然可以使用以前编译过的脚本。

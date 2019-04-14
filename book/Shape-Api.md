@@ -77,9 +77,4 @@ Returns the points of the shape - an array of the [PricedPoint](#pricedpoint) ob
 具有以下属性的对象：
 
 * `price` - 点的价格
-* `time` - 时间点
-
-An object with the following keys:
-
-* `price` - price value of the point
-* `time` - time of the point
+* `time` - 点的时间

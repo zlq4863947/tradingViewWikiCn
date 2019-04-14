@@ -10,14 +10,14 @@
 
 ## 方法
 
-* 图表订阅事件
+* [图表订阅事件](#图表订阅事件)
   * [onDataLoaded\(\)](#ondataloaded)
   * [onSymbolChanged\(\)](#onsymbolchanged)
   * [onIntervalChanged\(\)](#onintervalchanged)
   * [dataReady\(callback\)](#datareadycallback)
   * [crossHairMoved\(callback\)](#crosshairmovedcallback)
   * [onVisibleRangeChanged\(\)](#onvisiblerangechanged)
-* 图表动作
+* [图表动作](#图表动作)
   * [setVisibleRange\(range, callback\)](#setvisiblerangerange-callback)
   * [setSymbol\(symbol, callback\)](#setsymbolsymbol-callback)
   * [setResolution\(resolution, callback\)](#setresolutionresolution-callback)
@@ -27,8 +27,11 @@
   * [refreshMarks\(\)](#refreshmarks)
   * [clearMarks\(\)](#clearmarks)
   * [setChartType\(type\)](#setcharttypetype)
+  * [closePopupsAndDialogs()](#closepopupsanddialogs)
   * [setTimezone(timezone)](#settimezonetimezone)
-* 指标与图形
+  * [canZoomOut\(\)](#canzoomout)
+  * [zoomOut\(\)](#zoomout)
+* [指标与图形](#指标与图形)
   * [getAllShapes\(\)](#getallshapes)
   * [getAllStudies\(\)](#getallstudies)
   * [setEntityVisibility\(id, isVisible\)](#setentityvisibilityid-isvisible)[过时]
@@ -41,14 +44,14 @@
   * [removeAllShapes\(\)](#removeallshapes)
   * [removeAllStudies\(\)](#removeallstudies)
   * [getPanes()](#getpanes)
-* 指标模板
+* [指标模板](#指标模板)
   * [createStudyTemplate\(options\)](#createstudytemplateoptions)
   * [applyStudyTemplate\(template\)](#applystudytemplatetemplate)
-* Trading Primitives
+* [Trading Primitives](#交易元语trading-primitives)
   * [createOrderLine\(\)](#createorderlineoptions)
   * [createPositionLine\(\)](#createpositionlineoptions)
   * [createExecutionShape\(\)](#createexecutionshapeoptions)
-* Getters
+* [Getters](#getters)
   * [symbol\(\)](#symbol)
   * [symbolExt\(\)](#symbolExt)
   * [resolution\(\)](#resolution)
@@ -63,15 +66,15 @@
 
 #### onDataLoaded\(\)
 
-您可以使用此方法返回的订阅[Subscription](/book/Subscription.md)对象进行订阅，以便在加载新历史K线时通知，您还可以使用此订阅对象取消此订阅事件。
+您可以使用此方法返回的订阅[Subscription](Subscription.md)对象进行订阅，以便在加载新历史K线时通知，您还可以使用此订阅对象取消此订阅事件。
 
 #### onSymbolChanged\(\)
 
-您可以使用此方法返回的[Subscription](/book/Subscription.md)对象进行订阅，以便在更改商品时通知，您还可以使用此订阅对象取消此订阅事件。
+您可以使用此方法返回的[Subscription](Subscription.md)对象进行订阅，以便在更改商品时通知，您还可以使用此订阅对象取消此订阅事件。
 
 #### onIntervalChanged\(\)
 
-您可以使用此方法返回的[Subscription](/book/Subscription.md)对象进行订阅，以便在更改时间周期时通知，您还可以使用此订阅对象取消此订阅事件。
+您可以使用此方法返回的[Subscription](Subscription.md)对象进行订阅，以便在更改时间周期时通知，您还可以使用此订阅对象取消此订阅事件。
 当事件被触发时，它将提供以下参数：
 1. `interval`: 新周期  
 2. `timeframeParameters`: 此对象只有一个字段 `timeframe`. 
@@ -107,7 +110,7 @@ widget.chart().onIntervalChanged().subscribe(null, function(interval, obj) {
 
 *1.13版本开始*
 
-您可以使用此功能返回的[Subscription](/book/Subscription.md)对象进行订阅，以便在可见时间范围更改时得到通知。 
+您可以使用此功能返回的[Subscription](Subscription.md)对象进行订阅，以便在可见时间范围更改时得到通知。 
 您还可以使用同一对象取消订阅该事件。
 
 # 图表动作
@@ -131,7 +134,7 @@ widget.chart().onIntervalChanged().subscribe(null, function(interval, obj) {
 
 #### setResolution\(resolution, callback\)
 
-1. `resolution`: string. 格式化详细参照:[周期](/book/Resolution.md)。
+1. `resolution`: string. 格式化详细参照:[周期](Resolution.md)。
 2. `callback`: function\(\)
 
 更改图表周期。 新周期的数据到达后调用回调。
@@ -172,7 +175,6 @@ widget.chart().onIntervalChanged().subscribe(null, function(interval, obj) {
 * `showRightAxis`
 * `scaleSeriesOnly`
 * `drawingToolbarAction`
-* `magnetAction`
 * `stayInDrawingModeAction`
 * `hideAllMarks`
 * `showCountdown`
@@ -200,7 +202,7 @@ widget.chart().executeActionById("drawingToolbarAction"); // 隐藏或显示绘�
 
 1. `actionId`: string
 
-根据操作ID获取是否可以勾选的状态（例如: `stayInDrawingModeAction`、`magnetAction`）（请参阅上面的操作ID）
+根据操作ID获取是否可以勾选的状态（例如: `stayInDrawingModeAction`、`showSymbolLabelsAction`）（请参阅上面的操作ID）
 
 #### refreshMarks\(\)
 
@@ -208,7 +210,7 @@ widget.chart().executeActionById("drawingToolbarAction"); // 隐藏或显示绘�
 
 #### clearMarks\(\)
 
-删除所有可见标记。
+清除所有可见标记。
 
 #### setChartType\(type\)
 
@@ -240,14 +242,17 @@ STYLE_PNF* = 6;
 STYLE_PB* = 7;
 ```
 
-\*: 交易终端专属
-  
+![](../images/trading.png) 交易终端专属
+
+#### closePopupsAndDialogs\(\)
+
+调用此方法关闭上下文菜单或对话框,假设其已经显示。
 
 ### setTimezone\(timezone\)
 
-1.  `timezone`: string  
+1. `timezone`: string  
 
-查看[timezone](book/Widget-Constructor.md#timezone)更多信息
+查看[timezone](Widget-Constructor.md#timezone)更多信息
 
 例:
 
@@ -256,9 +261,17 @@ widget.activeChart().setTimezone('Asia/Singapore');
 ```
 更改图表时区。
 
-#### closePopupsAndDialogs\(\)
+### canZoomOut()
 
-调用此方法关闭上下文菜单或对话框,假设其已经显示。
+*该方法在版本`1.14`中引入*
+
+当您调用此方法时，图表库会检查是否有任何缩放事件要撤消。
+
+### zoomOut()
+
+*该方法在版本`1.14`中引入*
+
+当您调用此方法时，它会模拟点击“缩小”按钮。 仅在图表缩放时才有效。 使用`canZoomOut`检查是否可以调用此方法。
 
 # 指标与图形
 
@@ -289,7 +302,7 @@ widget.activeChart().setTimezone('Asia/Singapore');
 3. `lock`: boolean, 是否锁定指标
 4. `inputs`: \(在`1.2`版本开始\) 指标参数数组, 该数组应包含与指标属性对话框中相同顺序的输入值。
 5. `callback`: function\(`entityId`\)
-6. `overrides`: \(在`1.2`版本开始\) 一个对象 [包含属性](/book/Studies-Overrides.md),覆盖你的新指标 。注意：您不应指定指标名称：应以具有绘图名称的属性路径为起始。
+6. `overrides`: \(在`1.2`版本开始\) 一个对象 [包含属性](Studies-Overrides.md),覆盖你的新指标 。注意：您不应指定指标名称：应以具有绘图名称的属性路径为起始。
 7. `options`: 这个对象只支持关键字`checkLimit`. 如果为 `true` 时，超出限制，将显示指标限制对话框。
     * `checkLimit` - 如果是`true`，则超出限制时将显示指标限制对话框。
     * `priceScale` - 指标的首选价格坐标。 可能的值是：
@@ -298,6 +311,9 @@ widget.activeChart().setTimezone('Asia/Singapore');
         * `no-scale` - 不要将指标纳入任何价格坐标。 该指标将以`界面(无缩放)`模式添加
         * `as-series` - 将指标附加到主数据列所附的价格坐标（仅适用于将指标添加到主数据列的窗格中）
 
+请参阅[此处](Panes-And-Scales-Behavior.md)有关与指标相关的窗格和比例特性的更多信息。
+
+返回一个Promise类型的 `entityId`。
 
 **从1.12版本开始，函数立即返回结果。 回调为保持兼容性**
 
@@ -400,7 +416,7 @@ widget.activeChart().setTimezone('Asia/Singapore');
 
 ### getPanes()
 
-返回[容器Api](Pane-Api.md) 的实例数组，允许您与容器进行交互。
+返回[窗格Api](Pane-Api.md) 的实例数组，允许您与窗格进行交互。
 
 # 指标模板
 
@@ -411,7 +427,7 @@ widget.activeChart().setTimezone('Asia/Singapore');
 
 将指标模板保存到JS对象。 图表库将调用您的回调函数并将状态对象作为参数传递。
 
-此调用是低级[存储与加载图表](/book/Saving-and-Loading-Charts.md)的一部分。
+此调用是低级[存储与加载图表](Saving-and-Loading-Charts.md)的一部分。
 
 #### applyStudyTemplate\(template\)
 
@@ -419,17 +435,17 @@ widget.activeChart().setTimezone('Asia/Singapore');
 
 从状态对象加载指标模板。
 
-此调用是低级[存储与加载图表](/book/Saving-and-Loading-Charts.md)的一部分。
+此调用是低级[存储与加载图表](Saving-and-Loading-Charts.md)的一部分。
 
-# 交易元语（Trading Primitives）
+# 交易元语\(Trading Primitives\)
 
 #### createOrderLine\(options\)
 
 `options` 是一个具有字段：`disableUndo`的对象, 可以是 `true` 或 `false`. 出于兼容性原因，默认值为 `false`。
 
-在图表上创建新的交易订单并返回可用于调整其属性和行为的API对象。
+在图表上创建新的交易订单并返回可用于调整其属性和特性的API对象。
 
-强烈建议在使用此调用之前阅读[交易元语](/book/Trading-Primitives.md)。
+强烈建议在使用此调用之前阅读[交易元语](Trading-Primitives.md)。
 
 API对象方法：
 
@@ -502,9 +518,9 @@ widget.chart().createOrderLine()
 
 `options` 是一个具有字段：`disableUndo`的对象, 可以是 `true` 或 `false`. 出于兼容性原因，默认值为 `false`。
 
-在图表上创建新的交易头寸并返回一个可用于调整其属性和行为的API对象。
+在图表上创建新的交易头寸并返回一个可用于调整其属性和特性的API对象。
 
-强烈建议在使用此调用之前阅读[交易元语](/book/Trading-Primitives.md)。
+强烈建议在使用此调用之前阅读[交易元语](Trading-Primitives.md)。
 
 API对象方法：
 
@@ -586,7 +602,7 @@ widget.chart().createPositionLine()
 
 在图表上创建新的交易执行并返回可用于控制执行属性的API对象。
 
-强烈建议在使用此调用之前阅读[交易元语](/book/Trading-Primitives.md)。
+强烈建议在使用此调用之前阅读[交易元语](Trading-Primitives.md)。
 
 API对象具有下面列出的一组属性。 每个属性应通过各自的访问器调用。
 例如，如果你想使用`Extend Left`属性，那么请使用`setExtendLeft()`和`getExtendLeft()`方法。
@@ -651,7 +667,7 @@ widget.chart().createExecutionShape()
 
 #### resolution\(\)
 
-返回图表的周期。格式在这个[周期](/book/Resolution.md)中描述。
+返回图表的周期。格式在这个[周期](Resolution.md)中描述。
 
 #### getVisibleRange\(\)
 
@@ -715,14 +731,20 @@ widget.chart().createExecutionShape()
 1. `chart.exportData({ includeTime: false, includeSeries: true, from: Date.UTC(2018, 0, 1) / 1000 })` - 导出`2018-01-01`之后的数据。
 1. `chart.exportData({ includeTime: false, includeSeries: true, from: Date.UTC(2018, 0, 1) / 1000, to: Date.UTC(2018, 1, 1) / 1000 })` - 导出在 `2018-01-01` 和 `2018-02-01` 之间的数据。
 
+### selection()
+
+**在1.15版本开始**
+
+返回[SelectionApi](Selection-Api.md)，可用于更改图表选择和订阅图表选择的更改。
+
 # 也可以看看
 
-* [Widget方法](/book/Widget-Methods.md)
-* [定制概述](/book/Customization-Overview.md)
-* [Widgetg构造函数](/book/Widget-Constructor.md)
-* [存储于加载图表](/book/Saving-and-Loading-Charts.md)
-* [指标覆盖默认参数](/book/Studies-Overrides.md)
-* [覆盖默认参数](/book/Overrides.md)
+* [Widget方法](Widget-Methods.md)
+* [定制概述](Customization-Overview.md)
+* [Widgetg构造函数](Widget-Constructor.md)
+* [存储于加载图表](Saving-and-Loading-Charts.md)
+* [指标覆盖默认参数](Studies-Overrides.md)
+* [覆盖默认参数](Overrides.md)
 
 
 <!--stackedit_data:

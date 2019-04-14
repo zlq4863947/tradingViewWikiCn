@@ -4,7 +4,7 @@
 
 文件的格式:
 
-    <property_path>: <default Charting Library value>
+`<属性路径>: <图表库的默认值>`
 
 ```javascript
 //	支持的值: large, medium, small, tiny
@@ -26,14 +26,13 @@ paneProperties.crossHairProperties.style: LINESTYLE_DASHED
 paneProperties.topMargin: 5
 paneProperties.bottomMargin: 5
 
-// leftAxisProperties & rightAxisProperties
-paneProperties.leftAxisProperties.autoScale:true                    (see #749)
-paneProperties.leftAxisProperties.autoScaleDisabled:false           (see #749)
-paneProperties.leftAxisProperties.percentage:false
-paneProperties.leftAxisProperties.percentageDisabled:false
-paneProperties.leftAxisProperties.log:false
-paneProperties.leftAxisProperties.logDisabled:false
-paneProperties.leftAxisProperties.alignLabels:true
+paneProperties.axisProperties.autoScale: true
+paneProperties.axisProperties.lockScale: false
+paneProperties.axisProperties.percentage: false
+paneProperties.axisProperties.indexedTo100: false
+paneProperties.axisProperties.log: false
+paneProperties.axisProperties.alignLabels: true
+paneProperties.axisProperties.isInverted: false
 
 paneProperties.legendProperties.showStudyArguments: true
 paneProperties.legendProperties.showStudyTitles: true
@@ -41,9 +40,9 @@ paneProperties.legendProperties.showStudyValues: true
 paneProperties.legendProperties.showSeriesTitle: true
 paneProperties.legendProperties.showSeriesOHLC: true
 paneProperties.legendProperties.showLegend: true
+paneProperties.legendProperties.showBarChange: true
+paneProperties.legendProperties.showOnlyPriceSource: true
 
-scalesProperties.showLeftScale : false
-scalesProperties.showRightScale : true
 scalesProperties.backgroundColor : "#ffffff"
 scalesProperties.fontSize: 11
 scalesProperties.lineColor : "#555"
@@ -57,7 +56,7 @@ scalesProperties.showSymbolLabels: false
 
 timeScale.rightOffset: 5
 
-timezone: "Etc/UTC" #查看支持的时区列表（在Symbology#时区页面）的可用值
+timezone: "Etc/UTC" #查看支持的时区列表（在Symbology页面中的timezone）的可用值
 
 //	数据列风格。 请参阅下面的支持的值
 //		Bars = 0            #美国线
@@ -89,8 +88,6 @@ mainSeriesProperties.priceAxisProperties.percentage:false
 mainSeriesProperties.priceAxisProperties.percentageDisabled:false
 mainSeriesProperties.priceAxisProperties.log:false
 mainSeriesProperties.priceAxisProperties.logDisabled:false
-
-symbolWatermarkProperties.color : "rgba(0, 0, 0, 0.00)"
 
 //	不同的图表类型默认值
 
@@ -160,6 +157,16 @@ mainSeriesProperties.baselineStyle.bottomLineWidth: 1
 mainSeriesProperties.baselineStyle.priceSource: "close"
 mainSeriesProperties.baselineStyle.transparency: 50
 mainSeriesProperties.baselineStyle.baseLevelPercentage: 50
+
+// Hi-Lo style
+mainSeriesProperties.hiloStyle.color: "#2196f3"
+mainSeriesProperties.hiloStyle.showBorders: true
+mainSeriesProperties.hiloStyle.borderColor: "#2196f3"
+mainSeriesProperties.hiloStyle.showLabels: true
+mainSeriesProperties.hiloStyle.labelColor: "#2196f3"
+mainSeriesProperties.hiloStyle.fontFamily: 'Trebuchet MS'
+mainSeriesProperties.hiloStyle.fontSize: 7
+
 ```
 
 ##### LineStyles
@@ -169,50 +176,4 @@ LINESTYLE_SOLID = 0
 LINESTYLE_DOTTED = 1
 LINESTYLE_DASHED = 2
 LINESTYLE_LARGE_DASHED = 3
-```
-
-#### 自定义覆盖商品
-
-```javascript
-study_Overlay@tv-basicstudies.style: (bars = 0, candles = 1, line = 2, area = 3, heiken ashi = 8, hollow candles = 9)
-study_Overlay@tv-basicstudies.showPriceLine: boolean
-
-study_Overlay@tv-basicstudies.candleStyle.upColor: color
-study_Overlay@tv-basicstudies.candleStyle.downColor: color
-study_Overlay@tv-basicstudies.candleStyle.drawWick: boolean
-study_Overlay@tv-basicstudies.candleStyle.drawBorder: boolean
-study_Overlay@tv-basicstudies.candleStyle.borderColor: color
-study_Overlay@tv-basicstudies.candleStyle.borderUpColor: color
-study_Overlay@tv-basicstudies.candleStyle.borderDownColor: color
-study_Overlay@tv-basicstudies.candleStyle.wickColor: color
-study_Overlay@tv-basicstudies.candleStyle.barColorsOnPrevClose: boolean
-
-study_Overlay@tv-basicstudies.hollowCandleStyle.upColor: color
-study_Overlay@tv-basicstudies.hollowCandleStyle.downColor: color
-study_Overlay@tv-basicstudies.hollowCandleStyle.drawWick: boolean
-study_Overlay@tv-basicstudies.hollowCandleStyle.drawBorder: boolean
-study_Overlay@tv-basicstudies.hollowCandleStyle.borderColor: color
-study_Overlay@tv-basicstudies.hollowCandleStyle.borderUpColor: color
-study_Overlay@tv-basicstudies.hollowCandleStyle.borderDownColor: color
-study_Overlay@tv-basicstudies.hollowCandleStyle.wickColor: color
-study_Overlay@tv-basicstudies.hollowCandleStyle.barColorsOnPrevClose: boolean
-
-study_Overlay@tv-basicstudies.barStyle.upColor: color
-study_Overlay@tv-basicstudies.barStyle.downColor: color
-study_Overlay@tv-basicstudies.barStyle.barColorsOnPrevClose: boolean
-study_Overlay@tv-basicstudies.barStyle.dontDrawOpen: boolean
-
-
-study_Overlay@tv-basicstudies.lineStyle.color: color
-study_Overlay@tv-basicstudies.lineStyle.linestyle: (solid = 0; dotted = 1; dashed = 2; large dashed = 3)
-study_Overlay@tv-basicstudies.lineStyle.linewidth: integer
-study_Overlay@tv-basicstudies.lineStyle.priceSource: open/high/low/close
-study_Overlay@tv-basicstudies.lineStyle.styleType: (bars = 0, candles = 1, line = 2, area = 3, heiken ashi = 8, hollow candles = 9)
-
-study_Overlay@tv-basicstudies.areaStyle.color1: color
-study_Overlay@tv-basicstudies.areaStyle.color2: color
-study_Overlay@tv-basicstudies.areaStyle.linecolor: color
-study_Overlay@tv-basicstudies.areaStyle.linestyle: (solid = 0; dotted = 1; dashed = 2; large dashed = 3)
-study_Overlay@tv-basicstudies.areaStyle.linewidth: integer
-study_Overlay@tv-basicstudies.areaStyle.priceSource: open/high/low/close
 ```

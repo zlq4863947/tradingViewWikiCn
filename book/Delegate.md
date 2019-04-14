@@ -1,12 +1,16 @@
-# 委托
+# 委托(Delegate)
 
-委托对象由一些[Trading Terminal](book/Trading-Terminal.md)方法返回，并且需要使用[Account Manager](book/Account-Manager.md)。 使用这个对象，你可以更新和更新一个事件。
+Delegate是[账户管理器](Account-Manager.md)中使用的对象，用于通知表中显示的订单，仓位和其他信息所发生的事件。
 
 ### subscribe(object, member)
 订阅事件.
-1. `object` 是`member`的所有者，它可以为null
-2. `member` 是对象的一种方法
+1. `object` 是`member`的所有者，对于一个函数可以为null
+2. `member` 是对象的方法
+
+订阅事件: `object::member`。
 
 ### unsubscribe(object, member)
-取消订阅事件
-使用与`subscribe`函数中使用的相同的对象和成员来取消订阅事件。
+
+取消订阅事件: `object::member`。
+
+使用在`subscribe`函数中的相同对象和`member`取消订阅事件。

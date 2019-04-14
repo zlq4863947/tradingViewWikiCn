@@ -1,6 +1,6 @@
 # 绘图覆盖
 
-以下是绘图覆盖的全部列表及默认值。 您可以使用[Widget构造函数](/book/Widget-Constructor.md#overrides)的`overrides`参数来更改默认值。在列表的底部，您可以找到值中使用的常量和缩写的列表。
+以下是绘图覆盖的全部列表及默认值。 您可以使用[Widget构造函数](Widget-Constructor.md#overrides)的`overrides`参数来更改默认值。在列表的底部，您可以找到值中使用的常量和缩写的列表。
 
 ```javascript
 linetoolicon: {

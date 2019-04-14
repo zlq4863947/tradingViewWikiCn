@@ -2,95 +2,95 @@
 
 ### isUserEditEnabled()
 
-如果用户能够删除/更改/隐藏研究，则返回`true`。
+如果用户能够`删除/更改/隐藏`指标，则返回`true`。
 
 ### setUserEditEnabled(enabled)
 
 1. `enabled` - `true` or `false`
 
-Enables or disables removing/changing/hiding a study by the user.
+启用或禁用用户的`删除/更改/隐藏`指标。
 
 ### getInputsInfo()
 
-Returns the information about all the inputs - an array of [StudyInputInfo](#studyinputinfo) objects.
+返回所有输入的信息 - [StudyInputInfo](#studyinputinfo)对象的数组。
 
 ### getInputValues()
 
-Returns values of study inputs - an array of [StudyInputValueItem](#studyinputvalueitem) objects.
+返回指标输入的值 - [StudyInputValueItem](#studyinputvalueitem)对象。
 
 ### setInputValues(inputs)
 
-1. `inputs` should be an array of [StudyInputValueItem](#studyinputvalueitem) objects.
+1. `inputs` 应该是[StudyInputValueItem](#studyinputvalueitem)对象数组。
 
-Sets input values for a study. It may contain only some of the inputs that you wish to change.
+设置指标的输入值，它可以只包含您希望更改的输入。
 
 ### mergeUp()
 
-Merges the study up (if possible).
+指标向上合并（如果可能）
 
 ### mergeDown()
 
-Merges the study down (if possible).
+指标向下合并（如果可能）
 
 ### unmergeUp()
 
-Unmerges the study up (if possible).
+取消指标向上合并（如果可能）
 
 ### unmergeDown()
 
-Unmerges the study down (if possible).
+取消指标向下合并（如果可能）
 
 ### changePriceScale(priceScale)
 
-1. `priceScale` should be a string with one of the following values:
-    * `left` - attach the study to the left price scale
-    * `right` - attach the study to the right price scale
-    * `no-scale` - do not attach the study to any price scale. The study will be added in 'No Scale' mode
-    * `as-series` - attach the study to the price scale where the main series is attached (it is only applicable if the study and the main series are located on the same pane)
+1. `priceScale` 应该是一个具有下值之一的字符串:
+    * `left` - 将指标附加到左边的价格坐标
+    * `right` - 将指标附加到右边的价格坐标
+    * `no-scale` - 不要将指标纳入任何价格坐标。该指标将以'No Scale'模式添加
+    * `as-series` - 将指标附加到住系列的价格坐标（仅当指标和主系列位于同一窗格时才适用）
 
-Changes the price scale of the study
+改变指标的价格坐标
 
 ### isVisible()
 
-Returns `true` if the study is visible.
+如果指标可见，将返回`true`
 
 ### setVisible(value)
 
-1. `value` - `true` or `false`
+1. `value` - `true` 或 `false`
 
-Shows/hides the study.
+显示/隐藏指标
 
 ### bringToFront()
 
-Places the study on top of all other chart objects.
+将指标置于所有其他图表对象之上。
 
 ### sendToBack()
 
-Places the study behind all other chart objects.
+将指标放在所有其他图表对象后面。
 
 ### applyOverrides(overrides)
 
-1. `overrides` - new [overrides](Studies-Overrides) for the study
+1. `overrides` - 指标的新[overrides](Studies-Overrides.md)
 
-Applies `overrides` to the study.
+将 `overrides` 应用于指标。
 
-Note: `overrides` object keys don’t need to start with the study name. The key is applied to a particular study.
-For example, you should use `style` instead of `Overlay.style` to override the current style of the Overlay study.
+注意: `overrides` 对象key不需要以指标名称开头。key应用于特定的指标。
+例如，您应该使用`style`而不是`Overlay.style`来覆盖Overlay指标的当前样式。
 
 ## Primitive types
 
 ### StudyInputInfo
 
-An object with the following keys:
+具有以下key的对象：
 
-* `id` - input ID of the study
-* `name` - name of the input
-* `type` - type of the input
-* `localizedName` - name of the input translated to the current language
+* `id` - 指标的输入id
+* `name` - 输入的名称
+* `type` - 输入的类型
+* `localizedName` - 翻译为当前语言的输入名称
 
 ### StudyInputValueItem
 
-An object with the following keys:
+具有以下key的对象：
 
-* `id` - input ID of the study
-* `value` - value of the input
+* `id` - 指标的输入id
+* `value` - 输入的值

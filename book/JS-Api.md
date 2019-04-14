@@ -35,7 +35,7 @@
     i.configurationData: object (见下文)
 ```
 
-此方法旨在提供填充配置数据的对象。这些数据会影响图表的行为表现，所以它被调用在[服务端定制](Customization-Overview.md#customization-done-through-data-stream)。
+此方法旨在提供填充配置数据的对象。这些数据会影响图表的特性表现，所以它被调用在[服务端定制](Customization-Overview.md#customization-done-through-data-stream)。
 
 图表库要求您使用回调函数来传递datafeed的 `configurationData`参数。
 
@@ -214,7 +214,7 @@ Datafeed.prototype.calculateHistoryDepth = function(resolution, resolutionBack, 
 4. `onDataCallback`: function\(标记数字`marks`\)
 5. `resolution`: string
 
-方法介绍：图书馆调用这个函数来获得可见的K线范围的标记。 图表预期每调用一次`getMarks`就会调用一次`onDataCallback`。
+方法介绍：图表库调用这个函数来获得可见的K线范围的标记。 图表预期每调用一次`getMarks`就会调用一次`onDataCallback`。
     
 `mark`为具有以下属性的对象:
 

@@ -71,7 +71,7 @@
 |------------------------------|---------------|-----------------|--------------------------------------------------------------------|
 | move_logo_to_main_pane       | off           |                 | 将logo放在主数据列窗格上而不是底部窗格 |
 
-### 行为
+### 特性
 
 | ID  | 默认状态 | 版本 | 描述
 |-------|---------------|-----------------|------------
@@ -81,7 +81,7 @@
 | create_volume_indicator_by_default | on |                 |
 | create_volume_indicator_by_default_once | on |                  |
 | volume_force_overlay | on |                 | 在主数据量列的窗格上放置成交量指标
-| right_bar_stays_on_scroll | on |                 | 确定缩放功能的行为：如果禁用此功能，鼠标光标下的K线将保持在同一位置
+| right_bar_stays_on_scroll | on |                 | 确定缩放功能的特性：如果禁用此功能，鼠标光标下的K线将保持在同一位置
 | constraint_dialogs_movement | on |                 | 将对话框保留在图表中
 | charting_library_debug_mode | off |                 | 启用日志
 | show_dialog_on_snapshot_ready | on |                 | 禁用此功能允许您以静默方式创建快照
@@ -95,6 +95,9 @@
 | high_density_bars             | off   |   1.11          | 允许缩小以在单个屏幕上显示超过60000根K线
 | cl_feed_return_all_data       | off   |   1.11          | 允许您从datafeed返回多于请求的K线，并同时在图表上显示
 | uppercase_instrument_names    | on    | 1.12            | 禁用此功能允许用户输入区分大小写的商品
+| no_min_chart_width            | off   | 1.14            | 禁用最小图表宽度限制
+| fix_left_edge                 | off   | 1.14            | 阻止滚动到第一个历史K线的左侧
+| lock_visible_time_range_on_resize | off   | 1.14        | 防止在图表调整大小时更改可见时区
 
 ### 重要功能
 
