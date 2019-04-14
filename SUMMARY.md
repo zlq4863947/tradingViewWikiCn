@@ -39,7 +39,6 @@
 ## 5、交易终端
 
 * [5-1、交易终端简介](book/Trading-Terminal.md)
-* [5-2、交易控制器](book/Trading-Controller.md)
 * [5-3、经纪商API](book/Broker-API.md)
 * [5-4、交易主机](book/Trading-Host.md)
 * [5-5、账户管理器](book/Account-Manager.md)
