@@ -1,8 +1,8 @@
-## 容器Api
+## 窗格Api
 
 ### hasMainSeries()
 
-如果容器包含主系列，则返回`true`。
+如果窗格包含主系列，则返回`true`。
 
 ### getLeftPriceScale()
 

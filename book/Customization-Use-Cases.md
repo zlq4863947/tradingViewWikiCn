@@ -65,7 +65,7 @@
 
 #### 语言
 
-选择图表图书馆20多个翻译中的一个。[文档说明](/book/Widget-Constructor.md#locale)
+选择图表库20多个翻译中的一个。[文档说明](/book/Widget-Constructor.md#locale)
 
 注意：语言是在创建图表时设置的。如果没有重新创建图表，就无法更改。
 
@@ -115,7 +115,7 @@ TradingView允许您在其服务器上保存快照，但如果您希望您也可
 #### 成交量指标
 
 尽管有其他指标，如果仪表支持，则默认添加成交量指标 [文档说明](/book/Symbology.md#hasnovolume)。  
-您可以禁用此行为 [功能集](/book/Featuresets.md)
+您可以禁用此特性 [功能集](/book/Featuresets.md)
 
 #### 上下文菜单
 

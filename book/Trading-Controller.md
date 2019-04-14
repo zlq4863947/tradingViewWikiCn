@@ -111,7 +111,7 @@ return [{ name: 'DAY', value: 'DAY' }, { name: 'GTC', value: 'GTC' }];
 
 #### createBottomWidget\(container\)
 
-当创建底部交易面板时需要调用这个函数。您应该创建DOM对象并将其附加到 `container`中。容器在需要时显示一个垂直滚动条。
+当创建底部交易面板时需要调用这个函数。您应该创建DOM对象并将其附加到 `container`中。窗格在需要时显示一个垂直滚动条。
 
 #### accountManagerInfo\(\)
 

@@ -68,5 +68,7 @@
 * [WatchedValue](book/WatchedValue.md)
 * [指标API](book/Study-Api.md)
 * [形状API](book/Shape-Api.md)
-* [容器API](book/Pane-Api.md)
+* [选择API](book/Selection-Api.md)
+* [窗格API](book/Pane-Api.md)
 * [价格坐标Api](book/Price-Scale-Api.md)
+* [窗格和坐标特性](book/Panes-And-Scales-Behavior.md)
