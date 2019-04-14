@@ -11,7 +11,7 @@
   ],
   "pluginsConfig": {
     "disqus": {
-      "shortName": "aitrade-ga"
+      "shortName": "aistock-ga"
     },
     "github": {
       "url": "https://github.com/zlq4863947/tradingViewWikiCn"
