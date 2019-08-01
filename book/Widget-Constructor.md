@@ -32,7 +32,7 @@ new TradingView.widget({
 
 #### datafeed
 
-JavaScript对象的实现接口 [JS API](/book/JS-Api.md) 以反馈图表及数据。 *必须项*
+JavaScript对象的实现接口 [JS API](/book/JS-Api.md) 以反馈数据显示在图表上。 *必须项*
 
 #### timezone
 

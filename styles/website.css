@@ -1,5 +1,9 @@
 .markdown-section table {
   table-layout: fixed;
-  display:block;
+  display: block;
   overflow-x: auto;
+}
+
+.book .book-body .page-wrapper .page-inner {
+  max-width: 85%;
 }

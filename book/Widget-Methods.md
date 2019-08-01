@@ -32,6 +32,8 @@ widget.onChartReady(function() {
   * [takeScreenshot()](#takeScreenshot)
   * [lockAllDrawingTools()](#lockAllDrawingTools)
   * [hideAllDrawingTools()](#hideAllDrawingTools)
+  * [magnetEnabled](#magnetenabled)
+  * [magnetMode](#magnetmode)
 * [保存/加载图表](#保存加载图表)
   * [save\(callback\)](#savecallback)
   * [load\(state\)](#loadstate)
@@ -52,6 +54,7 @@ widget.onChartReady(function() {
   * [mainSeriesPriceFormatter()](#mainseriespriceformatter)
   * [getIntervals()](#getintervals)
   * [getStudiesList()](#getstudieslist)
+  * [undoRedoState()](#undoredostate)
 * [定制](#定制)
   * [changeTheme\(themeName\)](#changethemethemename)
   * [addCustomCSSFile\(url\)](#addcustomcssfileurl)
@@ -108,7 +111,7 @@ new TradingView.widget({
 
 widget.onChartReady(function() {
     widget.onGrayedObjectClicked(function(data) {
-        // 当您尝试创建力量平衡指标或趋势图形时
+        // 当您尝试创建能量均衡指标或趋势图形时
         // 此方法将被调用
 
         alert(data.name + " is grayed out!");
@@ -160,8 +163,8 @@ widget.onShortcut("alt+s", function() {
 | `onMarkClick` | | 用户点击[K线标记](Marks-On-Bars.md)。标记ID将作为参数传递 |
 | `onTimescaleMarkClick` | | 用户点击时间刻度标记。标记ID将作为参数传递 |
 | `onSelectedLineToolChanged` | | 选择的线条工具已更改 |
-| `study_event` | 1.14 | 指标从图表中删除。回调函数接收2个参数: 指标id和event类型 (当前这个参数唯一可能的值是`remove`) |
-| `drawing_event` | 1.14 | 隐藏，显示，移动，移除或单击绘图。 回调函数接收2个参数: 指标id和event类型。event类型的可能值是`hide`，`show`、`move`、`remove`、`click` |
+| `study_event` | 1.15 | 指标从图表中删除。回调函数接收2个参数: 指标id和event类型 (当前这个参数唯一可能的值是`remove`) |
+| `drawing_event` | 1.15 | 隐藏，显示，移动，移除或单击绘图。 回调函数接收2个参数: 指标id和event类型。event类型的可能值是`hide`，`show`、`move`、`remove`、`click` |
 | `study_properties_changed` | 1.14 | 指标属性已更改。实体ID将作为参数传递。 |
 | ![](../images/trading.png) `layout_about_to_be_changed` | | 图表的数量或位置即将改变 |
 | ![](../images/trading.png) `layout_changed` | | 图表的数量或位置已更改 |
@@ -236,6 +239,21 @@ widget.onShortcut("alt+s", function() {
 
 此方法返回 [WatchedValue](WatchedValue.md) 对象,
 该对象可用于读取/设置/监视 "隐藏所有绘图工具" 按钮的状态。
+
+### magnetEnabled()
+
+此方法返回 [WatchedValue](WatchedValue.md) 对象,
+该对象可用于读取/设置/监视 "磁铁" 按钮的状态。
+
+### magnetMode()
+
+此方法返回 [WatchedValue](WatchedValue.md) 对象,
+该对象可用于读取/设置/监视 "磁铁" 的模式
+
+可用模式:
+
+* `0` - 弱磁模式
+* `1` - 强磁模式
 
 # 保存/加载图表
 
@@ -474,32 +492,32 @@ widget.headerReady().then(function() {
 4.  `getAllLists()` - 允许您获取所有列表。如果没有监视列表则返回`null` 。
 5.  `setList(symbols: string[])`- 允许您将商品列表设置到观察列表中。 它将替换整个列表。**已过时。将在 `1.13`版本中删除。请改用  `updateList`。**  
 
-1.  `updateList(listId: string, symbols: string[])` - 允许您编辑商品列表。  
+6.  `updateList(listId: string, symbols: string[])` - 允许您编辑商品列表。  
 
-1.  `renameList(listId: string, newName: string)` - 允许您将列表重命名为 `newName`.
+7.  `renameList(listId: string, newName: string)` - 允许您将列表重命名为 `newName`.
 
-1.  `createList(listName?: string, symbols?: string[])` - 允许您创建具有`listName` 名称的符号列表。如果未传递 `listName` 参数或者没有监视列表，则返回 `null`。
+8.  `createList(listName?: string, symbols?: string[])` - 允许您创建具有`listName` 名称的符号列表。如果未传递 `listName` 参数或者没有监视列表，则返回 `null`。
 
-1.  `saveList(list: SymbolList)` - 允许您保存一个商品列表， `list` 是具有以下key的集合对象:
+9.  `saveList(list: SymbolList)` - 允许您保存一个商品列表， `list` 是具有以下key的集合对象:
 
-```js
-id: string;
-title: string;
-symbols: string[];
-```
+    ```js
+    id: string;
+    title: string;
+    symbols: string[];
+    ```
 
-如果没有监视列表或者已有一个等价列表，则返回`false` 否则返回 `true` 。
+    如果没有监视列表或者已有一个等价列表，则返回`false` 否则返回 `true` 。
 
-1. `deleteList(listId: string)` - 允许您删除商品列表。
-2. `onListChanged()`- 当在监视列表中的商品更改时, 可以使用此方法进行通知。您可以使用此方法返回的 [Subscription](Subscription.md)对象进行订阅和取消订阅。  
+10. `deleteList(listId: string)` - 允许您删除商品列表。
+11. `onListChanged()`- 当在监视列表中的商品更改时, 可以使用此方法进行通知。您可以使用此方法返回的 [Subscription](Subscription.md)对象进行订阅和取消订阅。  
 
-3.  `onActiveListChanged()` - 当选择了不同的监视列表时, 可以使用此方法进行通知。您可以使用此方法返回的 [Subscription](Subscription.md)对象进行订阅和取消订阅。
+12.  `onActiveListChanged()` - 当选择了不同的监视列表时, 可以使用此方法进行通知。您可以使用此方法返回的 [Subscription](Subscription.md)对象进行订阅和取消订阅。
 
-4.  `onListAdded()` - - 当新的列表添加到监视列表中时, 可以使用此方法进行通知。您可以使用此方法返回的 [Subscription](Subscription.md)对象进行订阅和取消订阅。
+13.  `onListAdded()` - - 当新的列表添加到监视列表中时, 可以使用此方法进行通知。您可以使用此方法返回的 [Subscription](Subscription.md)对象进行订阅和取消订阅。
  
-5.  `onListRemoved()` - 当监视列表中删除商品列表时, 可以使用此方法进行通知。您可以使用此方法返回的 [Subscription](Subscription.md)对象进行订阅和取消订阅。
+14.  `onListRemoved()` - 当监视列表中删除商品列表时, 可以使用此方法进行通知。您可以使用此方法返回的 [Subscription](Subscription.md)对象进行订阅和取消订阅。
 
-6.  `onListRenamed()` - - 当监视列表中重命名商品列表时, 可以使用此方法进行通知。您可以使用此方法返回的 [Subscription](Subscription.md)对象进行订阅和取消订阅。
+15.  `onListRenamed()` - - 当监视列表中重命名商品列表时, 可以使用此方法进行通知。您可以使用此方法返回的 [Subscription](Subscription.md)对象进行订阅和取消订阅。
 
 # ![](../images/trading.png)多图表布局
 

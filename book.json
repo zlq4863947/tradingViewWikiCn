@@ -3,18 +3,41 @@
   "description": "TradingView为优秀的交易技术分析图表库",
   "language": "zh",
   "plugins": [
+    "livere",
     "disqus",
     "github",
+    "github-buttons",
     "splitter",
     "sitemap",
     "donate"
   ],
   "pluginsConfig": {
+    "livere": {
+      "uid": "MTAyMC8zNTIyNC8xMTc2MA=="
+    },
     "disqus": {
       "shortName": "aistock-ga"
     },
     "github": {
       "url": "https://github.com/zlq4863947/tradingViewWikiCn"
+    },
+    "github-buttons": {
+      "buttons": [
+        {
+          "user": "zlq4863947",
+          "repo": "tradingViewWikiCn",
+          "type": "star",
+          "size": "small",
+          "count": true
+        },
+        {
+          "user": "zlq4863947",
+          "repo": "tradingViewWikiCn",
+          "type": "fork",
+          "size": "small",
+          "count": true
+        }
+      ]
     },
     "donate": {
       "wechat": "https://b.aitrade.ga/books/tradingview/images/weixin.png",

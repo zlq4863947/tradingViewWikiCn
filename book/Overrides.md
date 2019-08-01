@@ -7,10 +7,10 @@
 `<属性路径>: <图表库的默认值>`
 
 ```javascript
-//	支持的值: large, medium, small, tiny
+// 支持的值: large, medium, small, tiny
 volumePaneSize: "large"
 
-//	在文本编辑器中可用的字体（即，在`文本`绘图工具属性对话框中）
+// 在文本编辑器中可用的字体（即，在`文本`绘图工具属性对话框中）
 editorFontsList: ['Verdana', 'Courier New', 'Times New Roman', 'Arial']
 
 paneProperties.background: "#ffffff"
@@ -22,7 +22,7 @@ paneProperties.crossHairProperties.color: "#989898"
 paneProperties.crossHairProperties.width: 1
 paneProperties.crossHairProperties.style: LINESTYLE_DASHED
 
-//	边际（百分比）。 用于自动缩放。
+// 边际（百分比）。 用于自动缩放。
 paneProperties.topMargin: 5
 paneProperties.bottomMargin: 5
 
@@ -58,17 +58,17 @@ timeScale.rightOffset: 5
 
 timezone: "Etc/UTC" #查看支持的时区列表（在Symbology页面中的timezone）的可用值
 
-//	数据列风格。 请参阅下面的支持的值
-//		Bars = 0            #美国线
-//		Candles = 1         #K线图
-//		Line = 2            #线形图
-//		Area = 3            #面积图
-//		Heiken Ashi = 8     #平均K线图
-//		Hollow Candles = 9  #空心K线图
-//		Renko = 4           #转形图
-//		Kagi = 5            #卡吉图
-//		Point&Figure = 6    #点数图
-//		Line Break = 7      #新价图
+// 数据列风格。 请参阅下面的支持的值
+//  Bars = 0            #美国线
+//  Candles = 1         #K线图
+//  Line = 2            #线形图
+//  Area = 3            #面积图
+//  Heiken Ashi = 8     #平均K线图
+//  Hollow Candles = 9  #空心K线图
+//  Renko = 4           #转形图
+//  Kagi = 5            #卡吉图
+//  Point&Figure = 6    #点数图
+//  Line Break = 7      #新价图
 mainSeriesProperties.style: 1
 
 mainSeriesProperties.showCountdown: true
@@ -89,9 +89,9 @@ mainSeriesProperties.priceAxisProperties.percentageDisabled:false
 mainSeriesProperties.priceAxisProperties.log:false
 mainSeriesProperties.priceAxisProperties.logDisabled:false
 
-//	不同的图表类型默认值
+// 不同的图表类型默认值
 
-//	K线图样式
+// K线图样式
 mainSeriesProperties.candleStyle.upColor: "#6ba583"
 mainSeriesProperties.candleStyle.downColor: "#d75442"
 mainSeriesProperties.candleStyle.drawWick: true
@@ -103,7 +103,7 @@ mainSeriesProperties.candleStyle.wickUpColor: 'rgba( 115, 115, 117, 1)'
 mainSeriesProperties.candleStyle.wickDownColor: 'rgba( 115, 115, 117, 1)'
 mainSeriesProperties.candleStyle.barColorsOnPrevClose: false
 
-//	空心K线图样式
+// 空心K线图样式
 mainSeriesProperties.hollowCandleStyle.upColor: "#6ba583"
 mainSeriesProperties.hollowCandleStyle.downColor: "#d75442"
 mainSeriesProperties.hollowCandleStyle.drawWick: true
@@ -113,7 +113,7 @@ mainSeriesProperties.hollowCandleStyle.borderUpColor: "#225437"
 mainSeriesProperties.hollowCandleStyle.borderDownColor: "#5b1a13"
 mainSeriesProperties.hollowCandleStyle.wickColor: "#737375"
 
-//	平均K线图样式
+// 平均K线图样式
 mainSeriesProperties.haStyle.upColor: "#6ba583"
 mainSeriesProperties.haStyle.downColor: "#d75442"
 mainSeriesProperties.haStyle.drawWick: true
@@ -124,19 +124,19 @@ mainSeriesProperties.haStyle.borderDownColor: "#5b1a13"
 mainSeriesProperties.haStyle.wickColor: "#737375"
 mainSeriesProperties.haStyle.barColorsOnPrevClose: false
 
-//	美国线样式
+// 美国线样式
 mainSeriesProperties.barStyle.upColor: "#6ba583"
 mainSeriesProperties.barStyle.downColor: "#d75442"
 mainSeriesProperties.barStyle.barColorsOnPrevClose: false
 mainSeriesProperties.barStyle.dontDrawOpen: false
 
-//	线形图样式
+// 线形图样式
 mainSeriesProperties.lineStyle.color: "#0303F7"
 mainSeriesProperties.lineStyle.linestyle: LINESTYLE_SOLID
 mainSeriesProperties.lineStyle.linewidth: 1
 mainSeriesProperties.lineStyle.priceSource: "close"
 
-//	面积图样式
+// 面积图样式
 mainSeriesProperties.areaStyle.color1: "#606090"
 mainSeriesProperties.areaStyle.color2: "#01F6F5"
 mainSeriesProperties.areaStyle.linecolor: "#0094FF"
@@ -172,8 +172,8 @@ mainSeriesProperties.hiloStyle.fontSize: 7
 ##### LineStyles
 
 ```javascript
-LINESTYLE_SOLID = 0
-LINESTYLE_DOTTED = 1
-LINESTYLE_DASHED = 2
-LINESTYLE_LARGE_DASHED = 3
+LINESTYLE_SOLID = 0;
+LINESTYLE_DOTTED = 1;
+LINESTYLE_DASHED = 2;
+LINESTYLE_LARGE_DASHED = 3;
 ```

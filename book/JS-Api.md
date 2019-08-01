@@ -31,11 +31,11 @@
 ### [onReady\(callback\)](#onreadycallback)
 
 ```js
-1.callback: function(configurationData)
-    i.configurationData: object (见下文)
+callback: function(configurationData)
+    configurationData: object (见下文)
 ```
 
-此方法旨在提供填充配置数据的对象。这些数据会影响图表的特性表现，所以它被调用在[服务端定制](Customization-Overview.md#customization-done-through-data-stream)。
+此方法可以设置图表库支持的图表配置。这些数据会影响到图表支持的功能，所以它被称为[服务端定制](Customization-Overview.md#customization-done-through-data-stream)。
 
 图表库要求您使用回调函数来传递datafeed的 `configurationData`参数。
 
@@ -43,23 +43,23 @@ configurationData是一个对象，现在支持以下属性:
 
 ##### [exchanges](#exchanges)
 
-一个交易所数组。 Exchange是一个对象`{value, name, desc}`。
+交易所对象数组。 交易所对象的结构为: `{value, name, desc}`。
 
 `value`将被作为`exchange`参数传递给 [searchSymbols](#searchsymbolsuserinput-exchange-symboltype-onresultreadycallback)。
 
-`exchanges = []`会导致商品查询列表中看不到交易所过滤器。使用`value = ""`来创建通配符筛选器（所有的交易所）。
+`exchanges = []`会导致商品查询列表中看不到交易所过滤器。`value = ""`来创建通配符筛选器（所有的交易所）。
 
 ##### [symbols\_types](#symbolstypes)
 
-一个商品类型过滤器数组。该商品类型过滤器是个对象`{name, value}`。`value`将被作为`symbolType`参数传递给[searchSymbols](#searchsymbolsuserinput-exchange-symboltype-onresultreadycallback)。
+商品类型对象数组。商品类型对象的结构为: `{name, value}`。`value`将被作为`symbolType`参数传递给[searchSymbols](#searchsymbolsuserinput-exchange-symboltype-onresultreadycallback)。
 
 `symbolsTypes`= \[\] 会导致商品查询列表中看不到商品类型过滤器。 使用`value= ""`来创建通配符筛选器（所有的商品类型）。
 
 ##### [supported\_resolutions](#supportedresolutions)
 
-一个表示服务器支持的周期数组，周期可以是数字或字符串。 如果周期是一个数字，它被视为分钟数。 字符串可以是“\*D”，“\*W”，“\_M”（\_的意思是任何数字）。格式化详细参照:[文章](/book/Resolution.md)。
+支持的周期数组，周期可以是数字或字符串。 如果周期是一个数字，它被视为分钟数。 字符串可以是“\*D”，“\*W”，“\_M”（\_的意思是任何数字）。格式化详细参照:[文章](/book/Resolution.md)。
 
-`resolutions = undefined` 或 `resolutions = []` 时，周期拥有默认内容。
+`resolutions = undefined` 或 `resolutions = []` 时，周期拥有`widget`中的默认内容。
 
 例:`[1, 15, 240, "D", "6M"]`您将在周期中得到 "1 分钟, 15 分钟, 4 小时, 1 天, 6 个月" 。
 
@@ -73,19 +73,19 @@ configurationData是一个对象，现在支持以下属性:
 
 ##### [supports\_time](#supportstime)
 
-将此设置为`true`假如您的datafeed提供服务器时间（unix时间）。 它用于调整时间刻度上的价格比例。
+将此设置为`true`假如您的datafeed提供服务器时间（unix时间）。 它仅用于在价格刻度上显示倒计时。
 
 ##### futures_regex 
 
-如果您想在商品搜索中对期货进行分组，请设置它。 这个正则表达式会将仪器名称分为两部分：根和期满。 
+设置后可以在商品搜索中对期货进行分组。 这个正则表达式会将期货商品分为两部分：合约种类和到期时间。 
 
-实例 regex: : `/^(.+)([12]!|[FGHJKMNQUVXZ]\d{1,2})$/`. 它将应用于类型为期货的图表。
+实例 regex: : `/^(.+)([12]!|[FGHJKMNQUVXZ]\d{1,2})$/`. 它将应用于类型为 `futures` 的商品图表。
 
 ### [searchSymbols\(userInput, exchange, symbolType, onResultReadyCallback\)](#searchsymbolsuserinput-exchange-symboltype-onresultreadycallback)
 
 1. `userInput`: string，用户在商品搜索框中输入的文字。
 2. `exchange`:string，请求的交易所（由用户选择）。空值表示没有指定。
-3. `symbolType`: string，请求的商品类型：指数、股票、外汇等等（由用户选择）。空值表示没有指定。
+3. `symbolType`: string，请求的商品类型：`index`、`stock`、`forex`等等（由用户选择）。空值表示没有指定。
 4. `onResultReadyCallback`: function\(result\)
    1. `result`: 数组 \(见下文\)
 
@@ -110,8 +110,7 @@ configurationData是一个对象，现在支持以下属性:
 
 ### [resolveSymbol\(symbolName, onSymbolResolvedCallback, onResolveErrorCallback\)](#resolvesymbolsymbolname-onsymbolresolvedcallback-onresolveerrorcallback)
 
-1. `symbolName`: string类型，商品名称 或`ticker`
-   if provided.
+1. `symbolName`: string，商品名称 或`ticker`
 2. `onSymbolResolvedCallback`: function\([SymbolInfo](/book/Symbology.md#商品信息结构)\)
 3. `onResolveErrorCallback`: function\(reason\)
 
