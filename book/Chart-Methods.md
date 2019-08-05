@@ -35,7 +35,7 @@
   - [getAllShapes\(\)](#getallshapes)
   - [getAllStudies\(\)](#getallstudies)
   - [setEntityVisibility\(id, isVisible\)](#setentityvisibilityid-isvisible)[过时]
-  - [createStudy\(name, forceOverlay, lock, inputs, callback, overrides, options\)](#createstudyname-forceoverlay-lock-inputs-callback-overrides-options)
+  - [createStudy\(name, forceOverlay, lock, inputs, overrides, options\)](#createstudyname-forceoverlay-lock-inputs-overrides-options)
   - [getStudyById\(entityId\)](#getstudybyidentityid)
   - [createShape\(point, options\)](#createshapepoint-options)
   - [createMultipointShape\(points, options\)](#createmultipointshapepoints-options)
@@ -301,7 +301,7 @@ _该方法在版本`1.14`中引入_
 
 **不推荐使用**：使用图形/指标 API（`getShapeById` /`getStudyById`）来代替此方法。 将在未来的版本中删除。
 
-#### createStudy\(name, forceOverlay, lock, inputs, callback, overrides, options\)
+#### createStudy\(name, forceOverlay, lock, inputs, overrides, options\)
 
 1. `name`: string, 指标名称，您可以在`技术指标`工具栏中看到。
 2. `forceOverlay`: 强制图表库将创建的指标放在主窗格中
@@ -326,8 +326,8 @@ _该方法在版本`1.14`中引入_
 
 - `createStudy('MACD', false, false, [14, 30, "close", 9])`
 - `createStudy('Moving Average Exponential', false, false, [26])`
-- `createStudy('Stochastic', false, false, [26], null, {"%d.color" : "#FF0000"})`
-- `chart.createStudy('Moving Average', false, false, [26], null, {'Plot.linewidth': 10})`
+- `createStudy('Stochastic', false, false, [26], {"%d.color" : "#FF0000"})`
+- `createStudy('Moving Average', false, false, [26], {'Plot.linewidth': 10})`
 
 **Remark**: `Compare` 指标有 2 个参数: `[dataSource, symbol]`. `dataSource` 支持的值: `["close", "high", "low", "open"]`.
 
