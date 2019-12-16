@@ -4,6 +4,10 @@
 
 - [版本变更点](book/Breaking-changes.md)
 
+## 1.15 开发版 -- 20191217
+
+- 文档更新为 Tradingview1.15 开发版
+
 ## 1.15 开发版 -- 20190801
 
 - 文档更新为 Tradingview1.15 开发版

@@ -68,6 +68,7 @@ widget.onChartReady(function() {
   * [chartsCount()](#chartscount)
   * [layout()](#layout)
   * [setLayout\(layout\)](#setlayoutlayout)
+  * [layoutName\(\)](#chartlayoutName)
 
 # 订阅图表事件
 
@@ -111,7 +112,7 @@ new TradingView.widget({
 
 widget.onChartReady(function() {
     widget.onGrayedObjectClicked(function(data) {
-        // 当您尝试创建能量均衡指标或趋势图形时
+        // 当您尝试创建能量均衡指标或趋势形状时
         // 此方法将被调用
 
         alert(data.name + " is grayed out!");
@@ -166,6 +167,9 @@ widget.onShortcut("alt+s", function() {
 | `study_event` | 1.15 | 指标从图表中删除。回调函数接收2个参数: 指标id和event类型 (当前这个参数唯一可能的值是`remove`) |
 | `drawing_event` | 1.15 | 隐藏，显示，移动，移除或单击绘图。 回调函数接收2个参数: 指标id和event类型。event类型的可能值是`hide`，`show`、`move`、`remove`、`click` |
 | `study_properties_changed` | 1.14 | 指标属性已更改。实体ID将作为参数传递。 |
+| `series_properties_changed` | 1.15 | 主数据列属性发生变化 |
+| `panes_height_changed` | 1.15 | 窗格大小已更改。 |
+| `panes_order_changed` | 1.15 | 窗格订单发生变化。 |
 | ![](../images/trading.png) `layout_about_to_be_changed` | | 图表的数量或位置即将改变 |
 | ![](../images/trading.png) `layout_changed` | | 图表的数量或位置已更改 |
 | ![](../images/trading.png) `activeChartChanged` | | 活动的图表已变更 |
@@ -218,11 +222,11 @@ widget.onShortcut("alt+s", function() {
    6. `zoom`
    7. `brush`
 
-选择与绘图按钮上的单击相同的图形或光标。
+选择与绘图按钮上的单击相同的形状或光标。
 
 #### selectedLineTool()
 
-返回所选图形或光标的[标识符](Shapes-and-Overrides.md)（见上文）。
+返回所选形状或光标的[标识符](Shapes-and-Overrides.md)（见上文）。
 
 ### takeScreenshot()
 此方法创建图表的快照并将其上传到服务器。
@@ -384,7 +388,7 @@ widget.headerReady().then(function() {
 
 # 对话框
 
-**Since 1.6 version**
+**从 1.6 版本开始**
 
 #### showNoticeDialog\(params\)
 
@@ -557,12 +561,3 @@ widget.headerReady().then(function() {
 * [存储与加载图表](Saving-and-Loading-Charts.md)
 * [指标覆盖](Studies-Overrides.md)
 * [覆盖](Overrides.md)
-
-
-
-<!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE1MzU3MjA3MTgsLTcxNjEyNTEyNCwtMT
-QzNDk2ODg0LDE2MDczMTgwNTEsLTI1OTQwNjg5MywxOTc3ODAz
-ODgxLDE2ODc5MTQ3MSwtMjAzOTgzMzUwMywtMTI3Mjg1ODY1OC
-wzOTQ1MzUyNTYsLTM0NzQxMDQ5NF19
--->

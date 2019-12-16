@@ -9,7 +9,8 @@
     "github-buttons",
     "splitter",
     "sitemap",
-    "donate"
+    "donate",
+    "-livereload"
   ],
   "pluginsConfig": {
     "livere": {

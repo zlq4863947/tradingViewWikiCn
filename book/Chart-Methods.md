@@ -18,7 +18,7 @@
   - [crossHairMoved\(callback\)](#crosshairmovedcallback)
   - [onVisibleRangeChanged\(\)](#onvisiblerangechanged)
 - [图表动作](#图表动作)
-  - [setVisibleRange\(range, callback\)](#setvisiblerangerange-callback)
+  - [setVisibleRange\(range, options\)](#setvisiblerangerange-options)
   - [setSymbol\(symbol, callback\)](#setsymbolsymbol-callback)
   - [setResolution\(resolution, callback\)](#setresolutionresolution-callback)
   - [resetData\(\)](#resetData)
@@ -29,14 +29,17 @@
   - [setChartType\(type\)](#setcharttypetype)
   - [closePopupsAndDialogs()](#closepopupsanddialogs)
   - [setTimezone(timezone)](#settimezonetimezone)
+  - [getTimezone()](#gettimezone)
   - [canZoomOut\(\)](#canzoomout)
   - [zoomOut\(\)](#zoomout)
-- [指标与图形](#指标与图形)
+- [指标与形状](#指标与形状)
   - [getAllShapes\(\)](#getallshapes)
   - [getAllStudies\(\)](#getallstudies)
   - [setEntityVisibility\(id, isVisible\)](#setentityvisibilityid-isvisible)[过时]
   - [createStudy\(name, forceOverlay, lock, inputs, overrides, options\)](#createstudyname-forceoverlay-lock-inputs-overrides-options)
   - [getStudyById\(entityId\)](#getstudybyidentityid)
+  * [getSeries()](#getseries)
+  * [showPropertiesDialog\(entityId\)](#showpropertiesdialogentityid)
   - [createShape\(point, options\)](#createshapepoint-options)
   - [createMultipointShape\(points, options\)](#createmultipointshapepoints-options)
   - [getShapeById(entityId)](#getshapebyidentityid)
@@ -57,10 +60,15 @@
   - [resolution\(\)](#resolution)
   - [getVisibleRange\(\)](#getvisiblerange)
   - [getVisiblePriceRange\(\)](#getvisiblepricerange)
+  - [scrollPosition()](#scrollposition)
+  - [defaultScrollPosition()](#defaultscrollposition)
   - [priceFormatter\(\)](#priceformatter)
   - [chartType\(\)](#charttype)
 - [其他](#其他)
   - [exportData(options)](#exportdataoptions)
+  - [selection()](#selection)
+  - [setZoomEnabled(enabled)](#setzoomenabledenabled)
+  - [setScrollEnabled(enabled)](#setscrollenabledenabled)
 
 # 图表订阅事件
 
@@ -119,16 +127,19 @@ _1.13 版本开始_
 
 # 图表动作
 
-#### setVisibleRange\(range, callback\)
-
-_1.2 版本开始_
+#### setVisibleRange\(range, options\)
 
 1. `range`: 对象, `{from to}`
-   1. `from`, `to`: unix 时间戳, UTC
-2. `callback`: `function()`. 图表库会调用回调在 viewport\(视口\)设置完成时。
+   * `from`, `to`: unix时间戳, UTC
+2. `options`: `{applyDefaultRightMargin, percentRightMargin}`
+    * `applyDefaultRightMargin`: 布尔值，表示如果指向最后一个线，是否应将默认的右边距应用于右边框。
+    * `percentRightMargin`: 布尔值，表示如果指向最后一个线，是否应将默认的右边距百分比应用于右边框。
 
-强制图表调整其参数 \(scroll, scale\) 使选定的时间段适合视口。  
-`from`或`to`都不能设置为将来的日期。
+强制图表调整其参数 \(scroll, scale\) 以使选定的时间段适合视口。  
+
+返回一个Promise对象，将在应用可见范围后，返回resolved。
+
+_此方法是在版本1.2中引入_
 
 #### setSymbol\(symbol, callback\)
 
@@ -167,6 +178,7 @@ _1.3 版本开始_
 - `insertIndicator`
 - `symbolSearch`
 - `changeInterval`
+- `gotoDate`
 
 **其他动作**
 
@@ -207,7 +219,7 @@ _1.7 版本开始_
 
 1. `actionId`: string
 
-根据操作 ID 获取是否可以勾选的状态（例如: `stayInDrawingModeAction`、`showSymbolLabelsAction`）（请参阅上面的操作 ID）
+根据动作 ID 获取是否可以勾选的状态（例如: `stayInDrawingModeAction`、`showSymbolLabelsAction`）（请参阅上面的动作ID）
 
 #### refreshMarks\(\)
 
@@ -236,6 +248,10 @@ STYLE_AREA = 3;
 STYLE_HEIKEN_ASHI = 8;
 // 空心K线图
 STYLE_HOLLOW_CANDLES = 9;
+// 基准线
+STYLE_BASELINE = 10;
+// HiLo线
+STYLE_HILO = 12;
 
 // 砖形图
 STYLE_RENKO* = 4;
@@ -267,6 +283,12 @@ widget.activeChart().setTimezone("Asia/Singapore");
 
 更改图表时区。
 
+### getTimezone()
+
+*Since version 1.15.*
+
+返回图表的当前[timezone](Widget-Constructor#timezone)。
+
 ### canZoomOut()
 
 _该方法在版本`1.14`中引入_
@@ -279,14 +301,14 @@ _该方法在版本`1.14`中引入_
 
 当您调用此方法时，它会模拟点击“缩小”按钮。 仅在图表缩放时才有效。 使用`canZoomOut`检查是否可以调用此方法。
 
-# 指标与图形
+# 指标与形状
 
 #### getAllShapes\(\)
 
-返回所有已创建的图形对象数组。 每个对象都有以下字段：
+返回所有已创建的形状对象数组。 每个对象都有以下字段：
 
-- `id`: 图形 id
-- `name`: 图形名称
+- `id`: 形状 id
+- `name`: 形状名称
 
 #### getAllStudies\(\)
 
@@ -299,7 +321,7 @@ _该方法在版本`1.14`中引入_
 
 设置具有`id`的实体的可见性。
 
-**不推荐使用**：使用图形/指标 API（`getShapeById` /`getStudyById`）来代替此方法。 将在未来的版本中删除。
+**不推荐使用**：使用形状/指标 API（`getShapeById` /`getStudyById`）来代替此方法。 将在未来的版本中删除。
 
 #### createStudy\(name, forceOverlay, lock, inputs, overrides, options\)
 
@@ -349,73 +371,83 @@ widget.chart().createStudy("Compare", false, false, ["open", "AAPL"]);
 
 返回[指标 API](Study-Api.md#)的一个实例，它允许您与指标进行交互。
 
+### getSeries()
+
+返回允许您与主数据列进行交互的[SeriesApi](Series-Api)的实例。
+
+### showPropertiesDialog(entityId)
+
+1. `entityId`: 实体id。通过API创建指标或形状时返回的值。
+
+用于显示指定的指标或形状的属性对话框。
+
 #### createShape\(point, options\)
 
 1. `point`: 对象 `{time, [price], [channel]}`
    - `time`: unix 时间戳. 唯一的强制性参数。
-   - `price`: 如果指定`price`，则图形将以此价格位置放置。
-      如果未指定，则根据`channel`值将图形放置在 K 线的相关位置。
-   - `channel`: 如果未设置`price`，则通过`channel`设置的k线位置放置图形，可能的值： \(`open`, `high`, `low`, `close`\)。
+   - `price`: 如果指定`price`，则形状将以此价格位置放置。
+      如果未指定，则根据`channel`值将形状放置在 K 线的相关位置。
+   - `channel`: 如果未设置`price`，则通过`channel`设置的k线位置放置形状，可能的值： \(`open`, `high`, `low`, `close`\)。
       如果未指定`channel`，则以`open`为默认值。
 2. `options`: object `{shape, [text], [lock], [overrides]}`
    - `shape` 可能的值为 `arrow_up`、`arrow_down`、`flag`、`vertical_line`、`horizontal_line`。
       `flag`为默认值。
-   - `text` 是一个可选参数。 如果支持，为包含在图形中的文本。
-   - `lock` 是否锁定图形
+   - `text` 是一个可选参数。 如果支持，为包含在形状中的文本。
+   - `lock` 是否锁定形状
    - `disableSelection` \(开始于 `1.3`\) 禁用选中
    - `disableSave` \(开始于 `1.3`\) 禁用保存
    - `disableUndo` \(开始于 `1.4`\) 禁用撤销
-   - `overrides` \(开始于 `1.2`\). 它是一个对象，包含为新图形设置的属性。
+   - `overrides` \(开始于 `1.2`\). 它是一个对象，包含为新形状设置的属性。
    - `zOrder` \(开始于 `1.3`\) 可能的值为`top`、`bottom`。
       `top` 将线条工具放在所有其他图表对象的顶部, 而`bottom` 将线条工具放在所有其他图表对象底部, `top`为默认值。
-   - `showInObjectsTree`: `true`为默认值。在`工具树状图`对话框中显示图形。
+   - `showInObjectsTree`: `true`为默认值。在`工具树状图`对话框中显示形状。
 
-该函数返回`entityId` - 如果创建成功则返回图形的唯一 ID，如果不成功则返回`null`。
+该函数返回`entityId` - 如果创建成功则返回形状的唯一 ID，如果不成功则返回`null`。
 
-此调用会在图表上的指定地点创建一个图形，前提是它位于主数据列区域内。
+此调用会在图表上的指定地点创建一个形状，前提是它位于主数据列区域内。
 
 #### createMultipointShape\(points, options\)
 
 1. `points`: 具有以下字段的数组 `[{time, [price], [channel]},...]`
    - `time`: unix 时间戳. 唯一的强制性参数。
-   - `price`: 如果指定`price`，则图形将以此价格位置放置。
-      如果未指定，则根据`channel`值将图形放置在 K 线的相关位置。
-   - `channel`: 如果未设置`price`，则通过`channel`设置的k线位置放置图形，可能的值： \(`open`, `high`, `low`, `close`\)。
+   - `price`: 如果指定`price`，则形状将以此价格位置放置。
+      如果未指定，则根据`channel`值将形状放置在 K 线的相关位置。
+   - `channel`: 如果未设置`price`，则通过`channel`设置的k线位置放置形状，可能的值： \(`open`, `high`, `low`, `close`\)。
       如果未指定`channel`，则以`open`为默认值。
 2. `options`: object `{shape, [text], [lock], [overrides]}`
    - `shape` 可能的值为 `arrow_up`、`arrow_down`、`flag`、`vertical_line`、`horizontal_line`。
       `flag`为默认值。
-   - `text` 是一个可选参数。 如果支持，为包含在图形中的文本。
-   - `lock` 是否锁定图形
+   - `text` 是一个可选参数。 如果支持，为包含在形状中的文本。
+   - `lock` 是否锁定形状
    - `disableSelection` \(开始于 `1.3`\) 禁用选中
    - `disableSave` \(开始于 `1.3`\) 禁用保存
    - `disableUndo` \(开始于 `1.4`\) 禁用撤销
-   - `overrides` \(开始于 `1.2`\). 它是一个对象，包含为新图形设置的属性。
+   - `overrides` \(开始于 `1.2`\). 它是一个对象，包含为新形状设置的属性。
    - `zOrder` \(开始于 `1.3`\) 可能的值为`top`、`bottom`。
       `top` 将线条工具放在所有其他图表对象的顶部, 而`bottom` 将线条工具放在所有其他图表对象底部, `top`为默认值。
-   - `showInObjectsTree`: `true`为默认值。在`工具树状图`对话框中显示图形。
+   - `showInObjectsTree`: `true`为默认值。在`工具树状图`对话框中显示形状。
 
-该函数返回`entityId` - 如果创建成功则返回图形的唯一 ID，如果不成功则返回`null`。
+该函数返回`entityId` - 如果创建成功则返回形状的唯一 ID，如果不成功则返回`null`。
 
-查看[图形与覆盖](Shapes-and-Overrides.md#)以获取更多信息。
+查看[形状与覆盖](Shapes-and-Overrides.md#)以获取更多信息。
 
-此调用会在图表上的指定地点创建一个多点图形，前提是它位于主数据列区域内。
+此调用会在图表上的指定地点创建一个多点形状，前提是它位于主数据列区域内。
 
 ### getShapeById\(entityId\)
 
-1. `entityId`：对象。 通过 API 创建图形时返回的值。
+1. `entityId`：对象。 通过 API 创建形状时返回的值。
 
-返回允许您与图形交互的[图形 API](Shape-Api.md#)实例。
+返回允许您与形状交互的[形状 API](Shape-Api.md#)实例。
 
 #### removeEntity\(entityId\)
 
-1. `entityId`：对象。 为创建实体 \(图形或指标\) 后返回的值。
+1. `entityId`：对象。 为创建实体 \(形状或指标\) 后返回的值。
 
 删除指定实体。
 
 #### removeAllShapes\(\)
 
-删除全部图形。
+删除全部形状。
 
 #### removeAllStudies\(\)
 
@@ -459,6 +491,7 @@ API 对象方法：
 - `remove()`: 从图表中移除仓位。 调用方法后不能再使用此 API 对象。
 - `onModify(callback)` / `onModify(data, callback)`
 - `onMove(callback)` / `onMove(data, callback)`
+- `onCancel(callback)` / `onCancel(data, callback)`
 
 API 对象具有下面列出的一组属性。 每个属性应通过各自的访问器调用。
 例如，如果你想使用`Extend Left`属性，那么请使用`setExtendLeft()`和`getExtendLeft()`方法。
@@ -470,6 +503,8 @@ API 对象具有下面列出的一组属性。 每个属性应通过各自的访
 | Price    | Double  | Double   | 0.0    |
 | Text     | String  | String   | ""     |
 | Tooltip  | String  | String   | ""     |
+| Modify Tooltip	 | String  | String   | ""     |
+| Cancel Tooltip	 | String  | String   | ""     |
 | Quantity | String  | String   | ""     |
 | Editable | Boolean | Boolean  | true   |
 
@@ -507,20 +542,21 @@ API 对象具有下面列出的一组属性。 每个属性应通过各自的访
 例子:
 
 ```javascript
-widget
-  .chart()
-  .createOrderLine()
-  .onMove(function() {
-    this.setText("onMove called");
-  })
-  .onModify("onModify called", function(text) {
-    this.setText(text);
-  })
-  .onCancel("onCancel called", function(text) {
-    this.setText(text);
-  })
-  .setText("STOP: 73.5 (5,64%)")
-  .setQuantity("2");
+widget.chart().createOrderLine()
+    .setTooltip("Additional order information")
+    .setModifyTooltip("Modify order")
+    .setCancelTooltip("Cancel order")
+    .onMove(function() {
+        this.setText("onMove called");
+    })
+    .onModify("onModify called", function(text) {
+        this.setText(text);
+    })
+    .onCancel("onCancel called", function(text) {
+        this.setText(text);
+    })
+    .setText("STOP: 73.5 (5,64%)")
+    .setQuantity("2");
 ```
 
 #### createPositionLine\(options\)
@@ -534,8 +570,9 @@ widget
 API 对象方法：
 
 - `remove()`: 从图表中移除位置。 调用此方法后不能再使用 API 对象。
+- `onClose(callback)` / `onClose(data, callback)`
 - `onModify(callback)` / `onModify(data, callback)`
-- `onMove(callback)` / `onMove(data, callback)`
+- `onReverse(callback)` / `onReverse(data, callback)`
 
 API 对象具有下面列出的一组属性。 每个属性应通过各自的访问器调用。
 例如，如果你想使用`Extend Left`属性，那么请使用`setExtendLeft()`和`getExtendLeft()`方法。
@@ -547,6 +584,9 @@ API 对象具有下面列出的一组属性。 每个属性应通过各自的访
 | Price    | Double | Double   | 0.0    |
 | Text     | String | String   | ""     |
 | Tooltip  | String | String   | ""     |
+| Protect Tooltip	     | String | String   | ""     |
+| Reverse Tooltip	  | String | String   | ""     |
+| Close Tooltip  | String | String   | ""     |
 | Quantity | String | String   | ""     |
 
 **趋势线属性**:
@@ -586,24 +626,27 @@ API 对象具有下面列出的一组属性。 每个属性应通过各自的访
 例子:
 
 ```javascript
-widget
-  .chart()
-  .createPositionLine()
-  .onModify(function() {
-    this.setText("onModify called");
-  })
-  .onReverse("onReverse called", function(text) {
-    this.setText(text);
-  })
-  .onClose("onClose called", function(text) {
-    this.setText(text);
-  })
-  .setText("PROFIT: 71.1 (3.31%)")
-  .setQuantity("8.235")
-  .setPrice(15.5)
-  .setExtendLeft(false)
-  .setLineStyle(0)
-  .setLineLength(25);
+widget.chart().createPositionLine()
+    .onModify(function() {
+        this.setText("onModify called");
+    })
+    .onReverse("onReverse called", function(text) {
+        this.setText(text);
+    })
+    .onClose("onClose called", function(text) {
+        this.setText(text);
+    })
+    .setText("PROFIT: 71.1 (3.31%)")
+    .setTooltip("附加仓位信息")
+    .setProtectTooltip("保护仓位")
+    .setCloseTooltip("关闭仓位")
+    .setReverseTooltip("翻转仓位")
+    .setQuantity("8.235")
+    .setPrice(15.5)
+    .setExtendLeft(false)
+    .setLineStyle(0)
+    .setLineLength(25);
+
 ```
 
 #### createExecutionShape\(options\)
@@ -619,7 +662,7 @@ API 对象具有下面列出的一组属性。 每个属性应通过各自的访
 
 API 对象方法：
 
-- `remove()`：从图表中删除执行信号图形。调用后，您无法再次使用此 API 对象。
+- `remove()`：从图表中删除执行信号形状。调用后，您无法再次使用此 API 对象。
 
 **一般属性**:
 
@@ -649,16 +692,14 @@ API 对象方法：
 例子:
 
 ```javascript
-widget
-  .chart()
-  .createExecutionShape()
-  .setText("@1,320.75 Limit Buy 1")
-  .setTooltip("@1,320.75 Limit Buy 1")
-  .setTextColor("rgba(0,255,0,0.5)")
-  .setArrowColor("#0F0")
-  .setDirection("buy")
-  .setTime(1413559061758)
-  .setPrice(15.5);
+widget.chart().createExecutionShape()
+    .setText("@1,320.75 Limit Buy 1")
+    .setTooltip("@1,320.75 Limit Buy 1")
+    .setTextColor("rgba(0,255,0,0.5)")
+    .setArrowColor("#0F0")
+    .setDirection("buy")
+    .setTime(1413559061758)
+    .setPrice(15.5);
 ```
 
 # Getters
@@ -689,7 +730,22 @@ widget
 
 **在 1.7 版本开始**
 
+不建议使用，请改用[Price Scale API](Price-Scale-Api#getVisiblePriceRange)。
+
 返回对象 `{from, to}`. `from` 和 `to` 是主数据列的可见范围边界。
+
+### scrollPosition()
+
+*在 1.15 版本开始*
+
+返回从图表右边缘到最后一根K线的距离，以K线为单位。
+这实际上是图表的当前滚动位置，包含右边距。
+
+### defaultScrollPosition()
+
+*在 1.15 版本开始*
+
+返回从图表右边缘到最后一根K线的默认距离，以K线为单位。
 
 #### priceFormatter\(\)
 
@@ -750,6 +806,18 @@ _从 1.14 版本开始_
 
 返回[SelectionApi](Selection-Api.md)，可用于更改图表选择和订阅图表选择的更改。
 
+### setZoomEnabled(enabled)
+
+**在 1.15 版本开始**
+
+启用 (true) 或 禁用 (false) 缩放图表。
+
+### setScrollEnabled(enabled)
+
+**在 1.15 版本开始**
+
+启用 (true) 或 禁用 (false) 滚动图表。
+
 # 也可以看看
 
 - [Widget 方法](Widget-Methods.md)
@@ -758,7 +826,3 @@ _从 1.14 版本开始_
 - [存储于加载图表](Saving-and-Loading-Charts.md)
 - [指标覆盖默认参数](Studies-Overrides.md)
 - [覆盖默认参数](Overrides.md)
-
-<!--stackedit_data:
-eyJoaXN0b3J5IjpbMTcxMTA2NzU1OCw1MDQxMTA2MDFdfQ==
--->

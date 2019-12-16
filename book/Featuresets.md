@@ -56,6 +56,7 @@
 | chart_property_page_background          | on       |      |                                                              |
 | chart_property_page_timezone_sessions   | on       |      |                                                              |
 | chart_property_page_trading             | on       |      | 此功能仅适用于交易终端                                       |
+| chart_property_page_right_margin_editor | on            | 1.15            | 在设置对话框中显示右边距编辑器 |
 | countdown                               | on       | 1.4  | 在价格标尺上显示倒计时标签                                   |
 | caption_buttons_text_if_possible        | off      | 1.4  | 尽可能在标题和比较按钮上显示文本而不是图标                   |
 | dont_show_boolean_study_arguments       | off      | 1.4  | 隐藏 true/false 指标参数                                     |
@@ -99,10 +100,14 @@
 | chart_zoom                               | on       | 1.10 | 允许图表缩放                                                                                                                                  |
 | high_density_bars                        | off      | 1.11 | 允许缩小以在单个屏幕上显示超过 60000 根 K 线                                                                                                  |
 | cl_feed_return_all_data                  | off      | 1.11 | 允许您从 datafeed 返回多于请求的 K 线，并同时在图表上显示                                                                                     |
-| uppercase_instrument_names               | on       | 1.12 | 禁用此功能允许用户输入区分大小写的商品                                                                                                        |
+| uppercase_instrument_names               | on       | 1.12 | 禁用此功能允许用户输入区分大小写的商品                           
+| low_density_bars              | off   |   1.15          | 允许放大以在视口中最多显示一个K线                                                                             |
 | no_min_chart_width                       | off      | 1.14 | 禁用最小图表宽度限制                                                                                                                          |
 | fix_left_edge                            | off      | 1.14 | 阻止滚动到第一个历史 K 线的左侧                                                                                                               |
-| lock_visible_time_range_on_resize        | off      | 1.14 | 防止在图表调整大小时更改可见时区                                                                                                              |
+| lock_visible_time_range_on_resize        | off      | 1.14 | 防止在图表调整大小时更改可见时区       
+| shift_visible_range_on_new_bar  | on   | 1.15        | 如果禁用，则添加新的K线会缩小图表并保留第一个可见点。 否则，当出现新K线时，图表将向左滚动一点。
+| custom_resolutions            | off   | 1.15            | 如果启用，则可以添加自定义分辨率
+                                                                                                       |
 
 ### 重要功能
 

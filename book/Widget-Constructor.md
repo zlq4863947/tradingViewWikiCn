@@ -157,7 +157,7 @@ customFormatters: {
 
 ```js
 overrides: {
-    "symbolWatermarkProperties.color": "rgba(0, 0, 0, 0)"
+    "mainSeriesProperties.style": 0
 }
 ```
 

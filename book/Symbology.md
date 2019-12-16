@@ -132,6 +132,13 @@ SymbolInfo是一个包含商品metadata的对象。 该对象是解析商品的�
 - `Pacific/Norfolk`
 - `US/Mountain`
 
+##### format
+
+在价格刻度上显示标签的格式：
+
+- `price` - 根据 `minmov`, `pricescale`, `minmove2` 和 `fractional` 的值，格式化价格的小数或分数
+- `volume` - 将十进制数字格式化为千，百万或十亿
+
 ##### [minmov\(最小波动\), pricescale\(价格精度\), minmove2, fractional\(分数\)](#minmov最小波动-pricescale价格精度-minmove2-fractional分数)
 
 1. 最小的价格变化是由这些值决定的。

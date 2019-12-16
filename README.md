@@ -1,6 +1,6 @@
 # TradingView 中文开发文档 V1.15 开发版
 
-#### 最新修订时间: 2019-08-01
+#### 最新修订时间: 2019-12-17
 
 本书翻译自官方 wiki：[https://github.com/tradingview/charting_library/wiki](https://github.com/tradingview/charting_library/wiki)
 

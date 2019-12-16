@@ -1,6 +1,6 @@
-# 图形与覆盖
+# 形状与覆盖
 
-您可以使用[createMultipointShape(points, options)](Chart-Methods.md#createMultipointShapepoints-options)创建50多个不同的图形。它们在下表中列出，可以使用`overrides`更改默认属性。
+您可以使用[createMultipointShape(points, options)](Chart-Methods.md#createMultipointShapepoints-options)创建50多个不同的形状。它们在下表中列出，可以使用`overrides`更改默认属性。
 
 | shape             | backgroundColor | backgroundTransparency | bold  | borderColor | color   | drawBorder | fillBackground | fixedSize | font    | fontsize | italic | text    | wordWrap | wordWrapWidth | markerColor | textColor | linewidth | transparency | fontWeight |
 |-------------------|-----------------|------------------------|-------|-------------|---------|------------|----------------|-----------|---------|----------|--------|---------|----------|---------------|-------------|-----------|-----------|--------------|------------|
@@ -128,7 +128,7 @@
 ![](/images/icons.png)
 
 
-| 图形        | color   | flipped | mirrored | mode |
+| shape        | color   | flipped | mirrored | mode |
 |--------------|---------|---------|----------|------|
 | bars_pattern | #5091CC | FALSE   | FALSE    | 0    |
 

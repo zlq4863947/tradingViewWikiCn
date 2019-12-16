@@ -9,11 +9,14 @@ _注意：您可以通过在浏览器控制台中执行 `TradingView.version()` 
 ## Version 1.15
 
 - 功能集 `show_logo_on_all_charts` 被删除。
+- 功能集 `cl_feed_return_all_data` 被删除。
 - 动作 `magnetAction` 从 [executeActionById](Chart-Methods.md#executeactionbyidactionid) 和 [getCheckableActionState](Chart-Methods.md#getcheckableactionstateactionid) 中被删除。 使用 [magnetEnabled](Widget-Methods.md#magnetenabled) 代替。
 - [createStudy](Chart-Methods.md#createstudyname-forceoverlay-lock-inputs-overrides-options) 的 `callback` 参数被删除。
 - [createStudy](Chart-Methods.md#createstudyname-forceoverlay-lock-inputs-overrides-options) 返回值使用 [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) 代替 `entityId`。
 - [Pane-Api](Pane-Api.md) 的方法 `getLeftPriceScale` 被替换为 `getLeftPriceScales` 返回 scale 数组。
 - [Pane-Api](Pane-Api.md) 的方法 `getRightPriceScale` 被替换为 `getRightPriceScales` 返回 scale 数组。
+- [setVisibleRange](Chart-Methods#setvisiblerangerange-applydefaultrightmargin) 现在返回Promise对象，且删除之前的参数: `callback`回调函数
+- 已使 [symbol](Widget-Constructor#symbol-interval)选项**优先级**高于[saved_data](Widget-Constructor#saved_data)选项。如果不想覆盖[saved_data](Widget-Constructor#saved_data)中的**symbol**,则不要为 [symbol](Widget-Constructor#symbol-interval)选择分配值。
 
 **交易终端**
 
@@ -29,6 +32,9 @@ _注意：您可以通过在浏览器控制台中执行 `TradingView.version()` 
 - 参数 `handler` 从 [Trading Host](Trading-Host.md) 的 `showPositionBracketsDailog` 方法中被删除。
 - 标记 `supportCustomPlaceOrderTradableCheck` 不再被支持。
 - 覆盖 `symbolWatermarkProperties` 不再被支持。 您可以使用 [settings_adapter](Widget-Constructor.md#settings_adapter) 的 `symbolWatermark` 。
+- `indicators_file_name` 构造函数项目已被删除。 请改用 [custom_indicators_getter](Widget-Constructor#custom_indicators_getter) 。
+  我们进行了此更改以加快图表库的加载速度，并消除在加载文件时可能发生的漏洞。
+  您只需要将自定义指标的代码从JS文件移动到widget构造函数，将它们包装在函数和Promise对象中。
 
 ## Version 1.14
 
