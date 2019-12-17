@@ -61,7 +61,6 @@
 
 ### getPoints()
 
-Returns the points of the shape - an array of the [PricedPoint](#pricedpoint) objects.
 返回形状的点 - [PricedPoint](#pricedpoint) 对象的数组。
 
 ### setPoints(points)

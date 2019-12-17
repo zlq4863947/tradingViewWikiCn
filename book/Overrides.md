@@ -89,6 +89,11 @@ mainSeriesProperties.priceAxisProperties.percentageDisabled:false
 mainSeriesProperties.priceAxisProperties.log:false
 mainSeriesProperties.priceAxisProperties.logDisabled:false
 
+// 可能的值包括: description, ticker.
+mainSeriesProperties.statusViewStyle.symbolTextSource: 'description'
+
+symbolWatermarkProperties.color : "rgba(0, 0, 0, 0.00)"
+
 // 不同的图表类型默认值
 
 // K线图样式

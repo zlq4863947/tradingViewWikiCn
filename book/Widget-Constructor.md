@@ -182,7 +182,7 @@ TradingView.onready(function()
 
 当用户按快照按钮时,使用base64编码将当前图表快照保存并返回URL。该服务返回完整的保存图像URL。
 
-### custom\_indicators\_getter
+#### custom\_indicators\_getter
 
 返回带有自定义指标数组的Promise对象的函数。
 `PineJS` 变量将作为此函数的第一个参数传递，并可在指标内用于访问内部帮助函数。
@@ -230,7 +230,7 @@ resolution是一个字符串,[格式说明](/book/Time-Frames.md)。
 
 如果您希望图表库为用户加载上次保存的图表，请将此参数设置为 `true` (您应首先实现[save/load](Saving-and-Loading-Charts.md)以使其工作)。
 
-### theme
+#### theme
 
 *从1.13版开始支持。*
 

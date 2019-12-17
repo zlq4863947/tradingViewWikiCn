@@ -224,7 +224,7 @@
 }
 ```
 
-### 染色K线
+### K线变色
 
 ```javascript
 __customIndicators = [
