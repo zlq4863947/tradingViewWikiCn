@@ -41,7 +41,7 @@ _注意：您可以通过在浏览器控制台中执行 `TradingView.version()` 
 - [createButton](Widget-Methods.md#createButtonoptions) 返回 `HTMLElement` 以代替 `JQuery`.
 - [createButton](Widget-Methods.md#createButtonoptions) 必须在 [headerReady()](Widget-Methods.md#headerready)返回的 `Promise` 为 resolved 之后使用.
 - [getVisibleRange](Chart-Methods.md#getVisibleRange) 返回 UTC 时区的 `{from, to}` (之前返回的是图表选择的时区)。
-- 方法 `onready` 被上次。 您可以使用 `window.addEventListener('DOMContentLoaded', callback, false)` 代替。
+- 方法 `onready` 被删除。 您可以使用 `window.addEventListener('DOMContentLoaded', callback, false)` 代替。
 - [saveChartToServer](Widget-Methods.md#savecharttoserveroncompletecallback-onfailcallback-options)中 `saveAsSnapshot` 参数被删除。
 - `indicators_file_name` 构造选项被删除。 请改用 [custom_indicators_getter](Widget-Constructor.md#custom_indicators_getter)。
   我们进行了此更改以加快图表库的加载并消除加载文件时可能发生的漏洞。
