@@ -19,20 +19,20 @@ new TradingView.widget({
 
 属性标记为![](../images/trading.png)的只在交易终端可用。
 
-#### symbol, interval
+#### symbol, interval*
 您的图表的初始商品和周期。`interval`的格式在另一篇[文章](/book/Resolution.md)中说明。 *必须项*
+
+#### container_id*
+
+`id` 是DOM元素的id属性，带有图表的iframe将放置在其中。
+
+#### datafeed*
+
+实现（[JS API](JS-Api.md)）接口以向图表提供数据的JavaScript对象。
 
 #### timeframe
 
 设置图表的初始时间范围。时间范围是加载并显示在屏幕上的K线范围。有效的时间范围是一个数字加一个字母，D为数天，M为数月。
-
-#### container\_id
-
-`id`属性为指定要包含widget的DOM元素id。 *必须项*
-
-#### datafeed
-
-JavaScript对象的实现接口 [JS API](/book/JS-Api.md) 以反馈数据显示在图表上。 *必须项*
 
 #### timezone
 

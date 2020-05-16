@@ -9,7 +9,7 @@
 2. 使用拉模型/脉冲\(pulse\)/刷新为基础进行更新（如当今大多数基于Web的图表），其中图表数据每X秒更新一次（图表客户端将要求服务器模拟推模型更新），或者被用户手动重新加载。 为此，请使用[UDF协议](/book/UDF.md)并编写自己的datafeed包装类。
 
 ### JavaScript API 或者 UDF?
-
+ 
 ![](/images/udf_or_jsapi.png)
 
 ## UDF scheme

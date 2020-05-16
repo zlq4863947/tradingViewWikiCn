@@ -70,6 +70,7 @@
 | show_dom_first_time                     | off      | 1.12 | 当用户第一次打开图表时显示 DOM 面板                          |
 | hide_left_toolbar_by_default            | off      | 1.12 | 当用户第一次打开图表时，隐藏左侧工具栏                       |
 | chart_style_hilo                        | off      | 1.15 | 在图表样式控件中添加 Hi-Lo 选项                              |
+| pricescale_currency                     | on       | 1.16 | 在价格轴上显示交易工具所用的货币                              |
 
 ### 元素放置
 
@@ -98,16 +99,23 @@
 | disable_resolution_rebuild               | off      |      | 显示完全由 datafeed 提供的 K 线时间而不进行任何调整。                                                                                         |
 | chart_scroll                             | on       | 1.10 | 允许图表滚动                                                                                                                                  |
 | chart_zoom                               | on       | 1.10 | 允许图表缩放                                                                                                                                  |
+| horz_touch_drag_scroll                   | on       | 1.16 | 如果启用，图表将处理触摸屏上的水平指针移动。在这种情况下，网页不会滚动。如果禁用，则改为滚动网页。请记住，如果用户开始垂直或水平滚动图表，则在用户松开手指之前，滚动将继续沿任何方向进行。 |
+| vert_touch_drag_scroll                   | on       | 1.16 | 如果启用，图表将处理触摸屏上的垂直指针移动。在这种情况下，网页不会滚动。如果禁用，则改为滚动网页。请记住，如果用户开始垂直或水平滚动图表，则在用户松开手指之前，滚动将继续沿任何方向进行。 |
+| mouse_wheel_scroll                       | on       | 1.16 | 如果启用，则启用带水平鼠标滚轮的图表滚动。 |
+| pressed_mouse_move_scroll                | on       | 1.16 | 如果启用，则允许在按下鼠标左键的情况下滚动图表。 |
+| mouse_wheel_scale                        | on       | 1.16 | 如果启用，则启用使用鼠标滚轮的比例缩放。 |
+| pinch_scale                              | on       | 1.16 | 如果启用，则启用捏/缩放手势的系列缩放（此选项在触摸设备上受支持）。。 |
+| axis_pressed_mouse_move_scale            | on       | 1.16 | 如果启用，则允许按鼠标左键缩放轴。 |  
 | high_density_bars                        | off      | 1.11 | 允许缩小以在单个屏幕上显示超过 60000 根 K 线                                                                                                  |
-| cl_feed_return_all_data                  | off      | 1.11 | 允许您从 datafeed 返回多于请求的 K 线，并同时在图表上显示                                                                                     |
+| low_density_bars                         | off      | 1.15 | 允许放大以在视口中最多显示1 根 K 线                                                                                         |
 | uppercase_instrument_names               | on       | 1.12 | 禁用此功能允许用户输入区分大小写的商品                           
-| low_density_bars              | off   |   1.15          | 允许放大以在视口中最多显示一个K线                                                                             |
 | no_min_chart_width                       | off      | 1.14 | 禁用最小图表宽度限制                                                                                                                          |
 | fix_left_edge                            | off      | 1.14 | 阻止滚动到第一个历史 K 线的左侧                                                                                                               |
-| lock_visible_time_range_on_resize        | off      | 1.14 | 防止在图表调整大小时更改可见时区       
-| shift_visible_range_on_new_bar  | on   | 1.15        | 如果禁用，则添加新的K线会缩小图表并保留第一个可见点。 否则，当出现新K线时，图表将向左滚动一点。
-| custom_resolutions            | off   | 1.15            | 如果启用，则可以添加自定义分辨率
-                                                                                                       |
+| lock_visible_time_range_on_resize        | off      | 1.14 | 防止在图表调整大小时更改可见时区       |
+| shift_visible_range_on_new_bar  | on   | 1.15        | 如果禁用，则添加新的K线会缩小图表并保留第一个可见点。 否则，当出现新K线时，图表将向左滚动一点。|
+| custom_resolutions            | off   | 1.15            | 如果启用，则可以添加自定义分辨率  |
+| end_of_period_timescale_marks | off   | 1.16            | 切换时间线标记以显示K线的结束时间  |
+| cropped_tick_marks            | off   | 1.16****            | 如果禁用，则价格轴上部分可见的价格标签将被隐藏  |
 
 ### 重要功能
 
@@ -131,3 +139,4 @@
 | trading_notifications              | on       | 1.11     | 在图表上显示交易通知                               |
 | multiple_watchlists                | on       | 1.12     | 启用创建多个监视列表                               |
 | show_trading_notifications_history | on       | 1.13     | 启用底部面板中的 "通知日志" 选项卡                 |
+| always_pass_called_order_to_modify| on       | 1.15     | 如果修改了包围单，则交易终端将其父订单传递给`modifyOrder`。  |
