@@ -27,7 +27,6 @@
   - [refreshMarks\(\)](#refreshmarks)
   - [clearMarks\(\)](#clearmarks)
   - [setChartType\(type\)](#setcharttypetype)
-  - [closePopupsAndDialogs()](#closepopupsanddialogs)
   - [setTimezone(timezone)](#settimezonetimezone)
   - [getTimezone()](#gettimezone)
   - [canZoomOut\(\)](#canzoomout)
@@ -47,6 +46,13 @@
   - [removeAllShapes\(\)](#removeallshapes)
   - [removeAllStudies\(\)](#removeallstudies)
   - [getPanes()](#getpanes)
+  - [shapesGroupController()](#shapesgroupcontroller)
+- [Z-order operations](#z-order-operations)
+  - [availableZOrderOperations(entities)](#availablezorderoperationsentities)
+  - [sendToBack(entities)](#sendtobackentities)
+  - [bringToFront(entities)](#bringtofrontentities)
+  - [bringForward(entities)](#bringforwardentities)
+  - [sendBackward(entities)](#sendbackwardentities)
 - [指标模板](#指标模板)
   - [createStudyTemplate\(options\)](#createstudytemplateoptions)
   - [applyStudyTemplate\(template\)](#applystudytemplatetemplate)
@@ -76,9 +82,25 @@
 
 您可以使用此方法返回的[订阅](Subscription.md)对象进行订阅，以便在加载新历史 K 线时收到通知，您还可以使用此订阅对象取消此订阅事件。
 
+示例:
+
+```javascript
+widget.activeChart().onDataLoaded().subscribe(
+    null,
+    () => console.log('New history bars are loaded',
+    true
+);
+```
+
 #### onSymbolChanged\(\)
 
 您可以使用此方法返回的[订阅](Subscription.md)对象进行订阅，以便在更改商品时收到通知，您还可以使用此订阅对象取消此订阅事件。
+
+示例:
+
+```javascript
+widget.activeChart().onSymbolChanged().subscribe(null, () => console.log('The symbol is changed');
+```
 
 #### onIntervalChanged\(\)
 
@@ -86,21 +108,16 @@
 当事件被触发时，它将提供以下参数：
 
 1. `interval`: 新周期
-2. `timeframeParameters`: 此对象只有一个字段 `timeframe`
+2. `timeframeObj`: 此对象只有一个字段 `timeframe`
 
    如果在用户单击时间周期面板时更改时间周期，则它包含 `timeframe`。
 
    否则 `timeframe` 为 `undefined`，你可以改变它来显示某一范围的 K 线。 有效的 `timeframe` 是一个数字，字母`D`代表天数，`M`代表月数。
 
-例如:
+示例:
 
 ```javascript
-widget
-  .chart()
-  .onIntervalChanged()
-  .subscribe(null, function(interval, obj) {
-    obj.timeframe = "12M";
-  });
+widget.activeChart().onIntervalChanged().subscribe(null, (interval, timeframeObj) => timeframeObj.timeframe = "12M");
 ```
 
 #### dataReady\(callback\)
@@ -110,6 +127,14 @@ widget
 如果 K 线数据已被加载或被接收时，图表库将立即调用此回调。  
 返回 `true` 为已经加载，否则为`false`。
 
+示例:
+
+```javascript
+widget.activeChart().dataReady(() => {
+    /* draw shapes */
+});
+```
+
 #### crossHairMoved\(callback\)
 
 _1.5 版本开始_
@@ -118,6 +143,12 @@ _1.5 版本开始_
 
 每当十字线位置改变时，图表库将会调用回调函数。
 
+示例:
+
+```javascript
+widget.activeChart().crossHairMoved(({ time, price }) => console.log(time, price));
+```
+
 ### onVisibleRangeChanged()
 
 _1.13 版本开始_
@@ -125,11 +156,25 @@ _1.13 版本开始_
 您可以使用此功能返回的[Subscription](Subscription.md)对象进行订阅，以便在可见时间范围更改时得到通知。
 您还可以使用同一对象取消订阅该事件。
 
+触发事件时，它将提供以下参数：
+
+1. `range`: 对象, `{from, to}`
+   * `from`, `to`: unix时间戳, UTC
+   
+示例:
+
+```javascript
+widget.activeChart().onVisibleRangeChanged().subscribe(
+    null,
+    ({ from, to }) => console.log(from, to)
+);
+```
+
 # 图表动作
 
 #### setVisibleRange\(range, options\)
 
-1. `range`: 对象, `{from to}`
+1. `range`: 对象, `{from, to}`
    * `from`, `to`: unix时间戳, UTC
 2. `options`: `{applyDefaultRightMargin, percentRightMargin}`
     * `applyDefaultRightMargin`: 布尔值，表示如果指向最后一个线，是否应将默认的右边距应用于右边框。
@@ -141,24 +186,43 @@ _1.13 版本开始_
 
 _此方法是在版本1.2中引入_
 
+```javascript
+widget.activeChart().setVisibleRange(
+    { from: 1420156800, to: 1451433600 },
+    { percentRightMargin: 20 }
+).then(() => console.log('New visible range is applied'));
+```
+
 #### setSymbol\(symbol, callback\)
 
 1. `symbol`: string
-2. `callback`: function\(\)
+2. `callback`: function\(\), 可选
 
 更改图表商品。 新商品的数据到达后调用回调。
+
+```javascript
+widget.activeChart().setSymbol('IBM');
+```
 
 #### setResolution\(resolution, callback\)
 
 1. `resolution`: string. 格式化详细参照:[周期](Resolution.md)。
-2. `callback`: function\(\)
+2. `callback`: function\(\), 可选
 
 更改图表周期。 新周期的数据到达后调用回调。
+
+```javascript
+widget.activeChart().setResolution('2M');
+```
 
 #### resetData\(\)
 
 使图表重新请求 datafeed 中的数据。 通常你需要在图表数据发生变化时调用它。
 在调用这个之前，你应该调用[onResetCacheNeededCallback](JS-Api.md#subscribebarssymbolinfo-resolution-onrealtimecallback-subscriberuid-onresetcacheneededcallback)。
+
+```javascript
+widget.activeChart().resetData();
+```
 
 #### executeActionById\(actionId\)
 
@@ -173,7 +237,6 @@ _1.3 版本开始_
 - `chartProperties`
 - `compareOrAdd`
 - `scalesProperties`
-- `tmzProperties`
 - `paneObjectTree`
 - `insertIndicator`
 - `symbolSearch`
@@ -221,13 +284,28 @@ _1.7 版本开始_
 
 根据动作 ID 获取是否可以勾选的状态（例如: `stayInDrawingModeAction`、`showSymbolLabelsAction`）（请参阅上面的动作ID）
 
+```javascript
+if (widget.activeChart().getCheckableActionState("drawingToolbarAction")) {
+    /* do something */
+};
+```
+
 #### refreshMarks\(\)
 
 再次请求可见标记。
 
+```javascript
+widget.activeChart().refreshMarks();
+```
+
+
 #### clearMarks\(\)
 
 清除所有可见标记。
+
+```javascript
+widget.activeChart().clearMarks();
+```
 
 #### setChartType\(type\)
 
@@ -235,39 +313,24 @@ _1.7 版本开始_
 
 设置主数据列的样式。
 
+| Style | JavaScript type | Typescript Enum | Charting Library | Trading Terminal |
+| --- | --- | --- | :---: | :---: |
+| Bar | 0 | ChartStyle.Bar | ✓ | ✓ |
+| Candle | 1 | ChartStyle.Candle | ✓ | ✓ |
+| Line | 2 | ChartStyle.Line | ✓ | ✓ |
+| Area | 3 | ChartStyle.Area | ✓ | ✓ |
+| Renko | 4 | ChartStyle.Renko | | ✓ |
+| Kagi | 5 | ChartStyle.Kagi | | ✓ |
+| PnF | 6 | ChartStyle.PnF | | ✓ |
+| Line Break | 7 | ChartStyle.LineBreak | | ✓ |
+| Heikin-Ashi | 8 | ChartStyle.HeikinAshi | ✓ | ✓ |
+| Hollow Candle | 9 | ChartStyle.HollowCandle | ✓ | ✓ |
+| Baseline | 10 | ChartStyle.Baseline | ✓ | ✓ |
+| Hi-Lo | 12 | ChartStyle.HiLo | ✓ | ✓ |
+
 ```javascript
-// 美国线
-STYLE_BARS = 0;
-// K线图
-STYLE_CANDLES = 1;
-// 线形图
-STYLE_LINE = 2;
-// 面积图
-STYLE_AREA = 3;
-// 平均K线图
-STYLE_HEIKEN_ASHI = 8;
-// 空心K线图
-STYLE_HOLLOW_CANDLES = 9;
-// 基准线
-STYLE_BASELINE = 10;
-// HiLo线
-STYLE_HILO = 12;
-
-// 砖形图
-STYLE_RENKO* = 4;
-// 卡吉图
-STYLE_KAGI* = 5;
-// 点数图
-STYLE_PNF* = 6;
-// 新价图
-STYLE_PB* = 7;
+widget.activeChart().setChartType(12);
 ```
-
-![](../images/trading.png) 交易终端专属
-
-#### closePopupsAndDialogs\(\)
-
-调用此方法关闭上下文菜单或对话框,假设其已经显示。
 
 ### setTimezone\(timezone\)
 
@@ -289,17 +352,31 @@ widget.activeChart().setTimezone("Asia/Singapore");
 
 返回图表的当前[timezone](Widget-Constructor#timezone)。
 
+```javascript
+console.log(widget.activeChart().getTimezone());
+```
+
 ### canZoomOut()
 
 _该方法在版本`1.14`中引入_
 
 当您调用此方法时，图表库会检查是否有任何缩放事件要撤消。
 
+```javascript
+console.log(widget.activeChart().canZoomOut());
+```
+
 ### zoomOut()
 
 _该方法在版本`1.14`中引入_
 
 当您调用此方法时，它会模拟点击“缩小”按钮。 仅在图表缩放时才有效。 使用`canZoomOut`检查是否可以调用此方法。
+
+```javascript
+if(widget.activeChart().canZoomOut()) {
+    widget.activeChart().zoomOut();
+};
+```
 
 # 指标与形状
 
@@ -310,12 +387,20 @@ _该方法在版本`1.14`中引入_
 - `id`: 形状 id
 - `name`: 形状名称
 
+```javascript
+widget.activeChart().getAllShapes().forEach(({ name }) => console.log(name));
+```
+
 #### getAllStudies\(\)
 
 返回所有已创建的指标对象的数组。 每个对象都有以下字段：
 
 - `id`: 指标 id
 - `name`: 指标名称
+
+```javascript
+widget.activeChart().getAllStudies().forEach(({ name }) => console.log(name));
+```
 
 #### setEntityVisibility\(id, isVisible\)
 
@@ -333,10 +418,11 @@ _该方法在版本`1.14`中引入_
 6. `options`: 这个对象只支持关键字`checkLimit`. 如果为 `true` 时，超出限制，将显示指标限制对话框。
    - `checkLimit` - 如果是`true`，则超出限制时将显示指标限制对话框。
    - `priceScale` - 指标的首选价格刻度。 可能的值是：
-     - `left` - 依附在左侧价格刻度
-     - `right` - 依附在右侧价格刻度
+     - `new-left` - 依附在左侧价格刻度
+     - `new-right` - 依附在右侧价格刻度
      - `no-scale` - 不要将指标依附在任何价格刻度上。 该指标将以`界面(无缩放)`模式添加
      - `as-series` - 将指标依附在主数据列所依附的价格刻度（仅适用于将指标添加到主数据列的窗格中）
+     - `entityId` - 将指标和具有相应 `id` 的指标锁定在同一价格轴上。
 
 请参阅[此处](Panes-And-Scales-Behavior.md)有关与指标相关的窗格和刻度特性的更多信息。
 
@@ -346,23 +432,24 @@ _该方法在版本`1.14`中引入_
 
 创建一个关于主商品的指标。 例子:
 
-- `createStudy('MACD', false, false, [14, 30, "close", 9])`
-- `createStudy('Moving Average Exponential', false, false, [26])`
-- `createStudy('Stochastic', false, false, [26], {"%d.color" : "#FF0000"})`
-- `createStudy('Moving Average', false, false, [26], {'Plot.linewidth': 10})`
+* `widget.activeChart().createStudy('MACD', false, false, [14, 30, "close", 9])`
+* `widget.activeChart().createStudy('Moving Average Exponential', false, false, [26])`
+* `widget.activeChart().createStudy('Stochastic', false, false, [26], {"%d.color" : "#FF0000"})`
+* `widget.activeChart().createStudy('Price Channel', true, false, [26], null, {checkLimit: false, priceScale: 'new-left'})`
+
 
 **Remark**: `Compare` 指标有 2 个参数: `[dataSource, symbol]`. `dataSource` 支持的值: `["close", "high", "low", "open"]`.
 
 **Remark 2**: 当您选择在图表上添加数据列时，您实际使用了`Overlay`指标，这个指标只有一个参数 -- `symbol`. 以下是添加商品的示例：
 
 ```javascript
-widget.chart().createStudy("Overlay", false, false, ["AAPL"]);
+widget.activeChart().createStudy('Overlay', false, false, ['AAPL']);
 ```
 
 **Remark 3**: 当您选择比较数据列时，您实际上使用了`Compare`指标。 它有 2 个参数 -- `source` 和 `symbol`. 下面是一个添加比较数据列的例子:
 
 ```javascript
-widget.chart().createStudy("Compare", false, false, ["open", "AAPL"]);
+widget.activeChart().createStudy('Compare', false, false, ["open", 'AAPL']);
 ```
 
 #### getStudyById(entityId)
@@ -371,15 +458,28 @@ widget.chart().createStudy("Compare", false, false, ["open", "AAPL"]);
 
 返回[指标 API](Study-Api.md#)的一个实例，它允许您与指标进行交互。
 
+```javascript
+widget.activeChart().getStudyById(id).setVisible(false);
+```
+
 ### getSeries()
 
 返回允许您与主数据列进行交互的[SeriesApi](Series-Api)的实例。
+
+```javascript
+widget.activeChart().getSeries().setVisible(false);
+```
 
 ### showPropertiesDialog(entityId)
 
 1. `entityId`: 实体id。通过API创建指标或形状时返回的值。
 
 用于显示指定的指标或形状的属性对话框。
+
+```javascript
+const chart = widget.activeChart();
+chart.showPropertiesDialog(chart.getAllShapes()[0].id);`
+```
 
 #### createShape\(point, options\)
 
@@ -401,10 +501,15 @@ widget.chart().createStudy("Compare", false, false, ["open", "AAPL"]);
    - `zOrder` \(开始于 `1.3`\) 可能的值为`top`、`bottom`。
       `top` 将线条工具放在所有其他图表对象的顶部, 而`bottom` 将线条工具放在所有其他图表对象底部, `top`为默认值。
    - `showInObjectsTree`: `true`为默认值。在`工具树状图`对话框中显示形状。
-
+   - `ownerStudyId`: `EntityId`类型的可选参数。它可用于将线工具绑定到指标。 例如，它可以用于在其他窗格上创建形状。
+   
 该函数返回`entityId` - 如果创建成功则返回形状的唯一 ID，如果不成功则返回`null`。
 
 此调用会在图表上的指定地点创建一个形状，前提是它位于主数据列区域内。
+
+```javascript
+widget.activeChart().createShape({ time: 1514764800 }, { shape: 'vertical_line' });
+```
 
 #### createMultipointShape\(points, options\)
 
@@ -426,6 +531,7 @@ widget.chart().createStudy("Compare", false, false, ["open", "AAPL"]);
    - `zOrder` \(开始于 `1.3`\) 可能的值为`top`、`bottom`。
       `top` 将线条工具放在所有其他图表对象的顶部, 而`bottom` 将线条工具放在所有其他图表对象底部, `top`为默认值。
    - `showInObjectsTree`: `true`为默认值。在`工具树状图`对话框中显示形状。
+   - `ownerStudyId`: `EntityId`类型的可选参数。它可用于将线工具绑定到指标。 例如，它可以用于在其他窗格上创建形状。
 
 该函数返回`entityId` - 如果创建成功则返回形状的唯一 ID，如果不成功则返回`null`。
 
@@ -433,11 +539,32 @@ widget.chart().createStudy("Compare", false, false, ["open", "AAPL"]);
 
 此调用会在图表上的指定地点创建一个多点形状，前提是它位于主数据列区域内。
 
+```javascript
+const from = Date.now() / 1000 - 500 * 24 * 3600 * 1000; // 500 days ago
+const to = Date.now() / 1000;
+widget.activeChart().createMultipointShape(
+    [{ time: from, price: 150 }, { time: to, price: 150 }],
+    {
+        shape: "trend_line",
+        lock: true,
+        disableSelection: true,
+        disableSave: true,
+        disableUndo: true,
+        text: "text",
+    }
+);
+
+```
+
 ### getShapeById\(entityId\)
 
 1. `entityId`：对象。 通过 API 创建形状时返回的值。
 
 返回允许您与形状交互的[形状 API](Shape-Api.md#)实例。
+
+```javascript
+widget.activeChart().getShapeById(id).bringToFront();
+```
 
 #### removeEntity\(entityId\)
 
@@ -445,17 +572,100 @@ widget.chart().createStudy("Compare", false, false, ["open", "AAPL"]);
 
 删除指定实体。
 
+```javascript
+widget.activeChart().removeEntity(id);
+```
+
 #### removeAllShapes\(\)
 
 删除全部形状。
+
+```javascript
+widget.activeChart().removeAllShapes();
+```
 
 #### removeAllStudies\(\)
 
 删除全部指标。
 
+```javascript
+widget.activeChart().removeAllStudies();
+```
+
 ### getPanes()
 
 返回[窗格Api](Pane-Api.md) 的实例数组，允许您与窗格进行交互。
+
+```javascript
+widget.activeChart().getPanes()[1].moveTo(0);
+```
+
+### shapesGroupController()
+
+返回可用于处理形状组的[API](Shapes-Group-Api)。
+
+```javascript
+widget.activeChart().shapesGroupController().createGroupFromSelection();
+```
+
+## Z-order operations
+
+### availableZOrderOperations(entities)
+
+1. `entities` 标识符数组
+
+返回具有可用于指定对象集的操作的对象。
+
+此对象的结构具有以下字段：
+
+* `bringForwardEnabled`: 如果可以将视觉次序设置为上移一层，则设置为true
+* `bringToFrontEnabled`: 如果可以将视觉次序设置为置于顶层，则设置为true
+* `sendBackwardEnabled`: 如果可以将视觉次序设置为下移一层，则设置为true
+* `sendToBackEnabled`: 如果可以将视觉次序设置为置于底层，则设置为true
+
+```javascript
+widget.activeChart().availableZOrderOperations([id]);
+```
+
+### sendToBack(entities)
+
+1. `entities` is an array of identifiers
+
+Sends specified entities to back.
+
+```javascript
+widget.activeChart().sendToBack([id]);
+```
+
+### bringToFront(entities)
+
+1. `entities` 标识符数组
+
+将指定的实体置于最前面。
+
+```javascript
+widget.activeChart().bringToFront([id]);
+```
+
+### bringForward(entities)
+
+1. `entities` 标识符数组
+
+使指定的实体上移一层。
+
+```javascript
+widget.activeChart().bringForward([id]);
+```
+
+### sendBackward(entities)
+
+1. `entities` 标识符数组
+
+使指定的实体下移一层。
+
+```javascript
+widget.activeChart().sendBackward([id]);
+```
 
 # 指标模板
 
@@ -468,6 +678,10 @@ widget.chart().createStudy("Compare", false, false, ["open", "AAPL"]);
 
 此调用是低级[存储与加载图表](Saving-and-Loading-Charts.md)的一部分。
 
+```javascript
+const template = widget.activeChart().createStudyTemplate({ saveInterval: true });
+```
+
 #### applyStudyTemplate\(template\)
 
 1. `template`: object
@@ -475,6 +689,10 @@ widget.chart().createStudy("Compare", false, false, ["open", "AAPL"]);
 从状态对象加载指标模板。
 
 此调用是低级[存储与加载图表](Saving-and-Loading-Charts.md)的一部分。
+
+```javascript
+widget.activeChart().applyStudyTemplate(template);
+```
 
 # 交易元语\(Trading Primitives\)
 
@@ -692,14 +910,14 @@ API 对象方法：
 例子:
 
 ```javascript
-widget.chart().createExecutionShape()
+widget.activeChart().createExecutionShape()
     .setText("@1,320.75 Limit Buy 1")
     .setTooltip("@1,320.75 Limit Buy 1")
     .setTextColor("rgba(0,255,0,0.5)")
     .setArrowColor("#0F0")
     .setDirection("buy")
-    .setTime(1413559061758)
-    .setPrice(15.5);
+    .setTime(widget.activeChart().getVisibleRange().from)
+    .setPrice(160);
 ```
 
 # Getters
@@ -707,6 +925,10 @@ widget.chart().createExecutionShape()
 #### symbol\(\)
 
 返回图表商品。
+
+```javascript
+console.log(widget.activeChart().symbol());
+```
 
 #### symbolExt\(\)
 
@@ -718,13 +940,25 @@ widget.chart().createExecutionShape()
 - `description`: 商品描述
 - `type`: 商品类型
 
+```javascript
+console.log(widget.activeChart().symbolExt().full_name);
+```
+
 #### resolution\(\)
 
 返回图表的周期。格式在这个[周期](Resolution.md)中描述。
 
+```javascript
+console.log(widget.activeChart().resolution());
+```
+
 #### getVisibleRange\(\)
 
 返回对象 `{from, to}`. `from` 和 `to` 是 **图表时区**的单位时间戳
+
+```javascript
+console.log(widget.activeChart().getVisibleRange());
+```
 
 #### getVisiblePriceRange\(\)
 
@@ -734,6 +968,10 @@ widget.chart().createExecutionShape()
 
 返回对象 `{from, to}`. `from` 和 `to` 是主数据列的可见范围边界。
 
+```javascript
+console.log(widget.activeChart().getVisiblePriceRange());
+```
+
 ### scrollPosition()
 
 *在 1.15 版本开始*
@@ -741,19 +979,35 @@ widget.chart().createExecutionShape()
 返回从图表右边缘到最后一根K线的距离，以K线为单位。
 这实际上是图表的当前滚动位置，包含右边距。
 
+```javascript
+console.log(widget.activeChart().scrollPosition());
+```
+
 ### defaultScrollPosition()
 
 *在 1.15 版本开始*
 
 返回从图表右边缘到最后一根K线的默认距离，以K线为单位。
 
+```javascript
+console.log(widget.activeChart().defaultScrollPosition());
+```
+
 #### priceFormatter\(\)
 
 返回带有`format`函数的对象，可用于格式化价格。
 
+```javascript
+widget.activeChart().priceFormatter().format(123);
+```
+
 #### chartType\(\)
 
 返回图表类型。
+
+```javascript
+console.log(widget.activeChart().chartType());
+```
 
 ## 其他
 
@@ -787,10 +1041,10 @@ _从 1.14 版本开始_
     - `sourceTitle`(`string`) - 指标的标题
     - `plotTitle`(`string`) - 绘图的标题
 
-- `data` 为[Float64Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float64Array)类型数组。
+- `data` 为[Float64Array](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Float64Array) 类型数组。
   每个 `Float64Array` 数组与 `schema` 数组的长度相同，表示相关字段的项目。
 
-**例如:**
+**示例:**
 
 1. `chart.exportData({ includeTime: false, includeSeries: true, includedStudies: [] })` - 仅导出数据列。
 1. `chart.exportData({ includeTime: true, includeSeries: true, includedStudies: [] })` - 随时间导出数据列。
@@ -806,17 +1060,29 @@ _从 1.14 版本开始_
 
 返回[SelectionApi](Selection-Api.md)，可用于更改图表选择和订阅图表选择的更改。
 
+```javascript
+widget.activeChart().selection().clear();
+```
+
 ### setZoomEnabled(enabled)
 
 **在 1.15 版本开始**
 
 启用 (true) 或 禁用 (false) 缩放图表。
 
+```javascript
+widget.activeChart().setZoomEnabled(false);
+```
+
 ### setScrollEnabled(enabled)
 
 **在 1.15 版本开始**
 
 启用 (true) 或 禁用 (false) 滚动图表。
+
+```javascript
+widget.activeChart().setScrollEnabled(false);
+```
 
 # 也可以看看
 

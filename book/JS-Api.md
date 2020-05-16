@@ -131,17 +131,17 @@ configurationData是一个对象，现在支持以下属性:
 
 方法介绍：通过日期范围获取历史K线数据。图表库希望通过`onHistoryCallback`仅一次调用，接收所有的请求历史。而不是被多次调用。
 
-> 发生不断自动刷新图表问题时，请检查`from`和`to`与`onHistoryCallback`方法返回的K线时间范围是否一致，没有数据时请返回`noData = true`
+**重要** 发生不断自动刷新图表问题时，请检查`from`和`to`与`onHistoryCallback`方法返回的K线时间范围是否一致，没有数据时请返回`noData = true`
 
 `nextTime`历史中下一个K线柱的时间。 只有在请求的时间段内没有数据时，才应该被设置。
 
 `noData`只有在请求的时间段内没有数据时，才应该被设置。
 
-**Remark**:`bar.time`为以毫秒开始的Unix时间戳（UTC标准时区）。
+**注意**:`bar.time`为以毫秒开始的Unix时间戳（UTC标准时区）。
 
-**Remark**:`bar.time`对于日K线预期一个交易日 \(未开始交易时\) 以 00:00 UTC为起点。 图表库会根据商品的交易（[Session](/book/Symbology.md#session)）时间进行匹配。
+**注意**:`bar.time`对于日K线预期一个交易日 \(未开始交易时\) 以 00:00 UTC为起点。 图表库会根据商品的交易（[Session](/book/Symbology.md#session)）时间进行匹配。
 
-**Remark**:`bar.time`对于月K线为这个月的第一个交易日，除去时间的部分。
+**注意**:`bar.time`对于月K线为这个月的第一个交易日，除去时间的部分。
 
 ### [subscribeBars\(symbolInfo, resolution, onRealtimeCallback, subscriberUID, onResetCacheNeededCallback\)](#subscribebarssymbolinfo-resolution-onrealtimecallback-subscriberuid-onresetcacheneededcallback)
 

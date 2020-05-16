@@ -6,10 +6,21 @@ _注意：您可以通过在浏览器控制台中执行 `TradingView.version()` 
 
 以下是重大变更列表：
 
+## Version 1.16
+
+- 动作 `tmzProperties` 从 [executeActionById](Chart-Methods.md#executeactionbyidactionid) 和 [getCheckableActionState](Chart-Methods.md#getcheckableactionstateactionid) 方法中被删除。
+- 图表方法 `createStudy` 的 `options`参数中的 `priceScale` 发生变化。 `left` 和 `right` 重命名为 `new-left` 和 `new-right`。 `options`参数中增加 `entityId`, 它将指标和具有相应 `id` 的指标锁定在同一价格轴上。
+- 数据列API方法 `moveToOtherSourceScale` 重命名为 `changePriceScale`。`options`参数中 `new-left` 和 `new-right`。
+- 指标API方法 `changePriceScale` 的 `options`参数中的 `priceScale` 发生变化。 `left` 和 `right` 重命名为 `new-left` 和 `new-right`。 `options`参数中增加 `entityId`, 它将指标和具有相应 `id` 的指标锁定在同一价格轴上。
+
+- Widget的方法 `applyOverrides` 禁用于 "mainSeriesProperties.priceAxisProperties.*"。
+
+- Widget的方法 `createStudy` 现在可以被用户撤销。您可以使用 `options` 中的 `disableUndo` 禁用。
+
 ## Version 1.15
 
-- 功能集 `show_logo_on_all_charts` 被删除。
-- 功能集 `cl_feed_return_all_data` 被删除。
+- 功能集的 `show_logo_on_all_charts` 被删除。
+- 功能集的 `cl_feed_return_all_data` 被删除。
 - 动作 `magnetAction` 从 [executeActionById](Chart-Methods.md#executeactionbyidactionid) 和 [getCheckableActionState](Chart-Methods.md#getcheckableactionstateactionid) 中被删除。 使用 [magnetEnabled](Widget-Methods.md#magnetenabled) 代替。
 - [createStudy](Chart-Methods.md#createstudyname-forceoverlay-lock-inputs-overrides-options) 的 `callback` 参数被删除。
 - [createStudy](Chart-Methods.md#createstudyname-forceoverlay-lock-inputs-overrides-options) 返回值使用 [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) 代替 `entityId`。
