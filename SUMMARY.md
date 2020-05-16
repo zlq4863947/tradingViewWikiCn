@@ -62,6 +62,8 @@
 - [指标覆盖](book/Studies-Overrides.md)
 - [形状与覆盖](book/Shapes-and-Overrides.md)
 - [图表样式属性](book/Chart-Style-Properties.md)
+- [图表自定义](book/Chart.md)
+- [工具栏自定义](book/Toolbars.md)
 - [CSS主题颜色](book/CSS-Color-Themes.md)
 - [订阅](book/Subscription.md)
 - [交易元语](book/Trading-Primitives.md)
