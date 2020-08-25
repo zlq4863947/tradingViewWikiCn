@@ -63,6 +63,12 @@ configurationData是一个对象，现在支持以下属性:
 
 例:`[1, 15, 240, "D", "6M"]`您将在周期中得到 "1 分钟, 15 分钟, 4 小时, 1 天, 6 个月" 。
 
+##### [currency\_codes](#currencycodes)
+
+用于货币转换的支持的货币数组。
+
+示例：[“USD”，“EUR”，“GBP”]。
+
 ##### [supports\_marks](#supportsmarks)
 
 布尔值来标识您的 datafeed 是否支持在K线上显示标记。
@@ -113,6 +119,8 @@ configurationData是一个对象，现在支持以下属性:
 1. `symbolName`: string，商品名称 或`ticker`
 2. `onSymbolResolvedCallback`: function\([SymbolInfo](/book/Symbology.md#商品信息结构)\)
 3. `onResolveErrorCallback`: function\(reason\)
+4. `extension`: 具有附加参数的可选对象。 它具有以下字段：
+   1. `currencyCode`: string,  如果设置了currency_codes配置字段并且在原始商品信息中提供了currency_code，则可以提供它来表示要转换的货币。
 
 方法介绍：通过商品名称解析商品信息\([SymbolInfo](/book/Symbology.md#商品信息结构)\)。
 
@@ -122,26 +130,28 @@ configurationData是一个对象，现在支持以下属性:
 2. `resolution`: string （周期）
 3. `from`: unix 时间戳, 最左边请求的K线时间
 4. `to`: unix 时间戳, 最右边请求的K线时间
-5. `onHistoryCallback`: function\(数组`bars`,`meta`=_{ noData = false }_\)
+5. `onHistoryCallback`: function\(数组`bars`,`meta`=_{ noData = false }_\) 历史数据的回调函数。每次请求只应被调用一次。 此函数有2个参数：
    1. `bars`: Bar对象数组`{time, close, open, high, low, volume}[]`
    2. `meta`: object`{noData = true | false, nextTime = unix time}`
-6. `onErrorCallback`: function\(reason：错误原因\)
+6. `onErrorCallback`: function\(reason：错误原因\) 错误的回调函数。 该函数的唯一参数是文本错误消息。该消息不会显示，并保留以备将来使用。
 7. `firstDataRequest`: 布尔值，以标识是否第一次调用此商品/周期的历史记录。当设置为`true`时
-   你可以忽略`to`参数（这取决于浏览器的`Date.now()`\) 并返回K线数组直到当前K线（包括它）。
+   你可以忽略`to`参数（这取决于浏览器的`Date.now()`\) 并返回K线数组直到最新K线。
 
-方法介绍：通过日期范围获取历史K线数据。图表库希望通过`onHistoryCallback`仅一次调用，接收所有的请求历史。而不是被多次调用。
+方法介绍：当图表库需要由日期范围定义的历史K线片段时，将调用此函数。
 
-**重要** 发生不断自动刷新图表问题时，请检查`from`和`to`与`onHistoryCallback`方法返回的K线时间范围是否一致，没有数据时请返回`noData = true`
+`Bar`是具有以下字段的对象：
 
-`nextTime`历史中下一个K线柱的时间。 只有在请求的时间段内没有数据时，才应该被设置。
+1. `time`: number **UTC** 时区的毫秒单位时间戳。`time`对于日K线的时间应为00:00 UTC(而非交易时段的开始时间)。图表库讲根据商品信息中的交易时段调整时间。每个月K线的时间是该月的第一个交易日，且无时间部分。
+2. `open`: number K线开盘价
+3. `high`: number K线最高价
+4. `low`: number K线最低价
+5. `close`: number K线收盘价
+6. `volume`: number K线交易量
 
-`noData`只有在请求的时间段内没有数据时，才应该被设置。
+`meta`是具有以下字段的对象：
 
-**注意**:`bar.time`为以毫秒开始的Unix时间戳（UTC标准时区）。
-
-**注意**:`bar.time`对于日K线预期一个交易日 \(未开始交易时\) 以 00:00 UTC为起点。 图表库会根据商品的交易（[Session](/book/Symbology.md#session)）时间进行匹配。
-
-**注意**:`bar.time`对于月K线为这个月的第一个交易日，除去时间的部分。
+1. `noData` 布尔值, 只有在请求的时间段内没有数据时，才应该被设置。
+2. `nextTime` unix 时间戳(UTC), 历史K线的下一K线时间。只有在请求的时间段内没有数据时，才应该被设置。
 
 ### [subscribeBars\(symbolInfo, resolution, onRealtimeCallback, subscriberUID, onResetCacheNeededCallback\)](#subscribebarssymbolinfo-resolution-onrealtimecallback-subscriberuid-onresetcacheneededcallback)
 
@@ -154,7 +164,7 @@ configurationData是一个对象，现在支持以下属性:
 
 方法介绍：订阅K线数据。图表库将调用`onRealtimeCallback`方法以更新实时数据。
 
-**Remark**: 当您调用`onRealtimeCallback`且K线时间等于最近一条K线时间时，那么这条最近的K线将被您传入的K线所替换。 例:
+**Remark**: 当您调用`onRealtimeCallback`且K线时间等于最新K线时间时，那么这条最新K线将被您传入的K线所替换。 例:
 
 1. 最近一条K线为 `{1419411578413, 10, 12, 9, 11}`
 2. 调用 `onRealtimeCallback({1419411578413, 10, 14, 9, 14})`

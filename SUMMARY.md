@@ -78,3 +78,4 @@
 - [数据列 API](book/Series-Api.md)
 - [价格刻度 Api](book/Price-Scale-Api.md)
 - [窗格和刻度特性](book/Panes-And-Scales-Behavior.md)
+- [快捷键](book/Shortcuts.md)

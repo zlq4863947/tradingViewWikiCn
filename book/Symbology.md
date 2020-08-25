@@ -304,7 +304,11 @@ resolutionAvailable  =
 
 行业，将在股票信息中显示。
 
+##### [original\_currency\_code](#originalcurrencycode)
+
+交易所用的货币。
+
 ##### [currency\_code](#currencycode)
 
-货币代码，将在商品信息中显示。
+交易所使用的货币或其他货币（如果启用了货币转换）。 它显示在“交易品种信息”对话框和价格轴上。
 

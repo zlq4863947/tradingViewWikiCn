@@ -81,9 +81,8 @@ GET REQUEST: `charts_storage_url/charts_storage_api_version/charts?client=client
 
 1. `status`: `ok` 或 `error`
 1. `data`: 对象数组
+    1. `content`: 图表内容
     1. `timestamp`: 保存图表时的UNIX时间（例如，1449084321）
-    1. `symbol`: 图表的商品（例如，`AA`）
-    1. `resolution`: 周期（例如，`D`）
     1. `id`: 图表的唯一整数标识符（例如，`9163`）
     1. `name`: 图表名称（例如，`Test`）
 
@@ -120,3 +119,166 @@ client_id|user_id|作用
 您的站点URL或其他链接|唯一用户ID |每个用户都有一个其他用户看不到的私有图表存储。
 您的站点URL或其他链接|所有用户都为相同值|每个用户都可以查看和加载任何已保存的图表。
 您的站点URL或其他链接|注册用户的唯一用户ID以及匿名用户的单独设置|每个注册用户都有一个其他用户看不到的私有图表存储。 所有匿名用户共享一个存储。
+
+
+## save_load_adapter
+
+*从1.12版开始。*
+
+[Widget构造器的参数](Widget-Constructor#save_load_adapter), 它是一个包含保存/加载功能的对象。 它用于自定义“保存”按钮的行为。 如果可用，则应具有以下方法：
+
+### 图表布局
+
+ 1. `getAllCharts(): Promise<ChartMetaInfo[]>`
+
+     获取所有保存图表的方法。
+
+    `ChartMetaInfo` 是具有以下字段的对象：
+     * `id` - 图表唯一ID
+     * `name` - 图表名
+     * `symbol` - 图表商品ID
+     * `resolution` - 图表周期
+     * `timestamp` - 最后修改日期
+
+ 1. `removeChart(chartId): Promise<void>`
+
+     A function to remove a chart. `chartId` is a unique ID of the chart (see `getAllCharts` above).
+     删除图表的方法。`chartId`是图表的唯一ID（请参见上面的 `getAllCharts` ）。
+
+ 1. `saveChart(chartData: ChartData): Promise<ChartId>`
+
+     保存图表的方法。
+
+    `ChartData` 是具有以下字段的对象：
+     * `id` - 图表的唯一ID（如果之前未保存，则可能是`undefined`）。
+     * `name` - 图表名
+     * `symbol` - 图表商品ID
+     * `resolution` - 图表周期
+     * `content` - 图表内容
+
+    `ChartId` - 图表的唯一id
+
+ 1. `getChartContent(chartId): Promise<ChartContent>`
+
+     从服务器加载图表的方法。
+
+    `ChartContent` 是带有图表内容的字符串（请参见 `saveChart` 方法中的 `ChartData::content` 字段）。
+
+### Study Templates
+
+ 1. `getAllStudyTemplates(): Promise<StudyTemplateMetaInfo[]>`
+
+     获取所有保存的指标模板的方法。
+
+    `StudyTemplateMetaInfo` 是具有以下字段的对象：
+     * `name` - 指标模板名称
+
+ 1. `removeStudyTemplate(studyTemplateInfo: StudyTemplateMetaInfo): Promise<void>`
+
+     删除指标模板的方法
+
+ 1. `saveStudyTemplate(studyTemplateData: StudyTemplateData): Promise<void>`
+
+     保存指标模板的方法。
+
+    `StudyTemplateData` 是具有以下字段的对象：
+     * `name` - 指标模板名称
+     * `content` - 指标模板内容
+
+ 1. `getStudyTemplateContent(studyTemplateInfo: StudyTemplateMetaInfo): Promise<StudyTemplateContent>`
+
+     从服务器加载指标模板的方法。
+
+    `StudyTemplateContent` - 指标模板内容 (string)
+
+ 如果`charts_storage_url`和`save_load_adapter`都可用，将使用`save_load_adapter`。
+
+ **重要提示:** 所有函数应返回一个`Promise` (或类似Promise的对象)。
+
+用于测试目的的示例：
+
+```javascript
+save_load_adapter: {
+    charts: [],
+    studyTemplates: [],
+    getAllCharts: function() {
+        return Promise.resolve(this.charts);
+    },
+
+    removeChart: function(id) {
+        for (var i = 0; i < this.charts.length; ++i) {
+            if (this.charts[i].id === id) {
+                this.charts.splice(i, 1);
+                return Promise.resolve();
+            }
+        }
+
+        return Promise.reject();
+    },
+
+    saveChart: function(chartData) {
+        if (!chartData.id) {
+            chartData.id = Math.random().toString();
+        } else {
+            this.removeChart(chartData.id);
+        }
+
+        chartData.timestamp = new Date().valueOf();
+
+        this.charts.push(chartData);
+
+        return Promise.resolve(chartData.id);
+    },
+
+    getChartContent: function(id) {
+        for (var i = 0; i < this.charts.length; ++i) {
+            if (this.charts[i].id === id) {
+                return Promise.resolve(this.charts[i].content);
+            }
+        }
+
+        console.error('error');
+
+        return Promise.reject();
+    },
+
+    removeStudyTemplate: function(studyTemplateData) {
+        for (var i = 0; i < this.studyTemplates.length; ++i) {
+            if (this.studyTemplates[i].name === studyTemplateData.name) {
+                this.studyTemplates.splice(i, 1);
+                return Promise.resolve();
+            }
+        }
+
+        return Promise.reject();
+    },
+
+    getStudyTemplateContent: function(studyTemplateData) {
+        for (var i = 0; i < this.studyTemplates.length; ++i) {
+            if (this.studyTemplates[i].name === studyTemplateData.name) {
+                return Promise.resolve(this.studyTemplates[i].content);
+            }
+        }
+
+        console.error('st: error');
+
+        return Promise.reject();
+    },
+
+    saveStudyTemplate: function(studyTemplateData) {
+        for (var i = 0; i < this.studyTemplates.length; ++i) {
+            if (this.studyTemplates[i].name === studyTemplateData.name) {
+                this.studyTemplates.splice(i, 1);
+                break;
+            }
+        }
+
+        this.studyTemplates.push(studyTemplateData);
+        return Promise.resolve();
+    },
+
+    getAllStudyTemplates: function() {
+        return Promise.resolve(this.studyTemplates);
+    },
+}
+```

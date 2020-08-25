@@ -10,6 +10,8 @@
     "splitter",
     "sitemap",
     "donate",
+    "insert-head-tag",
+    "baidu-v3",
     "-livereload"
   ],
   "pluginsConfig": {
@@ -41,14 +43,25 @@
       ]
     },
     "donate": {
-      "wechat": "https://b.aitrade.ga/books/tradingview/images/weixin.png",
-      "alipay": "https://b.aitrade.ga/books/tradingview/images/alipay.png",
+      "wechat": "https://aitrade.ga/books/tradingview/images/weixin.png",
+      "alipay": "https://aitrade.ga/books/tradingview/images/alipay.png",
       "button": "赏",
       "alipayText": "支付宝打赏",
       "wechatText": "微信打赏"
     },
     "sitemap": {
       "hostname": "http://aitrade.ga"
+    },
+    "insert-head-tag": {
+      "tags": [
+        "<script async src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js'>",
+        "<script>(adsbygoogle = window.adsbygoogle || []).push({google_ad_client: 'ca-pub-4774215405699477',enable_page_level_ads: true});",
+        "<script async src='https://www.googletagmanager.com/gtag/js?id=UA-155388696-3'>",
+        "<script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);console.log('gtag')}gtag('js', new Date());gtag('config', 'UA-155388696-3');"
+      ]
+    },
+    "baidu": {
+      "token": "7589b987dc4ef611f2f1cd192b55a257"
     }
   }
 }
