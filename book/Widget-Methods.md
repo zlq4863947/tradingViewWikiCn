@@ -23,7 +23,7 @@ widget.onChartReady(function() {
   * [unsubscribe\(event, callback\)](#unsubscribeevent-callback)
 * [图表动作](#图表动作)
   * [chart()](#chart)
-  * [setLanguage\(locale\)](#setlanguagelocale)
+  * [getLanguage()](#getlanguage)
   * [setSymbol\(symbol, interval, callback\)](#setsymbolsymbol-interval-callback)
   * [remove()](#remove)
   * [closePopupsAndDialogs()](#closepopupsanddialogs)
@@ -55,6 +55,7 @@ widget.onChartReady(function() {
   * [getIntervals()](#getintervals)
   * [getStudiesList()](#getstudieslist)
   * [undoRedoState()](#undoredostate)
+  * [getTheme()](#gettheme)
 * [定制](#定制)
   * [changeTheme\(themeName\)](#changethemethemename)
   * [addCustomCSSFile\(url\)](#addcustomcssfileurl)
@@ -69,6 +70,10 @@ widget.onChartReady(function() {
   * [layout()](#layout)
   * [setLayout\(layout\)](#setlayoutlayout)
   * [layoutName\(\)](#chartlayoutName)
+  * [symbolSync()](#chart-symbolsync)
+  * [intervalSync()](#chart-intervalsync)
+  * [crosshairSync()](#chart-crosshairsync)
+  * [timeSync()](#chart-timesync)
 
 # 订阅图表事件
 
@@ -165,6 +170,7 @@ widget.onShortcut("alt+s", function() {
 | `onTimescaleMarkClick` | | 用户点击时间刻度标记。标记ID将作为参数传递 |
 | `onSelectedLineToolChanged` | | 选择的线条工具已更改 |
 | `study_event` | 1.15 | 指标从图表中删除。回调函数接收2个参数: 指标id和event类型 (当前这个参数唯一可能的值是`remove`) |
+| `series_event` | 16 | 与系列有关的事件。回调函数接收1个参数: event类型（当前，此参数唯一可能的值为`price_scale_changed`）|
 | `drawing_event` | 1.15 | 隐藏，显示，移动，移除或单击绘图。 回调函数接收2个参数: 指标id和event类型。event类型的可能值是`hide`，`show`、`move`、`remove`、`click` |
 | `study_properties_changed` | 1.14 | 指标属性已更改。实体ID将作为参数传递。 |
 | `series_properties_changed` | 1.15 | 主数据列属性发生变化 |
@@ -189,11 +195,11 @@ widget.onShortcut("alt+s", function() {
 
 返回图表对象，可用于调用[图表方法](Chart-Methods.md)
 
-#### setLanguage\(locale\)
+#### getLanguage\(\)
 
-1. `locale`: [语言代码](Localization.md)
+*从版本17开始。*
 
-设置Widget的语言。目前此调用将重新加载图表。 **请避免使用**
+返回Widget的[语言](Localization.md)
 
 #### setSymbol\(symbol, interval, callback\)
 
@@ -201,7 +207,7 @@ widget.onShortcut("alt+s", function() {
 2. `interval`: string
 3. `callback`: function()
 
-使图表更改其商品和周期。 新商品的数据到达后调用回调。
+使图表更改其商品和周期。新商品的数据到达后调用回调。
 
 #### remove()
 
@@ -444,6 +450,16 @@ widget.headerReady().then(function() {
 * `enableRedo`: boolean类型, 表示恢复操作是否可用。
 * `redoText`: 下一个恢复操作的名称。如果恢复堆栈为空，则它的值为`undefined`。
 
+### getTheme()
+
+*从版本16开始。*
+
+此方法返回图表主题名称。
+
+```javascript
+console.log(widget.getTheme());
+```
+
 # 定制
 
 #### changeTheme(themeName)
@@ -491,18 +507,20 @@ widget.headerReady().then(function() {
 1. `defaultList()`- 允许您获取默认的商品列表。
 2. `getList(id?: string)`- 允许您获取商品列表。 如果未传递`id` 则返回当前列表。 如果没有监视列表则返回 `null` 。  
 
-3.  `getActiveListId()` - 允许您获取当前列表的ID。如果没有监视列表则返回`null` 。
+3.  `setActiveList(id: string)` - 允许您通过 `id` 创建当前活动列表。
+
+4.  `getActiveListId()` - 允许您获取当前列表的ID。如果没有活动列表则返回`null` 。
  
-4.  `getAllLists()` - 允许您获取所有列表。如果没有监视列表则返回`null` 。
-5.  `setList(symbols: string[])`- 允许您将商品列表设置到观察列表中。 它将替换整个列表。**已过时。将在 `1.13`版本中删除。请改用  `updateList`。**  
+5.  `getAllLists()` - 允许您获取所有列表。如果没有监视列表则返回`null` 。
+6.  `setList(symbols: string[])`- 允许您将商品列表设置到观察列表中。 它将替换整个列表。**已过时。将在 `1.13`版本中删除。请改用  `updateList`。**  
 
-6.  `updateList(listId: string, symbols: string[])` - 允许您编辑商品列表。  
+7.  `updateList(listId: string, symbols: string[])` - 允许您编辑商品列表。  
 
-7.  `renameList(listId: string, newName: string)` - 允许您将列表重命名为 `newName`.
+8.  `renameList(listId: string, newName: string)` - 允许您将列表重命名为 `newName`.
 
-8.  `createList(listName?: string, symbols?: string[])` - 允许您创建具有`listName` 名称的符号列表。如果未传递 `listName` 参数或者没有监视列表，则返回 `null`。
+9.  `createList(listName?: string, symbols?: string[])` - 允许您创建具有`listName` 名称的符号列表。如果未传递 `listName` 参数或者没有监视列表，则返回 `null`。
 
-9.  `saveList(list: SymbolList)` - 允许您保存一个商品列表， `list` 是具有以下key的集合对象:
+10.  `saveList(list: SymbolList)` - 允许您保存一个商品列表， `list` 是具有以下key的集合对象:
 
     ```js
     id: string;
@@ -512,16 +530,16 @@ widget.headerReady().then(function() {
 
     如果没有监视列表或者已有一个等价列表，则返回`false` 否则返回 `true` 。
 
-10. `deleteList(listId: string)` - 允许您删除商品列表。
-11. `onListChanged()`- 当在监视列表中的商品更改时, 可以使用此方法进行通知。您可以使用此方法返回的 [Subscription](Subscription.md)对象进行订阅和取消订阅。  
+11. `deleteList(listId: string)` - 允许您删除商品列表。
+12. `onListChanged()`- 当在监视列表中的商品更改时, 可以使用此方法进行通知。您可以使用此方法返回的 [Subscription](Subscription.md)对象进行订阅和取消订阅。  
 
-12.  `onActiveListChanged()` - 当选择了不同的监视列表时, 可以使用此方法进行通知。您可以使用此方法返回的 [Subscription](Subscription.md)对象进行订阅和取消订阅。
+13.  `onActiveListChanged()` - 当选择了不同的监视列表时, 可以使用此方法进行通知。您可以使用此方法返回的 [Subscription](Subscription.md)对象进行订阅和取消订阅。
 
-13.  `onListAdded()` - - 当新的列表添加到监视列表中时, 可以使用此方法进行通知。您可以使用此方法返回的 [Subscription](Subscription.md)对象进行订阅和取消订阅。
+14.  `onListAdded()` - - 当新的列表添加到监视列表中时, 可以使用此方法进行通知。您可以使用此方法返回的 [Subscription](Subscription.md)对象进行订阅和取消订阅。
  
-14.  `onListRemoved()` - 当监视列表中删除商品列表时, 可以使用此方法进行通知。您可以使用此方法返回的 [Subscription](Subscription.md)对象进行订阅和取消订阅。
+15.  `onListRemoved()` - 当监视列表中删除商品列表时, 可以使用此方法进行通知。您可以使用此方法返回的 [Subscription](Subscription.md)对象进行订阅和取消订阅。
 
-15.  `onListRenamed()` - - 当监视列表中重命名商品列表时, 可以使用此方法进行通知。您可以使用此方法返回的 [Subscription](Subscription.md)对象进行订阅和取消订阅。
+16.  `onListRenamed()` - - 当监视列表中重命名商品列表时, 可以使用此方法进行通知。您可以使用此方法返回的 [Subscription](Subscription.md)对象进行订阅和取消订阅。
 
 # ![](../images/trading.png)多图表布局
 
@@ -552,6 +570,40 @@ widget.headerReady().then(function() {
 ### ![](../images/trading.png)layoutName()
 
 返回当前布局名称。 如果尚未保存当前布局，则返回undefined。
+
+### ![](../images/trading.png)symbolSync()
+
+返回一个 [WatchedValue](WatchedValue.md) 对象，该对象可用于读取/设置/监视图表之间的上去同步状态。
+
+```javascript
+if (widget.symbolSync().value()) {
+    // Do something
+}
+```
+
+### ![](../images/trading.png)intervalSync()
+
+返回一个 [WatchedValue](WatchedValue) 对象，该对象可用于读取/设置/监视图表之间的间隔同步状态。
+
+```javascript
+widget.intervalSync().setValue(true);
+```
+
+### ![](../images/trading.png)crosshairSync()
+
+返回一个 [WatchedValue](WatchedValue.md) 对象，该对象可用于读取/设置/监视图表之间十字准线同步的状态。
+
+```javascript
+widget.crosshairSync().setValue(true);
+```
+
+### ![](../images/trading.png)timeSync()
+
+返回一个 [WatchedValue](WatchedValue) 对象，该对象可用于读取/设置/监视图表之间的时间同步状态。
+
+```javascript
+widget.timeSync().setValue(true);
+```
 
 # 也可以看看
 

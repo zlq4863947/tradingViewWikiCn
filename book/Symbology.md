@@ -247,15 +247,21 @@ resolutionAvailable  =
 
 *Default:* `false`
 
-布尔值显示在交易过程中，当datafeed没有数据返回时,library是否会生成空的K柱。
+布尔值显示在特定时间段内数据馈送中没有数据时，图表库是否应在会话中生成空栏（一字线）
 
-即，如果您的交易时间为0900-1600，而您的实际数据在11:00和12:00之间没有交易，而您的has\_empty\_bars为true，那么Library会在此段时间贴上退化的K柱。
+即，如果您的交易时段为0900-1600，而您的实际数据在11:00和12:00之间没有交易，而您的has\_empty\_bars为true，那么Library会在此段时间贴上空K柱。
+
+如果启用了功能集 `disable_resolution_rebuild` ，则不可使用此标志 `has_emtpy_bars` = `true` 。
 
 ##### [force\_session\_rebuild](#forcesessionrebuild)
 
 *Default:* `false`
 
-布尔值显示library是否会随着当前交易而过滤K柱。如果为false，则当library从其他周期构建数据或将has\_empty\_bars设置为true时，K柱将被过滤。 如果为true，Library将会删除那些不是交易K柱的数据。
+布尔值，显示图书馆是否应使用当前交易时段过滤柱线。
+
+如果为 `false`, 仅当图表库从其他分辨率构建数据时，才会过滤K线。或者将`has_empty_bars` 设置 `true`。
+
+如果为 `true`, 图表库将从您的数据中删除不属于交易时段的K线。
 
 ##### [has\_no\_volume](#hasnovolume)
 
@@ -290,7 +296,7 @@ resolutionAvailable  =
 
 *Default:* `false`
 
-期满，布尔值显示此商品是否为到期的期货合约。
+是否到期，布尔值显示此商品是否为到期的期货合约。
 
 ##### [expiration\_date](#expirationdate)
 

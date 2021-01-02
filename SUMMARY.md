@@ -48,12 +48,13 @@
 
 - [6、储存和载入图表](book/Saving-and-Loading-Charts.md)
 - [7、创建自定义指标](book/Creating-Custom-Studies.md)
-- [7、最佳做法](book/Best-practices.md)
+- [8、最佳实践](book/Best-practices.md)
 - [9、经常被问到的问题](book/Frequently-Asked-Questions.md)
 - [10、版本变更点](book/Breaking-changes.md)
 
 ## 附录
 
+- [图表的主要组成](book/Basic-Compose.md)
 - [周期](book/Resolution.md)
 - [时间范围](book/Time-Frames.md)
 - [本地化](book/Localization.md)

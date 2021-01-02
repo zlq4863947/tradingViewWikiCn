@@ -6,7 +6,36 @@ _注意：您可以通过在浏览器控制台中执行 `TradingView.version()` 
 
 以下是重大变更列表：
 
-## Version 1.16
+## Version 18
+
+**交易终端**
+
+- `accountsList` 和 `account` 已从 Account Manager 信息中删除。他们已替换为方法： `currentAccount`, `setCurrentAccount` 和 `accountsMetainfo` 在 broker's API.
+
+- 方法 `fullUpdate` 在Trading Host中已重命名为 `currentAccountUpdate`.
+
+- 方法 `showClosePositionDialog` 已被删除。
+
+- [Trading Host](Trading-Host.md) 方法 `floatingTradingPanelVisibility` 被重命名为 `sellBuyButtonsVisibility`.
+
+- [Trading Host](Trading-Host.md) `defaultDropdownMenuActions` 选项已更改。选项 `showFloatingToolbar` 已重命名为 `showSellBuyButtons`。
+
+- 方法 [setPoints](Shape-Api.md#setpointspoints) 的作用与 [createMultipointShape](Chart-Methods.md#createmultipointshapepoints-options) 方法相同。 以前，它可以更改其他一些属性，例如width，而不是将点移动到新位置。
+
+## Version 17
+
+- 订单返回值已区分为 [orders](Broker-API.md#orders-promiseorder) 和 [ordersHistory](Broker-API.md#ordershistory-promiseorder)。
+- [Widget方法](Widget-Methods.md) `setLanguage(locale)` 已被删除。
+- `onIntervalChanged` 事件的参数已被修改: `timeframe` 字段的类型已更改为 [TimeFrameValue](Chart-Methods.md#onIntervalChanged)。
+- 功能集 `same_data_requery` 已被删除, 请使用 [resetData() 方法](Chart-Methods.md#resetdata) 刷新数据。
+- `charting_library/charting_library.min.js` 和 `charting_library/charting_library.min.d.ts` 重命名为 `charting_library/charting_library.js` 和 `charting_library/charting_library.d.ts`。
+- 现在，默认情况下，用户可以撤消图表方法 [removeEntity](Chart-Methods.md#removeentityentityid-options) 要禁用此功能，请在`options`使用 `disableUndo` 字段。
+
+**交易终端**
+
+- `supportBottomWidget` 标记已从Broker配置 `configFlags` 对象中删除。要删除 Account Manager 请使用功能集 `trading_account_manager`。
+
+## Version 16（更改版本）
 
 - 动作 `tmzProperties` 从 [executeActionById](Chart-Methods.md#executeactionbyidactionid) 和 [getCheckableActionState](Chart-Methods.md#getcheckableactionstateactionid) 方法中被删除。
 - 图表方法 `createStudy` 的 `options`参数中的 `priceScale` 发生变化。 `left` 和 `right` 重命名为 `new-left` 和 `new-right`。 `options`参数中增加 `entityId`, 它将指标和具有相应 `id` 的指标锁定在同一价格轴上。

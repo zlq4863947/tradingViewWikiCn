@@ -19,8 +19,63 @@ new TradingView.widget({
 
 属性标记为![](../images/trading.png)的只在交易终端可用。
 
+## 参数
+
+* 图表库和交易终端
+  * [symbol, interval*](#symbol-interval)
+  * [container_id*](#container_id)
+  * [datafeed*](#datafeed)
+  * [timeframe](#timeframe)
+  * [timezone](#timezone)
+  * [debug](#debug)
+  * [library_path](#library_path)
+  * [width, height](#width-height)
+  * [fullscreen](#fullscreen)
+  * [autosize](#autosize)
+  * [symbol_search_request_delay](#symbol_search_request_delay)
+  * [auto_save_delay](#auto_save_delay)
+  * [toolbar_bg](#toolbar_bg)
+  * [study_count_limit](#study_count_limit)
+  * [studies_access](#studies_access)
+  * [drawings_access](#drawings_access)
+  * [saved_data](#saved_data)
+  * [locale](#locale)
+  * [numeric_formatting](#numeric_formatting)
+  * [custom_formatters](#custom_formatters)
+  * [overrides](#overrides)
+  * [disabled_features, enabled_features](#disabled_features-enabled_features)
+  * [snapshot_url](#snapshot_url)
+  * [custom_indicators_getter](#custom_indicators_getter)
+  * [preset](#preset)
+  * [studies_overrides](#studies_overrides)
+  * [time_frames](#time_frames)
+  * [charts_storage_url, client_id, user_id](#charts_storage_url-client_id-user_id)
+  * [charts_storage_api_version](#charts_storage_api_version)
+  * [load_last_chart](#load_last_chart)
+  * [theme](#theme)
+  * [custom_css_url](#custom_css_url)
+  * [loading_screen](#loading_screen)
+  * [favorites](#favorites)
+  * [save_load_adapter](#save_load_adapter)
+  * [settings_adapter](#settings_adapter)
+  * [compare_symbols](#compare_symbols)
+* 交易终端
+  * [widgetbar](#widgetbar)
+  * [rss_news_feed](#rss_news_feed)
+  * [news_provider](#news_provider)
+  * [broker_factory](#broker_factory)
+  * [broker_config](#broker_config)
+
+## 图表库和交易终端
+
 #### symbol, interval*
+
 您的图表的初始商品和周期。`interval`的格式在另一篇[文章](/book/Resolution.md)中说明。 *必须项*
+
+```javascript
+symbol: 'A',
+interval: '1D',
+```
 
 #### container_id*
 
@@ -29,26 +84,50 @@ new TradingView.widget({
 #### datafeed*
 
 实现（[JS API](JS-Api.md)）接口以向图表提供数据的JavaScript对象。
+```javascript
+datafeed: new Datafeeds.UDFCompatibleDatafeed("https://demo_feed.tradingview.com")
+```
 
 #### timeframe
 
 设置图表的初始时间范围。时间范围是加载并显示在屏幕上的K线范围。有效的时间范围是一个数字加一个字母，D为数天，M为数月。
 
+```javascript
+timeframe: '3M',
+```
+
 #### timezone
 
 图表的初始时区。时间刻度上的数字取决于这个时区。请参阅[支持的时区列表](/book/Symbology.md#timezone)。设置为交易所时区。覆盖默认值，您应该使用[覆盖章节](/book/Widget-Constructor.md#overrides)。
+
+```javascript
+timezone: "America/New_York",
+```
 
 #### debug
 
 将此属性设置为 `true`时，可使图表将详细的API日志写入控制台。与功能集的`charting_library_debug_mode`用法相同。
 
+```javascript
+debug: true,
+```
+
 #### library\_path
 
 `static`文件夹的路径
 
+```javascript
+library_path: "charting_library/",
+```
+
 #### width, height
 
 widget的尺寸，请确保widget拥有足够的空间。
+
+```javascript
+width: 300,
+height: 600,
+```
 
 **Remark**: 如果您想让图表占据所有可用的空间，请不要使用 `100%` 这样的字段。使用`fullscreen`参数来代替（见下文）。这是因为DOM节点在不同浏览器中有调整大小的问题。
 
@@ -58,29 +137,53 @@ widget的尺寸，请确保widget拥有足够的空间。
 
 布尔值显示图表是否占用窗口中所有可用的空间。
 
+```javascript
+fullscreen: true,
+```
+
 #### autosize
 
 *默认值:* `false`
 
 布尔值，显示图表是否应使用窗格中的所有可用空间，并在调整窗格本身大小时自动调整大小。
 
+```javascript
+autosize: true,
+```
+
 #### symbol\_search\_request\_delay
 
 延迟阈值（以毫秒为单位），用于在用户在搜索框中键入商品名称时减少商品搜索请求的数量。
+
+```javascript
+symbol_search_request_delay: 1000,
+```
 
 #### auto\_save\_delay
 
 延迟秒数等待 `onAutoSaveNeeded` 可以被再次调用。 该参数介绍在1.5版本中。
 
+```javascript
+auto_save_delay: 5,
+```
+
 #### toolbar\_bg
 
 工具栏背景颜色
+
+```javascript
+toolbar_bg: '#f4f7f9',
+```
 
 #### study\_count\_limit
 
 *自1.5版本起。*
 
 多图布局图表的最大指标数量。 最小值为2。
+
+```javascript
+study_count_limit: 5,
+```
 
 #### studies\_access
 
@@ -108,19 +211,39 @@ widget的尺寸，请确保widget拥有足够的空间。
 
 版本：1.1 该属性与上述的`studies_access`具有相同的结构。 使用与您在UI中看到的名称相同的名称。
 
+```javascript
+drawings_access: {
+    type: 'black',
+    tools: [
+        {
+            name: 'Trend Line',
+            grayed: true
+        },
+    ]
+},
+```
+
 **Remark**: 基于字体的绘图有一个特殊情况。 使用`Font Icons`的名字时， 这个组是一个特例，它的绘图不能被启用或禁用 - 可以启用或禁用整个组。
 
 #### saved\_data
 
-JS对象包含保存的图表内容（JSON，请参阅下面的保存/加载调用）。如果在创建图表时已经有图表的JSON，请使用此参数。如果要将图表内容加载到已初始化的图表中，请使用`loadData()`控件方法。
+JS对象包含保存的图表内容（JSON，请参阅下面的保存/加载调用）。如果在创建图表时已经有图表的JSON，请使用此参数。如果要将图表内容加载到已初始化的图表中，请使用widget方法`load()`。
 
 #### locale
 
 图表库的本地化处理 。详情：[本地化](/book/Localization.md)
 
+```javascript
+locale: 'en',
+```
+
 #### numeric\_formatting
 
-该对象包含数字的格式化选项。目前唯一可能的选择是`decimal_sign`。例:`numeric_formatting: { decimal_sign: "," }`
+该对象包含数字的格式化选项。目前唯一可能的选择是`decimal_sign`。
+
+```javascript
+numeric_formatting: { decimal_sign: "," },
+```
 
 #### customFormatters
 
@@ -182,21 +305,52 @@ TradingView.onready(function()
 
 当用户按快照按钮时,使用base64编码将当前图表快照保存并返回URL。该服务返回完整的保存图像URL。
 
+```javascript
+snapshot_url: "https://myserver.com/snapshot",
+```
+
 #### custom\_indicators\_getter
 
 返回带有自定义指标数组的Promise对象的函数。
 `PineJS` 变量将作为此函数的第一个参数传递，并可在指标内用于访问内部帮助函数。
+
 查看[更多细节](/book/Creating-Custom-Studies.md)。
+
+
+```javascript
+custom_indicators_getter: function(PineJS) {
+    return Promise.resolve([
+        // *** your indicator object, created from the template ***
+    ]);
+},
+```
 
 #### preset
 
 `preset`是一组预定义widget设置的名称。现在预设中只支持`mobile`。此预设的示例可[在线获取](https://charting-library.tradingview.com)。
 
+```javascript
+preset: "mobile",
+```
+
 #### studies\_overrides
 
 使用此选项自定义默认指标的样式及输入值。 您还可以使用此参数自定义`Compare`数据列的样式和输入值。 [查看更多](/book/Studies-Overrides.md)
 
+```javascript
+studies_overrides: {
+    "volume.volume.color.0": "#00FFFF",
+},
+```
+
 #### time\_frames
+
+可以在图表底部选择的可见时间范围列表。请参阅[本主题](Time-Frames)，以了解有关时间范围的更多信息。时间范围是一个包含以下属性的对象：
+
+* `text` - 具有以下格式的字符串： `<integer><y|m|d>` ( \d+(y|m|d) as Regex ).。它定义了要设置的范围。
+* `resolution` - 具有 [这里](Resolution)描述格式的字符串。它定义了要设置的分辨率。
+* `description` (可选) - 在弹出菜单中显示的字符串。如果未设置，则使用该 `title` 属性。
+* `title` (可选) - 时间范围的字符串表示形式。如果未设置，则根据 `text` 属性生成标题。
 
 在图表底部的时间范围选择器中可以看见这个时间范围列表。 例:
 
@@ -210,25 +364,31 @@ time_frames: [
 ]
 ```
 
-time_frames是一个包含`text`和`resolution`属性的对象。
-`text`属性应具有以下格式：`<integer> <y | m | d>`\( \d+\(y\|m\|d\) 为正则表达式 \)。
-resolution是一个字符串,[格式说明](/book/Time-Frames.md)。
-
-属性 `description` 在v1.7开始支持，显示在弹出菜单中。 此参数是可选的。如果未指定，则使用`title`或`text`属性作为描述。
-
-属性 `title` 在v1.9开始支持，其值将覆盖基于`text`属性生成的默认标题。 此参数是可选的。
-
 #### charts\_storage\_url, client\_id, user\_id
 
-这些参数与用于保存/加载的高级API相关。 查看[更多细节](/book/Saving-and-Loading-Charts.md).
+这些参数与用于保存/加载的高级API相关。 查看[更多细节](/book/Saving-and-Loading-Charts.md)。
+
+```javascript
+charts_storage_url: 'http://storage.yourserver.com',
+client_id: 'yourserver.com',
+user_id: 'public_user_id',
+```
 
 #### charts\_storage\_api\_version
 
 您的后台版本。支持的值:`"1.0"`\|`"1.1"`。 指标模板从`1.1`开始得到支持。
 
+```javascript
+charts_storage_api_version: "1.1",
+```
+
 #### load\_last\_chart
 
 如果您希望图表库为用户加载上次保存的图表，请将此参数设置为 `true` (您应首先实现[save/load](Saving-and-Loading-Charts.md)以使其工作)。
+
+```javascript
+load_last_chart: true,
+```
 
 #### theme
 
@@ -236,11 +396,19 @@ resolution是一个字符串,[格式说明](/book/Time-Frames.md)。
 
 为图表添加自定义主题颜色。 支持的值是: `"Light"` | `"Dark"`.
 
+```javascript
+theme: "Light",
+```
+
 #### custom\_css\_url
 
 *从1.4版开始支持。*
 
 将您的自定义CSS添加到图表中。url应该是到`static`文件夹的绝对或相对路径。
+
+```javascript
+custom_css_url: 'css/style.css',
+```
 
 #### loading\_screen
 
@@ -263,78 +431,16 @@ loading_screen: { backgroundColor: "#000000" }
 * **intervals\(周期\)**: 收藏的周期数组。 例：`["D", "2D"]`
 * **chartTypes\(图表类型\)**: 收藏的图表类型数组 。图表类型名称与图表的UI中的英文版本相同。 例:`["Area", "Candles"]`
 
+```javascript
+favorites: {
+    intervals: ["1D", "3D", "3W", "W", "M"],
+    chartTypes: ["Area", "Line"]
+},
+```
+
 #### save_load_adapter
 
-*从1.12版开始支持。*
-
-包含保存/加载功能的对象。 如果设置了，应有以下方法：
-
-**Chart layouts**
-
- 1. `getAllCharts(): Promise<ChartMetaInfo[]>` 
- 
-    获取所有保存的图表。
-
-    `ChartMetaInfo` 具有以下字段的对象:
-      - `id` - 图表id
-      - `name` - 图表名
-      - `symbol` - 图表的商品
-      - `resolution` - 周期
-      - `timestamp` - 最后修改日期（从 `01/01/1970` 0时开始的毫秒单位UTC时间）。
-
- 2. `removeChart(chartId): Promise<void>`
-     
-     删除图表。 `chartId`是图表的唯一ID（参见上面的`getAllCharts`）。
-
- 3. `saveChart(chartData: ChartData): Promise<ChartId>`
-     
-     存储图表。
-
-    `ChartData` 具有以下字段的对象:
-      - `id` - 图表的唯一标识（如果未保存则可能是`undefined`）。
-      - `name` - 图表名
-      - `symbol` - 图表的商品
-      - `resolution` - 周期
-      - `content` - 图表的内容
-
-    `ChartId` - 图表唯一id (string)
-
- 4. `getChartContent(chartId): Promise<ChartContent>`
-     
-     通过服务器加载图表
-
-    `ChartContent` 带有图表内容的字符串（参见`saveChart`函数中的`ChartData::content`字段）。
-
-**Study Templates**
-
- 1. `getAllStudyTemplates(): Promise<StudyTemplateMetaInfo[]>`
-     
-     获取所有保存的指标模板。
-     
-    `StudyTemplateMetaInfo` 具有以下字段的对象:
-      - `name` - 指标模板名称
-
- 2. `removeStudyTemplate(studyTemplateInfo: StudyTemplateMetaInfo): Promise<void>`
-     
-     删除指标模板
-
- 3. `saveStudyTemplate(studyTemplateData: StudyTemplateData): Promise<void>`
-     
-     存储指标模板
-     
-    `StudyTemplateData` 具有以下字段的对象:
-      - `name` - 指标模板名称
-      - `content` - 指标模板的内容
-
- 4. `getStudyTemplateContent(studyTemplateInfo: StudyTemplateMetaInfo): Promise<StudyTemplateContent>`
- 
-     通过服务器加载指标模板
-     
-    `StudyTemplateContent` - 指标模板的内容 (string)
-
- 如果同时设置了 `charts_storage_url` 和 `save_load_adapter`, 将使用 `save_load_adapter`
-
- **重要：** 所有函数都会返回`Promise`（或`Promise`类对象）。
+包含保存/加载功能的对象。它用于实现自定义的保存/加载功能。请在[保存和加载图表](Saving-and-Loading-Charts.md#api-handlers)页面上查看详细信息和示例。
 
 #### settings_adapter
 
@@ -343,13 +449,31 @@ loading_screen: { backgroundColor: "#000000" }
 包含设置/删除方法的对象。 使用它将图表设置保存到您想要存储的地方，包括服务器端。 如果设置了，应该有以下方法：
 
 1. `initialSettings: Object`
-初始化设置
+初始化设置对象
 
 2. `setValue(key: string, value: string): void`
-存储键/值对
+调用以存储键/值对
 
 3. `removeValue(key: string): void`
-删除键
+调用以删除键
+
+### compare_symbols
+
+*从版本17开始。*
+
+一个可选字段，其中包含“比较”窗口的自定义比较商品数组。
+每个商品信息应包含以下字段：
+
+* `symbol` - 定义要比较的商品id字符串
+* `title` - ，将在相应复选框附近显示的商品名称
+
+```javascript
+compare_symbols: [
+    { symbol: 'DAL', title: 'Delta Air Lines' },
+    { symbol: 'VZ', title: 'Verizon' },
+    ...
+];
+```
 
 ## 交易终端专属
 
@@ -474,19 +598,30 @@ news_provider: {
 }
 ```
 
-#### brokerFactory
+#### broker_factory
 
 ![](../images/trading.png) *仅适用于[交易终端](Trading-Terminal.md)*
 
 使用这个字段来传递构造[经纪商API](/book/Broker-API.md)的实现类。 
 这是一个接收[交易主机](/book/Trading-Host.md)并返回[经纪商API](/book/Broker-API.md)的方法。
 
-#### brokerConfig
+```javascript
+broker_factory: function(host) { ... }
+```
+
+#### broker_config
 
 ![](../images/trading.png) *仅适用于[交易终端](Trading-Terminal.md)*
 
-`brokerConfig: { configFlags: {...} }`
 使用此字段设置交易终端的配置标志。 [了解更多](Trading-Objects-and-Constants.md#configflags-object)。
+
+```javascript
+broker_config: {
+    supportReversePosition: true,
+    supportPLUpdate: true,
+    ...
+},
+```
 
 # 也可以看看
 

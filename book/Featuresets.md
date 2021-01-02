@@ -37,6 +37,8 @@
 | control_bar                             | on       |      | 与图表底部的导航按钮相关联                                   |
 | timeframes_toolbar                      | on       |      |                                                              |
 | legend_widget                           | on       | 1.15 | 禁用此功能会隐藏图例窗口小部件                               |
+| display_legend_on_all_charts            | off           |       18        | 无论十字线同步如何，所有图上均显示图例 |
+| object_tree_legend_mode                 | on            |       18        | 在图例中以较小的宽度显示对象树按钮  |
 | **edit_buttons_in_legend**              | on       |      |                                                              |
 | - show_hide_button_in_legend            | on       | 1.7  |                                                              |
 | - format_button_in_legend               | on       | 1.7  |                                                              |
@@ -70,7 +72,9 @@
 | show_dom_first_time                     | off      | 1.12 | 当用户第一次打开图表时显示 DOM 面板                          |
 | hide_left_toolbar_by_default            | off      | 1.12 | 当用户第一次打开图表时，隐藏左侧工具栏                       |
 | chart_style_hilo                        | off      | 1.15 | 在图表样式控件中添加 Hi-Lo 选项                              |
-| pricescale_currency                     | on       | 1.16 | 在价格轴上显示交易工具所用的货币                              |
+| pricescale_currency                     | on       | 16 | 在价格轴上显示交易工具所用的货币                              |
+| scales_date_format                      | on            | 17              | 在图表设置中显示日期格式选择器 |
+| popup_hints                             | on            | 17              | 显示有关可能的鼠标/快捷键/ UI操作的弹出提示 |
 
 ### 元素放置
 
@@ -85,8 +89,8 @@
 | **use_localstorage_for_settings**        | on       |      | 允许将所有属性（包括收藏夹）存储到 localstorage                                                                                               |
 | - items_favoriting                       | on       |      | 禁用此功能会隐藏所有“收藏此项目”按钮                                                                                                          |
 | - save_chart_properties_to_local_storage | on       |      | 可以禁用以禁止将图表属性存储到 localstorage，同时允许保存其他属性。 其他属性是收藏在图表库和 Watchlist 的商品，以及交易终端中的一些面板状态。 |
-| create_volume_indicator_by_default       | on       |      |
-| create_volume_indicator_by_default_once  | on       |      |
+| create_volume_indicator_by_default       | on       |      ||
+| create_volume_indicator_by_default_once  | on       |      ||
 | volume_force_overlay                     | on       |      | 在主数据量列的窗格上放置成交量指标                                                                                                            |
 | right_bar_stays_on_scroll                | on       |      | 确定缩放功能的特性：如果禁用此功能，鼠标光标下的 K 线将保持在同一位置                                                                         |
 | constraint_dialogs_movement              | on       |      | 将对话框保留在图表中                                                                                                                          |
@@ -95,17 +99,17 @@
 | study_market_minimized                   | on       |      | 与“指标”对话框相关，并确定它是否紧凑或包含搜索栏以及类别                                                                                      |
 | study_dialog_search_control              | on       | 1.6  | 在指标对话框中显示搜索控件                                                                                                                    |
 | side_toolbar_in_fullscreen_mode          | off      |      | 可以在全屏模式下启用绘图工具栏                                                                                                                |
-| same_data_requery                        | off      |      | 允许您使用相同的商品调用`setSymbol`来刷新数据                                                                                                 |
+| header_in_fullscreen_mode | off |    16         | 在全屏模式下启用标题小部件DOM元素
 | disable_resolution_rebuild               | off      |      | 显示完全由 datafeed 提供的 K 线时间而不进行任何调整。                                                                                         |
 | chart_scroll                             | on       | 1.10 | 允许图表滚动                                                                                                                                  |
 | chart_zoom                               | on       | 1.10 | 允许图表缩放                                                                                                                                  |
-| horz_touch_drag_scroll                   | on       | 1.16 | 如果启用，图表将处理触摸屏上的水平指针移动。在这种情况下，网页不会滚动。如果禁用，则改为滚动网页。请记住，如果用户开始垂直或水平滚动图表，则在用户松开手指之前，滚动将继续沿任何方向进行。 |
-| vert_touch_drag_scroll                   | on       | 1.16 | 如果启用，图表将处理触摸屏上的垂直指针移动。在这种情况下，网页不会滚动。如果禁用，则改为滚动网页。请记住，如果用户开始垂直或水平滚动图表，则在用户松开手指之前，滚动将继续沿任何方向进行。 |
-| mouse_wheel_scroll                       | on       | 1.16 | 如果启用，则启用带水平鼠标滚轮的图表滚动。 |
-| pressed_mouse_move_scroll                | on       | 1.16 | 如果启用，则允许在按下鼠标左键的情况下滚动图表。 |
-| mouse_wheel_scale                        | on       | 1.16 | 如果启用，则启用使用鼠标滚轮的比例缩放。 |
-| pinch_scale                              | on       | 1.16 | 如果启用，则启用捏/缩放手势的系列缩放（此选项在触摸设备上受支持）。。 |
-| axis_pressed_mouse_move_scale            | on       | 1.16 | 如果启用，则允许按鼠标左键缩放轴。 |  
+| horz_touch_drag_scroll                   | on       | 16 | 如果启用，图表将处理触摸屏上的水平指针移动。在这种情况下，网页不会滚动。如果禁用，则改为滚动网页。请记住，如果用户开始垂直或水平滚动图表，则在用户松开手指之前，滚动将继续沿任何方向进行。 |
+| vert_touch_drag_scroll                   | on       | 16 | 如果启用，图表将处理触摸屏上的垂直指针移动。在这种情况下，网页不会滚动。如果禁用，则改为滚动网页。请记住，如果用户开始垂直或水平滚动图表，则在用户松开手指之前，滚动将继续沿任何方向进行。 |
+| mouse_wheel_scroll                       | on       | 16 | 如果启用，则启用带水平鼠标滚轮的图表滚动。 |
+| pressed_mouse_move_scroll                | on       | 16 | 如果启用，则允许在按下鼠标左键的情况下滚动图表。 |
+| mouse_wheel_scale                        | on       | 16 | 如果启用，则启用使用鼠标滚轮的比例缩放。 |
+| pinch_scale                              | on       | 16 | 如果启用，则启用捏/缩放手势的系列缩放（此选项在触摸设备上受支持）。。 |
+| axis_pressed_mouse_move_scale            | on       | 16 | 如果启用，则允许按鼠标左键缩放轴。 |  
 | high_density_bars                        | off      | 1.11 | 允许缩小以在单个屏幕上显示超过 60000 根 K 线                                                                                                  |
 | low_density_bars                         | off      | 1.15 | 允许放大以在视口中最多显示1 根 K 线                                                                                         |
 | uppercase_instrument_names               | on       | 1.12 | 禁用此功能允许用户输入区分大小写的商品                           
@@ -114,8 +118,8 @@
 | lock_visible_time_range_on_resize        | off      | 1.14 | 防止在图表调整大小时更改可见时区       |
 | shift_visible_range_on_new_bar  | on   | 1.15        | 如果禁用，则添加新的K线会缩小图表并保留第一个可见点。 否则，当出现新K线时，图表将向左滚动一点。|
 | custom_resolutions            | off   | 1.15            | 如果启用，则可以添加自定义分辨率  |
-| end_of_period_timescale_marks | off   | 1.16            | 切换时间线标记以显示K线的结束时间  |
-| cropped_tick_marks            | off   | 1.16****            | 如果禁用，则价格轴上部分可见的价格标签将被隐藏  |
+| end_of_period_timescale_marks | off   | 16            | 切换时间线标记以显示K线的结束时间  |
+| cropped_tick_marks            | on   | 16            | 如果禁用，则价格轴上部分可见的价格标签将被隐藏  |
 
 ### 重要功能
 
@@ -139,4 +143,13 @@
 | trading_notifications              | on       | 1.11     | 在图表上显示交易通知                               |
 | multiple_watchlists                | on       | 1.12     | 启用创建多个监视列表                               |
 | show_trading_notifications_history | on       | 1.13     | 启用底部面板中的 "通知日志" 选项卡                 |
-| always_pass_called_order_to_modify| on       | 1.15     | 如果修改了包围单，则交易终端将其父订单传递给`modifyOrder`。  |
+| always_pass_called_order_to_modify| on       | 1.15     | 如果修改了包围单，则交易终端将其父订单传递给`modifyOrder`  |
+| drawing_templates                      | on  | 17  | 在画线工具上启用画线模板
+| trading_account_manager | on | 17 | 显示账户管理器Widget
+| right_toolbar | on | 17 | 显示右键工具栏
+| order_panel | on | 17 | 显示订单面板
+| order_info | on | 17 | 在“订单”对话框中显示“订单信息”部分
+| buy_sell_buttons | on | 18 | 在图例中显示"买/卖"按钮
+| show_order_panel_on_start | off | 17 | 图表打开时显示订单面板
+| order_panel_close_button | on | 17 | 显示关闭订单面板按钮
+| order_panel_undock | on | 17 | 在“订单面板设置”中显示“取消停放”按钮

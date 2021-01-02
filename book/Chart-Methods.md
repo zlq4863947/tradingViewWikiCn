@@ -75,6 +75,10 @@
   - [selection()](#selection)
   - [setZoomEnabled(enabled)](#setzoomenabledenabled)
   - [setScrollEnabled(enabled)](#setscrollenabledenabled)
+  * [getTimeScale()](#gettimescale)
+  * [isSelectBarRequested()](#isselectbarrequested)
+  * [requestSelectBar()](#requestselectbar)
+  * [cancelSelectBar()](#cancelselectbar)
 
 # 图表订阅事件
 
@@ -1082,6 +1086,54 @@ widget.activeChart().setZoomEnabled(false);
 
 ```javascript
 widget.activeChart().setScrollEnabled(false);
+```
+
+### getTimeScale()
+
+*从版本18开始。*
+
+返回带有与时间轴关联的方法的[TimeScaleApi](Time-Scale-Api) 实例。
+
+```javascript
+var time = widget.activeChart().getTimeScale().coordinateToTime(100);
+```
+
+### isSelectBarRequested()
+
+*从版本18开始。*
+
+返回k先的选择模式是否处于活动状态。
+
+```javascript
+var isRequested = widget.activeChart().isSelectBarRequested();
+```
+
+### requestSelectBar()
+
+*从版本18开始。*
+
+图表状态切换到K线选择模式。例如，用于开启K线回放。
+
+返回一个Promise对象，该对象为resolved时，将返回用户选择的K线的时间（unix时间戳），或者如果已经请求或取消了K线选择（通过用户操作或[`cancelSelectBar()`](#cancelselectbar)方法），则为rejected。
+
+```javascript
+widget.activeChart().requestSelectBar()
+    .then(function(time) {
+        console.log('user selects bar with time', time);
+    })
+    .catch(function() {
+        console.log('bar selection was rejected');
+    });
+```
+
+### cancelSelectBar()
+
+*从版本18开始。*
+
+取消活动的选择K线请求（如果存在），否则不执行任何操作。
+
+```javascript
+widget.activeChart().cancelSelectBar();
 ```
 
 # 也可以看看
