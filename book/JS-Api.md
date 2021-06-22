@@ -12,13 +12,13 @@
 1. [onReady](#onreadycallback)
 2. [searchSymbols](#searchsymbolsuserinput-exchange-symboltype-onresultreadycallback)
 3. [resolveSymbol](#resolvesymbolsymbolname-onsymbolresolvedcallback-onresolveerrorcallback)
-4. [getBars](#getbarssymbolinfo-resolution-from-to-onhistorycallback-onerrorcallback-firstdatarequest)
+4. [getBars](#getbarssymbolinfo-resolution-periodparams-onhistorycallback-onerrorcallback)
 5. [subscribeBars](#subscribebarssymbolinfo-resolution-onrealtimecallback-subscriberuid-onresetcacheneededcallback)
 6. [unsubscribeBars](#unsubscribebarssubscriberuid)
-7. [calculateHistoryDepth](#calculatehistorydepthresolution-resolutionback-intervalback)
-8. [getMarks](#getmarkssymbolinfo-startdate-enddate-ondatacallback-resolution)
-9. [getTimescaleMarks](#gettimescalemarkssymbolinfo-startdate-enddate-ondatacallback-resolution)
-10. [getServerTime](#getservertimecallback)
+7. [getMarks](#getmarkssymbolinfo-startdate-enddate-ondatacallback-resolution)
+8. [getTimescaleMarks](#gettimescalemarkssymbolinfo-startdate-enddate-ondatacallback-resolution)
+9. [getServerTime](#getservertimecallback)
+10. [getVolumeProfileResolutionForPeriod](#getvolumeprofileresolutionforperiodcurrentresolution-from-to-symbolinfo)
 
 ![](../images/trading.png)[交易终端专属](#交易终端专属):
 
@@ -30,10 +30,8 @@
 
 ### [onReady\(callback\)](#onreadycallback)
 
-```js
-callback: function(configurationData)
-    configurationData: object (见下文)
-```
+1. `callback`: function(configurationData)
+   1. `configurationData`: object (见下文)
 
 此方法可以设置图表库支持的图表配置。这些数据会影响到图表支持的功能，所以它被称为[服务端定制](Customization-Overview.md#customization-done-through-data-stream)。
 
@@ -69,6 +67,25 @@ configurationData是一个对象，现在支持以下属性:
 
 示例：[“USD”，“EUR”，“GBP”]。
 
+#### [units](#units)
+
+列出支持的单位组的对象。 每个组可以有多个单位对象。 每个单位对象应具有以下字段：
+
+* `id`: string. 唯一主键
+* `name`: string. 缩略名
+* `description`: string. 简介
+
+例子:
+
+```javascript
+{
+    weight: [
+        { id: 'kg', name: 'kg', description: 'Kilograms' },
+        { id: 'lb', name: 'lb', description: 'Pounds'},
+    ]
+}
+```
+
 ##### [supports\_marks](#supportsmarks)
 
 布尔值来标识您的 datafeed 是否支持在K线上显示标记。
@@ -81,11 +98,22 @@ configurationData是一个对象，现在支持以下属性:
 
 将此设置为`true`假如您的datafeed提供服务器时间（unix时间）。 它仅用于在价格刻度上显示倒计时。
 
-##### futures_regex 
+##### [symbols\_grouping](#symbolsgrouping)
 
-设置后可以在商品搜索中对期货进行分组。 这个正则表达式会将期货商品分为两部分：合约种类和到期时间。 
+如果要在商品搜索中对商品进行分组，请设置它。
+值为一个对象，其中键是商品类型，值是正则表达式（每个正则表达式应该将一个期货名称分为两部分：合约种类和到期时间）。
 
-实例 regex: : `/^(.+)([12]!|[FGHJKMNQUVXZ]\d{1,2})$/`. 它将应用于类型为 `futures` 的商品图表。
+例子:
+
+```javascript
+    {
+      "futures": `/^(.+)([12]!|[FGHJKMNQUVXZ]\d{1,2})$/`,
+      "stock": `/^(.+)([12]!|[FGHJKMNQUVXZ]\d{1,2})$/`,
+    }
+```
+
+它将应用于 `type` 为 `futures` 和 `stock`的商品。
+
 
 ### [searchSymbols\(userInput, exchange, symbolType, onResultReadyCallback\)](#searchsymbolsuserinput-exchange-symboltype-onresultreadycallback)
 
@@ -121,21 +149,25 @@ configurationData是一个对象，现在支持以下属性:
 3. `onResolveErrorCallback`: function\(reason\)
 4. `extension`: 具有附加参数的可选对象。 它具有以下字段：
    1. `currencyCode`: string,  如果设置了currency_codes配置字段并且在原始商品信息中提供了currency_code，则可以提供它来表示要转换的货币。
+   1. `unitId`: string. 如果 `units` 配置，它可以被提供来指示要转换的单位。
+      设置字段并在商品信息中提供 `unit_id` 。
 
 方法介绍：通过商品名称解析商品信息\([SymbolInfo](/book/Symbology.md#商品信息结构)\)。
 
-### [getBars\(symbolInfo, resolution, from, to, onHistoryCallback, onErrorCallback, firstDataRequest\)](#getbarssymbolinfo-resolution-from-to-onhistorycallback-onerrorcallback-firstdatarequest)
+### [getBars\(symbolInfo, resolution, periodParams, onHistoryCallback, onErrorCallback\)](#getbarssymbolinfo-resolution-periodparams-onhistorycallback-onerrorcallback)
 
 1. `symbolInfo`:[SymbolInfo](/book/Symbology.md#商品信息结构) 商品信息对象
-2. `resolution`: string （周期）
-3. `from`: unix 时间戳, 最左边请求的K线时间
-4. `to`: unix 时间戳, 最右边请求的K线时间
-5. `onHistoryCallback`: function\(数组`bars`,`meta`=_{ noData = false }_\) 历史数据的回调函数。每次请求只应被调用一次。 此函数有2个参数：
+1. `resolution`: string （周期）
+1. `periodParams`: 具有以下字段的对象:
+   1. `from` - unix 时间戳, 最左边请求的K线时间(K线时间 >= from)
+   1. `countBack` - 要加载的K线的确切数量，如果您的datafeed支持它（见下文），则将视为拥有比 `from` 更高的优先级。 如果用户请求特定时间段，则可以不指定。
+   1. `to`: unix 时间戳, 最右边请求的K线时间(K线时间 < to)
+   1. `firstDataRequest`: 布尔值，以标识是否第一次调用此商品/周期的历史记录。当设置为`true`时
+      你可以忽略`to`参数（这取决于浏览器的`Date.now()`\) 并返回K线数组直到最新K线。
+1. `onHistoryCallback`: function\(数组`bars`,`meta`=_{ noData = false }_\) 历史数据的回调函数。每次请求只应被调用一次。 此函数有2个参数：
    1. `bars`: Bar对象数组`{time, close, open, high, low, volume}[]`
-   2. `meta`: object`{noData = true | false, nextTime = unix time}`
-6. `onErrorCallback`: function\(reason：错误原因\) 错误的回调函数。 该函数的唯一参数是文本错误消息。该消息不会显示，并保留以备将来使用。
-7. `firstDataRequest`: 布尔值，以标识是否第一次调用此商品/周期的历史记录。当设置为`true`时
-   你可以忽略`to`参数（这取决于浏览器的`Date.now()`\) 并返回K线数组直到最新K线。
+   1. `meta`: object`{noData = true | false, nextTime = unix time}`
+1. `onErrorCallback`: function\(reason：错误原因\) 错误的回调函数。 该函数的唯一参数是文本错误消息。该消息不会显示，并保留以备将来使用。
 
 方法介绍：当图表库需要由日期范围定义的历史K线片段时，将调用此函数。
 
@@ -153,6 +185,24 @@ configurationData是一个对象，现在支持以下属性:
 1. `noData` 布尔值, 只有在请求的时间段内没有数据时，才应该被设置。
 2. `nextTime` unix 时间戳(UTC), 历史K线的下一K线时间。只有在请求的时间段内没有数据时，才应该被设置。
 
+#### 关于 `periodParams`
+
+从 18 版本开始，图表库提供了 `countBack` 参数，可用于提高数据加载的性能。
+
+`from` 参数过去并且现在仍然不准确，因为它没有完全考虑到交易品种的交易时段。计算不准确的原因是速度（准确的计算具有线性时间复杂度，而不准确的计算具有恒定的复杂度）。
+
+`countBack` 图表需要的最小K线数（它可以稍微大一些），用来填充可见范围，以及 `to` 日期（这是最后加载的K线的日期） ，您只需一个请求即可轻松获取所需的数据。
+
+建议考虑`countBack`的优先级高于`from`的优先级，即必须返回`[from, to)`范围内的数据，但K线数不应小于`countBack`。如果K线的数量少于 `countBack`，图表库将再次调用 `getBars`。
+
+如果您的数据提供服务可以返回准确的K线数，最好在使用`from`日期的基础上，再使用`countBack`以提高效率：
+
+* 示例 1：假设图表在请求中请求 300 根K线，范围为 `[2019-06-01T00:00:00..2020-01-01T00:00:00]`。
+  如果您在请求的时间段 (`[2019-06-01T00:00:00..2020-01-01T00:00:00]`) 中只有 250 根K线并且您返回这 250 根K线，则图表将再次请求在`2019-06-01T00:00:00`日期之前的数据，以在加载 50 根K线。
+
+* 示例 2：假设图表在请求中请求 300 根K线，范围为 `[2019-06-01T00:00:00..2020-01-01T00:00:00]`。
+  如果您在请求的时间段内没有K线，也可以不需返回 {`noData: true`，和等于下一个可用数据的时间的`nextTime`}。您可以简单地返回 `2020-01-01T00:00:00` 之前的 300 根K线，即使该数据早于 `from` 日期。
+  
 ### [subscribeBars\(symbolInfo, resolution, onRealtimeCallback, subscriberUID, onResetCacheNeededCallback\)](#subscribebarssymbolinfo-resolution-onrealtimecallback-subscriberuid-onresetcacheneededcallback)
 
 1. `symbolInfo`:object [SymbolInfo](/book/Symbology.md#商品信息结构)
@@ -180,40 +230,6 @@ configurationData是一个对象，现在支持以下属性:
 1. `subscriberUID`:object
 
 方法介绍：取消订阅K线数据。在调用`subscribeBars`方法时,图表库将跳过与`subscriberUID`相同的对象。
-
-### [calculateHistoryDepth\(resolution, resolutionBack, intervalBack\)](#calculatehistorydepthresolution-resolutionback-intervalback)
-
-1. `resolution`: 请求商品的周期
-2. `resolutionBack`: 期望历史周期刻度。支持的值:`D`\|`M`
-3. `intervalBack`: 数量
-
-方法介绍：图表库在它要请求一些历史数据的时候会调用这个函数，让你能够覆盖所需的历史深度。
-
-通过传递的参数，可以让您知道要获得什么样的K线数据。 以下是几个例子:
-
-* `calculateHistoryDepth("D", "M", 12)`
-  调用: 图表库请求12个月的日线数据
-* `calculateHistoryDepth(60, "D", 15)`
-  调用: 图表库请求15天的60分钟数据
-
-如果你不想重写处理方法，这个函数应该返回`undefined`。如果你想要重写，它应该返回一个对象`{resolutionBack, intervalBack}`。
-
-例子:
-
-假设实现为
-
-```js
-Datafeed.prototype.calculateHistoryDepth = function(resolution, resolutionBack, intervalBack) {
-    if (period == "1D") {
-        return {
-            resolutionBack: 'M',
-            intervalBack: 6
-        };
-    }
-}
-```
-
-以上代码为当图表库将要求周期为`1D`，历史为6个月的深度。 在其他情况下，历史深度将具有其他默认值。
 
 ### [getMarks\(symbolInfo, startDate, endDate, onDataCallback, resolution\)](#getmarkssymbolinfo-startdate-enddate-ondatacallback-resolution)
 
@@ -266,6 +282,19 @@ mark为具有以下属性的对象:
 1. `callback`: function\(unixTime\)
 
 当图表需要知道服务器时间时，如果配置标志`supports_time`设置为`true`，则调用此函数。图表库预期只调用一次回调。所提供的时间没有毫秒。例子：1445324591。它是用来显示倒数的价格范围。
+
+### [getVolumeProfileResolutionForPeriod\(currentResolution, from, to, symbolInfo\)](#getvolumeprofileresolutionforperiodcurrentresolution-from-to-symbolinfo)
+
+*可选的*
+
+1. `currentResolution`：字符串。 图表上当前选择的分辨率
+   1.`from`：unix时间戳（UTC）。 最左边可见K线的时间
+1. `to`：unix 时间戳（UTC）。 最右侧可见K线的时间
+1. `symbolInfo`: [SymbolInfo](Symbology.md#symbolinfo-structure) 对象
+
+图表库调用此函数来获取将用于计算成交量分布图指标的分辨率。通常，您可能希望实现此方法以更准确地计算指标。实现实际上取决于您可以传输到图表库的成交量以及datafeed中的数据深度。
+
+**备注**：如果未提供此功能，则图表库使用 `currentResolution`。
 
 ## ![](../images/trading.png)[交易终端专属](#交易终端专属)
 

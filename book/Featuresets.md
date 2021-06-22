@@ -49,6 +49,7 @@
 | - scales_context_menu                   | on       |      |                                                              |
 | - legend_context_menu                   | on       |      |                                                              |
 | main_series_scale_menu                  | on       | 1.7  | 显示图表右下角的设置按钮                                     |
+| chart_crosshair_menu                  | on (terminal)       | 18  | 启用价格刻度上的“加号”按钮以进行快速交易                                     |
 | display_market_status                   | on       |      |                                                              |
 | remove_library_container_border         | on       |      |                                                              |
 | chart_property_page_style               | on       |      |                                                              |
@@ -72,9 +73,14 @@
 | show_dom_first_time                     | off      | 1.12 | 当用户第一次打开图表时显示 DOM 面板                          |
 | hide_left_toolbar_by_default            | off      | 1.12 | 当用户第一次打开图表时，隐藏左侧工具栏                       |
 | chart_style_hilo                        | off      | 1.15 | 在图表样式控件中添加 Hi-Lo 选项                              |
-| pricescale_currency                     | on       | 16 | 在价格轴上显示交易工具所用的货币                              |
+| pricescale_currency                     | off       | 16 | 在价格轴上显示交易工具所用的货币                              |
+| pricescale_unit                     | off       | 19 | 在价格轴上显示交易工具的单位                              |
 | scales_date_format                      | on            | 17              | 在图表设置中显示日期格式选择器 |
 | popup_hints                             | on            | 17              | 显示有关可能的鼠标/快捷键/ UI操作的弹出提示 |
+| save_shortcut                             | on            | 18              | 启用保存快捷方式 |
+| show_right_widgets_panel_by_default                             | on            | 18              | 首次启动时打开右侧小部件工具栏 |
+| show_object_tree                             | on            | 18              | 根据产品和配置在左侧或右侧面板中显示对象树按钮 |
+| show_spread_operators                             | on            | 20              | 在商品搜索对话框中显示价差运算符 |
 
 ### 元素放置
 
@@ -128,6 +134,8 @@
 | study_templates      | off      |        |                    |
 | datasource_copypaste | on       |        | 允许复制绘图和指标 |
 | seconds_resolution   | off      | 1.4    | 支持秒的周期       |
+| tick_resolution   | off      | 18    | 启用对tick分辨率的支持       |
+| secondary_series_extend_time_scale   | off      | 20    | 启用此项功能以允许附加系列扩展时间范围       |
 
 ## ![](/images/trading.png)交易终端
 
@@ -150,6 +158,7 @@
 | order_panel | on | 17 | 显示订单面板
 | order_info | on | 17 | 在“订单”对话框中显示“订单信息”部分
 | buy_sell_buttons | on | 18 | 在图例中显示"买/卖"按钮
+| broker_button | on | 19 | 显示图例中的 Broker 按钮
 | show_order_panel_on_start | off | 17 | 图表打开时显示订单面板
 | order_panel_close_button | on | 17 | 显示关闭订单面板按钮
 | order_panel_undock | on | 17 | 在“订单面板设置”中显示“取消停放”按钮

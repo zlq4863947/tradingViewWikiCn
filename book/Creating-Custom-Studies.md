@@ -208,7 +208,7 @@
 			this._input = inputCallback;
 
 			var symbol = "#EQUITY";
-			this._context.new_sym(symbol, PineJS.Std.period(this._context), PineJS.Std.period(this._context));
+            this._context.new_sym(symbol, PineJS.Std.period(this._context));
 		};
 
 		this.main = function(context, inputCallback) {

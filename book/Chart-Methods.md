@@ -14,8 +14,9 @@
   - [onDataLoaded\(\)](#ondataloaded)
   - [onSymbolChanged\(\)](#onsymbolchanged)
   - [onIntervalChanged\(\)](#onintervalchanged)
-  - [dataReady\(callback\)](#datareadycallback)
-  - [crossHairMoved\(callback\)](#crosshairmovedcallback)
+  - [onChartTypeChanged()](#oncharttypechanged)
+  - [dataReady\(\)](#dataready)
+  - [crossHairMoved\(\)](#crosshairmoved)
   - [onVisibleRangeChanged\(\)](#onvisiblerangechanged)
 - [图表动作](#图表动作)
   - [setVisibleRange\(range, options\)](#setvisiblerangerange-options)
@@ -42,7 +43,7 @@
   - [createShape\(point, options\)](#createshapepoint-options)
   - [createMultipointShape\(points, options\)](#createmultipointshapepoints-options)
   - [getShapeById(entityId)](#getshapebyidentityid)
-  - [removeEntity\(entityId\)](#removeentityentityid)
+  - [removeEntity\(entityId\)](#removeentityentityid-options)
   - [removeAllShapes\(\)](#removeallshapes)
   - [removeAllStudies\(\)](#removeallstudies)
   - [getPanes()](#getpanes)
@@ -70,6 +71,10 @@
   - [defaultScrollPosition()](#defaultscrollposition)
   - [priceFormatter\(\)](#priceformatter)
   - [chartType\(\)](#charttype)
+  - [getPriceToBarRatio()](#getpricetobarratio)
+  - [isPriceToBarRatioLocked()](#ispricetobarratiolocked)
+  - [getAllPanesHeight()](#getAllPanesHeight)
+  - [setAllPanesHeight(heights)](#setAllPanesHeightheights)
 - [其他](#其他)
   - [exportData(options)](#exportdataoptions)
   - [selection()](#selection)
@@ -79,6 +84,8 @@
   * [isSelectBarRequested()](#isselectbarrequested)
   * [requestSelectBar()](#requestselectbar)
   * [cancelSelectBar()](#cancelselectbar)
+  * [setPriceToBarRatio(value, options)](#setpricetobarratiovalue-options)
+  * [setPriceToBarRatioLocked(value, options)](#setpricetobarratiolockedvalue-options)
 
 # 图表订阅事件
 
@@ -98,12 +105,12 @@ widget.activeChart().onDataLoaded().subscribe(
 
 #### onSymbolChanged\(\)
 
-您可以使用此方法返回的[订阅](Subscription.md)对象进行订阅，以便在更改商品时收到通知，您还可以使用此订阅对象取消此订阅事件。
+您可以使用此方法返回的[订阅](Subscription.md)对象进行订阅，此函数返回的对象，用于在间隔更改时收到通知。 您还可以使用相同的对象取消订阅事件。
 
 示例:
 
 ```javascript
-widget.activeChart().onSymbolChanged().subscribe(null, () => console.log('The symbol is changed');
+widget.activeChart().onSymbolChanged().subscribe(null, () => console.log('The symbol is changed'));
 ```
 
 #### onIntervalChanged\(\)
@@ -116,41 +123,64 @@ widget.activeChart().onSymbolChanged().subscribe(null, () => console.log('The sy
 
    如果在用户单击时间周期面板时更改时间周期，则它包含 `timeframe`。
 
-   否则 `timeframe` 为 `undefined`，你可以改变它来显示某一范围的 K 线。 有效的 `timeframe` 是一个数字，字母`D`代表天数，`M`代表月数。
+   否则 `timeframe` 为 `undefined`，您可以更改它以显示特定范围的 K 线。 有效的时间范围是一个 `TimeFrameValue` 对象。
 
+   `TimeFrameValue` 可以是：
+    1. 一个时间期限对象，`{type, value}`：
+        * `type`：`period-back`。
+        * `value`：有效时间范围是一个数字，字母 D 表示天，M 表示月。
+    2. 一个范围对象，`{type, from, to}`
+        * `type`： `time-range`。
+        * `from`, `to`：UNIX 时间戳，UTC。
 示例:
 
 ```javascript
-widget.activeChart().onIntervalChanged().subscribe(null, (interval, timeframeObj) => timeframeObj.timeframe = "12M");
+widget.activeChart().onIntervalChanged().subscribe(null, (interval, timeframeObj) => timeframeObj.timeframe = { value: "12M", type: "period-back" });
+
+widget.activeChart().onIntervalChanged().subscribe(null,
+    (interval, timeframeObj) => timeframeObj.timeframe = { from: new Date('2015-01-01').getTime() / 1000, to: new Date('2017-01-01').getTime() / 1000, type: "time-range" }
+);
+```
+### onChartTypeChanged()
+
+您可以使用此函数返回的 [Subscription](Subscription.md) 对象进行订阅，以便在图表类型更改时收到通知。 您还可以使用相同的对象取消订阅事件。
+当事件被触发时，它将提供 `chartType` 参数，可能的值在 [这里](#setcharttypetype) 描述。
+
+例子：
+
+```javascript
+widget.activeChart().onChartTypeChanged().subscribe(null, (chartType) => console.log('图表类型改变'));
 ```
 
-#### dataReady\(callback\)
+#### dataReady\(\)
 
-1. `callback`: function\(interval\)
-
-如果 K 线数据已被加载或被接收时，图表库将立即调用此回调。  
-返回 `true` 为已经加载，否则为`false`。
+如果K线已经加载，则该函数返回`true`，否则返回`false`。
 
 示例:
 
 ```javascript
-widget.activeChart().dataReady(() => {
-    /* draw shapes */
-});
+if (widget.activeChart().dataReady()) {
+    /* do something */
+}
 ```
 
-#### crossHairMoved\(callback\)
+#### crossHairMoved\(\)
 
-_1.5 版本开始_
+您可以使用此函数返回的 [Subscription](Subscription.md) 对象进行订阅，以便在可见时间范围更改时收到通知。 您还可以使用相同的对象取消订阅事件。
 
-1. `callback`: function\({time, price}\)
+当事件被触发时，它将提供以下参数：
 
-每当十字线位置改变时，图表库将会调用回调函数。
+1.`params`：对象`{time price}`
+    * `time`：unix 时间戳，UTC。
+    * `price`：数字。
 
 示例:
 
 ```javascript
-widget.activeChart().crossHairMoved(({ time, price }) => console.log(time, price));
+widget.activeChart().crossHairMoved().subscribe(
+    null,
+    ({ time, price }) => console.log(time, price)
+);
 ```
 
 ### onVisibleRangeChanged()
@@ -222,7 +252,7 @@ widget.activeChart().setResolution('2M');
 #### resetData\(\)
 
 使图表重新请求 datafeed 中的数据。 通常你需要在图表数据发生变化时调用它。
-在调用这个之前，你应该调用[onResetCacheNeededCallback](JS-Api.md#subscribebarssymbolinfo-resolution-onrealtimecallback-subscriberuid-onresetcacheneededcallback)。
+在调用这个函数之前，你应该从 `subscribeBars` 调用 [`onResetCacheNeededCallback`](JS-Api.md#subscribebarssymbolinfo-resolution-onrealtimecallback-subscriberuid-onresetcacheneededcallback)。
 
 ```javascript
 widget.activeChart().resetData();
@@ -570,7 +600,7 @@ widget.activeChart().createMultipointShape(
 widget.activeChart().getShapeById(id).bringToFront();
 ```
 
-#### removeEntity\(entityId\)
+#### removeEntity\(entityId, options\)
 
 1. `entityId`：对象。 为创建实体 \(形状或指标\) 后返回的值。
 
@@ -1134,6 +1164,28 @@ widget.activeChart().requestSelectBar()
 
 ```javascript
 widget.activeChart().cancelSelectBar();
+```
+
+### setPriceToBarRatio（value, options）
+
+1. `value` 是要设置的新的比率（数字）
+2. `options` 是一个只包含 `disableUndo` 布尔属性的对象
+
+设置一个新的比率以及一些选项。
+
+```javascript
+widget.activeChart().setPriceToBarRatio(0.4567, { disableUndo: true });
+```
+
+### setPriceToBarRatioLocked（值，选项）
+
+1. `value` 用于锁定/解锁 k线比率的价格(布尔值)
+2. `options` 是一个只包含 `disableUndo` 布尔属性的对象
+
+设置/取消设置锁定属性以及一些选项。
+
+```javascript
+widget.activeChart().setPriceToBarRatioLocked(true, { disableUndo: false });
 ```
 
 # 也可以看看

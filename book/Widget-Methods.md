@@ -136,7 +136,7 @@ widget.onChartReady(function() {
 
 ```js
 widget.onShortcut("alt+s", function() {
-  widget.executeActionById("symbolSearch");
+  widget.chart().executeActionById("symbolSearch");
 });
 ```
 

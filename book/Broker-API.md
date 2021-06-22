@@ -31,7 +31,7 @@
 
 `e` 是浏览器传递的上下文对象
 
-图表可以在菜单中拥有`交易`子菜单。此方法返回子菜单的项目列表。格式与`buttonDropdownItems`相同。
+图表可以在菜单中拥有`交易`子菜单。 此方法应返回一组 [ActionMetaInfo](Trading-Objects-and-Constants.md#actionmetainfo) 元素，每个元素代表一个上下文菜单项。
 
 ### connectionStatus()
 
@@ -49,21 +49,37 @@ ConnectionStatus.Error = 4;
 
 该方法是浮动交易面板所必需的。通过面板进行交易的能力取决于这个方法的返回值是：`true`还是`false`。 如果所有商品都可以交易，则不需要实现这个方法。
 
-如果要显示自定义消息显示无法交易商品的原因，则可以返回对象`IsTradableResult`。 它只有两个键：tradable（`true`或`false`）和 reason（`string`）。
+如果要显示自定义消息显示无法交易商品的原因，则可以返回对象`IsTradableResult`。 它只有两个键：tradable（`true`或`false`）、solutions（`TradableSolutions`）、reason（`string`）和shortReason（`string`）。 Reason 显示在 Order 对话框中，而 shortReason 显示在图例中。
 
 ### accountManagerInfo()
 
 此方法用于返回账户管理器的信息。请参阅[账户管理器](Account-Manager.md)了解更多信息。
 
-### placeOrder([order](Trading-Objects-and-Constants.md#order))
+### placeOrder([order](Trading-Objects-and-Constants.md#order), confirmId)
 
 方法在用户想要下订单时调用。订单预先填写了部分或全部信息。
 
-### modifyOrder([order](Trading-Objects-and-Constants.md#order))
+如果 `supportPlaceOrderPreview` 配置标志打开，则传递 `confirmId`。
+
+### previewOrder([order](Trading-Objects-and-Constants.md#order))
+
+返回订单的估计佣金、费用、保证金和其他信息，而无需实际下订单。 如果 `supportPlaceOrderPreview` 配置标志打开，则调用该方法。
+结果将是一个具有以下字段的对象：
+
+`OrderPreviewResult` - 描述订单预览的结果。
+
+- `sections`：订单预览部分数组，[OrderPreviewSection](Trading-Objects-and-Constants.md#OrderPreviewSection)[]。
+- `confirmId` : 应该传递给 `placeOrder` 方法的唯一标识符
+- `warnings` : 可选的文本警告数组
+- `errors` : 可选的文本错误数组
+
+### modifyOrder([order](Trading-Objects-and-Constants.md#order), confirmId)
 
 1. `order` 是要修改的订单对象
 
 方法在用户想要修改现有订单时被调用。
+
+如果 `supportModifyOrderPreview` 配置标志打开，则传递 `confirmId`。
 
 ### cancelOrder(orderId, silently)
 
@@ -123,6 +139,12 @@ ConnectionStatus.Error = 4;
 - `type` - 合约类型, 只有 `forex` 比较特殊 - 它允许在订单对话框中实现负的点数。
 - `domVolumePrecision` - DOM `卖出/买入` 数量的小数位数（可选，默认为 0）
 - `marginRate` - 合约的保证金要求。`3%`的保证金率应表示为`0.03`
+- `stopPriceStep` - 止损和止损限价订单的止损价格字段的最小价格变化。如果设置，它将覆盖 minTick 值。
+- `limitPriceStep` - 限价和止损限价订单的限价字段的最小价格变化。如果设置，它将覆盖 minTick 值。
+- `allowedDurations` - 具有有效持续时间值的字符串数组。 您可以在订单对话框中进行检查。
+- `currency` - 在订单对话框中显示的工具货币
+- `baseCurrency` - 货币对中报价的第一种货币。 仅用于加密货币。
+- `quoteCurrency` - 货币对中报价的第二种货币。 仅用于加密货币。
 
 ### accountInfo(): Deferred (或 Promise)
 
@@ -171,6 +193,57 @@ ConnectionStatus.Error = 4;
 
 调用此方法后，经纪商应停止提供`pipValue`的更新。
 
+## 可选方法
+
+### getOrderDialogOptions(symbol): Promise\<OrderDialogOptions |未定义>
+
+1. `symbol` - 商品字符串。
+
+如果您使用标准订单对话框并希望对其进行自定义，则可以实现该方法。
+
+使用 `symbol` 参数返回特定商品的自定义选项。
+
+结果是一个带有 Order 对话框选项的对象：
+
+- `showTotal`：布尔值
+
+  使用此标志，您可以在“订单”对话框的“订单信息”部分将“交易价值”更改为“总计”。
+
+- `customFields`: (TextWithCheckboxFieldMetaInfo | CustomComboBoxMetaInfo)[];
+
+  使用customFields`，您可以向“订单”对话框添加其他输入字段。
+
+例子：
+
+```javascript
+customFields: [
+    {
+        inputType: 'TextWithCheckBox',
+        id: '2410',
+        title: 'Digital Signature',
+        placeHolder: 'Enter your personal digital signature',
+        value: {
+            text: '',
+            checked: false,
+        },
+        customInfo: {
+            asterix: true,
+            checkboxTitle: 'Save',
+        },
+    }
+]
+```
+
+### getPositionDialogOptions(): PositionDialogOptions
+
+如果要自定义位置对话框，可以实现该方法。
+
+结果是一个带有位置对话框选项的对象。
+
+- `customFields`: (TextWithCheckboxFieldMetaInfo | CustomComboBoxMetaInfo)[];
+
+    使用 `customFields` ，您可以向位置对话框添加额外的输入字段。
+    
 # 也可以看看
 
 - [如何连接](Widget-Constructor.md#brokerfactory)你的交易控制器到图表

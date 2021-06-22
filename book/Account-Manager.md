@@ -137,18 +137,13 @@
 
 列标题。它将显示在表的标题行中。
 
-##### className
+##### alignment
+单元格值的水平对齐方式。 默认值为 `left` 。
 
-可选的 `className` 被添加到每个值单元格的html标签。
-您可以使用它来自定义表的样式。
-
-以下是预定义类的列表：
-
-| class名   |   描述  |
+| 对齐| 说明 |
 |--------------|----------------|
-| `tv-data-table__cell--symbol-cell` | 商品字段的特殊格式化方法 |
-| `tv-data-table__cell--right-align` | 它将单元格值右对齐 |
-| `tv-data-table__cell--buttons-cell` | 单元格按钮 |
+| left | 它将单元格值左对齐 |
+| right| 它将单元格值向右对齐 |
 
 ##### formatter
 
@@ -159,17 +154,25 @@ formatter可以是默认格式或自定义格式
 
 | 名称 | 描述 |
 | ---- | ----------- |
-| `symbol` | 用于商品字段。 它显示 `brokerSymbol`，当单击`symbol`时，图表会更加`symbol`字段而改变。`property`被忽略。|
-| `side` | 用于显示交易方向：卖出或买入。 |
-| `type`| 用于显示订单类型：限价/止损/限价止损/市价。 |
-| `formatPrice` | 格式化价格 |
+| `date` | 显示日期或时间。 |
+| `dateOrDateTime` | 显示日期或日期和时间。这个格式化程序接受一个对象`{value: number, hasTime: boolean}`。如果`hasTime` 设置为`true`，则显示日期和时间。否则只显示日期。|
+| `fixed` | 显示一个带有 2 个小数位的数字。 |
+| `formatPrice` | 格式化商品价格 |
+| `formatQuantity` | 显示整数或浮点数，用空格分隔千分位。 |
 | `formatPriceForexSup` | 与 `formatPrice` 一样，但它使得价格的最后一个字符被上标。只有当合约的类型为 `forex` 时，它才起作用。|
-| `status` | 格式化状态 |
-| `date` | 显示日期或时间 |
 | `localDate` | 显示本地日期或时间 |
-| `fixed` | 显示2位小数点的数字。 |
+| `localDateOrDateTime` | 与 `dateOrDateTime` 相同，但它显示本地时区的时间。 |
 | `pips` | 显示1位小数点的数字。 |
 | `profit` | 显示利润。它还添加了 `+`，分隔成千位，并设置红色或绿色的单元文本颜色。 |
+| `profitInInstrumentCurrency` | 以期货的货币显示利润。它还添加了 `+` 号，分隔千位并将单元格文本颜色更改为红色或绿色。 |
+| `side` | 用于显示交易方向：卖出或买入。 |
+| `positionSide` | 用于显示持仓方：空头或多头。 |
+| `status` | 格式化状态 |
+| `symbol` | 用于商品字段。 它显示 `brokerSymbol`，当单击`symbol`时，图表会更加`symbol`字段而改变。`property`被忽略。|
+| `text` | 显示文本值。 |
+| `textNoWrap` | 显示没有自动换行的文本值。 |
+| `type`| 用于显示订单类型：限价/止损/限价止损/市价。 |
+| `variablePrecision` | 显示具有可变精度的数字。 |
 
 有一些特殊的格式化方法用于向表中添加按钮：
 
@@ -206,6 +209,18 @@ formatter可以是默认格式或自定义格式
 ##### fixedWidth
 如果为`true`，则当数字减少时，列宽不会减小。
 
+### showOnMobile
+
+如果为 `false`，则该列将不会显示在移动设备上。
+
+### showTooltipOnCell
+
+如果它是 `true`，当您将鼠标悬停在单元格上时会显示工具提示。 另请参阅`tooltipProperty`。
+
+### 工具提示属性
+
+`tooltipProperty` 是行对象的键，用于在将鼠标悬停在单元格上时显示工具提示。 tooltip 属性是指一个对象，其键是属性名称，值是相应的工具提示。
+
 ### supportedStatusFilters
 
 订单状态的可选数字数组，仅应用于订单列。如果可用，则该列将仅显示在状态过滤器的指定选项卡中。
@@ -221,14 +236,12 @@ formatter可以是默认格式或自定义格式
 
 ### 上下文菜单
 
-#### contextMenuActions(e, activePageItems)
+#### contextMenuActions(contextMenuEvent, activePageItems)
 
 `e`: 浏览器传递的上下文对象
+`contextMenuEvent`：浏览器传递的 MouseEvent 对象
 
-`activePageItems`: 当前页面的`ActionMetainfo`项目数组
+`activePageActions`：当前页面的 `ActionMetaInfo` 项数组
 
-可选方法以创建一个自定义上下文菜单。
-它返回用`ActionMetainfo`数组解析的 `Promise`。
-<!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE2NzE2MDMzODYsMTUwMTA5Mjk5MF19
--->
+创建自定义上下文菜单的可选函数。
+它应该返回用 `ActionMetaInfo` 数组解析的 `Promise`。

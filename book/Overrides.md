@@ -53,6 +53,8 @@ scalesProperties.showSeriesPrevCloseValue: false
 scalesProperties.showStudyLastValue: false
 scalesProperties.showStudyPlotLabels: false
 scalesProperties.showSymbolLabels: false
+scalesProperties.showCurrency: true
+scalesProperties.showUnit: true
 
 timeScale.rightOffset: 5
 
@@ -82,6 +84,7 @@ mainSeriesProperties.prevClosePriceLineColor: 'rgba( 85, 85, 85, 1)'
 mainSeriesProperties.lockScale: false
 mainSeriesProperties.minTick: "default"
 
+mainSeriesProperties.minTick: minTick 值是 3 个值的字符串表示: pricescale, minmove, fractional (见下文)
 mainSeriesProperties.priceAxisProperties.autoScale:true             (see #749)
 mainSeriesProperties.priceAxisProperties.autoScaleDisabled:false    (see #749)
 mainSeriesProperties.priceAxisProperties.percentage:false
@@ -89,7 +92,7 @@ mainSeriesProperties.priceAxisProperties.percentageDisabled:false
 mainSeriesProperties.priceAxisProperties.log:false
 mainSeriesProperties.priceAxisProperties.logDisabled:false
 
-// 可能的值包括: description, ticker.
+// 可能的值包括: description, ticker, ticker-and-description
 mainSeriesProperties.statusViewStyle.symbolTextSource: 'description'
 
 symbolWatermarkProperties.color : "rgba(0, 0, 0, 0.00)"
@@ -181,4 +184,45 @@ LINESTYLE_SOLID = 0;
 LINESTYLE_DOTTED = 1;
 LINESTYLE_DASHED = 2;
 LINESTYLE_LARGE_DASHED = 3;
+```
+
+### Mintick
+
+查看[此处](Symbology.md#minmov-pricescale-minmove2-fractional) 了解有关 `minTick` 值的更多信息。
+
+下面是所有可能值的列表，表示为一个对象以获得更好的可读性:
+
+```text
+{ priceScale: 1, minMove: 1, frac: false },
+{ priceScale: 10, minMove: 1, frac: false },
+{ priceScale: 100, minMove: 1, frac: false },
+{ priceScale: 1000, minMove: 1, frac: false },
+{ priceScale: 10000, minMove: 1, frac: false },
+{ priceScale: 100000, minMove: 1, frac: false },
+{ priceScale: 1000000, minMove: 1, frac: false },
+{ priceScale: 10000000, minMove: 1, frac: false },
+{ priceScale: 100000000, minMove: 1, frac: false },
+{ priceScale: 2, minMove: 1, frac: true },
+{ priceScale: 4, minMove: 1, frac: true },
+{ priceScale: 8, minMove: 1, frac: true },
+{ priceScale: 16, minMove: 1, frac: true },
+{ priceScale: 32, minMove: 1, frac: true },
+{ priceScale: 64, minMove: 1, frac: true },
+{ priceScale: 128, minMove: 1, frac: true },
+{ priceScale: 320, minMove: 1, frac: true },
+```
+
+除了上述值之外，默认 minTick 还有一个特殊值 - `'default'`.
+
+例子:
+
+```javascript
+// reset minTick to default
+tvWidget.applyOverrides({ 'mainSeriesProperties.minTick': 'default' });
+
+// set series' minTick to { priceScale: 10000, minMove: 1, frac: false }
+tvWidget.applyOverrides({ 'mainSeriesProperties.minTick': '10000,1,false' });
+
+// set default minTick for overlay studies to { priceScale: 10000, minMove: 1, frac: false }
+tvWidget.applyStudiesOverrides({ 'overlay.minTick': '10000,1,false' });
 ```
