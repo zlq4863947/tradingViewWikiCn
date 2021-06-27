@@ -47,6 +47,7 @@
 ---
 
 - [6、储存和载入图表](book/Saving-and-Loading-Charts.md)
+- [6-1、储存和载入的内存示例](book/Save-Load-Adapter-Example.md)
 - [7、创建自定义指标](book/Creating-Custom-Studies.md)
 - [8、最佳实践](book/Best-practices.md)
 - [9、经常被问到的问题](book/Frequently-Asked-Questions.md)

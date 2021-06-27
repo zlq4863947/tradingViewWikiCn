@@ -6,12 +6,13 @@
 
 ```javascript
 new TradingView.widget({
-    symbol: 'A',
-    interval: 'D',
-    timezone: "America/New_York",
-    container_id: "tv_chart_container",
-    locale: "ru",
-    datafeed: new Datafeeds.UDFCompatibleDatafeed("https://demo_feed.tradingview.com")
+  symbol: 'A',
+  interval: '1D',
+  timezone: "America/New_York",
+  container: "tv_chart_container",
+  locale: "ru",
+  datafeed: new Datafeeds.UDFCompatibleDatafeed("https://demo_feed.tradingview.com"),
+  library_path: "charting_library/"
 });
 ```
 
@@ -23,8 +24,9 @@ new TradingView.widget({
 
 * 图表库和交易终端
   * [symbol, interval*](#symbol-interval)
-  * [container_id*](#container_id)
+  * [container*](#container)
   * [datafeed*](#datafeed)
+  * [library_path*](#library_path)
   * [timeframe](#timeframe)
   * [timezone](#timezone)
   * [debug](#debug)
@@ -39,6 +41,7 @@ new TradingView.widget({
   * [studies_access](#studies_access)
   * [drawings_access](#drawings_access)
   * [saved_data](#saved_data)
+  * [saved_data_meta_info](#saved_data_meta_info)
   * [locale](#locale)
   * [numeric_formatting](#numeric_formatting)
   * [custom_formatters](#custom_formatters)
@@ -77,9 +80,19 @@ symbol: 'A',
 interval: '1D',
 ```
 
-#### container_id*
+### container*
 
-`id` 是DOM元素的id属性，带有图表的iframe将放置在其中。
+`container` 可以是对 DOM 元素的属性的引用，带有图表的 iframe 将被放置在其中，也可以是对 HTMLElement 本身的引用。
+
+```javascript
+container: "tv_chart_container",
+```
+
+或者
+
+```javascript
+container: document.getElementById("tv_chart_container"),
+```
 
 #### datafeed*
 
@@ -227,7 +240,15 @@ drawings_access: {
 
 #### saved\_data
 
-JS对象包含保存的图表内容（JSON，请参阅下面的保存/加载调用）。如果在创建图表时已经有图表的JSON，请使用此参数。如果要将图表内容加载到已初始化的图表中，请使用widget方法`load()`。
+包含已保存图表内容的 JS 对象。如果您已经保存了图表，则在创建widget时使用此参数。如果要在图表初始化时加载图表内容，请使用widget的 [load() 方法](Widget-Methods.md#loadstate) 。
+
+#### saved\_data\_meta\_info
+
+包含保存的图表内容元信息的 JS 对象。 此对象应具有以下字段：
+
+* `uid`：图表的唯一整数标识符
+* `name`：保存的图表名称
+* `description`：保存的图表描述
 
 #### locale
 
@@ -482,20 +503,25 @@ compare_symbols: [
 ![](../images/trading.png) *仅适用于[交易终端](Trading-Terminal.md)*
 
 含图表右侧窗口小部件面板设置的对象。可以使用Widget构造函数中的“widgetbar”字段启用图表右侧的监视列表，新闻和详细信息窗口小部件：
+包含图表右侧小部件面板设置的对象。 图表右侧的监视列表、新闻、详细信息和数据窗口小部件可以使用小部件构造函数中的 `widgetbar` 字段启用：
 
-```js
+```javascript
 widgetbar: {
-    details: true,
+  details: true,
     watchlist: true,
+    news: true,
+    datawindow: true,
     watchlist_settings: {
-        default_symbols: ["NYSE:AA", "NYSE:AAL", "NASDAQ:AAPL"],
-        readonly: false
-    }
+    default_symbols: ["NYSE:AA", "NYSE:AAL", "NASDAQ:AAPL"],
+    readonly: false
+  }
 }
 ```
 
 * `details` (*default:* `false`): 在右侧的小部件面板中启用详细信息小部件。
 * `watchlist` (*default:* `false`): 在右侧的小部件面板中启用观察列表小部件。
+* `news` (*default:* `false`): 在右侧的小部件面板中启用新闻小部件。
+* `datawindow` (*default:* `false`): ：在右侧的小部件面板中启用数据窗口小部件。
 * `watchlist_settings.default_symbols` (*default:* `[]`): 设置监视列表的默认商品列表。
 * `watchlist_settings.readonly` (*default:* `false`): 为监视列表启用只读模式。
 
@@ -567,34 +593,39 @@ widgetbar: {
    5. `link`\(可选\) - 新闻报道的URL
    6. `fullDescription`\(可选\) - 新闻项目的完整描述（正文）
 
-   **注意:**当用户点击新闻项目时，将打开带有`link`URL的新标签页。 如果没有指定`link`，将显示带有`fullDescription`的对话框弹出窗口。
+   **注意：** 只有 `title` 和 `published` 是必须项
+   用于比较已发布的内容和新发布的内容。
 
-   **注意2:**如果`news_provider`和`rss_news_feed`都可用，那么`rss_news_feed`将被忽略。
+   **注意2：** 当用户点击新闻项目时，将打开一个带有 `link` URL 的新标签。 如果未指定 `link`，则会显示带有 `fullDescription` 的弹出对话框。
+
+   **注意3：** 如果 `news_provider` 和 `rss_news_feed` 都可用，那么 `rss_news_feed` 将被忽略。
 
 例:
 
 ```js
+const dateOfPublication = new Date().valueOf();
+
 news_provider: {
-    is_news_generic: true,
-    get_news: function(symbol, callback) {
-        callback([
-            {
-                title: 'News for symbol ' + symbol,
-                shortDescription: 'Short description of the news item',
-                fullDescription: 'Full description of the news item',
-                published: new Date().valueOf(),
-                source: 'My own source of news',
-                link: 'https://www.tradingview.com/'
-            },
-            {
-                title: 'Another news for symbol ' + symbol,
-                shortDescription: 'Short description of the news item',
-                fullDescription: 'Full description of the news item. Long text here.',
-                published: new Date().valueOf(),
-                source: 'My own source of news',
-            }
-        ]);
-    }
+  is_news_generic: true,
+          get_news: function(symbol, callback) {
+    callback([
+      {
+        title: 'News for symbol ' + symbol,
+        shortDescription: 'Short description of the news item',
+        fullDescription: 'Full description of the news item',
+        published: dateOfPublication,
+        source: 'My own source of news',
+        link: 'https://www.tradingview.com/'
+      },
+      {
+        title: 'Another news for symbol ' + symbol,
+        shortDescription: 'Short description of the news item',
+        fullDescription: 'Full description of the news item. Long text here.',
+        published: dateOfPublication,
+        source: 'My own source of news',
+      }
+    ]);
+  }
 }
 ```
 

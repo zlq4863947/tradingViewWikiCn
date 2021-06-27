@@ -45,7 +45,7 @@ ConnectionStatus.Disconnected = 3;
 ConnectionStatus.Error = 4;
 ```
 
-### isTradable(symbol): `Promise<boolean | IsTradableResult>`
+### isTradable(symbol): Promise\<boolean | IsTradableResult>
 
 该方法是浮动交易面板所必需的。通过面板进行交易的能力取决于这个方法的返回值是：`true`还是`false`。 如果所有商品都可以交易，则不需要实现这个方法。
 
