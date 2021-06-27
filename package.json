@@ -20,8 +20,7 @@
   "scripts": {
     "build": "gitbook build",
     "start": "gitbook serve",
-    "cp-to-hexo": "cp -rf _book/*.* ../../../zlq4863947/site/hexo-site/source/books/tradingview",
-    "deploy-github": "yarn build && yarn cp-to-hexo && cd ../../../zlq4863947/site/hexo-site && yarn deploy"
+    "cp-to-hexo": "yarn build && cp -rf _book/* ../../../zlq4863947/site/hexo-site/source/books/tradingview"
   },
   "repository": {
     "type": "git",
