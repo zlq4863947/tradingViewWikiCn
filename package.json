@@ -1,0 +1,36 @@
+{
+  "name": "tradingviewwikicn",
+  "version": "1.0.0",
+  "description": "#### 最新修订时间: 2021-06-27",
+  "main": "index.js",
+  "dependencies": {
+    "gitbook-plugin-analytics": "^0.2.1",
+    "gitbook-plugin-disqus": "^0.1.0",
+    "gitbook-plugin-donate": "^1.0.2",
+    "gitbook-plugin-baidu-v3": "^0.0.3",
+    "gitbook-plugin-github": "^2.0.0",
+    "gitbook-plugin-google-adsense": "^0.1.0",
+    "gitbook-plugin-github-buttons": "^3.0.0",
+    "gitbook-plugin-insert-head-tag": "^0.2.0",
+    "gitbook-plugin-livere": "^0.1.4",
+    "gitbook-plugin-sitemap": "^1.2.0",
+    "gitbook-plugin-splitter": "^0.0.8"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "build": "gitbook build",
+    "start": "gitbook serve",
+    "cp-to-hexo": "cp -rf _book/*.* ../../../zlq4863947/site/hexo-site/source/books/tradingview",
+    "deploy-github": "yarn build && yarn cp-to-hexo && cd ../../../zlq4863947/site/hexo-site && yarn deploy"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zlq4863947/tradingViewWikiCn.git"
+  },
+  "author": "zlq4863947@gmail.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zlq4863947/tradingViewWikiCn/issues"
+  },
+  "homepage": "https://github.com/zlq4863947/tradingViewWikiCn#readme"
+}
