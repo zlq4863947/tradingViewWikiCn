@@ -143,14 +143,15 @@ Response: 响应将是调用[JS API](/book/JS-Api.md#searchsymbolsbynameuserinpu
 
 ### [K线柱](#k线柱)
 
-Request:`GET /history?symbol=<ticker_name>&from=<unix_timestamp>&to=<unix_timestamp>&resolution=<resolution>`
+Request: `GET /history?symbol=<ticker_name>&from=<unix_timestamp>&to=<unix_timestamp>&resolution=<resolution>&countback=<countback>`
 
-1. `symbol`: 商品名称或者代码
-2. `from`: unix timestamp \(UTC\) or leftmost required bar
-3. `to`: unix timestamp \(UTC\) or rightmost required bar
-4. `resolution`: string
+* `symbol`: 商品ID
+* `from`: unix timestamp \(UTC\) 最左侧所需K线的 unix 时间戳 
+* `to`: unix timestamp \(UTC\) 最右边的所需K线（不包括在内）
+* `resolution`: string
+* `countback`: 以 `to` 开头的k线（优先级高于 `from` ）。 如果设置了 `countback`，则应该忽略 `from`。
 
-例:`GET /history?symbol=BEAM~0&resolution=D&from=1386493512&to=1395133512`
+例: `GET /history?symbol=BEAM~0&resolution=D&from=1386493512&to=1395133512&countback=500`
 
 Response: 响应的预期是一个对象，下面列出了一些属性。每个属性都被视为表的列，如上所述。
 
@@ -164,7 +165,7 @@ Response: 响应的预期是一个对象，下面列出了一些属性。每个�
 * **v**: 成交量 \(可选\)
 * **nextTime**: 下一个K线柱的时间 如果在请求期间无数据 \(状态码为`no_data`\)  \(可选\)
 
-**Remark**: bar time 对于日K线柱预期为 一个交易日 \(not session start day\) 以 00:00 UTC为起点。 Charting Library 会根据SymbolInfo的[Session](/book/Symbology.md#session)时间进行匹配。
+**Remark**: bar time 对于日K线时间应以 00:00 UTC为起点。 图表库会根据SymbolInfo的[Session](/book/Symbology.md#session)来对齐时间。
 
 **Remark**: K线时间对于月K线柱为这个月的第一个交易日，除去时间的部分。
 

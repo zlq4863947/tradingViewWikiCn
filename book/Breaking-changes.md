@@ -6,9 +6,78 @@ _注意：您可以通过在浏览器控制台中执行 `TradingView.version()` 
 
 以下是重大变更列表：
 
-## Version 18
+## Version 20
 
 **交易终端**
+
+- `unixTimeAgo` 格式化方法已被删除。
+  
+- [Account Manager](Account-Manager.md) 格式化方法的属性`$container: JQuery` 已替换为`container: HTMLElement`。格式化方法将返回`string | HTMLElement` 而不是 `string | jQuery`。
+
+- 选项`showOrderPanel`、`showDOM` 和`showSellBuyButtons` 已从`defaultDropdownMenuActions` 选项列表中删除。
+
+- 方法`getOrderDialogOptions` 的返回值变为 Promise。
+- [交易主机](Trading-Host.md) `symbolSnapshot` 方法已被删除。
+
+- `cancellingBracketCancelsParentOrder` 和 `cancellingOnePositionBracketsCancelsOther` 标志已被删除。它们可以部分替换为 `supportCancellingBothBracketsOnly` 标志。
+  
+## Version 19
+
+_注意：container_id 已被标记为已弃用。现在应更改为 container 。 container 现在可以仍然是一个 id，也可以是您希望将widget添加到的 HTMLElement。_
+  
+- [crossHairMoved](Chart-Methods.md#crossHairMoved) 已从 _callback_ 参数更改为具有 `Subscription` 模型的 `crossHairMoved()`。
+  它仍然会返回相同的对象`params: {time, price}`。
+
+**交易终端**
+
+- [交易主机](Trading-Host.md)`defaultDropdownMenuActions` 选项已更改。选项`selectAnotherBroker` 和`disconnect` 已被删除。
+
+- [交易主机](Trading-Host.md) 中方法`buttonDropdownActions` 的返回值已从`BindPopupMenuActionDescription[]` 更改为[ActionMetaInfo](Trading-Objects-and-Constants.md#ActionMetaInfo) 数组。
+
+- `orderDialogOptions` 对象已从Broker的配置中删除。请使用`getOrderDialogOptions` 方法自定义订单对话框。
+- `className` 字段已从 [Account Manager 列描述](Account-Manager.md#Column-description) 中删除。使用 [alignment](Account-Manager.md#alignment) 字段来控制单元格值的对齐方式。
+- 商品信息中的`force_session_rebuild` 字段已被删除
+
+- [getBars](JS-Api.md#getbarssymbolinfo-resolution-periodparams-onhistorycallback-onerrorcallback) 参数的数量和类型已更改 - `from`、`to` 和 `firstDataRequest` 参数已合并到 `periodParams` 对象中。
+  要快速切换到新版本，需要替换如下代码:
+  
+    ```javascript
+        // ...
+
+        getBars(symbolInfo, resolution, from, to, onHistoryCallback, onErrorCallback, firstDataRequest) {
+            // 你的代码
+        }
+
+        // ...
+    ```
+
+  改为以下代码:
+
+    ```javascript
+        // ...
+
+        getBars(symbolInfo, resolution, periodParams, onHistoryCallback, onErrorCallback) {
+            let { from, to, firstDataRequest } = periodParams;
+            // 你的代码
+        }
+
+        // ...
+    ```
+- [getBars](JS-Api.md#getbarssymbolinfo-resolution-periodparams-onhistorycallback-onerrorcallback) 中的`to` 日期从现在开始将不包含在k线范围中。 `from` 日期仍然包含在内。这意味着您不应该在响应中包含带有 `time == to` 的k线。
+
+- 自定义指标中`ctx.new_sym` 方法的参数已更改，现在您不需要传递第三个参数（它可能会破坏指标）。
+  要快速解决此问题，请找到 `new_sym` 方法的所有用例，并确保仅将 2 个参数传递给它（而不是三个或更多）。
+  例如，如果您之前有 `ctx.new_sym(newSym, PineJS.Std.period(this._context), PineJS.Std.period(this._context))`，则需要将其替换为 `ctx.new_sym(newSym, PineJS.Std.period(this._context))`。
+
+- 移除了 [JS-Api](JS-Api) 中的 `calculateHistoryDepth` 方法。请改用 [`countBack`](JS-Api.md#note-about-periodparams)。
+  
+## Version 18
+
+- [configurationData](JS-Api.md#onreadycallback) 中的字段`futures_regex` 已被删除，请改用[symbols_grouping](JS-Api.md#symbols_grouping)。
+
+**交易终端**
+
+- `AccountManagerInfo` 接口中`contextMenuActions` 中的`contextMenuEvent` 类型已从JQueryEventObject 更改为MouseEvent。
 
 - `accountsList` 和 `account` 已从 Account Manager 信息中删除。他们已替换为方法： `currentAccount`, `setCurrentAccount` 和 `accountsMetainfo` 在 broker's API.
 
@@ -19,7 +88,9 @@ _注意：您可以通过在浏览器控制台中执行 `TradingView.version()` 
 - [Trading Host](Trading-Host.md) 方法 `floatingTradingPanelVisibility` 被重命名为 `sellBuyButtonsVisibility`.
 
 - [Trading Host](Trading-Host.md) `defaultDropdownMenuActions` 选项已更改。选项 `showFloatingToolbar` 已重命名为 `showSellBuyButtons`。
-
+  
+- 标志`supportOrderPreview` 已重命名为`supportPlaceOrderPreview`。
+  
 - 方法 [setPoints](Shape-Api.md#setpointspoints) 的作用与 [createMultipointShape](Chart-Methods.md#createmultipointshapepoints-options) 方法相同。 以前，它可以更改其他一些属性，例如width，而不是将点移动到新位置。
 
 ## Version 17

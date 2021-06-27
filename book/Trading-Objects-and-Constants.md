@@ -10,14 +10,21 @@
 
 ### configFlags: object
 
-这是一个应该在交易终端的构造函数中传递给[brokerConfig](Widget-Constructor.md#brokerConfig)的对象。每个字段应该有一个布尔值（`true`/`false`）:
+这是一个应该在交易终端的构造函数中传递给[brokerConfig](Widget-Constructor.md#broker_config)的对象。每个字段应该有一个布尔值（`true`/`false`）:
 
 * `supportReversePosition`
 
     *Default:* `false`
 
     是否支持反转持仓。
-    如果经纪商不支持，图表将有反转按钮，但是它会发出反转订单。
+    如果经纪商不支持，图表将有反转按钮，但是它会发出反向订单。
+
+* `supportNativeReversePosition`
+
+  *Default:* `false`
+
+    经纪商是否原生支持反转持仓。
+    如果经纪商本身不支持它，图表库将发出反向订单。
 
 * `supportClosePosition`
 
@@ -26,6 +33,18 @@
     是否支持平仓。
     如果经纪商不支持，图表将有平仓按钮，但它将发出平仓订单。
 
+* `supportPartialClosePosition`
+
+    *Default:* `false`
+
+    经纪商是否支持部分平仓。
+
+* `supportPartialCloseTrade`
+
+    *Default:* `false`
+
+    经纪商是否支持部分关闭交易。
+  
 * `supportReducePosition`
 
     *Default:* `false`
@@ -50,6 +69,13 @@
 
     是否支持订单的包围单。如果此标志为`true`，则图表将显示附加字段在图表和账户管理器中的订单窗口和修改按钮中。
 
+* `supportCryptoBrackets`
+
+    *Default:* `false`
+  
+    是否支持加密货币的包围单（止盈和止损）。
+    如果此标志设置为 `true`，图表将在订单单中显示其他字段。
+
 * `supportPositionBrackets`
 
     *Default:* `false`
@@ -62,10 +88,25 @@
 
     是否支持单一交易的包围单。 如果此标志为`true`，则图表将显示用于交易（单个持仓）的编辑按钮，并将`编辑持仓...`添加到交易的上下文菜单中。
 
-* `supportTrades`
+
+* `supportTrailingStop`
 
     *Default:* `false`
 
+    是否支持追踪止损单。
+    如果此标志设置为 `true`，则图表显示追踪止损订单，用户可以使用订单对话框设置追踪止损订单。
+
+* `supportPositions`
+
+    *Default:* `true`
+  
+    是否支持持仓。
+    如果设置为 `false`，则账户管理器中的持仓选项卡将被隐藏。
+  
+* `supportTrades`
+
+    *Default:* `false`
+  
     是否支持单个持仓（交易）。如果设置为`true`，帐户管理器中将有两个选项卡：单个持仓和净持仓。
 
 * `requiresFIFOCloseTrades`
@@ -92,6 +133,13 @@
 
     是否将`Amount`更改为`Quantity`
 
+* `supportCryptoExchangeOrderTicket`
+
+    *Default:* `false`
+  
+    账户是否用于兑换（交易）加密货币。
+    此标志将订单对话框切换到加密货币交易所模式。它增加了第二个货币数量控制，货币标签等。
+
 * `supportLevel2Data`
 
     *Default:* `false`
@@ -115,6 +163,12 @@
     *Default:* `true`
 
     是否支持将止损订单添加到订单对话框。
+
+* `supportStopOrdersInBothDirections`
+
+  *Default:* `false`
+
+  止损订单是否应该在两个方向上都像 Market-if-touched(触价指令) 一样。 启用此标志将从订单对话框中删除方向检查。
 
 * `upportStopLimitOrders`
 
@@ -146,27 +200,107 @@
 
     是否支持修改现有订单。 它默认启用。
 
-* `cancellingBracketCancelsParentOrder`
+* `supportModifyTrailingStop`
 
-    如果止损或止盈被取消，经纪商将取消主订单。
+  *Default:* `true`
 
-* `cancellingOnePositionBracketsCancelsOther`
+  经纪商是否支持修改追踪止损单。
 
-    如果第一个保护订单被用户取消，经纪上也会取消第二个保护订单（止损或止盈）。
+* `supportAddBracketsToExistingOrder`
+
+  *Default:* `true`
+
+  使用此标志，您可以禁用向现有订单添加包围单。
+
+* `supportBalances`
+
+  *Default:* `false`
+
+  仅用于加密货币。允许获取帐户的加密货币余额。余额显示在 "帐户摘要" 选项卡的第一个表格。
+
+* `supportDisplayBrokerNameInSymbolSearch`
+
+  *Default:* `true`
+
+  是否在交易商品搜索中显示经纪商交易商品名称。如果经纪商交易商品相同或者您使用内部数字作为经纪商交易商品名称，您通常可能希望禁用它。
+
+* `supportCancellingBothBracketsOnly`
+
+  *Default:* `false`
+
+  取消包围单（止盈或止损）会取消它的1对组合订单。
+
+* `supportPlaceOrderPreview`
+
+  *Default:* `false`
+
+  经纪商在下单前提供预估的佣金、费用、保证金等订单信息，但并未实际下单。
+
+* `supportModifyOrderPreview`
+
+  *Default:* `false`
+
+  经纪商在修改订单前提供预估的佣金、费用、保证金等订单信息，无需实际修改。
+
+* `supportOrdersHistory`
+
+  *Default:* `false`
+
+  经纪商是否支持订单历史记录。如果设置为 `true`，则帐户管理器中将有一个附加选项卡 - 订单历史记录。
+  应该实现`ordersHistory` 方法。它应该返回一个订单列表，其中包含之前交易时段的`filled`, `cancelled` 和 `rejected`状态的订单。
+
+* `closePositionCancelsOrders`
+
+  *Default:* `false`
+
+  平仓会取消它的包围单。
+
+* `supportOnlyPairPositionBrackets`
+
+    *Default:* `false`
+
+    `Stop Loss` 和 `Take Profit` 只能一起添加或删除。
+
+* `durationForMarketOrders`
+
+  *Default:* `false`
+
+  经纪商支持市价单的持续时间。 如果设置为 `true`，则将显示市价单的持续时间控件。
+
+* `showNotificationsLog`
+
+  *Default:* `true`
+
+  使用此标志，您可以显示/隐藏帐户管理器中的 `通知日志` 选项卡。
+  
+* `positionPLInInstrumentCurrency`
+
+  *Default:* `false`
+
+  使用此标志，您可以以期货货币显示 PL。
+
+* `supportConfirmations`
+
+  *Default:* `false`
+
+  使用此标志，您可以显示一个复选框以禁用确认对话框显示。
 
 ### durations: 对象数组
 
-订单的到期选项列表。这是可选的。如果您不希望在订单窗口单中显示持续时间，请不要设置它。
-对象具有以下键：`{ name, value, hasDatePicker?, hasTimePicker?, default? }`。
+订单到期选项列表。它是可选的。如果您不想在订单对话框中显示持续时间，请不要设置它。
+对象具有以下属性：`{ name, value, hasDatePicker?, hasTimePicker?, default? }`。
+
+* `name`: String. 持续时间的本地化标题。标题将显示在订单对话框的持续时间控件中。
+* `value`: String. 持续时间标识符。
+* `hasDatePicker`: Boolean. 如果它被设置为`true`，那么此持续时间类型的订单对话框中的显示日期控件将被显示。
+* `hasTimePicker`: Boolean. 如果设置为“true”，则订单对话框中此持续时间类型的显示时间控件将被显示。
+* `default`: Boolean. 默认持续时间。持续时间数组中只有一个持续时间对象可以具有此字段的`true`值。 当用户在静默模式下下订单时将使用默认持续时间，当用户第一次打开订单对话框时将使用默认持续时间。
+* `supportedOrderTypes`: [OrderType](#ordertype) 数组。此持续时间类型将显示在订单对话框的持续时间控件中的订单类型列表。
 
 例子:
 
 ```javascript
-durations: [
-    { name: 'DAY', value: 'DAY' },
-    { name: 'WEEK', value: 'WEEK', default: true },
-    { name: 'GTC', value: 'GTC' }
-];
+durations: [{ name: 'DAY', value: 'DAY' }, { name: 'WEEK', value: 'WEEK', default: true }, { name: 'GTC', value: 'GTC' }, { name: 'FOK', value: 'FOK', supportedOrderTypes: [OrderType.Market] }]
 ```
 
 ### customNotificationFields: 对象数组
@@ -179,51 +313,17 @@ durations: [
 customNotificationFields: ['additionalType']
 ```
 
-### orderDialogOptions
-
-可选字段。包含订单窗口选项的对象。使用这些选项，您可以自定义订单窗口。
-
-* `showTotal`: boolean
-
-    使用此标志，您可以在订单窗口中的`订单信息`部分中将`Trade Value`更改为`Total`。
-
-* `customFields`: (TextWithCheckboxFieldMetaInfo | CustomComboBoxMetaInfo)[];
-
-    使用`customFields`，您可以向订单窗口添加其他输入字段。
-
-例:
-
-```javascript
-customFields: [
-    {
-        inputType: 'TextWithCheckBox',
-        id: '2410',
-        title: 'Digital Signature',
-        placeHolder: 'Enter your personal digital signature',
-        value: {
-            text: '',
-            checked: false,
-        },
-        customInfo: {
-            asterix: true,
-            checkboxTitle: 'Save',
-        },
-    }
-]
-```
-
 ### customUI
 
-此可选字段可用于您自己的标准订单窗口和添加保护对话框。
-以下两个字段的值是交易终端调用以显示对话框的函数。每个函数都显示一个对话框并返回一个`Promise`对象，该对象应在操作完成或取消时解析。
+此可选字段可用于将标准订单对话框和添加保护对话框替换为您自己的对话框。
+以下两个字段的值是交易终端调用以显示对话框的函数。每个函数显示一个对话框并返回一个 ```Promise``` 对象，该对象应该在操作完成或取消时解析。
 
-**NOTE:** The returned ```Promise``` object should be resolved with either `true` or `false` value.
-**注意：** 返回的`promise`对象应使用`true`或`false`进行解析。
+**注意：** 返回的 ```Promise``` 对象应该使用 `true` 或 `false` 值解析。
 
 ```ts
 customUI: {
-    createOrderDialog?: (order: Order, focus?: OrderTicketFocusControl) => Promise<boolean>;
-    createPositionDialog?: (position: Position | Trade, brackets: Brackets, focus?: OrderTicketFocusControl) => Promise<boolean>;
+    showOrderDialog?: (order: Order, focus?: OrderTicketFocusControl) => Promise<boolean>;
+    showPositionDialog?: (position: Position | Trade, brackets: Brackets, focus?: OrderTicketFocusControl) => Promise<boolean>;
 }
 ```
 
@@ -435,11 +535,13 @@ OrderTicketFocusControl.TakeProfit = 3
 ## CustomComboBoxMetaInfo
 
 描述自定义组合框的对象。
+如果将 `saveToSettings` 设置为 `true`，则 ComboBox 的值将被保存并在您下次打开订单对话框或面板时用作默认值。
 
 * `inputType`: 'ComboBox'
 * `id`: string
 * `title`: string
 * `items`: CustomComboBoxItem[]
+* `saveToSettings?`: boolean
 
 ## CustomComboBoxItem
 

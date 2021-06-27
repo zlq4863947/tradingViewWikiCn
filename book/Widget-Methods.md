@@ -30,10 +30,13 @@ widget.onChartReady(function() {
   * [selectLineTool\(drawingId\)](#selectlinetooldrawingid)
   * [selectedLineTool()](#selectedlinetool)
   * [takeScreenshot()](#takeScreenshot)
+  * [takeClientScreenshot()](#takeclientscreenshotoptions)
   * [lockAllDrawingTools()](#lockAllDrawingTools)
   * [hideAllDrawingTools()](#hideAllDrawingTools)
   * [magnetEnabled](#magnetenabled)
   * [magnetMode](#magnetmode)
+  * [startFullscreen](#startfullscreen)
+  * [exitFullscreen](#exitfullscreen)
 * [保存/加载图表](#保存加载图表)
   * [save\(callback\)](#savecallback)
   * [load\(state\)](#loadstate)
@@ -136,7 +139,7 @@ widget.onChartReady(function() {
 
 ```js
 widget.onShortcut("alt+s", function() {
-  widget.executeActionById("symbolSearch");
+  widget.chart().executeActionById("symbolSearch");
 });
 ```
 
@@ -241,6 +244,18 @@ widget.onShortcut("alt+s", function() {
 
 快照的 URL 将作为参数传递给回调函数。
 
+### takeClientScreenshot(options)
+
+此方法获取图表布局的快照，并将其作为 `Promise` 中的 HTML 画布元素返回。
+
+`options` 是一个 *optional* 对象，具有以下字段：
+
+* `backgroundColor`：背景颜色
+* `font`：图例文本字体系列
+* `fontSize`：图例文本字体大小
+* `legendMode`: `vertical` 或 `horizontal`
+* `hideResolution`：如果图表的真实分辨率被隐藏
+
 ### lockAllDrawingTools()
 此方法返回一个 [WatchedValue](WatchedValue.md) 对象,
 可用于读取/设置/监视 "锁定所有绘图工具" 按钮的状态。
@@ -264,6 +279,14 @@ widget.onShortcut("alt+s", function() {
 
 * `0` - 弱磁模式
 * `1` - 强磁模式
+
+### startFullscreen()
+
+此方法进入全屏模式。
+
+### exitFullscreen()
+
+此方法退出全屏模式。
 
 # 保存/加载图表
 
