@@ -81,6 +81,12 @@
 | show_right_widgets_panel_by_default                             | on            | 18              | 首次启动时打开右侧小部件工具栏 |
 | show_object_tree                             | on            | 18              | 根据产品和配置在左侧或右侧面板中显示对象树按钮 |
 | show_spread_operators                             | on            | 20              | 在商品搜索对话框中显示价差运算符 |
+| hide_exponentiation_spread_operator     | off           |       20        | 在商品搜索对话框中隐藏指数展开运算符 (^) |
+| hide_reciprocal_spread_operator         | off           |       20        | 在商品搜索对话框中隐藏倒数展开运算符 (1/x) |
+| compare_symbol_search_spread_operators  | off           |       20        | 在“比较搜索”对话框中显示价差运算符 - 需要结合使用show_spread_operators才能显示|
+| studies_symbol_search_spread_operators  | off           |       20        | 显示指标的点差运算符 - 需要结合使用show_spread_operators才能显示|
+| hide_resolution_in_legend            | off            |       20        | 在图表图例和数据窗口中隐藏周期（D、2D、W、M 等）|
+| hide_unresolved_symbols_in_legend       | off            |       21        | 在图表图例和数据窗口中隐藏未解析的商品|
 
 ### 元素放置
 
@@ -101,7 +107,6 @@
 | right_bar_stays_on_scroll                | on       |      | 确定缩放功能的特性：如果禁用此功能，鼠标光标下的 K 线将保持在同一位置                                                                         |
 | constraint_dialogs_movement              | on       |      | 将对话框保留在图表中                                                                                                                          |
 | charting_library_debug_mode              | off      |      | 启用日志                                                                                                                                      |
-| show_dialog_on_snapshot_ready            | on       |      | 禁用此功能允许您以静默方式创建快照                                                                                                            |
 | study_market_minimized                   | on       |      | 与“指标”对话框相关，并确定它是否紧凑或包含搜索栏以及类别                                                                                      |
 | study_dialog_search_control              | on       | 1.6  | 在指标对话框中显示搜索控件                                                                                                                    |
 | side_toolbar_in_fullscreen_mode          | off      |      | 可以在全屏模式下启用绘图工具栏                                                                                                                |
@@ -126,6 +131,10 @@
 | custom_resolutions            | off   | 1.15            | 如果启用，则可以添加自定义分辨率  |
 | end_of_period_timescale_marks | off   | 16            | 切换时间线标记以显示K线的结束时间  |
 | cropped_tick_marks            | on   | 16            | 如果禁用，则价格轴上部分可见的价格标签将被隐藏  |
+| study_overlay_compare_legend_option | off | 20 | 将商品显示模式 (ticker/description) 应用于覆盖/比较状态行中的指标
+| study_symbol_ticker_description | off | 20 | 将商品显示模式 (ticker/description) 应用于状态行中的指标输入
+| auto_enable_symbol_labels  | on | 20 | 比较商品时显示商品名称标签
+| insert_indicator_dialog_shortcut  | on | 21 | 启用插入指示器对话框快捷方式 (/)
 
 ### 重要功能
 

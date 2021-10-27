@@ -16,25 +16,15 @@
 
 [accountManagerInfo](Broker-API.md#accountManagerInfo)应返回以下信息。
 
-### 帐户管理器标题信息
+### 帐户管理器标头
 
-帐户管理器的标题包括经纪商名称和帐户名称或帐户列表。
+帐户管理器标头包括经纪商名称。
 
 ##### accountTitle: String
-##### accountsList: AccountInfo数组
-##### account: 账户信息的[WatchedValue](WatchedValue.md)
-
-`AccountInfo` 是以下属性的对象。
-
-1. `id` - 帐户ID
-1. `name` - 账户名称
-1. `currency` - 账户货币
-
-未设置`currency`时，默认值为`USD`。
 
 ## 订单页
 
-### orderColumns: [列数组](#列描述)
+### orderColumns: [列对象](#列描述)数组
 
 要在`订单`页面上显示的列描述。
 
@@ -42,19 +32,19 @@
 
 ### orderColumnsSorting: [SortingParameters](#sortingparameters)
 
-可选的表格排序。如未设置，则表格按第一列排序。
+表格的可选排序。
 
-### possibleOrderStatuses: array of [OrderStatus](Trading-Objects-and-Constants.md#orderstatus)
+### possibleOrderStatuses: [OrderStatus](Trading-Objects-and-Constants.md#orderstatus)数组
 
 订单过滤器中使用的可选状态列表。如未设置，则使用默认列表。
 
-### hasHistoryColumns: array of [Column](#列描述)
+### hasHistoryColumns: [列对象](#列描述)数组
 
 如果存在，将显示历史记录页面。之前会话的所有订单都将显示在历史记录中。
 
 ### historyColumnsSorting: [SortingParameters](#sortingparameters)
 
-可选的表格排序。如未设置，则表格按第一列排序。
+表格的可选排序。
 
 ### 持仓页
 
@@ -87,11 +77,11 @@
 
 1. `id`: String 唯一标识
 
-2. `title`: String 表的可选标题。
+1. `title`: String 表的可选标题。
 
-3. `columns`: [列数组](#列描述)
+1. `columns`: [列数组](#列描述)
 
-4. `getData`: Promise
+1. `getData`: Promise
 
 此方法用于请求表的数据。它返回promise（或Deferred）并解析它返回的数据数组。
 
@@ -99,39 +89,25 @@
 
 预定义字段`isTotalRow`，可用于在表底部显示行的总数。
 
-5. `changeDelegate` : [Delegate](Delegate.md)
+1. `changeDelegate` : [Delegate](Delegate.md)
 
 此委托用于监视数据的变动并更新表。将新的用户管理器数据传递给委托的`fire`方法。
 
-6. `initialSorting`: [SortingParameters](#sortingparameters)
+1. `initialSorting`: [SortingParameters](#sortingparameters)
 
-可选的表格排序。如未设置，则表格按第一列排序。
+表格的可选排序。
 
-**注意**：如果表中有多行，并且想使用 `changeDelegate` 更新一行，请确保每行中都有 `id` 字段来标识它。
-如果表中只有一行，则不是必须的。
+**注意**：请确保每行中都有唯一 `id` 字段来标识它。
 
 #### SortingParameters
 
 具有以下属性的对象:
-- `columnId` - 将用于排序的列的`id`或`property`。
-- `asc` - (可选, 默认为 `false`) - 为`true`时,初始排序将按升序排列。
-
-### Formatters
-
-##### customFormatters: 列格式的描述数组
-
-用于定义自定义格式器的可选数组。每个描述都是一个包含以下字段的对象：
-
-`name`: 唯一标识
-`format(options)`: 用于格式化单元格值的方法。 `options` 是一个具有以下键的对象：
-1. `value` - 要格式化的值
-2. `priceFormatter` - 价格标准格式。 您可以使用`format(price)` 方法来设置价格的值。
-3. `prevValue` - 可选字段。 它是一个以前的值，所以你可以相应地进行比较和格式化。如果当前列具有 `highlightDiff: true` key.
-4. `row` - 具有当前行中所有键/值对的对象
+- `columnId` - 将用于排序的列的`property`。
+- `asc` - (可选, 默认为 `true`) - 为`false`时,初始排序将按将序排列。
 
 ### 列描述
 
-帐户管理器描述中最有价值的部分是其列的描述。
+帐户管理器描述中最有价值的部分是列描述。
 
 ##### label
 
@@ -176,11 +152,11 @@ formatter可以是默认格式或自定义格式
 
 有一些特殊的格式化方法用于向表中添加按钮：
 
-`orderSettings`将修改/取消按钮添加到订单选项卡。始终为此格式化方法将`modificationProperty`值设置为`status`。
+`orderSettings`将修改/取消按钮添加到订单选项卡。
 
 `posSettings`将编辑/关闭按钮添加到仓位/净头寸选项卡
 
-`tradeSettings`将编辑/关闭按钮添加到个人位置选项卡。始终为此格式化方法将`modificationProperty`值设置为`canBeClosed`。
+`tradeSettings`将编辑/关闭按钮添加到个人头寸选项卡。
 
 ##### property
 
@@ -189,10 +165,6 @@ formatter可以是默认格式或自定义格式
 ##### sortProp
 
 可选的 `sortProp` 是用于数据排序的数据对象的键。
-
-##### modificationProperty
-
-可选的 `modifyProperty` 是数据对象的一个关键字，它被用于修改。
 
 ##### notSortable
 
@@ -206,18 +178,7 @@ formatter可以是默认格式或自定义格式
 
 `highlightDiff` 可以使用`formatPrice`和`formatPriceForexSup`格式化方法来设置字段的更改。
 
-##### fixedWidth
-如果为`true`，则当数字减少时，列宽不会减小。
-
-### showOnMobile
-
-如果为 `false`，则该列将不会显示在移动设备上。
-
-### showTooltipOnCell
-
-如果它是 `true`，当您将鼠标悬停在单元格上时会显示工具提示。 另请参阅`tooltipProperty`。
-
-### 工具提示属性
+### tooltipProperty
 
 `tooltipProperty` 是行对象的键，用于在将鼠标悬停在单元格上时显示工具提示。 tooltip 属性是指一个对象，其键是属性名称，值是相应的工具提示。
 
@@ -234,12 +195,20 @@ formatter可以是默认格式或自定义格式
 - 5 - Rejected,
 - 6 - Working
 
+### isCapitalize
+
+如果为 `true`，则列中句子中每个单词的第一个字符将大写。 默认值为 `true`。
+
+### showZeroValues
+
+如果它是 `false`，零值将被隐藏。 默认值为 `true`。
+
 ### 上下文菜单
 
 #### contextMenuActions(contextMenuEvent, activePageItems)
 
 `e`: 浏览器传递的上下文对象
-`contextMenuEvent`：浏览器传递的 MouseEvent 对象
+`contextMenuEvent`：浏览器传递的 MouseEvent 或 TouchEvent 对象
 
 `activePageActions`：当前页面的 `ActionMetaInfo` 项数组
 

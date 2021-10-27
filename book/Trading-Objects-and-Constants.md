@@ -285,6 +285,13 @@
 
   使用此标志，您可以显示一个复选框以禁用确认对话框显示。
 
+* `supportExecutions`
+
+  *Default:* `false`
+
+  经纪人支持执行。
+  如果此标志设置为 `true` ，则图表将显示执行情况。
+
 ### durations: 对象数组
 
 订单到期选项列表。它是可选的。如果您不想在订单对话框中显示持续时间，请不要设置它。
@@ -392,6 +399,20 @@ customUI: {
 * `enabled`: Boolean
 * `action`: function. 当用户单击该项目时执行的方法。它有一个参数 - 复选框的值（如果存在）。
 
+## OrderPreviewSection
+
+描述单个订单预览部分。订单预览可以有多个由分隔符分隔的部分，并且可能有标题。
+
+* `rows` - 订单预览项数组 [OrderPreviewSectionRow](#OrderPreviewSectionRow)[]。每一项都是.section表的一行。
+* `header` - 部分的可选标题。
+
+## OrderPreviewSectionRow
+
+OrderPreviewSectionRow - 描述订单预览的section表的单行。
+
+* `title` - 项目的描述。
+* `value` - 项目的格式化值。
+* 
 ## OrderType
 
 用于描述订单状态的字符串常量。
@@ -562,3 +583,19 @@ OrderTicketFocusControl.TakeProfit = 3
 
 * `valid`: false
 * `errorMessage`: string
+
+## PlaceOrderResult
+
+描述下单结果的对象。
+
+* `orderId`: string
+
+## QuantityMetainfo
+
+描述数量字段的步长和边界的对象。
+
+* `min`: number
+* `max`: number
+* `step`: number
+* `uiStep?`: number. 滚动的步长。
+* `default?`: number. 这是一个默认的数量值。

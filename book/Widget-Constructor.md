@@ -62,6 +62,9 @@ new TradingView.widget({
   * [save_load_adapter](#save_load_adapter)
   * [settings_adapter](#settings_adapter)
   * [compare_symbols](#compare_symbols)
+  * [additional_symbol_info_fields](#additional_symbol_info_fields)
+  * [header_widget_buttons_mode](#header_widget_buttons_mode)
+  * [time_scale](#time_scale)
 * 交易终端
   * [widgetbar](#widgetbar)
   * [rss_news_feed](#rss_news_feed)
@@ -496,6 +499,50 @@ compare_symbols: [
 ];
 ```
 
+### additional_symbol_info_fields
+
+包含一组自定义交易商品信息字段的可选字段，这些字段将显示在交易商品信息对话框中。
+每个附加交易商品信息字段应具有以下属性：
+
+* `title` - 用作新商品信息名称的字符串
+* `propertyName` - 用于从图表datafeed返回的交易商品信息中查找属性的字符串
+
+有关商品信息的更多信息，请参阅 [商品体系](Symbology.md#SymbolInfo-Structure)。
+
+```javascript
+additional_symbol_info_fields: [
+    { title: 'Ticker', propertyName: 'ticker' }
+]
+```
+
+### header_widget_buttons_mode
+
+用于更改顶部工具栏上按钮外观的附加可选字段。
+模式可以是以下几种：
+
+* `fullsize`: 顶部工具栏上显示全屏按钮
+* `adaptive`: 自适应/自动模式（如果窗口宽度允许，则为全屏，小窗口时显示图标）。
+* `compact`: 顶部工具栏上的仅图标按钮（不会显示收藏夹）
+
+默认情况下（如果省略选项）标题将处于自适应模式（如果窗口宽度允许，则为全屏，小窗口时显示图标）。
+
+```javascript
+header_widget_buttons_mode: 'fullsize',
+```
+
+### time_scale
+
+在屏幕上添加更多K线的附加可选字段。
+目前唯一可用的子选项是：
+
+* `min_bar_spacing`: number - 应该大于 0。
+
+```javascript
+time_scale: {
+    min_bar_spacing: 10,
+}
+```
+
 ## 交易终端专属
 
 #### widgetbar
@@ -578,13 +625,9 @@ widgetbar: {
 
 ![](../images/trading.png) *仅适用于[交易终端](Trading-Terminal.md)*
 
-指定新闻提供者的对象。 它可能包含以下属性：
+使用此属性设置您自己的新闻获取功能。 `symbol` 和 `callback` 都将传递给函数。
 
-1. `is_news_generic`- 如果为`true`, 则新闻小部件的标题将不包含商品名称（仅包含“标题”）。 否则将添加`for SYMBOL_NAME`。
-
-2. `get_news`- 使用此属性设置自己的新闻getter方法。 `symbol`和`callback`都将传递给函数。
-
-   回调函数被调用时，会传递以下结构的新闻对象:
+应使用对象调用回调函数。该对象应该有两个属性：`title` 是一个可选字符串，以及 `newsItems` 是一个具有以下结构的新闻对象数组：
 
    1. `title`\(必须\) - 新闻标题。
    2. `published`\(必须\) - 新闻时间（以毫秒为单位的UTC时间）
@@ -593,41 +636,13 @@ widgetbar: {
    5. `link`\(可选\) - 新闻报道的URL
    6. `fullDescription`\(可选\) - 新闻项目的完整描述（正文）
 
-   **注意：** 只有 `title` 和 `published` 是必须项
-   用于比较已发布的内容和新发布的内容。
+   **注意：** 只有 `title` 和 `published` 是用于比较已发布内容和新内容的主要属性。
 
    **注意2：** 当用户点击新闻项目时，将打开一个带有 `link` URL 的新标签。 如果未指定 `link`，则会显示带有 `fullDescription` 的弹出对话框。
 
    **注意3：** 如果 `news_provider` 和 `rss_news_feed` 都可用，那么 `rss_news_feed` 将被忽略。
 
-例:
-
-```js
-const dateOfPublication = new Date().valueOf();
-
-news_provider: {
-  is_news_generic: true,
-          get_news: function(symbol, callback) {
-    callback([
-      {
-        title: 'News for symbol ' + symbol,
-        shortDescription: 'Short description of the news item',
-        fullDescription: 'Full description of the news item',
-        published: dateOfPublication,
-        source: 'My own source of news',
-        link: 'https://www.tradingview.com/'
-      },
-      {
-        title: 'Another news for symbol ' + symbol,
-        shortDescription: 'Short description of the news item',
-        fullDescription: 'Full description of the news item. Long text here.',
-        published: dateOfPublication,
-        source: 'My own source of news',
-      }
-    ]);
-  }
-}
-```
+   使用示例参见[新闻API示例](News-Api-Examples.md)。
 
 #### broker_factory
 

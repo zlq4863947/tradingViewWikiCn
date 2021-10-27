@@ -13,7 +13,10 @@ volumePaneSize: "large"
 // 在文本编辑器中可用的字体（即，在`文本`绘图工具属性对话框中）
 editorFontsList: ['Verdana', 'Courier New', 'Times New Roman', 'Arial']
 
+paneProperties.backgroundType: 'solid' // or 'gradient'
 paneProperties.background: "#ffffff"
+paneProperties.backgroundGradientStartColor: "#ffffff"
+paneProperties.backgroundGradientEndColor: "#ffffff"
 paneProperties.vertGridProperties.color: "#E6E6E6"
 paneProperties.vertGridProperties.style: LINESTYLE_SOLID
 paneProperties.horzGridProperties.color: "#E6E6E6"
@@ -139,15 +142,15 @@ mainSeriesProperties.barStyle.barColorsOnPrevClose: false
 mainSeriesProperties.barStyle.dontDrawOpen: false
 
 // 线形图样式
-mainSeriesProperties.lineStyle.color: "#0303F7"
+mainSeriesProperties.lineStyle.color: "#2962FF"
 mainSeriesProperties.lineStyle.linestyle: LINESTYLE_SOLID
 mainSeriesProperties.lineStyle.linewidth: 1
 mainSeriesProperties.lineStyle.priceSource: "close"
 
 // 面积图样式
 mainSeriesProperties.areaStyle.color1: "#606090"
-mainSeriesProperties.areaStyle.color2: "#01F6F5"
-mainSeriesProperties.areaStyle.linecolor: "#0094FF"
+mainSeriesProperties.areaStyle.color2: "#2962FF"
+mainSeriesProperties.areaStyle.linecolor: "#2962FF"
 mainSeriesProperties.areaStyle.linestyle: LINESTYLE_SOLID
 mainSeriesProperties.areaStyle.linewidth: 1
 mainSeriesProperties.areaStyle.priceSource: "close"
@@ -167,11 +170,11 @@ mainSeriesProperties.baselineStyle.transparency: 50
 mainSeriesProperties.baselineStyle.baseLevelPercentage: 50
 
 // Hi-Lo style
-mainSeriesProperties.hiloStyle.color: "#2196f3"
+mainSeriesProperties.hiloStyle.color: "#2962FF"
 mainSeriesProperties.hiloStyle.showBorders: true
-mainSeriesProperties.hiloStyle.borderColor: "#2196f3"
+mainSeriesProperties.hiloStyle.borderColor: "#2962FF"
 mainSeriesProperties.hiloStyle.showLabels: true
-mainSeriesProperties.hiloStyle.labelColor: "#2196f3"
+mainSeriesProperties.hiloStyle.labelColor: "#2962FF"
 mainSeriesProperties.hiloStyle.fontFamily: 'Trebuchet MS'
 mainSeriesProperties.hiloStyle.fontSize: 7
 

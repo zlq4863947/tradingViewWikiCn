@@ -77,12 +77,14 @@ Response: 预期响应是具有以下列出的属性的对象。 每个属性都
 * **type**
 * **ticker**
 * **timezone**
-* **session-regular**\(mapped to`SymbolInfo.session`\)
+* **session-regular**\(映射到`SymbolInfo.session`\)
+* **session-holidays**
+* **corrections**
 * **supported-resolutions**
 * **force-session-rebuild**
 * **has-daily**
 * **intraday-multipliers**
-* **has-fractional-volume**\(obsolete\)
+* **has-fractional-volume**\(过时的\)
 * **volume\_precision**
 * **has-weekly-and-monthly**
 * **has-empty-bars**

@@ -167,7 +167,7 @@ configurationData是一个对象，现在支持以下属性:
 1. `onHistoryCallback`: function\(数组`bars`,`meta`=_{ noData = false }_\) 历史数据的回调函数。每次请求只应被调用一次。 此函数有2个参数：
    1. `bars`: Bar对象数组`{time, close, open, high, low, volume}[]`
    1. `meta`: object`{noData = true | false, nextTime = unix time}`
-1. `onErrorCallback`: function\(reason：错误原因\) 错误的回调函数。 该函数的唯一参数是文本错误消息。该消息不会显示，并保留以备将来使用。
+1. `onErrorCallback`: function\(reason：错误原因\) 错误的回调函数。 此函数的唯一参数是文本错误消息。
 
 方法介绍：当图表库需要由日期范围定义的历史K线片段时，将调用此函数。
 
@@ -221,7 +221,7 @@ configurationData是一个对象，现在支持以下属性:
 3. 图表库通过时间`1419411578413`找出K线，已存在并且是最近的那一个
 4. 图表库替换K线，因此现在最近一条K线为 `{1419411578413, 10, 14, 9, 14}`
 
-**Remark 2**: 是否可以更新最近的K线或追加一条新的，取决于`onRealtimeCallback`。 如果您调用此功能尝试更新历史记录中的一个K线时，则会收到错误消息。
+**Remark 2**: 可以使用 `onRealtimeCallback` 更新最近的K线或添加新K线。 如果您调用此功能尝试更新历史记录中的一个K线时，则会收到错误消息。
 
 **Remark 3**: 现在，在图表接收到数据后，没有办法改变历史上的K线。
 

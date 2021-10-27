@@ -6,7 +6,44 @@ _注意：您可以通过在浏览器控制台中执行 `TradingView.version()` 
 
 以下是重大变更列表：
 
+## Version 21
+
+- 功能集`show_dialog_on_snapshot_ready` 已被删除。 [takeScreenshot](Widget-Methods.md#takescreenshot) 静默生成快照，因此您可以使用 [onScreenshotReady](Widget-Methods.md#subscribeevent-callback) 回调中的 URL 来显示您自己的对话框。
+
+- [SymbolInfo](Symbology.md) 中的字段 `holidays` 已重命名为 [`session_holidays`](Symbology.md#session_holidays)。
+
+**交易终端**
+
+- `empty` 格式化方法已被删除。
+
+- 标记 `durationForMarketOrders` 已从 Broker 配置 `configFlags` 对象中删除。 要对市价订单使用持续时间，请将适当的订单类型添加到 `supportedOrderTypes` 数组。
+
+- `supportReducePosition` 标志已从 Broker 配置 `configFlags` 对象中删除。
+
+- 已添加`supportExecutions` 标志。 如果经纪人支持执行，您需要将标志设置为 `true`。
+
+- [SortingParameters](Account-Manager.md#sortingparameters) 的 `asc` 字段的默认值已更改为 `true`。
+
+- `customFormatters` 字段已从 [accountManagerInfo](Broker-API.md#accountManagerInfo) 中删除。
+
+- `id`、`modificationProperty`、`fixedWidth`、`showOnMobile` 和`showTooltipOnCell` 字段已从[Account Manager 列描述](Account-Manager.md#Column-description) 中删除。 `property` 字段已变为必填字段，因此您可以使用它代替 `id`。
+
+- 每个 [table](Account-Manager.md#Table) 行中的字符串 `id` 字段已变为必填字段。
+
+- [Broker API](Broker-API.md)中`placeOrder`方法的返回值由`Promise<void>`改为[Promise\<PlaceOrderResult\>](Trading-Objects-and-Constants.md#PlaceOrderResult)。
+
+- `AccountManagerInfo` 接口中`contextMenuActions` 中的`contextMenuEvent` 类型已从`MouseEvent` 更改为`MouseEvent | TouchEvent`。
+
+- [Widget Constructor options](Widget-Constructor.md#news_provider) 中`news_provider` 属性已更改。 `is_news_generic` 和 `get_news` 属性已被替换为单个函数。
+
 ## Version 20
+
+- 功能集 `caption_buttons_text_if_possible` 已被移除并被新参数替换 [`header_widget_buttons_mode`](Widget-Constructor.md#header_widget_buttons_mode)
+
+- 功能集 `high_density_bars` 已被移除并替换为 `min_bar_spacing`, 这是 [`time_scale`](Widget-Constructor.md#time_scale) 的一个新参数。
+
+- 指标 `Moving Average Modified` 已被删除。 改用`Smoothed Moving Average`。 请注意，`length` 输入的默认值是不同的。
+
 
 **交易终端**
 
@@ -259,7 +296,7 @@ _注意：container_id 已被标记为已弃用。现在应更改为 container �
 
 ## Version 1.3
 
-- 覆盖 `paneProperties.gridProperties.*` 不在被支持。
+- 覆盖 `paneProperties.gridProperties.*` 不再被支持。
   请使用 `paneProperties.vertGridProperties.*` 和 `paneProperties.horzGridProperties.*`
 
 - 覆盖 `mainSeriesProperties.candleStyle.wickColor` 不在被支持。

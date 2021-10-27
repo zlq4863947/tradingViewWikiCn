@@ -6,7 +6,6 @@
 linetoolicon: {
     singleChartOnly: true,
     color: 'rgba( 61, 133, 198, 1)',
-    snapTo45Degrees:true,
     size: 40,
     icon: 0x263A,
     angle: Math.PI * 0.5,
@@ -49,7 +48,6 @@ linetooltrendline: {
     fontsize: 12,
     bold:false,
     italic:false,
-    snapTo45Degrees:true,
     alwaysShowStats: false,
     showPriceRange: false,
     showBarsRange: false,
@@ -75,7 +73,6 @@ linetooltrendangle: {
     linecolor: 'rgba( 21, 153, 128, 1)',
     linewidth: 1.0,
     linestyle: LINESTYLE_SOLID,
-    snapTo45Degrees:true,
     font: 'Verdana',
     textcolor: 'rgba( 21, 119, 96, 1)',
     fontsize: 12,
@@ -485,7 +482,6 @@ linetoolrectangle: {
     fillBackground: true,
     backgroundColor: 'rgba( 21, 56, 153, 0.5)',
     linewidth: 1.0,
-    snapTo45Degrees:true,
     transparency: 50
 },
 linetoolrotatedrectangle: {
@@ -493,8 +489,7 @@ linetoolrotatedrectangle: {
     fillBackground: true,
     backgroundColor: 'rgba( 142, 124, 195, 0.5)',
     transparency: 50,
-    linewidth: 1.0,
-    snapTo45Degrees:true
+    linewidth: 1.0
 },
 linetoolellipse: {
     color: 'rgba( 153, 153, 21, 1)',
@@ -695,7 +690,6 @@ linetoolfibspeedresistancefan: {
     showBottomLabels:true,
     showLeftLabels:true,
     showRightLabels:true,
-    snapTo45Degrees:true,
     hlevel1-7: LEVELS_TYPE_B,
     vlevel1-7: LEVELS_TYPE_B
 },
@@ -842,7 +836,6 @@ linetoolfibcircles: {
     font: 'Verdana',
     fillBackground:true,
     transparency:80,
-    snapTo45Degrees:true,
     coeffsAsPercents:false,
     trendline: {
         visible: true,

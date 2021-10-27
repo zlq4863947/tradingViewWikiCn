@@ -55,9 +55,9 @@ ConnectionStatus.Error = 4;
 
 此方法用于返回账户管理器的信息。请参阅[账户管理器](Account-Manager.md)了解更多信息。
 
-### placeOrder([order](Trading-Objects-and-Constants.md#order), confirmId)
+### placeOrder([order](Trading-Objects-and-Constants.md#order), confirmId): Promise\<PlaceOrderResult>
 
-方法在用户想要下订单时调用。订单预先填写了部分或全部信息。
+当用户想要下订单时调用此方法。订单预先填写了部分或完整的信息。此方法返回一个带有订单 ID 的对象。
 
 如果 `supportPlaceOrderPreview` 配置标志打开，则传递 `confirmId`。
 
@@ -131,7 +131,7 @@ ConnectionStatus.Error = 4;
 
 返回值是具有以下属性的对象:
 
-- `qty` - 对象拥有这 3 个属性：`min`、`max`、`step`，用于指定数量、`step`和边界。
+- `qty` - [QuantityMetainfo](Trading-Objects-and-Constants.md#QuantityMetainfo) 对象。
 - `pipSize` - 点的大小（例如，EURUSD 为`0.0001`）
 - `pipValue` - 对于合约账户币种的每`1pip`的值
 - `minTick` - 最小价格变动（例如，EURUSD 为`0.00001`）。用于价格字段。
@@ -145,6 +145,8 @@ ConnectionStatus.Error = 4;
 - `currency` - 在订单对话框中显示的工具货币
 - `baseCurrency` - 货币对中报价的第一种货币。 仅用于加密货币。
 - `quoteCurrency` - 货币对中报价的第二种货币。 仅用于加密货币。
+- `bigPointValue` - 以合约货币的完整价格变动点表示的价值。该值用于计算订单的总价值（商品货币）。
+- `units` - 数量或金额的单位。在数量/金额字段中显示而不是单位标签。
 
 ### accountInfo(): Deferred (或 Promise)
 

@@ -51,7 +51,7 @@ SymbolInfo是一个包含商品metadata的对象。 该对象是解析商品的�
 
 商品交易时间。请参阅交易日细节了解更多详情。[交易时段](/book/Trading-Sessions.md)
 
-##### [holidays](#holidays)
+##### [session_holidays](#session_holidays)
 
 此商品的假期列表。这些日期将不显示在图表上。
 它是以下格式的字符串：
@@ -318,3 +318,14 @@ resolutionAvailable  =
 
 交易所使用的货币或其他货币（如果启用了货币转换）。 它显示在“交易品种信息”对话框和价格轴上。
 
+## original_unit_id
+
+交易期货的单位的唯一标识符。
+
+## unit_id
+
+如果启用了单位转换，则为交易期货的单位的唯一标识符或某些其他标识符。它显示在价格轴上。
+
+## unit_conversion_types
+
+允许的单位转换组名称。 另见[units](JS-Api.md#units)。

@@ -66,6 +66,7 @@ widget.onChartReady(function() {
   * [applyStudiesOverrides\(overrides\)](#applystudiesoverridesoverrides)
 * ![](../images/trading.png)[交易终端专属](#交易终端专属)
   * [watchList()](#watchlist)
+  * [news()](#chart-news)
 * ![](../images/trading.png)[多图表布局](#多图表布局)
   * [chart\(index\)](#chartindex)
   * [activeChart()](#activechart)
@@ -251,6 +252,7 @@ widget.onShortcut("alt+s", function() {
 `options` 是一个 *optional* 对象，具有以下字段：
 
 * `backgroundColor`：背景颜色
+* `borderColor`: 图表边框颜色
 * `font`：图例文本字体系列
 * `fontSize`：图例文本字体大小
 * `legendMode`: `vertical` 或 `horizontal`
@@ -563,6 +565,24 @@ console.log(widget.getTheme());
 15.  `onListRemoved()` - 当监视列表中删除商品列表时, 可以使用此方法进行通知。您可以使用此方法返回的 [Subscription](Subscription.md)对象进行订阅和取消订阅。
 
 16.  `onListRenamed()` - - 当监视列表中重命名商品列表时, 可以使用此方法进行通知。您可以使用此方法返回的 [Subscription](Subscription.md)对象进行订阅和取消订阅。
+
+### ![](../images/trading.png)news()
+
+*从版本 21 开始。*
+
+返回一个使用用于控制新闻小部件的对象解析的 Promise。 该对象具有以下方法：
+
+1. `refresh()` - 允许您按需刷新新闻列表。
+
+```js
+const widget = new TradingView.widget(/* options */);
+
+widget.onChartReady(() => {
+    widget.news().then(newsApi => {
+        // newsApi 可以使用了。
+    });
+});
+```
 
 # ![](../images/trading.png)多图表布局
 
