@@ -12,17 +12,14 @@ TradingView 为优秀的交易技术分析金融图表，拥有丰富的技术�
 
 - 仓库：[https://github.com/zlq4863947/tradingViewWikiCn](https://github.com/zlq4863947/tradingViewWikiCn)
 - 在线阅读：[https://zlq4863947.gitbooks.io/tradingview/](https://zlq4863947.gitbooks.io/tradingview/)
-- 在线阅读(国内防墙)：[https://aitrade.ga/books/tradingview/](https://aitrade.ga/books/tradingview/)
 
 ## tradingview 轻量级图表插件
 
 - 仓库：[https://github.com/zlq4863947/lightweight-charts-docs-cn](https://github.com/zlq4863947/lightweight-charts-docs-cn)
-- 在线阅读(国内防墙)：[https://aitrade.ga/books/lightweight-charts-docs-cn/](https://aitrade.ga/books/lightweight-charts-docs-cn/)
 
 ## 视频教程
 
 - 仓库：[https://github.com/zlq4863947/proficient-tradingview](https://github.com/zlq4863947/proficient-tradingview)
-- 在线阅读：[https://aitrade.ga/books/proficient-tradingview](https://aitrade.ga/books/proficient-tradingview)
 
 ## 开发交流 QQ 群
 
